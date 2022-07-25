@@ -1,10 +1,28 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "baseUrl": ".",
     "module": "ESNext",
+    "outDir": "./dist",
+    "paths": {
+      "@xylabs/*": [
+        "packages/*/src/index.ts"
+      ]
+    },
+    "rootDir": ".",
     "target": "ES2022",
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["jest", "node", "@types/jest", "jest-sorted", "jest-extended", "json-schema"]
+    "typeRoots": ["./node_modules/@types"]
   },
-  "extends": "@xylabs/tsconfig"
+  "exclude": ["node_modules", "dist"],
+  "extends": "@xylabs/tsconfig",
+  "references": [
+    {
+      "path": "packages/eslint-config"
+    },
+    {
+      "path": "packages/ts-scripts"
+    },
+    {
+      "path": "packages/tsconfig"
+    }
+  ]
 }

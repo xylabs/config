@@ -4,7 +4,8 @@
 
 ## Description
 
-> Scripts that are used to develop, build, and analyze Typescript projects.  Can be used directly for generating esm modules.
+> Scripts that are used to develop, build, and analyze Typescript projects.
+> Can be used directly for generating esm modules.
 
 ## Required Tools (Global)
 
