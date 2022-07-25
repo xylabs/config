@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "ignorePatterns": ["node_modules/", "bin/"],
+  "extends": [
+    "@xylabs"
+  ],
+  "rules": {
+    "import/no-internal-modules": [
+      "warn", {
+        "allow": [
+
+        ]
+      }
+    ]
+  }
+}
