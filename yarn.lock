@@ -1660,6 +1660,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
   dependencies:
+    "@xylabs/tsconfig": "workspace:^"
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
