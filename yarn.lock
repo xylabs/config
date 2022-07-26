@@ -1549,7 +1549,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config@^2.3.28, @xylabs/eslint-config@workspace:^, @xylabs/eslint-config@workspace:packages/eslint-config":
+"@xylabs/eslint-config@^2.4.1, @xylabs/eslint-config@workspace:^, @xylabs/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
   dependencies:
@@ -1659,7 +1659,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
-    "@xylabs/eslint-config": ^2.3.28
+    "@xylabs/eslint-config": ^2.4.1
     eslint: ^8.20.0
     prettier: ^2.7.1
     typescript: ^4.7.4
