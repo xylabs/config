@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "DOM.Iterable"
+    ]
+  },
+  "extends": "@xylabs/tsconfig"
+}

@@ -31,6 +31,10 @@ module.exports = {
     },
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+  },
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['*.d.ts*', '*.ts*'],

@@ -63,13 +63,6 @@
     "type": "git",
     "url": "https://github.com/xylabs/config.git"
   },
-  "scripts": {
-    "build": "tsc",
-    "deploy": "yarn lint && yarn build && yarn version patch -i && yarn npm publish",
-    "fix": "eslint . --fix",
-    "lint": "eslint .",
-    "reinstall": "rimraf ./node_modules && rimraf ./yarn.lock && rimraf ./yarn-error.log && yarn install"
-  },
   "sideEffects": false,
   "version": "2.4.1"
 }

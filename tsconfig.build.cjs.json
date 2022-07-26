@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "module": "CommonJS",
     "outDir": "./dist/cjs",
     "target": "ES6"

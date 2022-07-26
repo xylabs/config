@@ -51,7 +51,7 @@
   },
   "bugs": {
     "email": "support@xylabs.com",
-    "url": "https://github.com/xylabs/ts-scripts/issues"
+    "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
     "@types/jest": "^28.1.6",
