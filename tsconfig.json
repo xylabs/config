@@ -1,28 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "ESNext",
     "outDir": "./dist",
-    "paths": {
-      "@xylabs/*": [
-        "packages/*/src/index.ts"
-      ]
-    },
-    "rootDir": ".",
-    "target": "ES2022",
     "typeRoots": ["./node_modules/@types"]
   },
   "exclude": ["node_modules", "dist"],
-  "extends": "@xylabs/tsconfig",
-  "references": [
-    {
-      "path": "packages/eslint-config"
-    },
-    {
-      "path": "packages/ts-scripts"
-    },
-    {
-      "path": "packages/tsconfig"
-    }
-  ]
+  "extends": "@xylabs/tsconfig"
 }
