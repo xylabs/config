@@ -90,6 +90,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.4",
+  "version": "2.5.5",
   "packageManager": "yarn@3.2.2"
 }
