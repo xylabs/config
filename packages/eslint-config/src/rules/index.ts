@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ['deprecation', 'sort-keys-fix', 'no-secrets'],
   rules: {
-    complexity: ['error', 20],
+    complexity: ['error', 18],
     'deprecation/deprecation': ['warn'],
     'max-depth': ['error', 6],
     'max-lines': [

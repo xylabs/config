@@ -7,7 +7,7 @@ module.exports = {
       {
         bracketSpacing: true,
         endOfLine: 'lf',
-        printWidth: 180,
+        printWidth: 160,
         semi: false,
         singleQuote: true,
         tabWidth: 2,
