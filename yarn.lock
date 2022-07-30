@@ -1590,7 +1590,7 @@ __metadata:
     "@types/node": ^18.6.2
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
-    chalk: ^5.0.1
+    chalk: 4.1.2
     copyfiles: ^2.4.1
     depcheck: ^1.4.3
     eslint: ^8.20.0
@@ -1608,8 +1608,6 @@ __metadata:
     ts-jest: ^28.0.7
     ts-prune: ^0.10.3
     typescript: ^4.7.4
-  peerDependencies:
-    typescript: ^4
   bin:
     build: dist/cjs/build.js
     clean: dist/cjs/clean.js
@@ -2272,6 +2270,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.0.0, chalk@npm:^2.1.0":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -2280,16 +2288,6 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: ec3661d38fe77f681200f878edbd9448821924e0f93a9cefc0e26a33b145f1027a2084bf19967160d11e1f03bfe4eaffcabf5493b89098b2782c3fe0b03d80c2
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
