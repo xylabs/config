@@ -16,13 +16,13 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2022",
-    "ts-node": {
-      "compilerOptions": {
-        "module": "CommonJS"
-      },
-      "files": true,
-      "transpileOnly": true
-    }
+    "target": "ES2022"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "files": true,
+    "transpileOnly": true
   }
 }

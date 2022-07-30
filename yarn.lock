@@ -1655,22 +1655,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig-build-cjs@workspace:packages/tsconfig-build-cjs":
-  version: 0.0.0-use.local
-  resolution: "@xylabs/tsconfig-build-cjs@workspace:packages/tsconfig-build-cjs"
-  dependencies:
-    typescript: ^4.7.4
-  languageName: unknown
-  linkType: soft
-
-"@xylabs/tsconfig-build-esm@workspace:packages/tsconfig-build-esm":
-  version: 0.0.0-use.local
-  resolution: "@xylabs/tsconfig-build-esm@workspace:packages/tsconfig-build-esm"
-  dependencies:
-    typescript: ^4.7.4
-  languageName: unknown
-  linkType: soft
-
 "@xylabs/tsconfig-dom@workspace:^, @xylabs/tsconfig-dom@workspace:packages/tsconfig-dom":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
