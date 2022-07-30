@@ -1582,9 +1582,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts@workspace:^, @xylabs/ts-scripts@workspace:packages/ts_scripts":
+"@xylabs/ts-scripts@workspace:^, @xylabs/ts-scripts@workspace:packages/ts-scripts":
   version: 0.0.0-use.local
-  resolution: "@xylabs/ts-scripts@workspace:packages/ts_scripts"
+  resolution: "@xylabs/ts-scripts@workspace:packages/ts-scripts"
   dependencies:
     "@types/jest": ^28.1.6
     "@types/node": ^18.6.2
@@ -1604,6 +1604,7 @@ __metadata:
     npm-package-json-lint: ^6.3.0
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
+    prettier: ^2.7.1
     rimraf: ^3.0.2
     ts-jest: ^28.0.7
     ts-prune: ^0.10.3

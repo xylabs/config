@@ -1,0 +1,10 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./dist/cjs",
+    "rootDir": "./src",
+    "target": "ES6"
+  },
+  "extends": "@xylabs/tsconfig"
+}

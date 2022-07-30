@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json.schemastore.org/package.json",
+  "name": "@xylabs/tsconfig-build-esm",
+  "author": {
+    "email": "support@xylabs.com",
+    "name": "XY Labs Development Team",
+    "url": "https://xylabs.com"
+  },
+  "bugs": {
+    "email": "support@xylabs.com",
+    "url": "https://github.com/xylabs/tsconfig/issues"
+  },
+  "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "homepage": "https://github.com/xylabs/tsconfig.git",
+  "keywords": [
+    "xylabs",
+    "utility",
+    "config",
+    "typescript",
+    "tsconfig"
+  ],
+  "license": "LGPL-3.0",
+  "main": "./tsconfig.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xylabs/config.git"
+  },
+  "sideEffects": false,
+  "version": "2.5.9"
+}
