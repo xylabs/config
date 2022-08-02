@@ -2,6 +2,7 @@ module.exports = {
   extends: ['plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
   plugins: ['import', 'simple-import-sort'],
   rules: {
+    'import/namespace': ['warn'],
     'import/no-absolute-path': ['warn'],
     'import/no-cycle': [
       'off',
