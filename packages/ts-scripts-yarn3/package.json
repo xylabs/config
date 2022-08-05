@@ -23,6 +23,8 @@
     "gitlint": "dist/cjs/gitlint.js",
     "gitlint-fix": "dist/cjs/gitlint-fix.js",
     "lint": "dist/cjs/lint.js",
+    "lint-fast": "dist/cjs/lint-fast.js",
+    "lint-profile": "dist/cjs/lint-profile.js",
     "migrate": "dist/cjs/migrate.js",
     "rebuild": "dist/cjs/rebuild.js",
     "reinstall": "dist/cjs/reinstall.js",
@@ -43,6 +45,8 @@
     "xylabs-gitlint": "dist/cjs/gitlint.js",
     "xylabs-gitlint-fix": "dist/cjs/gitlint-fix.js",
     "xylabs-lint": "dist/cjs/lint.js",
+    "xylabs-lint-fast": "dist/cjs/lint-fast.js",
+    "xylabs-lint-profile": "dist/cjs/lint-profile.js",
     "xylabs-rebuild": "dist/cjs/rebuild.js",
     "xylabs-reinstall": "dist/cjs/reinstall.js",
     "xylabs-sonar": "dist/cjs/sonar.js",
@@ -61,7 +65,7 @@
     "@types/node": "^18.6.4",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/sdk-js": "^2.6.3",
-    "chalk": "5.0.1",
+    "chalk": "^4",
     "copyfiles": "^2.4.1",
     "depcheck": "^1.4.3",
     "eslint": "^8.21.0",
@@ -105,5 +109,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.14"
+  "version": "2.5.16"
 }
