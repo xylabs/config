@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import { execSync } from 'child_process'
 import { sync } from 'parse-git-config'
 
-import { safeExit } from './safeExit'
+import { safeExit } from './lib'
 
 safeExit(() => {
   console.log(`\nGitlint Fix Start [${process.cwd()}]\n`)

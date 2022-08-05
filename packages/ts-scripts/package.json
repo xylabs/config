@@ -47,7 +47,9 @@
     "xylabs-up": "dist/cjs/up.js",
     "xylabs-up3": "dist/cjs/up3.js",
     "xylabs-updo": "dist/cjs/updo.js",
-    "xylabs-updo3": "dist/cjs/updo3.js"
+    "xylabs-updo3": "dist/cjs/updo3.js",
+    "xylabs-yarn3only": "dist/cjs/yarn3only.js",
+    "yarn3only": "dist/cjs/yarn3only.js"
   },
   "bugs": {
     "email": "support@xylabs.com",
@@ -55,6 +57,7 @@
   },
   "dependencies": {
     "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.4",
     "@xylabs/eslint-config": "workspace:^",
     "chalk": "5.0.1",
     "copyfiles": "^2.4.1",
@@ -78,6 +81,7 @@
   "devDependencies": {
     "@types/node": "^18.6.3",
     "@types/parse-git-config": "^3.0.1",
+    "@xylabs/tsconfig": "workspace:^",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1"
   },

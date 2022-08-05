@@ -1605,6 +1605,7 @@ __metadata:
     "@types/node": ^18.6.3
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
+    "@xylabs/tsconfig": "workspace:^"
     chalk: 5.0.1
     copyfiles: ^2.4.1
     depcheck: ^1.4.3
@@ -1667,6 +1668,8 @@ __metadata:
     xylabs-up3: dist/cjs/up3.js
     xylabs-updo: dist/cjs/updo.js
     xylabs-updo3: dist/cjs/updo3.js
+    xylabs-yarn3only: dist/cjs/yarn3only.js
+    yarn3only: dist/cjs/yarn3only.js
   languageName: unknown
   linkType: soft
 
