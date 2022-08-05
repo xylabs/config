@@ -1655,6 +1655,8 @@ __metadata:
     gitlint: dist/cjs/gitlint.js
     gitlint-fix: dist/cjs/gitlint-fix.js
     lint: dist/cjs/lint.js
+    lint-fast: dist/cjs/lint-fast.js
+    lint-profile: dist/cjs/lint-profile.js
     migrate: dist/cjs/migrate.js
     rebuild: dist/cjs/rebuild.js
     reinstall: dist/cjs/reinstall.js
@@ -1675,6 +1677,8 @@ __metadata:
     xylabs-gitlint: dist/cjs/gitlint.js
     xylabs-gitlint-fix: dist/cjs/gitlint-fix.js
     xylabs-lint: dist/cjs/lint.js
+    xylabs-lint-fast: dist/cjs/lint-fast.js
+    xylabs-lint-profile: dist/cjs/lint-profile.js
     xylabs-rebuild: dist/cjs/rebuild.js
     xylabs-reinstall: dist/cjs/reinstall.js
     xylabs-sonar: dist/cjs/sonar.js
