@@ -5,7 +5,7 @@
     "url": "https://xylabs.com"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ],
   "bugs": {
     "email": "support@xylabs.com",
@@ -58,7 +58,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "scripts": {
-    "build": "echo Building... && yarn compile && yarn gen:docs",
+    "build": "echo Building... && yarn compile",
     "compile": "echo Compiling... && yarn compile:esm && yarn compile:cjs && yarn lint-fast",
     "compile:cjs": "echo Compiling CJS... && yarn workspaces foreach -ptA run compile:package:cjs",
     "compile:esm": "echo Compiling ESM... && yarn workspaces foreach -ptA run compile:package:esm",
