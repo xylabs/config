@@ -3,7 +3,7 @@
 import { runSteps } from './lib'
 
 runSteps('Deploy [Patch]', [
-  ['yarn', 'yarn workspaces foreach --all version patch --deferred'],
+  ['yarn', 'workspaces foreach --all version patch --deferred'],
   ['yarn', 'cycle'],
   ['yarn', 'build'],
   ['yarn', 'version apply --all'],

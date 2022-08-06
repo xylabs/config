@@ -7,4 +7,4 @@ const rules = {
   'import/no-internal-modules': ['off'],
 }
 
-runSteps('Cycle', [['yarn', `eslint ${Object.entries(rules).map(([rule, value]) => ` --rule "${rule}: ${JSON.stringify(value)}"`)} .`]])
+runSteps('Cycle', [['./node_modules/eslint/bin/eslint.js', `${Object.entries(rules).map(([rule, value]) => ` --rule "${rule}: ${JSON.stringify(value)}"`)} .`]])
