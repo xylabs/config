@@ -11,6 +11,8 @@
     "compile": "dist/cjs/compile.js",
     "compile:cjs": "dist/cjs/compile-cjs.js",
     "compile:esm": "dist/cjs/compile-esm.js",
+    "copy-images:cjs": "dist/cjs/copy-images-cjs.js",
+    "copy-images:esm": "dist/cjs/copy-images-esm.js",
     "cycle": "dist/cjs/cycle.js",
     "dead": "dist/cjs/dead.js",
     "deploy": "dist/cjs/deploy.js",
@@ -69,7 +71,7 @@
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/sdk-js": "^2.6.3",
     "chalk": "^4.1.2",
-    "copyfiles": "^2.4.1",
+    "cpy-cli": "^4.1.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.21.0",
     "eslint-plugin-sonarjs": "^0.14.0",
@@ -113,5 +115,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.62"
+  "version": "2.5.64"
 }
