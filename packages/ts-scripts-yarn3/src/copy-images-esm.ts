@@ -10,7 +10,7 @@ const steps = workspaces.map<ScriptStep>(({ location }) => [
 ])
 
 runSteps(
-  'Deps',
+  'Copy Images [ESM]',
   steps,
   false,
   workspaces.map(({ name }) => name)
