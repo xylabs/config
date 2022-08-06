@@ -68,7 +68,7 @@
     "@types/node": "^18.6.4",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/sdk-js": "^2.6.3",
-    "chalk": "^4",
+    "chalk": "^4.1.2",
     "copyfiles": "^2.4.1",
     "depcheck": "^1.4.3",
     "eslint": "^8.21.0",
@@ -113,5 +113,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.61"
+  "version": "2.5.62"
 }

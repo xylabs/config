@@ -1620,7 +1620,7 @@ __metadata:
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/sdk-js": ^2.6.3
     "@xylabs/tsconfig": "workspace:^"
-    chalk: ^4
+    chalk: ^4.1.2
     copyfiles: ^2.4.1
     depcheck: ^1.4.3
     eslint: ^8.21.0
@@ -1705,7 +1705,7 @@ __metadata:
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
-    chalk: ^4
+    chalk: ^4.1.2
     copyfiles: ^2.4.1
     depcheck: ^1.4.3
     eslint: ^8.21.0
@@ -2430,7 +2430,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
