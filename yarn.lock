@@ -1649,7 +1649,8 @@ __metadata:
     cycle: dist/cjs/cycle.js
     dead: dist/cjs/dead.js
     deploy: dist/cjs/deploy.js
-    deploy3: dist/cjs/deploy3.js
+    deploy-major: dist/cjs/deploy-major.js
+    deploy-minor: dist/cjs/deploy-minor.js
     deps: dist/cjs/deps.js
     fix: dist/cjs/fix.js
     gen-docs: dist/cjs/gen-docs.js
@@ -1674,6 +1675,8 @@ __metadata:
     xylabs-cycle: dist/cjs/cycle.js
     xylabs-dead: dist/cjs/dead.js
     xylabs-deploy: dist/cjs/deploy.js
+    xylabs-deploy-major: dist/cjs/deploy-major.js
+    xylabs-deploy-minor: dist/cjs/deploy-minor.js
     xylabs-deps: dist/cjs/deps.js
     xylabs-fix: dist/cjs/fix.js
     xylabs-gitlint: dist/cjs/gitlint.js
