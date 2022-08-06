@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Lint Fast', [['yarn', 'eslint . --cache']])
+runSteps('Lint Fast', [['./node_modules/eslint/bin/eslint.js', '. --cache']])

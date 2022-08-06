@@ -1636,6 +1636,7 @@ __metadata:
     rimraf: ^3.0.2
     ts-jest: ^28.0.7
     ts-prune: ^0.10.3
+    typedoc: ^0.23.10
     typescript: ^4.7.4
   bin:
     build: dist/cjs/build.js
@@ -1643,17 +1644,16 @@ __metadata:
     compile: dist/cjs/compile.js
     "compile:cjs": dist/cjs/compile-cjs.js
     "compile:esm": dist/cjs/compile-esm.js
-    "compile:package-cjs": dist/cjs/compile-package-cjs.js
-    "compile:package-esm": dist/cjs/compile-package-esm.js
     cycle: dist/cjs/cycle.js
     dead: dist/cjs/dead.js
     deploy: dist/cjs/deploy.js
     deploy3: dist/cjs/deploy3.js
     deps: dist/cjs/deps.js
-    "deps:package": dist/cjs/deps-package.js
     fix: dist/cjs/fix.js
+    gen-docs: dist/cjs/gen-docs.js
     gitlint: dist/cjs/gitlint.js
     gitlint-fix: dist/cjs/gitlint-fix.js
+    license: dist/cjs/license.js
     lint: dist/cjs/lint.js
     lint-fast: dist/cjs/lint-fast.js
     lint-profile: dist/cjs/lint-profile.js
@@ -1676,6 +1676,7 @@ __metadata:
     xylabs-fix: dist/cjs/fix.js
     xylabs-gitlint: dist/cjs/gitlint.js
     xylabs-gitlint-fix: dist/cjs/gitlint-fix.js
+    xylabs-license: dist/cjs/lint.js
     xylabs-lint: dist/cjs/lint.js
     xylabs-lint-fast: dist/cjs/lint-fast.js
     xylabs-lint-profile: dist/cjs/lint-profile.js
@@ -5793,6 +5794,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lunr@npm:^2.3.9":
+  version: 2.3.9
+  resolution: "lunr@npm:2.3.9"
+  checksum: 176719e24fcce7d3cf1baccce9dd5633cd8bdc1f41ebe6a180112e5ee99d80373fe2454f5d4624d437e5a8319698ca6837b9950566e15d2cae5f2a543a3db4b8
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.25.7":
   version: 0.25.7
   resolution: "magic-string@npm:0.25.7"
@@ -5909,6 +5917,15 @@ __metadata:
   version: 1.1.3
   resolution: "markdown-table@npm:1.1.3"
   checksum: 292e8c956ae833c2ccb0a55cd8d87980cd657ab11cd9ff63c3fcc4d3a518d3b3882ba07410b8f477ba9e30b3f70658677e4e8acf61816dd6cfdd1f6293130664
+  languageName: node
+  linkType: hard
+
+"marked@npm:^4.0.18":
+  version: 4.0.18
+  resolution: "marked@npm:4.0.18"
+  bin:
+    marked: bin/marked.js
+  checksum: a13e886d5059a8500a6fd552feecc16e18fc3636aa491fce372384b1fdea67e323d67ac49f7618f6977e66ca96e39f27400eb5c1273d5ee9c2301e8c33e90dce
   languageName: node
   linkType: hard
 
@@ -9295,6 +9312,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"shiki@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "shiki@npm:0.10.1"
+  dependencies:
+    jsonc-parser: ^3.0.0
+    vscode-oniguruma: ^1.6.1
+    vscode-textmate: 5.2.0
+  checksum: fb746f3cb3de7e545e3b10a6cb658d3938f840e4ccc9a3c90ceb7e69a8f89dbb432171faac1e9f02a03f103684dad88ee5e54b5c4964fa6b579fca6e8e26424d
+  languageName: node
+  linkType: hard
+
 "side-channel@npm:^1.0.4":
   version: 1.0.4
   resolution: "side-channel@npm:1.0.4"
@@ -10098,6 +10126,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typedoc@npm:^0.23.10":
+  version: 0.23.10
+  resolution: "typedoc@npm:0.23.10"
+  dependencies:
+    lunr: ^2.3.9
+    marked: ^4.0.18
+    minimatch: ^5.1.0
+    shiki: ^0.10.1
+  peerDependencies:
+    typescript: 4.6.x || 4.7.x
+  bin:
+    typedoc: bin/typedoc
+  checksum: 58dd8bc12856801c4f315812d03f209f706435e5f56edceeb3e01e456c7d058a127f3dee1674529d62b64dcc04847d8be5e4ce06921b9c5388b901dd976b92bf
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
@@ -10533,6 +10577,20 @@ __metadata:
     unist-util-stringify-position: ^3.0.0
     vfile-message: ^3.0.0
   checksum: 29be972ae61c37539585bdb5efa66a7f9a4e6cdbea43928ffe2fa2313321b946db59336ae0289451ad818eed446d51d9248f13324630f2a2414b11a6c1bbfb6d
+  languageName: node
+  linkType: hard
+
+"vscode-oniguruma@npm:^1.6.1":
+  version: 1.6.2
+  resolution: "vscode-oniguruma@npm:1.6.2"
+  checksum: 6b754acdafd5b68242ea5938bb00a32effc16c77f471d4f0f337d879d0e8e592622998e2441f42d9a7ff799c1593f31c11f26ca8d9bf9917e3ca881d3c1f3e19
+  languageName: node
+  linkType: hard
+
+"vscode-textmate@npm:5.2.0":
+  version: 5.2.0
+  resolution: "vscode-textmate@npm:5.2.0"
+  checksum: 5449b42d451080f6f3649b66948f4b5ee4643c4e88cfe3558a3b31c84c78060cfdd288c4958c1690eaa5cd65d09992fa6b7c3bef9d4aa72b3651054a04624d20
   languageName: node
   linkType: hard
 

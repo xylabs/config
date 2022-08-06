@@ -1,4 +1,8 @@
 #!/usr/bin/env node
-import { runSteps } from './lib'
+import { runSteps, ScriptStep, yarnWorkspaces } from './lib'
 
-runSteps('Clean', [['yarn', 'yarn workspaces foreach -pA run clean:package']])
+const workspaces = yarnWorkspaces()
+
+const steps = workspaces.map<ScriptStep>(({ location }) => ['./node_modules/rimraf/bin.js', ['-q', `${location}/dist`]])
+
+runSteps('Deps', steps)

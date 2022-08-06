@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Lint Profile', [['yarn', 'eslint .', { env: { ...process.env, TIMING: '1' } }]])
+runSteps('Lint Profile', [['./node_modules/eslint/bin/eslint.js', '.', { env: { ...process.env, TIMING: '1' } }]])

@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Lint', [['yarn', 'eslint .']])
+runSteps('Lint', [['./node_modules/eslint/bin/eslint.js', '.']])

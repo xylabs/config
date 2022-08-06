@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { runSteps, ScriptStep, yarnWorkspaces } from './lib'
 
-runSteps('Deps', [['yarn', 'workspaces foreach -pAv run deps:package']])
+const workspaces = yarnWorkspaces()
+
+const steps = workspaces.map<ScriptStep>(({ location }) => ['./node_modules/depcheck/bin/depcheck.js', [`${location}/.`]])
+
+runSteps(
+  'Deps',
+  steps,
+  false,
+  workspaces.map(({ name }) => name)
+)

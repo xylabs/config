@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Compile [CJS]', [['yarn', 'workspaces foreach -ptA run compile:package:cjs']])
+runSteps('Compile [CJS]', [['yarn', 'workspaces foreach -ptA exec tsc -p ./tsconfig.build.cjs.json']])

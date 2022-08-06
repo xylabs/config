@@ -11,17 +11,16 @@
     "compile": "dist/cjs/compile.js",
     "compile:cjs": "dist/cjs/compile-cjs.js",
     "compile:esm": "dist/cjs/compile-esm.js",
-    "compile:package-cjs": "dist/cjs/compile-package-cjs.js",
-    "compile:package-esm": "dist/cjs/compile-package-esm.js",
     "cycle": "dist/cjs/cycle.js",
     "dead": "dist/cjs/dead.js",
     "deploy": "dist/cjs/deploy.js",
     "deploy3": "dist/cjs/deploy3.js",
     "deps": "dist/cjs/deps.js",
-    "deps:package": "dist/cjs/deps-package.js",
     "fix": "dist/cjs/fix.js",
+    "gen-docs": "dist/cjs/gen-docs.js",
     "gitlint": "dist/cjs/gitlint.js",
     "gitlint-fix": "dist/cjs/gitlint-fix.js",
+    "license": "dist/cjs/license.js",
     "lint": "dist/cjs/lint.js",
     "lint-fast": "dist/cjs/lint-fast.js",
     "lint-profile": "dist/cjs/lint-profile.js",
@@ -44,6 +43,7 @@
     "xylabs-fix": "dist/cjs/fix.js",
     "xylabs-gitlint": "dist/cjs/gitlint.js",
     "xylabs-gitlint-fix": "dist/cjs/gitlint-fix.js",
+    "xylabs-license": "dist/cjs/lint.js",
     "xylabs-lint": "dist/cjs/lint.js",
     "xylabs-lint-fast": "dist/cjs/lint-fast.js",
     "xylabs-lint-profile": "dist/cjs/lint-profile.js",
@@ -81,6 +81,7 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^28.0.7",
     "ts-prune": "^0.10.3",
+    "typedoc": "^0.23.10",
     "typescript": "^4.7.4"
   },
   "description": "TypeScript project scripts",
@@ -109,5 +110,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.17"
+  "version": "2.5.53"
 }

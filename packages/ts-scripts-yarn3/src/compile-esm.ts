@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Compile [ESM]', [['yarn', 'workspaces foreach -ptA run compile:package:esm']])
+runSteps('Compile [ESM]', [['yarn', 'workspaces foreach -ptA exec tsc -p ./tsconfig.build.esm.json']])
