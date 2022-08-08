@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Fix', [['yarn', 'eslint . --fix']])
+runSteps('Fix', [['node', ['./node_modules/eslint/bin/eslint.js', '.', '--fix', '--cache']]])

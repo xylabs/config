@@ -4,7 +4,7 @@ import { runSteps, ScriptStep, yarnWorkspaces } from './lib'
 
 const workspaces = yarnWorkspaces()
 
-const steps = workspaces.map<ScriptStep>(({ location }) => ['./node_modules/depcheck/bin/depcheck.js', [`${location}/.`]])
+const steps = workspaces.map<ScriptStep>(({ location }) => ['node', ['./node_modules/depcheck/bin/depcheck.js', `${location}/.`]])
 
 runSteps(
   'Deps',

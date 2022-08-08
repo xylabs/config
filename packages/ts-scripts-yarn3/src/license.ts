@@ -20,8 +20,8 @@ const exclude: string[] = [
 ]
 
 const steps = workspaces.map<ScriptStep>(({ location }) => [
-  './node_modules/license-checker/bin/license-checker',
-  ['--start', `./${location}`, '--exclude', `'${exclude.join(', ')}'`, '--production'],
+  'node',
+  ['./node_modules/license-checker/bin/license-checker', '--start', `./${location}`, '--exclude', `'${exclude.join(', ')}'`, '--production'],
 ])
 
 runSteps(

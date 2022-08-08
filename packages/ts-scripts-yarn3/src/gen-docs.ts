@@ -5,8 +5,9 @@ import { runSteps, ScriptStep, yarnWorkspaces } from './lib'
 const workspaces = yarnWorkspaces()
 
 const steps = workspaces.map<ScriptStep>(({ location }) => [
-  './node_modules/typedoc/bin/typedoc',
+  'node',
   [
+    './node_modules/typedoc/bin/typedoc',
     '--logLevel',
     'Error',
     '--tsconfig',

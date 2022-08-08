@@ -3,7 +3,7 @@
 import { runSteps } from './lib'
 
 runSteps('Reinstall', [
-  ['yarn', 'rimraf ./yarn.lock'],
-  ['yarn', 'rimraf ./node_modules'],
-  ['yarn', 'yarn install --network-timeout 10000'],
+  ['node', './node_modules/rimraf/bin.js ./yarn.lock'],
+  ['node', './node_modules/rimraf/bin.js ./node_modules'],
+  ['yarn', 'install --network-timeout 10000'],
 ])

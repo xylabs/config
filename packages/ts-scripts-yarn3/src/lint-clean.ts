@@ -3,6 +3,6 @@
 import { runSteps } from './lib'
 
 runSteps('Lint [Clean]', [
-  ['./node_modules/rimraf/bin.js', '.eslintcache'],
-  ['./node_modules/eslint/bin/eslint.js', ['.', '--cache']],
+  ['node', ['./node_modules/rimraf/bin.js', '.eslintcache']],
+  ['node', ['./node_modules/eslint/bin/eslint.js', '.', '--cache']],
 ])

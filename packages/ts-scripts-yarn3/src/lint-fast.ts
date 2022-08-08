@@ -6,4 +6,4 @@ import { runSteps } from './lib'
 
 console.log(chalk.magenta("Deprected.  Use 'yarn lint' instead"))
 
-runSteps('Lint [Caching]', [['./node_modules/eslint/bin/eslint.js', ['.', '--cache']]])
+runSteps('Lint [Caching]', [['node', ['./node_modules/eslint/bin/eslint.js', '.', '--cache']]])

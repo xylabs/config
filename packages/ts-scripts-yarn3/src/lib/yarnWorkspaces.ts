@@ -6,7 +6,7 @@ export interface Workspace {
 }
 
 export const yarnWorkspaces = (): Workspace[] => {
-  const result = spawnSync('yarn', ['workspaces', 'list', '--json', '--recursive'], { shell: true })
+  const result = spawnSync('yarn', ['workspaces', 'list', '--json', '--recursive'], { encoding: 'utf8', shell: true })
   if (result.error) {
     throw result.error
   }

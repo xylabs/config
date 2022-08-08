@@ -8,5 +8,5 @@ const rules = [
 ]
 
 runSteps('Cycle', [
-  ['./node_modules/eslint/bin/eslint.js', [...rules.map(([rule, value]) => ['--rule', `{${rule}: ${JSON.stringify(value)}}`]).flat(), '--cache', '.']],
+  ['node', ['./node_modules/eslint/bin/eslint.js', ...rules.map(([rule, value]) => ['--rule', `{${rule}: ${JSON.stringify(value)}}`]).flat(), '--cache', '.']],
 ])

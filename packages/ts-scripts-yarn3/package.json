@@ -11,6 +11,7 @@
     "compile": "dist/cjs/compile.js",
     "compile:cjs": "dist/cjs/compile-cjs.js",
     "compile:esm": "dist/cjs/compile-esm.js",
+    "copy-images": "dist/cjs/copy-images.js",
     "copy-images:cjs": "dist/cjs/copy-images-cjs.js",
     "copy-images:esm": "dist/cjs/copy-images-esm.js",
     "cycle": "dist/cjs/cycle.js",

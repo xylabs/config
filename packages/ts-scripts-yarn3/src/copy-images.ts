@@ -2,9 +2,7 @@
 
 import { runSteps } from './lib'
 
-runSteps('Compile', [
-  ['yarn', 'compile:esm'],
-  ['yarn', 'compile:cjs'],
+runSteps('Copy Images', [
   ['yarn', 'copy-images:esm'],
   ['yarn', 'copy-images:cjs'],
 ])
