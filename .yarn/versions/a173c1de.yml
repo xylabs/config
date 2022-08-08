@@ -1,0 +1,7 @@
+releases:
+  "@xylabs/config": patch
+  "@xylabs/eslint-config": patch
+  "@xylabs/ts-scripts": patch
+  "@xylabs/ts-scripts-yarn3": patch
+  "@xylabs/tsconfig": patch
+  "@xylabs/tsconfig-dom": patch
