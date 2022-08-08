@@ -15,7 +15,7 @@ export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, m
       if (messages?.[i]) {
         console.log(chalk.gray(messages?.[i]))
       }
-      const status = spawnSync(command, Array.isArray(args) ? args : args.split(' '), { ...config, stdio: 'inherit' }).status
+      const status = spawnSync(command, Array.isArray(args) ? args : args.split(' '), { ...config, shell: true, stdio: 'inherit' }).status
       if (status && exitOnFail) {
         return status
       }

@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process'
 
 export const isYarnVersionOrGreater = (major: number, minor?: number, patch?: number): [boolean, string] => {
-  const result = spawnSync('yarn', ['-v'])
+  const result = spawnSync('yarn', ['-v'], { shell: true })
   const version = result.stdout.toString().replaceAll('\n', '')
   const versionNumbers = version.split('.').map((ver) => parseInt(ver))
   const majorDelta = versionNumbers[0] - major
