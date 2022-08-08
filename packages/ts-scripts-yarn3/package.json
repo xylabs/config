@@ -66,6 +66,8 @@
     "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.6.4",
     "@xylabs/eslint-config": "workspace:^",
