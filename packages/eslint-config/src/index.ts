@@ -2,6 +2,6 @@ import { cwd } from 'process'
 
 module.exports = {
   extends: ['./typescript', './prettier', './import', './rules', './json', './markdown'],
-  ignorePatterns: ['/dist', '/build', '/bin', '/node_modules', 'package.json', '/.yarn'],
+  ignorePatterns: ['node_modules', 'build', 'dist', 'bin', 'storybook-static', '.*', 'package.json'],
   parserOptions: { tsconfigRootDir: cwd() },
 }

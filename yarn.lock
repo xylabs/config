@@ -2852,6 +2852,7 @@ __metadata:
     migrate: dist/cjs/migrate.js
     rebuild: dist/cjs/rebuild.js
     reinstall: dist/cjs/reinstall.js
+    relint: dist/cjs/relint.js
     sonar: dist/cjs/sonar.js
     test: dist/cjs/test.js
     up: dist/cjs/up.js
@@ -2876,6 +2877,7 @@ __metadata:
     xylabs-lint-profile: dist/cjs/lint-profile.js
     xylabs-rebuild: dist/cjs/rebuild.js
     xylabs-reinstall: dist/cjs/reinstall.js
+    xylabs-relint: dist/cjs/relint.js
     xylabs-sonar: dist/cjs/sonar.js
     xylabs-test: dist/cjs/test.js
     xylabs-up: dist/cjs/up.js

@@ -4,5 +4,6 @@
     "typeRoots": ["./node_modules/@types"]
   },
   "exclude": ["node_modules", "dist"],
-  "extends": "@xylabs/tsconfig"
+  "extends": "@xylabs/tsconfig",
+  "include": ["**/src"]
 }
