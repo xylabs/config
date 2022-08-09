@@ -3,12 +3,6 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts*', '*.d.ts*'],
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 2022,
-        project: '**/tsconfig.json',
-        sourceType: 'module',
-      },
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -36,4 +30,15 @@ module.exports = {
       },
     },
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2018,
+    project: 'tsconfig.json',
+    sourceType: 'module',
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['*.d.ts*', '*.ts*'],
+    },
+  },
 }
