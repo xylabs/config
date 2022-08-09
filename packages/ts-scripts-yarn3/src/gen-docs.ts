@@ -1,27 +1,26 @@
 #!/usr/bin/env node
 
-import { runSteps, ScriptStep, yarnWorkspaces } from './lib'
+import { cwd } from 'process'
 
-const workspaces = yarnWorkspaces()
+import { runSteps } from './lib'
 
-const steps = workspaces.map<ScriptStep>(({ location }) => [
-  'node',
+runSteps('Generate TypeDocs', [
   [
-    './node_modules/typedoc/bin/typedoc',
-    '--logLevel',
-    'Error',
-    '--tsconfig',
-    `${location}/tsconfig.build.esm.json`,
-    '--excludeExternals',
-    `${location}/src/index.ts`,
-    '--json',
-    `${location}/dist/docs.json`,
+    'yarn',
+    [
+      'workspaces',
+      'foreach',
+      '-ptA',
+      'exec',
+      `${cwd()}/node_modules/typedoc/bin/typedoc`,
+      '--logLevel',
+      'Error',
+      '--tsconfig',
+      './tsconfig.build.esm.json',
+      '--excludeExternals',
+      './src/index.ts',
+      '--json',
+      './dist/docs.json',
+    ],
   ],
 ])
-
-runSteps(
-  'Generate TypeDocs',
-  steps,
-  false,
-  workspaces.map(({ name }) => name)
-)
