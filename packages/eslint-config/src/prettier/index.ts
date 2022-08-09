@@ -7,11 +7,11 @@ module.exports = {
       {
         bracketSpacing: true,
         endOfLine: 'lf',
-        printWidth: 160,
+        printWidth: 150,
         semi: false,
         singleQuote: true,
         tabWidth: 2,
-        trailingComma: 'es5',
+        trailingComma: 'all',
         useTabs: false,
       },
     ],
