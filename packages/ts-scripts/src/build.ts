@@ -6,6 +6,6 @@ import { safeExit } from './lib'
 safeExit(() => {
   console.log(`Build [${process.cwd()}]`)
   //execSync('yarn gitlint', { stdio: 'inherit' })
-  execSync('yarn lint', { stdio: 'inherit' })
+  /*execSync('yarn lint', { stdio: 'inherit' })*/
   execSync('yarn compile', { stdio: 'inherit' })
 })
