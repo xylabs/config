@@ -3,5 +3,5 @@ import { runSteps } from './lib'
 
 runSteps('Build', [
   ['yarn', 'compile'],
-  ['yarn', 'lint'],
+  //['yarn', 'lint'],
 ])
