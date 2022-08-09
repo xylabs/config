@@ -10,5 +10,5 @@ runSteps(
   'Deps',
   steps,
   false,
-  workspaces.map(({ name }) => name)
+  workspaces.map(({ name }) => name),
 )

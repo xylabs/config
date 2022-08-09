@@ -20,5 +20,5 @@ runSteps(
   'Copy Images [ESM]',
   steps,
   false,
-  workspaces.map(({ name }) => name)
+  workspaces.map(({ name }) => name),
 )
