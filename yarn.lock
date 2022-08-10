@@ -2769,7 +2769,6 @@ __metadata:
   dependencies:
     "@types/node": ^18.6.5
     "@xylabs/sdk-js": ^2.6.4
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: ^4.1.2
     typescript: ^4.7.4
@@ -2777,21 +2776,74 @@ __metadata:
     analyze: dist/cjs/analyze.js
     build: dist/cjs/build.js
     build-ci: dist/cjs/build-ci.js
+    clean: dist/cjs/clean.js
+    compile: dist/cjs/compile.js
+    "compile:cjs": dist/cjs/compile-cjs.js
+    "compile:esm": dist/cjs/compile-esm.js
+    copy-images: dist/cjs/copy-images.js
+    "copy-images:cjs": dist/cjs/copy-images-cjs.js
+    "copy-images:esm": dist/cjs/copy-images-esm.js
+    cycle: dist/cjs/cycle.js
+    dead: dist/cjs/dead.js
+    deploy: dist/cjs/deploy.js
+    deploy-major: dist/cjs/deploy-major.js
+    deploy-minor: dist/cjs/deploy-minor.js
+    deps: dist/cjs/deps.js
     eject: dist/cjs/build.js
+    fix: dist/cjs/fix.js
+    gen-docs: dist/cjs/gen-docs.js
+    gitlint: dist/cjs/gitlint.js
+    gitlint-fix: dist/cjs/gitlint-fix.js
+    license: dist/cjs/license.js
+    lint: dist/cjs/lint.js
+    lint-fast: dist/cjs/lint-fast.js
+    lint-profile: dist/cjs/lint-profile.js
+    migrate: dist/cjs/migrate.js
+    rebuild: dist/cjs/rebuild.js
+    reinstall: dist/cjs/reinstall.js
+    relint: dist/cjs/relint.js
     sitemap: dist/cjs/sitemap.js
+    sonar: dist/cjs/sonar.js
     start: dist/cjs/start.js
     test: dist/cjs/test.js
+    up: dist/cjs/up.js
+    up3: dist/cjs/up3.js
+    updo: dist/cjs/updo.js
+    updo3: dist/cjs/updo3.js
     xylabs-analyze: dist/cjs/analyze.js
     xylabs-build: dist/cjs/build.js
     xylabs-build-ci: dist/cjs/build-ci.js
+    xylabs-clean: dist/cjs/clean.js
+    xylabs-compile: dist/cjs/compile.js
+    xylabs-cycle: dist/cjs/cycle.js
+    xylabs-dead: dist/cjs/dead.js
+    xylabs-deploy: dist/cjs/deploy.js
+    xylabs-deploy-major: dist/cjs/deploy-major.js
+    xylabs-deploy-minor: dist/cjs/deploy-minor.js
+    xylabs-deps: dist/cjs/deps.js
     xylabs-eject: dist/cjs/eject.js
+    xylabs-fix: dist/cjs/fix.js
+    xylabs-gitlint: dist/cjs/gitlint.js
+    xylabs-gitlint-fix: dist/cjs/gitlint-fix.js
+    xylabs-license: dist/cjs/lint.js
+    xylabs-lint: dist/cjs/lint.js
+    xylabs-lint-fast: dist/cjs/lint-fast.js
+    xylabs-lint-profile: dist/cjs/lint-profile.js
+    xylabs-rebuild: dist/cjs/rebuild.js
+    xylabs-reinstall: dist/cjs/reinstall.js
+    xylabs-relint: dist/cjs/relint.js
     xylabs-sitemap: dist/cjs/sitemap.js
+    xylabs-sonar: dist/cjs/sonar.js
     xylabs-start: dist/cjs/start.js
     xylabs-test: dist/cjs/test.js
+    xylabs-up: dist/cjs/up.js
+    xylabs-updo: dist/cjs/updo.js
+    xylabs-yarn3only: dist/cjs/yarn3only.js
+    yarn3only: dist/cjs/yarn3only.js
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
