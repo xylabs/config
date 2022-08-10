@@ -3,6 +3,6 @@
 import { runSteps } from './lib'
 
 runSteps('Build', [
-  ['yarn', 'version --patch --no-git-tag-version'],
+  ['yarn', 'version patch --deferred'],
   ['yarn', 'build-ci'],
 ])
