@@ -123,5 +123,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.91"
+  "version": "2.5.92"
 }
