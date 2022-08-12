@@ -5,4 +5,4 @@ const workspaces = yarnWorkspaces()
 
 const steps = workspaces.map<ScriptStep>(({ location }) => ['./node_modules/rimraf/bin.js', ['-q', `${location}/dist`]])
 
-runSteps('Deps', steps)
+runSteps('Clean', [...steps, ['yarn', ['tsconfig-gen-clean']]])
