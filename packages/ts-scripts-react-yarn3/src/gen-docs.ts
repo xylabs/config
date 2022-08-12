@@ -16,7 +16,7 @@ runSteps('Generate TypeDocs', [
       '--logLevel',
       'Error',
       '--tsconfig',
-      './tsconfig.build.esm.json',
+      './.tsconfig.build.esm.json',
       '--excludeExternals',
       './src/index.ts',
       '--json',
