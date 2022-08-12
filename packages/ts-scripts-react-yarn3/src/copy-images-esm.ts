@@ -12,6 +12,10 @@ const steps = workspaces.map<ScriptStep>(({ location }) => [
     `${location}/src/**/*.png`,
     `${location}/src/**/*.gif`,
     `${location}/src/**/*.svg`,
+    `${location}/src/**/*.webp`,
+    `${location}/src/**/*.sass`,
+    `${location}/src/**/*.scss`,
+    `${location}/src/**/*.css`,
     `${location}/dist/esm`,
   ],
 ])
