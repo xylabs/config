@@ -2806,6 +2806,9 @@ __metadata:
     copy-images: dist/cjs/copy-images.js
     "copy-images:cjs": dist/cjs/copy-images-cjs.js
     "copy-images:esm": dist/cjs/copy-images-esm.js
+    copy-styles: dist/cjs/copy-styles.js
+    "copy-styles:cjs": dist/cjs/copy-styles-cjs.js
+    "copy-styles:esm": dist/cjs/copy-styles-esm.js
     cycle: dist/cjs/cycle.js
     dead: dist/cjs/dead.js
     deploy: dist/cjs/deploy.js
