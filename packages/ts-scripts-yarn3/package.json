@@ -33,12 +33,12 @@
     "reinstall": "dist/cjs/reinstall.js",
     "relint": "dist/cjs/relint.js",
     "sonar": "dist/cjs/sonar.js",
+    "test": "dist/cjs/test.js",
+    "tsconfig-gen": "dist/cjs/tsconfig-gen.js",
     "tsconfig-gen:cjs": "dist/cjs/tsconfig-gen-cjs.js",
     "tsconfig-gen:clean": "dist/cjs/tsconfig-gen-clean.js",
     "tsconfig-gen:esm": "dist/cjs/tsconfig-gen-esm.js",
     "tsconfig-gen:test": "dist/cjs/tsconfig-gen-test.js",
-    "tsconfig-gen": "dist/cjs/tsconfig-gen.js",
-    "test": "dist/cjs/test.js",
     "up": "dist/cjs/up.js",
     "up3": "dist/cjs/up3.js",
     "updo": "dist/cjs/updo.js",
@@ -128,5 +128,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.93"
+  "version": "2.5.94"
 }
