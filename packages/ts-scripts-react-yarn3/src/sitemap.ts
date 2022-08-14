@@ -2,4 +2,4 @@
 
 import { runSteps } from './lib'
 
-runSteps('Sitemap', [['node', './scripts/sitemap.ts']])
+runSteps('Sitemap', [['ts-node-script', './scripts/sitemap.ts']])
