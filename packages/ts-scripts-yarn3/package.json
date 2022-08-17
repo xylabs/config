@@ -12,7 +12,7 @@
     "compile:cjs": "dist/cjs/compile-cjs.js",
     "compile:esm": "dist/cjs/compile-esm.js",
     "copy-images": "dist/cjs/copy-images.js",
-    "copy-images:cjs": "dist/cjs/copy-images-cjs.js",
+    "copy-images:cjs": "node --experimental-modules dist/cjs/copy-images-cjs.js",
     "copy-images:esm": "dist/cjs/copy-images-esm.js",
     "cycle": "dist/cjs/cycle.js",
     "dead": "dist/cjs/dead.js",
@@ -80,7 +80,7 @@
     "@types/node": "^18.6.5",
     "@xylabs/eslint-config": "workspace:^",
     "chalk": "^4.1.2",
-    "cpy-cli": "^4.1.0",
+    "cpy": "8.1.2",
     "depcheck": "^1.4.3",
     "eslint": "^8.21.0",
     "eslint-plugin-sonarjs": "^0.15.0",
@@ -127,5 +127,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.99"
+  "version": "2.5.116"
 }
