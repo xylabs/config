@@ -2760,7 +2760,7 @@ __metadata:
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: ^4.1.2
-    cpy-cli: ^4.1.0
+    cpy: 8.1.2
     depcheck: ^1.4.3
     eslint: ^8.21.0
     eslint-plugin-sonarjs: ^0.15.0
