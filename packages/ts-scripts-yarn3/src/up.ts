@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { up } from './actions'
 
-runSteps('Up', [['yarn', 'outdated']])
+up()

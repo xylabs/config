@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { tsconfigGen } from './actions'
 
-runSteps('Generate Configs', [
-  ['yarn', 'tsconfig-gen:esm'],
-  ['yarn', 'tsconfig-gen:cjs'],
-  ['yarn', 'tsconfig-gen:test'],
-])
+tsconfigGen()

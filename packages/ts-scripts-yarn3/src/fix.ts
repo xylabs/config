@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { fix } from './actions'
 
-runSteps('Fix', [['node', ['./node_modules/eslint/bin/eslint.js', '.', '--fix', '--cache']]])
+fix()

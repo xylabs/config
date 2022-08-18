@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { rebuild } from './actions'
 
-runSteps('Rebuild', [
-  ['yarn', 'clean'],
-  ['yarn', 'build'],
-])
+rebuild()

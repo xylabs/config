@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { updo } from './actions'
 
-runSteps('Updo', [
-  ['yarn', 'install'],
-  ['yarn', 'upgrade-interactive'],
-  ['yarn', 'dedupe'],
-])
+updo()

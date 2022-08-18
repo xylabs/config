@@ -1,11 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { compile } from './actions'
 
-runSteps('Compile', [
-  ['yarn', 'compile:esm'],
-  ['yarn', 'compile:cjs'],
-  ['yarn', 'copy-images:esm'],
-  ['yarn', 'copy-images:cjs'],
-  ['yarn', 'deps'],
-])
+compile()

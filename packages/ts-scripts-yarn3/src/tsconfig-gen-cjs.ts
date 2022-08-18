@@ -1,29 +1,5 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
-import { writeFileSync } from 'fs'
+import { tsconfigGenCjs } from './actions'
 
-import { yarnWorkspaces } from './lib'
-
-const workspaces = yarnWorkspaces()
-
-console.log(chalk.green('Generate Configs [CJS]'))
-
-const config = JSON.stringify(
-  {
-    compilerOptions: {
-      module: 'CommonJS',
-      outDir: './dist/cjs',
-      target: 'ES6',
-    },
-    exclude: ['**/*.spec.*', '**/*.stories.*', '**/*.example.*'],
-    extends: './tsconfig.json',
-    include: ['src'],
-  },
-  null,
-  2,
-)
-
-workspaces.forEach(({ location }) => {
-  writeFileSync(`${location}/.tsconfig.build.cjs.json`, config)
-})
+tsconfigGenCjs()

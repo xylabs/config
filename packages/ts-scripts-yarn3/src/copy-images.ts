@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { copyImages } from './actions'
 
-runSteps('Copy Images', [
-  ['yarn', 'copy-images:esm'],
-  ['yarn', 'copy-images:cjs'],
-])
+copyImages()

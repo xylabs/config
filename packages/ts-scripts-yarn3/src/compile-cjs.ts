@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { compileCjs } from './actions'
 
-runSteps('Compile [CJS]', [
-  ['yarn', ['tsconfig-gen:cjs']],
-  ['yarn', 'workspaces foreach -ptA exec tsc -p ./.tsconfig.build.cjs.json'],
-])
+compileCjs()

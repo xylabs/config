@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { relint } from './actions'
 
-runSteps('Relint [Caching]', [['node', ['./node_modules/eslint/bin/eslint.js', '.']]])
+relint()

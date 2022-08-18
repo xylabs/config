@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
+import { lintFast } from './actions'
 
-import { runSteps } from './lib'
-
-console.log(chalk.magenta("Deprected.  Use 'yarn lint' instead"))
-
-runSteps('Lint [Caching]', [['node', ['./node_modules/eslint/bin/eslint.js', '.', '--cache']]])
+lintFast()

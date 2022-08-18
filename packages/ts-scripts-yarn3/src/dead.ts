@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { dead } from './actions'
 
-runSteps('Dead', [['yarn', 'ts-prune']])
+dead()
