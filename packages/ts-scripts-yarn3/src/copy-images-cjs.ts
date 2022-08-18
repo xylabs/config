@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { copyImages } from './actions'
+import { copyImagesCjs } from './actions'
 
-copyImages()
+copyImagesCjs()
