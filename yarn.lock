@@ -2786,31 +2786,18 @@ __metadata:
     build: dist/cjs/build.js
     build-ci: dist/cjs/build-ci.js
     clean: dist/cjs/clean.js
-    compile: dist/cjs/compile.js
-    "compile:cjs": dist/cjs/compile-cjs.js
-    "compile:esm": dist/cjs/compile-esm.js
-    copy-images: dist/cjs/copy-images.js
-    "copy-images:cjs": dist/cjs/copy-images-cjs.js
-    "copy-images:esm": dist/cjs/copy-images-esm.js
-    copy-styles: dist/cjs/copy-styles.js
-    "copy-styles:cjs": dist/cjs/copy-styles-cjs.js
-    "copy-styles:esm": dist/cjs/copy-styles-esm.js
     cycle: dist/cjs/cycle.js
     dead: dist/cjs/dead.js
-    deploy: dist/cjs/deploy.js
-    deploy-major: dist/cjs/deploy-major.js
-    deploy-minor: dist/cjs/deploy-minor.js
     deps: dist/cjs/deps.js
     eject: dist/cjs/build.js
     fix: dist/cjs/fix.js
-    gen-docs: dist/cjs/gen-docs.js
     gitlint: dist/cjs/gitlint.js
     gitlint-fix: dist/cjs/gitlint-fix.js
     license: dist/cjs/license.js
     lint: dist/cjs/lint.js
+    lint-clean: dist/cjs/lint-clean.js
     lint-fast: dist/cjs/lint-fast.js
     lint-profile: dist/cjs/lint-profile.js
-    migrate: dist/cjs/migrate.js
     rebuild: dist/cjs/rebuild.js
     reinstall: dist/cjs/reinstall.js
     relint: dist/cjs/relint.js
@@ -2819,19 +2806,13 @@ __metadata:
     start: dist/cjs/start.js
     test: dist/cjs/test.js
     up: dist/cjs/up.js
-    up3: dist/cjs/up3.js
     updo: dist/cjs/updo.js
-    updo3: dist/cjs/updo3.js
     xylabs-analyze: dist/cjs/analyze.js
     xylabs-build: dist/cjs/build.js
     xylabs-build-ci: dist/cjs/build-ci.js
     xylabs-clean: dist/cjs/clean.js
-    xylabs-compile: dist/cjs/compile.js
     xylabs-cycle: dist/cjs/cycle.js
     xylabs-dead: dist/cjs/dead.js
-    xylabs-deploy: dist/cjs/deploy.js
-    xylabs-deploy-major: dist/cjs/deploy-major.js
-    xylabs-deploy-minor: dist/cjs/deploy-minor.js
     xylabs-deps: dist/cjs/deps.js
     xylabs-eject: dist/cjs/eject.js
     xylabs-fix: dist/cjs/fix.js
@@ -2898,11 +2879,15 @@ __metadata:
     copy-images: dist/cjs/copy-images.js
     "copy-images:cjs": dist/cjs/copy-images-cjs.js
     "copy-images:esm": dist/cjs/copy-images-esm.js
+    copy-styles: dist/cjs/copy-styles.js
+    "copy-styles:cjs": dist/cjs/copy-styles-cjs.js
+    "copy-styles:esm": dist/cjs/copy-styles-esm.js
     cycle: dist/cjs/cycle.js
     dead: dist/cjs/dead.js
     deploy: dist/cjs/deploy.js
     deploy-major: dist/cjs/deploy-major.js
     deploy-minor: dist/cjs/deploy-minor.js
+    deploy-rc: dist/cjs/deploy-prerelease.js
     deps: dist/cjs/deps.js
     fix: dist/cjs/fix.js
     gen-docs: dist/cjs/gen-docs.js
@@ -2910,9 +2895,9 @@ __metadata:
     gitlint-fix: dist/cjs/gitlint-fix.js
     license: dist/cjs/license.js
     lint: dist/cjs/lint.js
+    lint-clean: dist/cjs/lint-clean.js
     lint-fast: dist/cjs/lint-fast.js
     lint-profile: dist/cjs/lint-profile.js
-    migrate: dist/cjs/migrate.js
     rebuild: dist/cjs/rebuild.js
     reinstall: dist/cjs/reinstall.js
     relint: dist/cjs/relint.js
@@ -2924,9 +2909,7 @@ __metadata:
     "tsconfig-gen:esm": dist/cjs/tsconfig-gen-esm.js
     "tsconfig-gen:test": dist/cjs/tsconfig-gen-test.js
     up: dist/cjs/up.js
-    up3: dist/cjs/up3.js
     updo: dist/cjs/updo.js
-    updo3: dist/cjs/updo3.js
     xylabs-build: dist/cjs/build.js
     xylabs-clean: dist/cjs/clean.js
     xylabs-compile: dist/cjs/compile.js
