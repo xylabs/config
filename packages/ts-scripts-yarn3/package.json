@@ -14,6 +14,9 @@
     "copy-images": "dist/cjs/copy-images.js",
     "copy-images:cjs": "dist/cjs/copy-images-cjs.js",
     "copy-images:esm": "dist/cjs/copy-images-esm.js",
+    "copy-styles": "dist/cjs/copy-styles.js",
+    "copy-styles:cjs": "dist/cjs/copy-styles-cjs.js",
+    "copy-styles:esm": "dist/cjs/copy-styles-esm.js",
     "cycle": "dist/cjs/cycle.js",
     "dead": "dist/cjs/dead.js",
     "deploy": "dist/cjs/deploy.js",
@@ -26,9 +29,9 @@
     "gitlint-fix": "dist/cjs/gitlint-fix.js",
     "license": "dist/cjs/license.js",
     "lint": "dist/cjs/lint.js",
+    "lint-clean": "dist/cjs/lint-clean.js",
     "lint-fast": "dist/cjs/lint-fast.js",
     "lint-profile": "dist/cjs/lint-profile.js",
-    "migrate": "dist/cjs/migrate.js",
     "rebuild": "dist/cjs/rebuild.js",
     "reinstall": "dist/cjs/reinstall.js",
     "relint": "dist/cjs/relint.js",
@@ -40,9 +43,7 @@
     "tsconfig-gen:esm": "dist/cjs/tsconfig-gen-esm.js",
     "tsconfig-gen:test": "dist/cjs/tsconfig-gen-test.js",
     "up": "dist/cjs/up.js",
-    "up3": "dist/cjs/up3.js",
     "updo": "dist/cjs/updo.js",
-    "updo3": "dist/cjs/updo3.js",
     "xylabs-build": "dist/cjs/build.js",
     "xylabs-clean": "dist/cjs/clean.js",
     "xylabs-compile": "dist/cjs/compile.js",
@@ -119,6 +120,26 @@
   "publishConfig": {
     "access": "public"
   },
+  "browser": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "node": {
+        "import": "./dist/esm/index.js",
+        "require": "./dist/cjs/index.js"
+      },
+      "browser": {
+        "import": "./dist/esm/index.js",
+        "require": "./dist/cjs/index.js"
+      },
+      "default": "./dist/esm/index.js"
+    },
+    "./dist/docs.json": {
+      "default": "./dist/docs.json"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/xylabs/config.git"

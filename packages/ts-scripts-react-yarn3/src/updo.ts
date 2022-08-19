@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { updo } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Updo', [
-  ['yarn', 'install'],
-  ['yarn', 'upgrade-interactive'],
-  ['yarn', 'dedupe'],
-])
+updo()

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { up } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Up', [['yarn', 'outdated']])
+up()

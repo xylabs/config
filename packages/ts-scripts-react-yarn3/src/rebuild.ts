@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { rebuild } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Rebuild', [
-  ['yarn', 'clean'],
-  ['yarn', 'build'],
-])
+rebuild()

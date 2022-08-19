@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { relint } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Relint [Caching]', [['node', ['./node_modules/eslint/bin/eslint.js', '.']]])
+relint()

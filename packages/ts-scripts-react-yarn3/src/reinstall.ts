@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { reinstall } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Reinstall', [
-  ['node', './node_modules/rimraf/bin.js ./yarn.lock'],
-  ['node', './node_modules/rimraf/bin.js ./node_modules'],
-  ['yarn', 'install --network-timeout 10000'],
-])
+reinstall()

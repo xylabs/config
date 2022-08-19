@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { lintProfile } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Lint Profile', [['node', ['./node_modules/eslint/bin/eslint.js', '.'], { env: { ...process.env, TIMING: '1' } }]])
+lintProfile()

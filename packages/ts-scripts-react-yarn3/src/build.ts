@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { runSteps } from '@xylabs/ts-scripts-yarn3'
 
 runSteps('Build', [
   ['yarn', 'version patch --deferred'],

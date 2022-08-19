@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { dead } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Dead', [['yarn', 'ts-prune']])
+dead()
