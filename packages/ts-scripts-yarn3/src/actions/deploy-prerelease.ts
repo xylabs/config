@@ -8,6 +8,6 @@ export const deployPrerelease = () => {
     ['yarn', 'cycle'],
     ['yarn', 'gen-docs'],
     ['yarn', 'version apply --all --prerelease'],
-    ['yarn', 'workspaces foreach -pt npm publish'],
+    ['yarn', 'workspaces foreach -pt npm publish --tag beta'],
   ])
 }
