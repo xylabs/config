@@ -3,5 +3,6 @@ module.exports = {
   plugins: ['workspaces'],
   rules: {
     'workspaces/no-relative-imports': ['off'],
+    'workspaces/require-dependency': ['off'],
   },
 }
