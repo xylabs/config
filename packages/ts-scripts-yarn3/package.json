@@ -8,7 +8,6 @@
   "bin": {
     "build": "dist/cjs/bin/build.js",
     "clean": "dist/cjs/bin/clean.js",
-    "package:clean": "dist/cjs/bin/clean.js",
     "compile": "dist/cjs/bin/compile.js",
     "compile:cjs": "dist/cjs/bin/compile-cjs.js",
     "compile:esm": "dist/cjs/bin/compile-esm.js",
@@ -34,6 +33,7 @@
     "lint-clean": "dist/cjs/bin/lint-clean.js",
     "lint-fast": "dist/cjs/bin/lint-fast.js",
     "lint-profile": "dist/cjs/bin/lint-profile.js",
+    "package:clean": "dist/cjs/bin/clean.js",
     "rebuild": "dist/cjs/bin/rebuild.js",
     "reinstall": "dist/cjs/bin/reinstall.js",
     "relint": "dist/cjs/bin/relint.js",
@@ -126,5 +126,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.129"
+  "version": "2.5.130"
 }
