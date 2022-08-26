@@ -32,7 +32,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2022,
+    ecmaVersion: 'latest',
     project: 'tsconfig.json',
     sourceType: 'module',
   },
