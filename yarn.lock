@@ -2831,6 +2831,7 @@ __metadata:
     "tsconfig-gen:test": dist/cjs/tsconfig-gen-test.js
     up: dist/cjs/up.js
     updo: dist/cjs/updo.js
+    ws-test: dist/cjs/ws-test.js
     xylabs-build: dist/cjs/build.js
     xylabs-clean: dist/cjs/clean.js
     xylabs-compile: dist/cjs/compile.js

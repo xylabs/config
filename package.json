@@ -65,6 +65,7 @@
     "compile": "echo Compiling... && yarn compile:esm && yarn compile:cjs && yarn lint-fast",
     "compile:cjs": "echo Compiling CJS... && yarn workspaces foreach -ptA run compile:package:cjs",
     "compile:esm": "echo Compiling ESM... && yarn workspaces foreach -ptA run compile:package:esm",
+    "ws:test": "echo Workspace Test... && yarn workspaces foreach -ptA exec node $INIT_CWD/packages/ts-scripts-yarn3/dist/cjs/ws-test.js",
     "lint-pkg": "npmPkgJsonLint .",
     "deploy3": "yarn deploy-patch",
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",

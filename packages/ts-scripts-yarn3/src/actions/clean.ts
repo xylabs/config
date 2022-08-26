@@ -1,10 +1,5 @@
-#!/usr/bin/env node
-import { runSteps, ScriptStep, yarnWorkspaces } from '../lib'
+import { runSteps } from '../lib'
 
 export const clean = () => {
-  const workspaces = yarnWorkspaces()
-
-  const steps = workspaces.map<ScriptStep>(({ location }) => ['./node_modules/rimraf/bin.js', ['-q', `${location}/dist`]])
-
-  runSteps('Clean', [...steps, ['yarn', ['tsconfig-gen:clean']]])
+  runSteps('Clean', [['yarn', 'workspaces foreach -pA exec /dist/cjs/bin/package/clean.js']])
 }
