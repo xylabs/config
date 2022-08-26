@@ -2808,7 +2808,7 @@ __metadata:
     deploy: dist/cjs/deploy.js
     deploy-major: dist/cjs/deploy-major.js
     deploy-minor: dist/cjs/deploy-minor.js
-    deploy-rc: dist/cjs/deploy-prerelease.js
+    deploy-next: dist/cjs/deploy-next.js
     deps: dist/cjs/deps.js
     fix: dist/cjs/fix.js
     gen-docs: dist/cjs/gen-docs.js
