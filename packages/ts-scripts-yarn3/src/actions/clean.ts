@@ -1,5 +1,6 @@
 import { runSteps } from '../lib'
 
 export const clean = () => {
-  runSteps('Clean', [['yarn', 'workspaces foreach -pA exec /dist/cjs/bin/package/clean.js']])
+  const proj = process.env.PROJECT_CWD
+  runSteps('Clean', [['yarn', `workspaces foreach -pA exec ${proj}/node_modules/.bin/package-clean`]])
 }

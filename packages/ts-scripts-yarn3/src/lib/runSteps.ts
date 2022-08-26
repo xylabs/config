@@ -9,7 +9,8 @@ export type ScriptStep =
 
 export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, messages?: string[]) => {
   safeExit(() => {
-    console.log(chalk.green(`${name} [${process.cwd()}]`))
+    const pkgName = process.env.npm_package_name
+    console.log(chalk.green(`${name} [${pkgName}]`))
     for (let i = 0; i < steps.length; i++) {
       const [command, args, config] = steps[i]
       if (messages?.[i]) {

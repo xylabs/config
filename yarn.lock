@@ -2819,7 +2819,7 @@ __metadata:
     lint-clean: dist/cjs/bin/lint-clean.js
     lint-fast: dist/cjs/bin/lint-fast.js
     lint-profile: dist/cjs/bin/lint-profile.js
-    "package:clean": dist/cjs/bin/clean.js
+    package-clean: dist/cjs/bin/package/clean.js
     rebuild: dist/cjs/bin/rebuild.js
     reinstall: dist/cjs/bin/reinstall.js
     relint: dist/cjs/bin/relint.js
