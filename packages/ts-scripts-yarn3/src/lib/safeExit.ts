@@ -4,7 +4,7 @@ import { processEx } from './processEx'
 
 const safeExit = (func: () => number | null | undefined | void) => {
   try {
-    process.exit(func() ?? 0)
+    return func()
   } catch (ex) {
     processEx(ex)
   }
