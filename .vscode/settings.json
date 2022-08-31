@@ -5,8 +5,7 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/bin": false,
-    "**/dist": false
+    "**/dist": true
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
