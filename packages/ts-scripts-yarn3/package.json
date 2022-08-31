@@ -128,5 +128,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.165"
+  "version": "2.5.166"
 }
