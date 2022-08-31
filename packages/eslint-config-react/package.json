@@ -19,7 +19,11 @@
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
     "@types/node": "^18.7.14",
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": "workspace:^",
+    "eslint": "^8.23.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.23.0"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [
