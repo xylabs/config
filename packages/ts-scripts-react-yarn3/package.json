@@ -69,7 +69,7 @@
     "@types/node": "^18.7.14",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "chalk": "^5.0.1",
+    "chalk": "^4",
     "cpy": "^8",
     "depcheck": "^1.4.3",
     "eslint": "^8.23.0",
@@ -114,5 +114,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.164"
+  "version": "2.5.165"
 }
