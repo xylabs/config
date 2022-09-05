@@ -2667,7 +2667,7 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
-    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.1
+    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.6
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.23.0
@@ -2836,7 +2836,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.7.0-rc.1, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.7.0-rc.6, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2873,17 +2873,6 @@ __metadata:
     typescript: ^4.8.2
     yargs: ^17.5.1
   bin:
-    build: dist/cjs/bin/xy build
-    clean: dist/cjs/bin/clean.js
-    compile: dist/cjs/bin/compile.js
-    "compile:cjs": dist/cjs/bin/compile-cjs.js
-    "compile:esm": dist/cjs/bin/compile-esm.js
-    copy-images: dist/cjs/bin/copy-images.js
-    "copy-images:cjs": dist/cjs/bin/copy-images-cjs.js
-    "copy-images:esm": dist/cjs/bin/copy-images-esm.js
-    copy-styles: dist/cjs/bin/copy-styles.js
-    "copy-styles:cjs": dist/cjs/bin/copy-styles-cjs.js
-    "copy-styles:esm": dist/cjs/bin/copy-styles-esm.js
     cycle: dist/cjs/bin/cycle.js
     dead: dist/cjs/bin/dead.js
     deploy: dist/cjs/bin/deploy.js

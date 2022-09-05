@@ -5,8 +5,7 @@ import { hideBin } from 'yargs/helpers'
 import { build, compile, clean, copyAssets } from '../actions'
 
 const parseOptions = async (y: typeof yargs) => {
-  return await y(hideBin(process.argv))
-  .option('verbose', {
+  return await y.option('verbose', {
     alias: 'v',
     description: 'Run with verbose logging',
     type: 'boolean',

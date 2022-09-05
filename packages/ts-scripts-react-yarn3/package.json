@@ -117,6 +117,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.0-rc.1",
+  "version": "2.7.0-rc.6",
   "stableVersion": "2.6.0"
 }
