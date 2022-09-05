@@ -2667,7 +2667,7 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
-    "@xylabs/ts-scripts-yarn3": ^2.5.167
+    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.1
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.23.0
@@ -2836,7 +2836,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.5.167, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.7.0-rc.1, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2873,7 +2873,7 @@ __metadata:
     typescript: ^4.8.2
     yargs: ^17.5.1
   bin:
-    build: dist/cjs/bin/build.js
+    build: dist/cjs/bin/xy build
     clean: dist/cjs/bin/clean.js
     compile: dist/cjs/bin/compile.js
     "compile:cjs": dist/cjs/bin/compile-cjs.js
@@ -2915,6 +2915,7 @@ __metadata:
     "tsconfig-gen:test": dist/cjs/bin/tsconfig-gen-test.js
     up: dist/cjs/bin/up.js
     updo: dist/cjs/bin/updo.js
+    xy: dist/cjs/bin/xy.js
     yarn3only: dist/cjs/bin/yarn3only.js
   languageName: unknown
   linkType: soft

@@ -26,7 +26,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "@xylabs/ts-scripts-yarn3": "^2.5.167",
+    "@xylabs/ts-scripts-yarn3": "^2.7.0-rc.1",
     "cpy-cli": "^4.2.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
@@ -69,7 +69,7 @@
     "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common",
     "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach -ptv npm publish",
-    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next",
+    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next",
     "clean": "echo Cleaning... && yarn workspaces foreach -pA run clean:package",
     "deps": "yarn workspaces foreach -pAv run deps:package",
     "lint": "echo Linting... && yarn eslint .",
@@ -94,6 +94,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.5.167",
-  "packageManager": "yarn@3.2.3"
+  "version": "2.7.0-rc.1",
+  "packageManager": "yarn@3.2.3",
+  "stableVersion": "2.6.0"
 }
