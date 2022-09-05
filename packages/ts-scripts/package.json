@@ -103,6 +103,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.0-rc.27",
+  "version": "2.7.0-rc.31",
   "stableVersion": "2.6.0"
 }

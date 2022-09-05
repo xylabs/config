@@ -31,6 +31,7 @@
     "test": "dist/cjs/bin/test.js",
     "up": "dist/cjs/bin/up.js",
     "updo": "dist/cjs/bin/updo.js",
+    "xy": "dist/cjs/bin/xy.js",
     "yarn3only": "dist/cjs/bin/yarn3only.js"
   },
   "bugs": {
@@ -64,11 +65,13 @@
     "parse-git-config": "^3.0.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
+    "source-map-explorer": "^2.5.2",
     "ts-jest": "^28.0.8",
     "ts-node": "^10.9.1",
     "ts-prune": "^0.10.3",
     "typedoc": "^0.23.12",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "yargs": "^17.5.1"
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
@@ -93,6 +96,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.0-rc.27",
+  "version": "2.7.0-rc.31",
   "stableVersion": "2.6.0"
 }
