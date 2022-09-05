@@ -8,20 +8,20 @@ export interface CompileParams {
 export const compile = ({ target }: CompileParams) => {
   const proj = process.env.PROJECT_CWD
   const cjsSteps: ScriptStep[] =
-    target && target !== 'cjs'
+    !target || target === 'cjs'
       ? [
           ['yarn', ['tsconfig-gen:cjs']],
           ['yarn', `workspaces foreach -ptA exec ${proj}/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/compile-cjs.js`],
-          ['yarn', ['copy-assets', '-t', 'cjs']],
+          ['yarn', ['xy', 'copy-assets', '-t', 'cjs']],
         ]
       : []
 
   const esmSteps: ScriptStep[] =
-    target && target !== 'esm'
+    !target || target === 'esm'
       ? [
           ['yarn', ['tsconfig-gen:esm']],
           ['yarn', `workspaces foreach -ptA exec ${proj}/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/compile-esm.js`],
-          ['yarn', ['copy-assets', '-t', 'esm']],
+          ['yarn', ['xy', 'copy-assets', '-t', 'esm']],
         ]
       : []
 

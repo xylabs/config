@@ -2667,7 +2667,8 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
-    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.6
+    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.9
+    "@xylabs/tsconfig": ^2.6.1
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.23.0
@@ -2836,7 +2837,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.7.0-rc.6, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.7.0-rc.9, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2993,6 +2994,15 @@ __metadata:
     typescript: ^4.8.2
   languageName: unknown
   linkType: soft
+
+"@xylabs/tsconfig@npm:^2.6.1":
+  version: 2.6.1
+  resolution: "@xylabs/tsconfig@npm:2.6.1"
+  dependencies:
+    typescript: ^4.8.2
+  checksum: 219532a0aef12eb84485c7f3452c71c5eb63611d06ca1c6fa43b0a0b8321ebe36c4d7f05dc9554efc69bf2cde3ea171e2b20c3e9fbe3b0d2948156f3a67100b0
+  languageName: node
+  linkType: hard
 
 "@xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local

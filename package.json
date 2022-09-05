@@ -26,7 +26,8 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "@xylabs/ts-scripts-yarn3": "^2.7.0-rc.6",
+    "@xylabs/ts-scripts-yarn3": "^2.7.0-rc.9",
+    "@xylabs/tsconfig": "^2.6.1",
     "cpy-cli": "^4.2.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
@@ -94,7 +95,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.0-rc.6",
+  "version": "2.7.0-rc.9",
   "packageManager": "yarn@3.2.3",
   "stableVersion": "2.6.0"
 }

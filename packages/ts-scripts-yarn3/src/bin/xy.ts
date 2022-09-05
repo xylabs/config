@@ -2,7 +2,7 @@ import yargs from 'yargs'
 // eslint-disable-next-line import/no-internal-modules
 import { hideBin } from 'yargs/helpers'
 
-import { build, compile, clean, copyAssets } from '../actions'
+import { build, compile, clean, copyAssets, cycle, dead } from '../actions'
 
 const parseOptions = async (y: typeof yargs) => {
   return await y.option('verbose', {
@@ -73,6 +73,32 @@ const run = async () => {
       (argv) => {
         if (argv.verbose) console.info(`Copying Assets: ${(argv.package ?? 'all')}`)
         copyAssets({target: options.target as ('esm' | 'cjs')})
+      },
+    )
+    .command(
+      'cycle [package]',
+      'Cycle - Check for dependency cycles',
+      (yargs) => {
+        return yargs.positional('package', {
+          describe: 'Specific package for cycle check'
+        })
+      },
+      (argv) => {
+        if (argv.verbose) console.info(`Cycle`)
+        cycle()
+      },
+    )
+    .command(
+      'dead [package]',
+      'Dead - Check for dead code',
+      (yargs) => {
+        return yargs.positional('package', {
+          describe: 'Specific package for dead check'
+        })
+      },
+      (argv) => {
+        if (argv.verbose) console.info(`Dead`)
+        dead()
       },
     )
     .parse()
