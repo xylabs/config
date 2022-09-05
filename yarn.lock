@@ -2667,7 +2667,7 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
-    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.25
+    "@xylabs/ts-scripts-yarn3": ^2.7.0-rc.26
     "@xylabs/tsconfig": ^2.6.1
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
@@ -2813,7 +2813,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.7.0-rc.25, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.7.0-rc.26, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:

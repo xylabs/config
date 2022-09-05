@@ -33,6 +33,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "2.7.0-rc.26",
+  "version": "2.7.0-rc.27",
   "stableVersion": "2.6.0"
 }
