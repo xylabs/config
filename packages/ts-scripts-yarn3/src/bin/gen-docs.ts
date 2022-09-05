@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { genDocs } from '../actions'
+import { runXy } from "../lib"
 
-genDocs()
+runXy('gen-docs')

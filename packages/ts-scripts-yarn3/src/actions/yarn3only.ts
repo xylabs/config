@@ -5,4 +5,5 @@ export const yarn3Only = () => {
   if (!valid) {
     processEx(`Invalid Yarn version [${version}]`)
   }
+  return 0
 }

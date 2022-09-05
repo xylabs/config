@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { lintClean } from '../actions'
+import { runXy } from "../lib"
 
-lintClean()
+runXy('lint-clean')

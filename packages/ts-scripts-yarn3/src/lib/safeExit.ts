@@ -2,9 +2,13 @@
 
 import { processEx } from './processEx'
 
-const safeExit = (func: () => number | null | undefined | void) => {
+const safeExit = (func: () => number | undefined) => {
   try {
-    return func()
+    const result = func()
+    if (result) {
+      process.exit(result)
+    }
+    return result
   } catch (ex) {
     processEx(ex)
   }

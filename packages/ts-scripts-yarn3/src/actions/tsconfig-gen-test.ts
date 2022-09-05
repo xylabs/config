@@ -20,4 +20,5 @@ export const tsconfigGenTest = () => {
   workspaces.forEach(({ location }) => {
     writeFileSync(`${location}/.tsconfig.build.test.json`, config)
   })
+  return 0
 }

@@ -1,5 +1,5 @@
 import { runSteps } from '../lib'
 
 export const dead = () => {
-  runSteps('Dead', [['yarn', 'ts-prune']])
+  return runSteps('Dead', [['node', ['./node_modules/ts-prune/lib/index.js', '-p', 'tsconfig.json']]])
 }

@@ -6,7 +6,7 @@ export interface BuildParams {
 }
 
 export const build = ({ target }: BuildParams) => {
-  runSteps('Build', [
+  return runSteps('Build', [
     ['yarn', target ? `xy compile -t ${target}` : 'xy compile'],
     ['yarn', 'lint'],
   ])

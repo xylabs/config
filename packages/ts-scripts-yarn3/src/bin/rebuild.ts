@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { rebuild } from '../actions'
+import { runXy } from "../lib"
 
-rebuild()
+runXy('rebuild')

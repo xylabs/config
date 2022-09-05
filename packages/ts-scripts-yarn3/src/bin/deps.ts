@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { deps } from '../actions'
+import { runXy } from "../lib"
 
-deps()
+runXy('deps')

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { lintFast } from '../actions'
+import { runXy } from "../lib"
 
-lintFast()
+runXy('lint-fast')

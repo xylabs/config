@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { gitlintFix } from '../actions'
+import { runXy } from "../lib"
 
-gitlintFix()
+runXy('gitlint-fix')

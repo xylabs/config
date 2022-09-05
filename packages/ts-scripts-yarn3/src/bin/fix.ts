@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { fix } from '../actions'
+import { runXy } from "../lib"
 
-fix()
+runXy('fix')

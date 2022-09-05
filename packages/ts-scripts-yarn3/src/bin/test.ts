@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { test } from '../actions'
+import { runXy } from "../lib"
 
-test()
+runXy('test')

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { dead } from '../actions'
+import { runXy } from "../lib"
 
-dead()
+runXy('dead')

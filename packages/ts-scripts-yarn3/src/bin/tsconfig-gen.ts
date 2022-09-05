@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { tsconfigGen } from '../actions'
+import { runXy } from "../lib"
 
-tsconfigGen()
+runXy('tsconfig-gen')

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { lint } from '../actions'
+import { runXy } from "../lib"
 
-lint()
+runXy('lint')

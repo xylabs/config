@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { lintProfile } from '../actions'
+import { runXy } from "../lib"
 
-lintProfile()
+runXy('lint-profile')

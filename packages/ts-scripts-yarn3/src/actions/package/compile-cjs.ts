@@ -9,5 +9,5 @@ export const packageCompileCjs = () => {
   rmSync(dist, { force: true, recursive: true })
   rmSync(`${pkg}/dist/.tsconfig.build.cjs.tsbuildinfo`, { force: true, recursive: true })
 
-  runSteps('Package Compile [CJS]', [['tsc', ['-p', `${pkg}/.tsconfig.build.cjs.json`]]])
+  return runSteps('Package Compile [CJS]', [['tsc', ['-p', `${pkg}/.tsconfig.build.cjs.json`]]])
 }

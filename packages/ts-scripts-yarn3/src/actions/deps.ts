@@ -8,7 +8,7 @@ export const deps = () => {
     ['./node_modules/depcheck/bin/depcheck.js', `${location}/.`, '--ignore-patterns=*.stories.*,*.spec.*'],
   ])
 
-  runSteps(
+  return runSteps(
     'Deps',
     steps,
     false,

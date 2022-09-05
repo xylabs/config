@@ -9,5 +9,5 @@ export const packageCompileEsm = () => {
   rmSync(dist, { force: true, recursive: true })
   rmSync(`${pkg}/dist/.tsconfig.build.esm.tsbuildinfo`, { force: true, recursive: true })
 
-  runSteps('Package Compile [ESM]', [['tsc', ['-p', `${pkg}/.tsconfig.build.esm.json`]]])
+  return runSteps('Package Compile [ESM]', [['tsc', ['-p', `${pkg}/.tsconfig.build.esm.json`]]])
 }

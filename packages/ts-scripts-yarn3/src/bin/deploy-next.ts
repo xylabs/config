@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { deployNext } from '../actions'
+import { runXy } from "../lib"
 
-deployNext()
+runXy('deploy-next')

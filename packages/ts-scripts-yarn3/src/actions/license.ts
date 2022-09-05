@@ -23,7 +23,7 @@ export const license = () => {
     ['./node_modules/license-checker/bin/license-checker', '--start', `./${location}`, '--exclude', `'${exclude.join(', ')}'`, '--production'],
   ])
 
-  runSteps(
+  return runSteps(
     'License',
     steps,
     false,

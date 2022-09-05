@@ -1,5 +1,5 @@
 import { runSteps } from '../lib'
 
 export const up = () => {
-  runSteps('Up', [['yarn', 'outdated']])
+  return runSteps('Up', [['yarn', 'outdated']])
 }

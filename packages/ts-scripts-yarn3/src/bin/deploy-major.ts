@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { deployMajor } from '../actions'
+import { runXy } from "../lib"
 
-deployMajor()
+runXy('deploy-major')

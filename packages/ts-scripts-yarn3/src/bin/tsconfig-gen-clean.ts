@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { tsconfigGenClean } from '../actions'
+import { runXy } from "../lib"
 
-tsconfigGenClean()
+runXy('tsconfig-gen-clean')

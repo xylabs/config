@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { sonar } from '../actions'
+import { runXy } from "../lib"
 
-sonar()
+runXy('sonar')

@@ -26,4 +26,5 @@ export const tsconfigGenCjs = () => {
   workspaces.forEach(({ location }) => {
     writeFileSync(`${location}/.tsconfig.build.cjs.json`, config)
   })
+  return 0
 }

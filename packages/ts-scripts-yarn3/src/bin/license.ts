@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { license } from '../actions'
+import { runXy } from "../lib"
 
-license()
+runXy('license')

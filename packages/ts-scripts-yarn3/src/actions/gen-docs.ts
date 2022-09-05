@@ -3,7 +3,7 @@ import { cwd } from 'process'
 import { runSteps } from '../lib'
 
 export const genDocs = () => {
-  runSteps('Generate TypeDocs', [
+  return runSteps('Generate TypeDocs', [
     [
       'yarn',
       [

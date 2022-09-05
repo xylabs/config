@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { gitlint } from '../actions'
+import { runXy } from "../lib"
 
-gitlint()
+runXy('gitlint')

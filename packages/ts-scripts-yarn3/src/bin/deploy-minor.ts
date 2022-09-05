@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { deployMinor } from '../actions'
+import { runXy } from "../lib"
 
-deployMinor()
+runXy('deploy-minor')

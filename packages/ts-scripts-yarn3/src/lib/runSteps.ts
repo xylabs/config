@@ -31,5 +31,6 @@ export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, m
         return status
       }
     }
+    return 0
   })
 }

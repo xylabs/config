@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { cycle } from '../actions'
+import { runXy } from "../lib"
 
-cycle()
+runXy('cycle')

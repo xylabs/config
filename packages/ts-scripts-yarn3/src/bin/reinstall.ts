@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { reinstall } from '../actions'
+import { runXy } from "../lib"
 
-reinstall()
+runXy('reinstall')

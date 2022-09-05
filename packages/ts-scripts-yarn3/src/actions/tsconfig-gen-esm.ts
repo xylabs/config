@@ -26,4 +26,5 @@ export const tsconfigGenEsm = () => {
   workspaces.forEach(({ location }) => {
     writeFileSync(`${location}/.tsconfig.build.esm.json`, config)
   })
+  return 0
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { relint } from '../actions'
+import { runXy } from "../lib"
 
-relint()
+runXy('relint')

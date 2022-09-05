@@ -26,20 +26,18 @@ export const copyAssets = ({ target }: CopyAssetsParams) => {
         .then((values) => values.forEach((value) => console.log(`Copied: ${value}`)))
         .catch((reason) => {
           console.log(`Copy Failed: ${name}: ${reason}`)
+          return 1
         })
     })
+    return 0
   }
 
   switch (target) {
     case 'esm':
-      doCopy('esm')
-      break
+      return doCopy('esm')
     case 'cjs':
-      doCopy('cjs')
-      break
+      return doCopy('cjs')
     default:
-      doCopy('esm')
-      doCopy('cjs')
-      break
+      return doCopy('esm') || doCopy('cjs')
   }
 }

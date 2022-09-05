@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { yarn3Only } from '../actions'
+import { runXy } from "../lib"
 
-yarn3Only()
+runXy('yarn3only')
