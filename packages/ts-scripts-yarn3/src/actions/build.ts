@@ -1,8 +1,13 @@
 import { runSteps } from '../lib'
 
-export const build = (target?: 'esm' | 'cjs') => {
+export interface BuildParams {
+  target?: 'esm' | 'cjs'
+  pkg?: string
+}
+
+export const build = ({ target }: BuildParams) => {
   runSteps('Build', [
-    ['yarn', target ? `compile:${target}` : 'compile'],
+    ['yarn', target ? `compile -t ${target}` : 'compile'],
     ['yarn', 'lint'],
   ])
 }
