@@ -10,7 +10,7 @@ export const compile = async ({ target }: CompileParams) => {
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'
       ? [
-          ['yarn', ['tsconfig-gen:cjs']],
+          ['yarn', ['tsconfig-gen', '-t', 'cjs']],
           ['yarn', `workspaces foreach -ptA exec ${proj}/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/compile-cjs.js`],
           ['yarn', ['xy', 'copy-assets', '-t', 'cjs']],
         ]
@@ -19,7 +19,7 @@ export const compile = async ({ target }: CompileParams) => {
   const esmSteps: ScriptStep[] =
     !target || target === 'esm'
       ? [
-          ['yarn', ['tsconfig-gen:esm']],
+          ['yarn', ['tsconfig-gen', '-t', 'esm']],
           ['yarn', `workspaces foreach -ptA exec ${proj}/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/compile-esm.js`],
           ['yarn', ['xy', 'copy-assets', '-t', 'esm']],
         ]

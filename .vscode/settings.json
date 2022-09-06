@@ -4,8 +4,8 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/dist": true
+    "**/node_modules": false,
+    "**/dist": false
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
