@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runSteps } from '@xylabs/ts-scripts-yarn3'
+import { runXy } from '@xylabs/ts-scripts-yarn3'
 
-runSteps('Eject', [['yarn', 'react-scripts eject']])
+runXy('eject')

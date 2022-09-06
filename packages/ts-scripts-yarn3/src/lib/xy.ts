@@ -30,7 +30,8 @@ import {
   yarn3Only,
 } from '../actions'
 
-export const parseOptions = async (yargsInstance: typeof yargs) => {
+export const parseOptions = async () => {
+  const yargsInstance = yargs(hideBin(process.argv))
   return await yargsInstance
     .option('verbose', {
       alias: 'v',
@@ -62,14 +63,12 @@ export const parseOptions = async (yargsInstance: typeof yargs) => {
       description: 'Profile action',
       type: 'boolean',
     })
-    .parse()
 }
 
 export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs) => yargs) => {
-  const yargsInstance = yargs(hideBin(process.argv))
-  const options = await parseOptions(yargsInstance)
+  const options = await parseOptions()
   const x = await extend(
-    yargsInstance
+    options
       .command(
         'build [package]',
         'Build - Compile & Lint',
@@ -79,8 +78,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
           })
         },
         (argv) => {
-          if (options.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
-          process.exitCode = build({ target: options.target as 'esm' | 'cjs' })
+          if (argv.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
+          process.exitCode = build({ target: argv.target as 'esm' | 'cjs' })
         },
       )
       .command(
@@ -92,8 +91,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
           })
         },
         async (argv) => {
-          if (options.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-          process.exitCode = await compile({ target: options.target as 'esm' | 'cjs' })
+          if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
+          process.exitCode = await compile({ target: argv.target as 'esm' | 'cjs' })
         },
       )
       .command(
@@ -105,7 +104,7 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
           })
         },
         (argv) => {
-          if (options.verbose) console.info(`Cleaning: ${argv.package ?? 'all'}`)
+          if (argv.verbose) console.info(`Cleaning: ${argv.package ?? 'all'}`)
           process.exitCode = clean()
         },
       )
@@ -118,7 +117,7 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
           })
         },
         (argv) => {
-          if (options.verbose) console.info(`License: ${argv.package ?? 'all'}`)
+          if (argv.verbose) console.info(`License: ${argv.package ?? 'all'}`)
           process.exitCode = license()
         },
       )
@@ -131,8 +130,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
           })
         },
         (argv) => {
-          if (options.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
-          process.exitCode = copyAssets({ target: options.target as 'esm' | 'cjs' })
+          if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
+          process.exitCode = copyAssets({ target: argv.target as 'esm' | 'cjs' })
         },
       )
       .command(
@@ -143,8 +142,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to check',
           })
         },
-        () => {
-          if (options.verbose) console.info('Cycle')
+        (argv) => {
+          if (argv.verbose) console.info('Cycle')
           process.exitCode = cycle()
         },
       )
@@ -156,8 +155,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to check',
           })
         },
-        () => {
-          if (options.verbose) console.info('Dead')
+        (argv) => {
+          if (argv.verbose) console.info('Dead')
           process.exitCode = dead()
         },
       )
@@ -169,9 +168,9 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to check',
           })
         },
-        () => {
-          if (options.verbose) console.info('Lint')
-          process.exitCode = options.fix ? fix() : options.profile ? lintProfile() : options.cache ? lintFast() : lint()
+        (argv) => {
+          if (argv.verbose) console.info('Lint')
+          process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : argv.cache ? lintFast() : lint()
         },
       )
       .command(
@@ -182,8 +181,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to check',
           })
         },
-        () => {
-          if (options.verbose) console.info('Fix')
+        (argv) => {
+          if (argv.verbose) console.info('Fix')
           process.exitCode = fix()
         },
       )
@@ -195,8 +194,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to check',
           })
         },
-        () => {
-          if (options.verbose) console.info('Deps')
+        (argv) => {
+          if (argv.verbose) console.info('Deps')
           process.exitCode = deps()
         },
       )
@@ -208,8 +207,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to generate docs for',
           })
         },
-        () => {
-          if (options.verbose) console.info('Deps')
+        (argv) => {
+          if (argv.verbose) console.info('Deps')
           process.exitCode = genDocs()
         },
       )
@@ -219,9 +218,9 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Gitlint')
-          process.exitCode = options.fix ? gitlintFix() : gitlint()
+        (argv) => {
+          if (argv.verbose) console.info('Gitlint')
+          process.exitCode = argv.fix ? gitlintFix() : gitlint()
         },
       )
       .command(
@@ -232,9 +231,9 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to rebuild',
           })
         },
-        () => {
-          if (options.verbose) console.info(`Rebuilding: ${options.package ?? 'all'}`)
-          process.exitCode = rebuild({ target: options.target as 'esm' | 'cjs' })
+        (argv) => {
+          if (argv.verbose) console.info(`Rebuilding: ${argv.package ?? 'all'}`)
+          process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
         },
       )
       .command(
@@ -245,8 +244,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package to relint',
           })
         },
-        () => {
-          if (options.verbose) console.info('Relinting')
+        (argv) => {
+          if (argv.verbose) console.info('Relinting')
           process.exitCode = relint()
         },
       )
@@ -256,8 +255,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Reinstalling')
+        (argv) => {
+          if (argv.verbose) console.info('Reinstalling')
           process.exitCode = reinstall()
         },
       )
@@ -267,8 +266,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Sonar Check')
+        (argv) => {
+          if (argv.verbose) console.info('Sonar Check')
           process.exitCode = sonar()
         },
       )
@@ -278,8 +277,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Testing')
+        (argv) => {
+          if (argv.verbose) console.info('Testing')
           process.exitCode = test()
         },
       )
@@ -291,9 +290,9 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
             describe: 'Specific package for generation',
           })
         },
-        () => {
-          if (options.verbose) console.info(`TsconfigGen: ${options.package ?? 'all'}`)
-          process.exitCode = tsconfigGen({ target: options.target as 'esm' | 'cjs' })
+        (argv) => {
+          if (argv.verbose) console.info(`TsconfigGen: ${argv.package ?? 'all'}`)
+          process.exitCode = tsconfigGen({ target: argv.target as 'esm' | 'cjs' })
         },
       )
       .command(
@@ -302,8 +301,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Tsconfig Clean')
+        (argv) => {
+          if (argv.verbose) console.info('Tsconfig Clean')
           process.exitCode = tsconfigGenClean()
         },
       )
@@ -313,8 +312,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Up')
+        (argv) => {
+          if (argv.verbose) console.info('Up')
           process.exitCode = up()
         },
       )
@@ -324,8 +323,8 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Updo')
+        (argv) => {
+          if (argv.verbose) console.info('Updo')
           process.exitCode = updo()
         },
       )
@@ -335,11 +334,11 @@ export const xy = async (extend: (yargs: Argv) => Promise<Argv> | Argv = (yargs)
         (yargs) => {
           return yargs
         },
-        () => {
-          if (options.verbose) console.info('Yarn 3 Check')
+        (argv) => {
+          if (argv.verbose) console.info('Yarn 3 Check')
           process.exitCode = yarn3Only()
         },
       ),
   )
-  await x.parse()
+  await x.help().argv
 }

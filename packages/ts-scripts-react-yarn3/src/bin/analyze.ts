@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { analyze } from '../actions'
+import { runXy } from '@xylabs/ts-scripts-yarn3'
 
-analyze()
+runXy('analyze')
