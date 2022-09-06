@@ -1,7 +1,7 @@
 import { runSteps } from '../lib'
 
 export const deployMinor = () => {
-  runSteps('Deploy [Minor]', [
+  return runSteps('Deploy [Minor]', [
     ['yarn', 'clean'],
     ['yarn', 'workspaces foreach --all version minor --deferred'],
     ['yarn', 'build'],

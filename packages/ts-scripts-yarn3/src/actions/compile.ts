@@ -1,11 +1,11 @@
-import { runSteps, runStepsAsync, ScriptStep } from '../lib'
+import { runSteps, ScriptStep } from '../lib'
 
 export interface CompileParams {
   target?: 'esm' | 'cjs'
   pkg?: string
 }
 
-export const compile = async ({ target }: CompileParams) => {
+export const compile = ({ target }: CompileParams) => {
   const proj = process.env.PROJECT_CWD
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'
@@ -25,8 +25,5 @@ export const compile = async ({ target }: CompileParams) => {
         ]
       : []
 
-  return (
-    (await Promise.all([runStepsAsync('Compile', [...esmSteps]), runStepsAsync('Compile', [...cjsSteps])])).find((value) => value > 0) ||
-    runSteps('Compile', [['yarn', 'deps']])
-  )
+  return runSteps('Compile', [...esmSteps]) || runSteps('Compile', [...cjsSteps]) || runSteps('Compile', [['yarn', 'deps']])
 }
