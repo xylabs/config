@@ -103,5 +103,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.11"
+  "version": "2.7.12"
 }

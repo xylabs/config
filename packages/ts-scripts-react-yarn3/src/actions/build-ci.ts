@@ -6,6 +6,6 @@ export const buildci = () => {
     ['yarn', 'react-scripts build'],
     ['yarn', 'lint'],
     ['yarn', 'deps'],
-    ['yarn', 'sitemap'],
+    ['ts-node-script', './scripts/sitemap.ts'],
   ])
 }
