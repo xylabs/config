@@ -1,3 +1,5 @@
+import path from 'path/posix'
+
 import { runSteps } from '../lib'
 
 export interface CleanParams {
@@ -5,6 +7,13 @@ export interface CleanParams {
 }
 
 export const clean = () => {
-  const proj = process.env.PROJECT_CWD
-  return runSteps('Clean', [['yarn', `workspaces foreach -ptA exec ${proj}/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/clean.js`]])
+  return runSteps('Clean', [
+    [
+      'yarn',
+      `workspaces foreach -ptA exec ${path.join(
+        (process.env.PROJECT_CWD ?? './').replace(/\\/g, '/'),
+        '/node_modules/@xylabs/ts-scripts-yarn3/dist/cjs/bin/package/clean.js',
+      )}`,
+    ],
+  ])
 }

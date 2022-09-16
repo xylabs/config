@@ -2729,8 +2729,8 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.2
     "@typescript-eslint/parser": ^5.36.2
-    "@xylabs/ts-scripts-yarn3": ^2.7.12
-    "@xylabs/tsconfig": ^2.7.12
+    "@xylabs/ts-scripts-yarn3": ^2.7.21
+    "@xylabs/tsconfig": ^2.7.21
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.23.0
@@ -2883,7 +2883,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.7.12, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.7.21, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2941,18 +2941,18 @@ __metadata:
     lint-fast: dist/cjs/bin/lint-fast.js
     lint-profile: dist/cjs/bin/lint-profile.js
     package-clean: dist/cjs/bin/package/clean.js
-    "package:compile:cjs": dist/cjs/bin/package/compile-cjs.js
-    "package:compile:esm": dist/cjs/bin/package/compile-esm.js
+    package-compile-cjs: dist/cjs/bin/package/compile-cjs.js
+    package-compile-esm: dist/cjs/bin/package/compile-esm.js
     rebuild: dist/cjs/bin/rebuild.js
     reinstall: dist/cjs/bin/reinstall.js
     relint: dist/cjs/bin/relint.js
     sonar: dist/cjs/bin/sonar.js
     test: dist/cjs/bin/test.js
     tsconfig-gen: dist/cjs/bin/tsconfig-gen.js
-    "tsconfig-gen:cjs": dist/cjs/bin/tsconfig-gen-cjs.js
-    "tsconfig-gen:clean": dist/cjs/bin/tsconfig-gen-clean.js
-    "tsconfig-gen:esm": dist/cjs/bin/tsconfig-gen-esm.js
-    "tsconfig-gen:test": dist/cjs/bin/tsconfig-gen-test.js
+    tsconfig-gen-cjs: dist/cjs/bin/tsconfig-gen-cjs.js
+    tsconfig-gen-clean: dist/cjs/bin/tsconfig-gen-clean.js
+    tsconfig-gen-esm: dist/cjs/bin/tsconfig-gen-esm.js
+    tsconfig-gen-test: dist/cjs/bin/tsconfig-gen-test.js
     up: dist/cjs/bin/up.js
     updo: dist/cjs/bin/updo.js
     xy: dist/cjs/bin/xy
@@ -3045,7 +3045,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.7.12, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.7.21, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
