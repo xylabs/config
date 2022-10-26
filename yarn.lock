@@ -2772,7 +2772,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.41.0
     "@typescript-eslint/parser": ^5.41.0
     "@xylabs/eslint-config": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     eslint: ^8.26.0
     eslint-config-prettier: ^8.5.0
     eslint-config-react-app: ^7.0.1
@@ -2807,7 +2807,7 @@ __metadata:
     "@types/node": ^18.11.5
     "@typescript-eslint/eslint-plugin": ^5.41.0
     "@typescript-eslint/parser": ^5.41.0
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     eslint: ^8.26.0
     eslint-config-prettier: ^8.5.0
     eslint-import-resolver-typescript: ^3.5.2
@@ -2842,7 +2842,7 @@ __metadata:
     "@types/node": ^18.11.5
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     chalk: ^4.1.2
     cpy: ^8.1.2
     depcheck: ^1.4.3
@@ -2916,7 +2916,7 @@ __metadata:
     "@types/node": ^18.11.5
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     chalk: ^4.1.2
     cpy: ^8.1.2
     depcheck: ^1.4.3
@@ -2991,7 +2991,7 @@ __metadata:
     "@types/node": ^18.11.5
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     chalk: ^4.1.2
     copyfiles: ^2.4.1
     depcheck: ^1.4.3
@@ -3063,12 +3063,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
   dependencies:
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": ^2.7.24
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.7.24, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.7.24, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
