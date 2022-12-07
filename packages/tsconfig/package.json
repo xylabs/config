@@ -12,7 +12,7 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "dependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   },
   "homepage": "https://github.com/xylabs/tsconfig.git",
   "keywords": [
