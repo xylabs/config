@@ -59,7 +59,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "scripts": {
-    "build": "echo Building... && yarn clean && yarn compile",
+    "build": "echo Building... && yarn compile",
     "compile": "echo Compiling... && yarn compile:esm && yarn compile:cjs && yarn lint-fast",
     "compile:cjs": "echo Compiling CJS... && yarn workspaces foreach -ptA run compile:package:cjs",
     "compile:esm": "echo Compiling ESM... && yarn workspaces foreach -ptA run compile:package:esm",
@@ -81,13 +81,13 @@
     "outdated": "yarn workspaces foreach -pv outdated",
     "up": "yarn workspaces foreach -pv up",
     "updo3": "yarn install && yarn upgrade-interactive && yarn dedupe",
-    "clean:package": "yarn rimraf -q $INIT_CWD/dist && yarn rimraf -q $INIT_CWD/build",
+    "clean:package": "tsc --build $INIT_CWD/tsconfig.build.esm.json --clean && tsc --build $INIT_CWD/tsconfig.build.cjs.json --clean",
     "fix:package": "yarn eslint $INIT_CWD/src --fix",
     "lint:package": "yarn eslint $INIT_CWD/src",
     "cycle:package": "yarn eslint --rule \"import/no-cycle:[1, { maxDepth: 10 }]\" $INIT_CWD/src",
     "deps:package": "depcheck $INIT_CWD",
-    "compile:package:cjs": "tsc -p $INIT_CWD/tsconfig.build.cjs.json",
-    "compile:package:esm": "tsc -p $INIT_CWD/tsconfig.build.esm.json",
+    "compile:package:cjs": "tsc --build $INIT_CWD/tsconfig.build.cjs.json",
+    "compile:package:esm": "tsc --build $INIT_CWD/tsconfig.build.esm.json",
     "test": "yarn jest .",
     "license": "yarn license-checker --exclude \"MIT, ISC, Apache-2.0, BSD, BSD-2-Clause, CC-BY-4.0, Unlicense, CC-BY-3.0, CC0-1.0\""
   },

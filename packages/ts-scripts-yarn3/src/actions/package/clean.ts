@@ -8,7 +8,7 @@ export const packageClean = () => {
   console.log(chalk.green(`Cleaning [${pkgName}]`))
 
   return (
-    runSteps('Package Clean [ESM]', [['tsc', ['--build', '-p', `${pkg}/.tsconfig.build.esm.json`]]]) &&
-    runSteps('Package Clean [CJS]', [['tsc', ['--build', '-p', `${pkg}/.tsconfig.build.cjs.json`]]])
+    runSteps('Package Clean [ESM]', [['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`, '--clean']]]) &&
+    runSteps('Package Clean [CJS]', [['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`, '--clean']]])
   )
 }
