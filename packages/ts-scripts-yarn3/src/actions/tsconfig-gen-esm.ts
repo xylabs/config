@@ -15,7 +15,7 @@ export const tsconfigGenEsm = () => {
         outDir: './dist/esm',
         target: 'ES2022',
       },
-      exclude: ['**/*.spec.*', '**/*.stories.*', '**/*.example.*'],
+      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*'],
       extends: './tsconfig.json',
       include: ['src'],
     },
