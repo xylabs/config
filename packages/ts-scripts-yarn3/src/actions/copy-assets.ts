@@ -1,5 +1,6 @@
 import chalk from 'chalk'
 import cpy from 'cpy'
+import path from 'path/posix'
 
 import { yarnWorkspaces } from '../lib'
 
@@ -19,7 +20,7 @@ export const copyAssets = ({ target }: CopyAssetsParams) => {
         ['**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg', '**/*.webp', '**/*.sass', '**/*.scss', '**/*.gif', '**/*.css'],
         `../dist/${target}`,
         {
-          cwd: `${process.cwd()}/${location}/src`,
+          cwd: path.join(process.cwd(), location, 'src'),
           parents: true,
         },
       )
