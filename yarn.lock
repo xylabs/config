@@ -2833,6 +2833,20 @@ __metadata:
     typedoc: ^0.23.22
     typescript: ^4.9.4
     yargs: ^17.6.2
+  peerDependencies:
+    "@xylabs/eslint-config": "workspace:^"
+    depcheck: ^1.4.3
+    eslint: ^8.29.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-sonarjs: ^0.17.0
+    prettier: ^2.8.1
+    rimraf: ^3.0.2
+    ts-jest: ^29.0.3
+    ts-node: ^10.9.1
+    ts-prune: ^0.10.3
+    typedoc: ^0.23.22
+    typescript: ^4.9.4
   bin:
     build: dist/cjs/bin/build.js
     clean: dist/cjs/bin/clean.js
