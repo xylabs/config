@@ -20,7 +20,7 @@ export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
       ? [
           ['yarn', ['tsconfig-gen', '-t', 'cjs']],
           ['yarn', ['workspace', pkg, 'run', 'package-compile-cjs']],
-          ['yarn', ['xy', 'copy-assets', '-t', 'cjs']],
+          ['yarn', ['xy', 'copy-assets', pkg, '-t', 'cjs']],
         ]
       : []
 
@@ -29,7 +29,7 @@ export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
       ? [
           ['yarn', ['tsconfig-gen', '-t', 'esm']],
           ['yarn', ['workspace', pkg, 'run', 'package-compile-esm']],
-          ['yarn', ['xy', 'copy-assets', '-t', 'esm']],
+          ['yarn', ['xy', 'copy-assets', pkg, '-t', 'esm']],
         ]
       : []
 

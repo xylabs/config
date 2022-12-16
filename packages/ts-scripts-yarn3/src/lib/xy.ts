@@ -131,9 +131,9 @@ export const xy = () => {
           describe: 'Specific package to copy assets',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
-        process.exitCode = copyAssets({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
