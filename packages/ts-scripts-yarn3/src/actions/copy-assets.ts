@@ -20,7 +20,7 @@ const copyPackageTargetAssets = async (target: 'esm' | 'cjs', name: string, loca
       },
     )
     values.forEach((value) => {
-      console.log(`Copied: ${value}`)
+      console.log(`${value.split('/').pop()} => ./dist/${target}`)
     })
     return 0
   } catch (reason) {

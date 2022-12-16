@@ -7,13 +7,13 @@ export interface TsconfigGenParams {
   pkg?: string
 }
 
-export const tsconfigGen = ({ target }: TsconfigGenParams) => {
+export const tsconfigGen = ({ target, pkg }: TsconfigGenParams) => {
   switch (target) {
     case 'esm':
-      return tsconfigGenEsm() || tsconfigGenTest()
+      return tsconfigGenEsm(pkg) || tsconfigGenTest(pkg)
     case 'cjs':
-      return tsconfigGenCjs() || tsconfigGenTest()
+      return tsconfigGenCjs(pkg) || tsconfigGenTest(pkg)
     default:
-      return tsconfigGenEsm() || tsconfigGenCjs() || tsconfigGenTest()
+      return tsconfigGenEsm(pkg) || tsconfigGenCjs(pkg) || tsconfigGenTest(pkg)
   }
 }

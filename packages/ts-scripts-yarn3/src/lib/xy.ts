@@ -49,6 +49,12 @@ export const parseOptions = () => {
       description: 'Limit output to specific target',
       type: 'string',
     })
+    .option('incremental', {
+      alias: 'i',
+      default: false,
+      description: 'Attempt to perform the action only on changed packages',
+      type: 'boolean',
+    })
     .option('fix', {
       alias: 'f',
       default: false,
@@ -94,7 +100,7 @@ export const xy = () => {
       },
       (argv) => {
         if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-        process.exitCode = compile({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = compile({ incremental: !!argv.incremental, pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
