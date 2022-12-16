@@ -10,7 +10,7 @@ export const compile = ({ target }: CompileParams) => {
     !target || target === 'cjs'
       ? [
           ['yarn', ['tsconfig-gen', '-t', 'cjs']],
-          ['yarn', 'workspaces foreach -ptA exec yarn package-compile-esm'],
+          ['yarn', 'workspaces foreach -ptA run package-compile-cjs'],
           ['yarn', ['xy', 'copy-assets', '-t', 'cjs']],
         ]
       : []
@@ -19,7 +19,7 @@ export const compile = ({ target }: CompileParams) => {
     !target || target === 'esm'
       ? [
           ['yarn', ['tsconfig-gen', '-t', 'esm']],
-          ['yarn', 'workspaces foreach -ptA exec yarn package-compile-cjs'],
+          ['yarn', 'workspaces foreach -ptA run package-compile-esm'],
           ['yarn', ['xy', 'copy-assets', '-t', 'esm']],
         ]
       : []
