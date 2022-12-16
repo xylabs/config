@@ -2624,8 +2624,8 @@ __metadata:
     "@types/jest": ^29.2.4
     "@typescript-eslint/eslint-plugin": ^5.46.1
     "@typescript-eslint/parser": ^5.46.1
-    "@xylabs/ts-scripts-yarn3": ^2.7.27
-    "@xylabs/tsconfig": ^2.7.27
+    "@xylabs/ts-scripts-yarn3": ^2.8.0-rc.4
+    "@xylabs/tsconfig": ^2.8.0-rc.4
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.29.0
@@ -2796,7 +2796,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@^2.7.27, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2.8.0-rc.4, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2833,24 +2833,12 @@ __metadata:
     typedoc: ^0.23.22
     typescript: ^4.9.4
     yargs: ^17.6.2
-  peerDependencies:
-    "@xylabs/eslint-config": "workspace:^"
-    depcheck: ^1.4.3
-    eslint: ^8.29.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.2.1
-    eslint-plugin-sonarjs: ^0.17.0
-    prettier: ^2.8.1
-    rimraf: ^3.0.2
-    ts-jest: ^29.0.3
-    ts-node: ^10.9.1
-    ts-prune: ^0.10.3
-    typedoc: ^0.23.22
-    typescript: ^4.9.4
   bin:
     build: dist/cjs/bin/build.js
     clean: dist/cjs/bin/clean.js
     compile: dist/cjs/bin/compile.js
+    compile-cjs: dist/cjs/bin/compile-cjs.js
+    compile-esm: dist/cjs/bin/compile-esm.js
     cycle: dist/cjs/bin/cycle.js
     dead: dist/cjs/bin/dead.js
     deploy: dist/cjs/bin/deploy.js
@@ -2972,7 +2960,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.7.27, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.8.0-rc.4, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
