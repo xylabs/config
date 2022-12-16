@@ -30,6 +30,7 @@ import {
   tsconfigGen,
   tsconfigGenClean,
   up,
+  updateYarnPlugins,
   updo,
   yarn3Only,
 } from '../actions'
@@ -80,7 +81,7 @@ export const xy = () => {
       },
       (argv) => {
         if (argv.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
-        process.exitCode = build({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
@@ -91,9 +92,9 @@ export const xy = () => {
           describe: 'Specific package to compile',
         })
       },
-      async (argv) => {
+      (argv) => {
         if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-        process.exitCode = await compile({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = compile({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
@@ -371,6 +372,17 @@ export const xy = () => {
       (argv) => {
         if (argv.verbose) console.info('Updo')
         process.exitCode = updo()
+      },
+    )
+    .command(
+      'upplug',
+      'Upplug - Update Yarn Plugins',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.info('Upplug')
+        process.exitCode = updateYarnPlugins()
       },
     )
     .command(
