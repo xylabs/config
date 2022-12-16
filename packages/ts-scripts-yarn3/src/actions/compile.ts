@@ -38,12 +38,12 @@ export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
 }
 
 export const compileAll = ({ target, incremental }: CompileParams) => {
-  const incrementalOptions = incremental ? ['--since'] : []
+  const incrementalOptions = incremental ? ['--since', '-ptAv'] : ['-pRAv']
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', '-t', 'cjs']],
-          ['yarn', ['workspaces', 'foreach', '-ptA', ...incrementalOptions, 'run', 'package-compile-cjs']],
+          ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-cjs']],
           ['yarn', ['xy', 'copy-assets', '-t', 'cjs']],
         ]
       : []
@@ -52,7 +52,7 @@ export const compileAll = ({ target, incremental }: CompileParams) => {
     !target || target === 'esm'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', '-t', 'esm']],
-          ['yarn', ['workspaces', 'foreach', '-ptA', ...incrementalOptions, 'run', 'package-compile-esm']],
+          ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-esm']],
           ['yarn', ['xy', 'copy-assets', '-t', 'esm']],
         ]
       : []
