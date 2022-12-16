@@ -3,8 +3,8 @@ import { runSteps } from '@xylabs/ts-scripts-yarn3'
 
 export const clean = () => {
   return runSteps('Clean', [
-    ['node', ['./node_modules/rimraf/bin.js', '-q', 'dist']],
-    ['node', ['./node_modules/rimraf/bin.js', '-q', 'build']],
-    ['node', ['./node_modules/rimraf/bin.js', '-q', '.eslintcache']],
+    ['yarn', ['rimraf', '-q', 'dist']],
+    ['yarn', ['rimraf', '-q', 'build']],
+    ['yarn', ['rimraf', '-q', '.eslintcache']],
   ])
 }
