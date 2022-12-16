@@ -103,5 +103,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.7.29"
+  "version": "2.8.0-rc.15",
+  "stableVersion": "2.7.29"
 }

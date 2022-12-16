@@ -43,6 +43,7 @@
     "gitlint",
     "relint",
     "sonarjs",
+    "upplug",
     "xylabs"
   ]
 }
