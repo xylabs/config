@@ -2310,6 +2310,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.191":
+  version: 4.14.191
+  resolution: "@types/lodash@npm:4.14.191"
+  checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.10
   resolution: "@types/mdast@npm:3.0.10"
@@ -2932,6 +2939,7 @@ __metadata:
     "@babel/core": ^7.20.5
     "@babel/preset-env": ^7.20.2
     "@types/jest": ^29.2.4
+    "@types/lodash": ^4.14.191
     "@types/node": ^18.11.15
     "@types/parse-git-config": ^3.0.1
     "@types/rimraf": ^3.0.2
@@ -2950,6 +2958,7 @@ __metadata:
     jest-mock-extended: ^3.0.1
     jest-sorted: ^1.0.14
     license-checker: ^25.0.1
+    lodash: ^4.17.21
     node-cmd: ^5.0.0
     npm-check-updates: ^16.6.0
     npm-package-json-lint: ^6.4.0

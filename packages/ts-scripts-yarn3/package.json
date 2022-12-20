@@ -70,6 +70,7 @@
     "jest-mock-extended": "^3.0.1",
     "jest-sorted": "^1.0.14",
     "license-checker": "^25.0.1",
+    "lodash": "^4.17.21",
     "node-cmd": "^5.0.0",
     "npm-check-updates": "^16.6.0",
     "npm-package-json-lint": "^6.4.0",
@@ -86,6 +87,7 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.15",
     "@types/parse-git-config": "^3.0.1",
     "@types/rimraf": "^3.0.2"
@@ -128,6 +130,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.10.0-rc.11",
+  "version": "2.10.0-rc.12",
   "stableVersion": "2.9.0"
 }
