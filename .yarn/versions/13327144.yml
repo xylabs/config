@@ -1,9 +1,0 @@
-releases:
-  "@xylabs/config": minor
-  "@xylabs/eslint-config": minor
-  "@xylabs/eslint-config-react": minor
-  "@xylabs/ts-scripts": minor
-  "@xylabs/ts-scripts-react-yarn3": minor
-  "@xylabs/ts-scripts-yarn3": minor
-  "@xylabs/tsconfig": minor
-  "@xylabs/tsconfig-dom": minor

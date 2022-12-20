@@ -2688,36 +2688,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config@npm:^2.7.29":
-  version: 2.7.29
-  resolution: "@xylabs/eslint-config@npm:2.7.29"
-  dependencies:
-    "@babel/core": ^7.20.5
-    "@babel/eslint-parser": ^7.19.1
-    "@typescript-eslint/eslint-plugin": ^5.46.1
-    "@typescript-eslint/parser": ^5.46.1
-    eslint-config-prettier: ^8.5.0
-    eslint-import-resolver-typescript: ^3.5.2
-    eslint-plugin-deprecation: ^1.3.3
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-json-es: ^1.5.7
-    eslint-plugin-md: ^1.0.19
-    eslint-plugin-no-secrets: ^0.8.9
-    eslint-plugin-prettier: ^4.2.1
-    eslint-plugin-simple-import-sort: ^8.0.0
-    eslint-plugin-sort-keys-fix: ^1.1.2
-    eslint-plugin-workspaces: ^0.7.0
-    markdown-eslint-parser: ^1.2.1
-    prettier: ^2.8.1
-    remark-lint-maximum-line-length: ^3.1.2
-    remark-preset-lint-markdown-style-guide: ^5.1.2
-    typescript: ^4.9.4
-  peerDependencies:
-    eslint: ^8.23.0
-  checksum: 1ca629ab883fd8ec34c9b2423f574f021e7ae5b83d8e5fd206a69fccda1e962214ffa801388eac3ad983028bb5b1361771036f995cd83c6d7ca2a73970827c75
-  languageName: node
-  linkType: hard
-
 "@xylabs/eslint-config@workspace:^, @xylabs/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
@@ -2826,86 +2796,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@npm:^2":
-  version: 2.7.29
-  resolution: "@xylabs/ts-scripts-yarn3@npm:2.7.29"
-  dependencies:
-    "@babel/core": ^7.20.5
-    "@babel/preset-env": ^7.20.2
-    "@types/jest": ^29.2.4
-    "@types/node": ^18.11.15
-    "@xylabs/eslint-config": ^2.7.29
-    "@xylabs/tsconfig": ^2.7.29
-    chalk: ^4.1.2
-    cpy: ^8.1.2
-    depcheck: ^1.4.3
-    eslint: ^8.29.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.2.1
-    eslint-plugin-sonarjs: ^0.17.0
-    jest: ^29.3.1
-    jest-environment-jsdom: ^29.3.1
-    jest-extended: ^3.2.0
-    jest-mock-extended: ^3.0.1
-    jest-sorted: ^1.0.14
-    license-checker: ^25.0.1
-    node-cmd: ^5.0.0
-    npm-check-updates: ^16.6.0
-    npm-package-json-lint: ^6.4.0
-    npm-package-json-lint-config-default: ^5.0.0
-    parse-git-config: ^3.0.0
-    prettier: ^2.8.1
-    rimraf: ^3.0.2
-    ts-jest: ^29.0.3
-    ts-node: ^10.9.1
-    ts-prune: ^0.10.3
-    typedoc: ^0.23.22
-    typescript: ^4.9.4
-    yargs: ^17.6.2
-  bin:
-    build: dist/cjs/bin/build.js
-    clean: dist/cjs/bin/clean.js
-    compile: dist/cjs/bin/compile.js
-    compile-cjs: dist/cjs/bin/compile-cjs.js
-    compile-esm: dist/cjs/bin/compile-esm.js
-    cycle: dist/cjs/bin/cycle.js
-    dead: dist/cjs/bin/dead.js
-    deploy: dist/cjs/bin/deploy.js
-    deploy-major: dist/cjs/bin/deploy-major.js
-    deploy-minor: dist/cjs/bin/deploy-minor.js
-    deploy-next: dist/cjs/bin/deploy-next.js
-    deps: dist/cjs/bin/deps.js
-    fix: dist/cjs/bin/fix.js
-    gen-docs: dist/cjs/bin/gen-docs.js
-    gitlint: dist/cjs/bin/gitlint.js
-    gitlint-fix: dist/cjs/bin/gitlint-fix.js
-    license: dist/cjs/bin/license.js
-    lint: dist/cjs/bin/lint.js
-    lint-clean: dist/cjs/bin/lint-clean.js
-    lint-fast: dist/cjs/bin/lint-fast.js
-    lint-profile: dist/cjs/bin/lint-profile.js
-    package-clean: dist/cjs/bin/package/clean.js
-    package-compile-cjs: dist/cjs/bin/package/compile-cjs.js
-    package-compile-esm: dist/cjs/bin/package/compile-esm.js
-    rebuild: dist/cjs/bin/rebuild.js
-    reinstall: dist/cjs/bin/reinstall.js
-    relint: dist/cjs/bin/relint.js
-    sonar: dist/cjs/bin/sonar.js
-    test: dist/cjs/bin/test.js
-    tsconfig-gen: dist/cjs/bin/tsconfig-gen.js
-    tsconfig-gen-cjs: dist/cjs/bin/tsconfig-gen-cjs.js
-    tsconfig-gen-clean: dist/cjs/bin/tsconfig-gen-clean.js
-    tsconfig-gen-esm: dist/cjs/bin/tsconfig-gen-esm.js
-    tsconfig-gen-test: dist/cjs/bin/tsconfig-gen-test.js
-    up: dist/cjs/bin/up.js
-    updo: dist/cjs/bin/updo.js
-    xy: dist/cjs/bin/xy
-    yarn3only: dist/cjs/bin/yarn3only.js
-  checksum: ccad182ce8950bfa48e3b63ff289c571b302b291545e26e412ab63cbd3580332b267b3eca0621d5925ddf2324dcf16d2489bdb65155a563e6b30154ec471b199
-  languageName: node
-  linkType: hard
-
-"@xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@^2, @xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -3069,16 +2960,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@npm:^2, @xylabs/tsconfig@npm:^2.7.29":
-  version: 2.7.29
-  resolution: "@xylabs/tsconfig@npm:2.7.29"
-  dependencies:
-    typescript: ^4.9.4
-  checksum: 905e66c09ecb17fedeb5bdf4af7005be715ff54546f74f0f71e7dc4f505da4469061fcce347f71976ed5694ce3b6024acbcc29478fa66b3bbc7369f3a1d80eb6
-  languageName: node
-  linkType: hard
-
-"@xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
