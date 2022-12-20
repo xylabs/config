@@ -25,6 +25,7 @@ import {
   rebuild,
   reinstall,
   relint,
+  runRimraf,
   sonar,
   test,
   tsconfigGen,
@@ -389,6 +390,17 @@ export const xy = () => {
       (argv) => {
         if (argv.verbose) console.info('Upplug')
         process.exitCode = updateYarnPlugins()
+      },
+    )
+    .command(
+      'rimraf',
+      'Run rimraf',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.info('Rimraf')
+        process.exitCode = runRimraf()
       },
     )
     .command(

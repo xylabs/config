@@ -19,8 +19,8 @@ export const license = () => {
   ]
 
   const steps = workspaces.map<ScriptStep>(({ location }) => [
-    'node',
-    ['./node_modules/license-checker/bin/license-checker', '--start', `./${location}`, '--exclude', `'${exclude.join(', ')}'`, '--production'],
+    'yarn',
+    ['license-checker', '--start', `./${location}`, '--exclude', `'${exclude.join(', ')}'`, '--production'],
   ])
 
   return runSteps(

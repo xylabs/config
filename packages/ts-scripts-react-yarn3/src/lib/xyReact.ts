@@ -22,10 +22,12 @@ import {
   rebuild,
   reinstall,
   relint,
+  runRimraf,
   sonar,
   tsconfigGen,
   tsconfigGenClean,
   up,
+  updateYarnPlugins,
   updo,
   yarn3Only,
 } from '@xylabs/ts-scripts-yarn3'
@@ -114,9 +116,9 @@ export const xyReact = () => {
           describe: 'Specific package to copy assets',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
-        process.exitCode = copyAssets({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
@@ -333,6 +335,28 @@ export const xyReact = () => {
       (argv) => {
         if (argv.verbose) console.info('Tsconfig Clean')
         process.exitCode = tsconfigGenClean()
+      },
+    )
+    .command(
+      'upplug',
+      'Upplug - Update Yarn Plugins',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.info('Upplug')
+        process.exitCode = updateYarnPlugins()
+      },
+    )
+    .command(
+      'rimraf',
+      'Run rimraf',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.info('Rimraf')
+        process.exitCode = runRimraf()
       },
     )
     .command(

@@ -71,5 +71,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "2.9.0"
+  "version": "2.10.0-rc.12",
+  "stableVersion": "2.9.0"
 }
