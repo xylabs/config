@@ -101,6 +101,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.10.0-rc.1",
+  "version": "2.10.0-rc.11",
   "stableVersion": "2.9.0"
 }

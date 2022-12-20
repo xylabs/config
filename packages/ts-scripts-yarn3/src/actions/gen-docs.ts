@@ -8,7 +8,7 @@ export const genDocs = () => {
         'workspaces',
         'foreach',
         '-ptA',
-        'yarn',
+        'run',
         'typedoc',
         '--logLevel',
         'Error',
