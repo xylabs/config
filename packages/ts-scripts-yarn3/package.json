@@ -30,6 +30,7 @@
     "package-clean": "dist/cjs/bin/package/clean.js",
     "package-compile-cjs": "dist/cjs/bin/package/compile-cjs.js",
     "package-compile-esm": "dist/cjs/bin/package/compile-esm.js",
+    "package-deps": "dist/cjs/bin/package/deps.js",
     "rebuild": "dist/cjs/bin/rebuild.js",
     "reinstall": "dist/cjs/bin/reinstall.js",
     "relint": "dist/cjs/bin/relint.js",
@@ -130,5 +131,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.10.1"
+  "version": "2.10.17"
 }
