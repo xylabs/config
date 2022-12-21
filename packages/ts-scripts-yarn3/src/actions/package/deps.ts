@@ -31,31 +31,32 @@ export const packageDeps = async () => {
   }
 
   if (unused.dependencies.length) {
-    console.log(chalk.yellow(`${unused.dependencies.length} Unused dependencies`))
-    unused.dependencies.forEach((value) => console.warn(chalk.gray(`  ${value}`)))
+    const message = [`${unused.dependencies.length} Unused dependencies`]
+    unused.dependencies.forEach((value) => message.push(`  ${value}`))
+    console.log(chalk.yellow(message.join('\n')))
   }
 
   if (unused.devDependencies.length) {
-    console.log(chalk.yellow(`${unused.devDependencies.length} Unused devDependencies`))
-    unused.devDependencies.forEach((value) => console.warn(chalk.gray(`  ${value}`)))
+    const message = [`${unused.devDependencies.length} Unused devDependencies`]
+    unused.devDependencies.forEach((value) => message.push(`  ${value}`))
+    console.log(chalk.yellow(message.join('\n')))
   }
 
   if (Object.entries(unused.invalidDirs).length) {
-    console.log(chalk.yellow(`${Object.entries(unused.invalidDirs).length} Invalid Dirs`))
-    Object.entries(unused.invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`${key}: ${value}`)))
+    Object.entries(unused.invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`)))
   }
 
   if (Object.entries(unused.invalidFiles).length) {
-    console.log(chalk.yellow(`${Object.entries(unused.invalidFiles).length} Invalid Files`))
-    Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`${key}: ${value}`)))
+    Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
   if (Object.entries(unused.missing).length) {
-    console.log(chalk.yellow(`${Object.entries(unused.missing).length} Missing dependencies`))
+    const message = [`${Object.entries(unused.missing).length} Missing dependencies`]
     Object.entries(unused.missing).forEach(([key, value]) => {
-      console.warn(chalk.gray(`${key}`))
-      console.warn(`  ${value.pop()}`)
+      message.push(chalk.gray(`${key}`))
+      message.push(`  ${value.pop()}`)
     })
+    console.log(chalk.yellow(message.join('\n')))
   }
 
   return errorCount

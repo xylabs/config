@@ -101,5 +101,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.10.17"
+  "version": "2.10.18"
 }
