@@ -2735,6 +2735,7 @@ __metadata:
     "@types/node": ^18.11.17
     "@typescript-eslint/eslint-plugin": ^5.47.0
     "@typescript-eslint/parser": ^5.47.0
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     eslint: ^8.30.0
     eslint-config-prettier: ^8.5.0
@@ -2929,6 +2930,7 @@ __metadata:
     "@types/node": ^18.11.17
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: ^4.1.2
     copyfiles: ^2.4.1
@@ -3001,6 +3003,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
   dependencies:
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     typescript: ^4.9.4
   languageName: unknown
@@ -3010,6 +3013,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
     typescript: ^4.9.4
   languageName: unknown
   linkType: soft

@@ -14,6 +14,9 @@
   "dependencies": {
     "typescript": "^4.9.4"
   },
+  "devDependencies": {
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
+  },
   "homepage": "https://github.com/xylabs/tsconfig.git",
   "keywords": [
     "xylabs",

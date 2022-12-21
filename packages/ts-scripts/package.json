@@ -81,6 +81,7 @@
   "devDependencies": {
     "@types/node": "^18.11.17",
     "@types/parse-git-config": "^3.0.1",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1"
