@@ -27,19 +27,21 @@ export const packageDeps = async () => {
     Object.entries(unused.missing).length
 
   if (errorCount > 0) {
-    console.log(chalk.yellow(`Deps [${pkgName}] - Failed`))
+    console.log(`Deps [${pkgName}]`)
+  } else {
+    console.log(`Deps [${pkgName}] - Ok`)
   }
 
   if (unused.dependencies.length) {
-    const message = [`${unused.dependencies.length} Unused dependencies`]
-    unused.dependencies.forEach((value) => message.push(`  ${value}`))
-    console.log(chalk.yellow(message.join('\n')))
+    const message = [chalk.yellow(`${unused.dependencies.length} Unused dependencies`)]
+    unused.dependencies.forEach((value) => message.push(chalk.gray(`  ${value}`)))
+    console.log(message.join('\n'))
   }
 
   if (unused.devDependencies.length) {
-    const message = [`${unused.devDependencies.length} Unused devDependencies`]
-    unused.devDependencies.forEach((value) => message.push(`  ${value}`))
-    console.log(chalk.yellow(message.join('\n')))
+    const message = [chalk.yellow(`${unused.devDependencies.length} Unused devDependencies`)]
+    unused.devDependencies.forEach((value) => message.push(chalk.gray(`  ${value}`)))
+    console.log(message.join('\n'))
   }
 
   if (Object.entries(unused.invalidDirs).length) {
@@ -51,10 +53,10 @@ export const packageDeps = async () => {
   }
 
   if (Object.entries(unused.missing).length) {
-    const message = [`${Object.entries(unused.missing).length} Missing dependencies`]
+    const message = [chalk.yellow(`${Object.entries(unused.missing).length} Missing dependencies`)]
     Object.entries(unused.missing).forEach(([key, value]) => {
-      message.push(chalk.gray(`${key}`))
-      message.push(`  ${value.pop()}`)
+      message.push(`${key}`)
+      message.push(chalk.gray(`  ${value.pop()}`))
     })
     console.log(chalk.yellow(message.join('\n')))
   }
