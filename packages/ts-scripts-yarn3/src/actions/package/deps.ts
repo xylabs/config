@@ -11,7 +11,7 @@ export const packageDeps = async () => {
     : undefined
   let ignoreMatches: string[] = []
   try {
-    ignoreMatches = JSON.parse(`{${rawIgnore}}`).ignores as string[]
+    ignoreMatches = rawIgnore ? (JSON.parse(`{${rawIgnore}}`).ignores as string[]) : []
   } catch (ex) {
     const error = ex as Error
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)

@@ -5,7 +5,7 @@ export const buildci = () => {
   return runSteps('Build', [
     ['yarn', 'react-scripts build'],
     ['yarn', 'lint'],
-    ['yarn', 'deps'],
+    ['yarn', 'xy deps'],
     ['ts-node-script', './scripts/sitemap.ts'],
   ])
 }
