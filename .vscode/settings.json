@@ -40,6 +40,7 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "cSpell.words": [
+    "buildci",
     "depcheckrc",
     "gitlint",
     "relint",

@@ -88,6 +88,7 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
+    "@types/depcheck": "^0.9.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.17",
     "@types/parse-git-config": "^3.0.1",
@@ -130,6 +131,9 @@
   "engines": {
     "node": ">=14.16"
   },
+  "scripts": {
+    "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
+  },
   "sideEffects": false,
-  "version": "2.10.19"
+  "version": "2.10.20"
 }

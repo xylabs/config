@@ -1,14 +1,8 @@
 #!/usr/bin/env node
 
 import {
-  compile,
-  copyAssets,
   cycle,
   dead,
-  deploy,
-  deployMajor,
-  deployMinor,
-  deployNext,
   deps,
   fix,
   genDocs,
@@ -18,8 +12,7 @@ import {
   lint,
   lintFast,
   lintProfile,
-  parseOptions,
-  rebuild,
+  xyParseOptions,
   reinstall,
   relint,
   runRimraf,
@@ -29,13 +22,15 @@ import {
   up,
   updateYarnPlugins,
   updo,
+  xyInstallCommands,
   yarn3Only,
 } from '@xylabs/ts-scripts-yarn3'
 
-import { analyze, build, buildci, clean, eject, sitemap, start, test } from '../actions'
+import { analyze, clean, eject, sitemap, start, test } from '../actions'
+import { xyReactBuildCommands } from './xyReactBuildCommands'
 
 export const xyReact = () => {
-  return parseOptions()
+  return xyReactBuildCommands(xyInstallCommands(xyParseOptions()))
     .command(
       'analyze',
       'Analyze - Analyze Bundles',
@@ -45,41 +40,6 @@ export const xyReact = () => {
       (argv) => {
         if (argv.verbose) console.info('Analyzing')
         process.exitCode = analyze()
-      },
-    )
-    .command(
-      'build',
-      'Build - Build React project',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Building')
-        process.exitCode = build()
-      },
-    )
-    .command(
-      'build-ci',
-      'Build CI - Build React project for continuous integration',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Building CI')
-        process.exitCode = buildci()
-      },
-    )
-    .command(
-      'compile [package]',
-      'Compile with Typescript & Copy Images',
-      (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to compile',
-        })
-      },
-      async (argv) => {
-        if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-        process.exitCode = await compile({ target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
@@ -109,19 +69,6 @@ export const xyReact = () => {
       },
     )
     .command(
-      'copy-assets [package]',
-      'Copy Assets - Copy the assets from src to dist',
-      (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to copy assets',
-        })
-      },
-      async (argv) => {
-        if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
-        process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
-      },
-    )
-    .command(
       'cycle [package]',
       'Cycle - Check for dependency cycles',
       (yargs) => {
@@ -145,50 +92,6 @@ export const xyReact = () => {
       (argv) => {
         if (argv.verbose) console.info('Dead')
         process.exitCode = dead()
-      },
-    )
-    .command(
-      'deploy',
-      'Deploy - Deploy patch',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Deploy patch')
-        process.exitCode = deploy()
-      },
-    )
-    .command(
-      'deploy-minor',
-      'Deploy - Deploy minor',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Deploy minor')
-        process.exitCode = deployMinor()
-      },
-    )
-    .command(
-      'deploy-major',
-      'Deploy - Deploy major',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Deploy major')
-        process.exitCode = deployMajor()
-      },
-    )
-    .command(
-      'deploy-next',
-      'Deploy - Deploy next',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Deploy next')
-        process.exitCode = deployNext()
       },
     )
     .command(
@@ -252,19 +155,6 @@ export const xyReact = () => {
       (argv) => {
         if (argv.verbose) console.info('Gitlint')
         process.exitCode = argv.fix ? gitlintFix() : gitlint()
-      },
-    )
-    .command(
-      'rebuild [package]',
-      'Rebuild - Clean, Compile & Lint',
-      (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to rebuild',
-        })
-      },
-      (argv) => {
-        if (argv.verbose) console.info(`Rebuilding: ${argv.package ?? 'all'}`)
-        process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(

@@ -80,7 +80,9 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
+    "@types/json-schema": "^7.0.11",
     "@types/node": "^18.11.17",
+    "@types/yargs": "^17.0.17",
     "@xylabs/tsconfig": "workspace:^"
   },
   "homepage": "https://xylabs.com",
@@ -101,5 +103,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.10.19"
+  "version": "2.10.20"
 }
