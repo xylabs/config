@@ -40,9 +40,11 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "cSpell.words": [
+    "autocrlf",
     "buildci",
     "depcheckrc",
     "gitlint",
+    "ignorecase",
     "relint",
     "Relinting",
     "sonarjs",

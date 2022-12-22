@@ -38,7 +38,7 @@ export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
 }
 
 export const compileAll = ({ target, incremental }: CompileParams) => {
-  const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
+  const incrementalOptions = incremental ? ['--since', '-ptA', '-j', '32'] : ['-ptA', '-j', '32']
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'
       ? [
