@@ -12,9 +12,9 @@ import {
   tsconfigGen,
   tsconfigGenClean,
   updateYarnPlugins,
+  updateYarnVersion,
   yarn3Only,
 } from '../../actions'
-import { updateYarnVersion } from '../../actions/upyarn'
 
 export const xyCommonCommands = (args: yargs.Argv) => {
   return args
@@ -67,8 +67,8 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('GenDocs')
-        process.exitCode = genDocs()
+        if (argv.verbose) console.info(`Generating TypeDocs: ${argv.package ?? 'all'}`)
+        process.exitCode = genDocs({ incremental: !!argv.incremental, pkg: argv.package as string })
       },
     )
     .command(
