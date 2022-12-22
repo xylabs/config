@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
-import typedoc from 'typedoc'
+import { Application } from 'typedoc'
 
 const ExitCodes = {
   CompileError: 3,
@@ -14,31 +14,21 @@ const ExitCodes = {
 
 export const packageGenDocs = async () => {
   const pkg = process.env.INIT_CWD
+  const app = new Application()
 
-  const app = new typedoc.Application()
-
-  app.options.addReader(
-    new typedoc.ArgumentsReader(0, [
-      '--logLevel',
-      'Error',
-      '--tsconfig',
-      `${pkg}/.tsconfig.build.esm.json`,
-      '--excludeExternals',
-      `${pkg}/src/index.ts`,
-      '--json',
-      `${pkg}/dist/docs.json`,
-    ]),
-  )
-  app.options.addReader(new typedoc.TypeDocReader())
-  app.options.addReader(new typedoc.TSConfigReader())
-  app.options.addReader(new typedoc.ArgumentsReader(300))
-
-  app.bootstrap()
+  app.bootstrap({
+    entryPointStrategy: 'packages',
+    entryPoints: [pkg ?? '.'],
+    excludeExternals: true,
+    json: `${pkg}/dist/docs.json`,
+    logLevel: 'Error',
+    tsconfig: `${pkg}/.tsconfig.build.esm.json`,
+  })
 
   return await runTypeDoc(app)
 }
 
-const runTypeDoc = async (app: typedoc.Application) => {
+const runTypeDoc = async (app: Application) => {
   if (app.options.getValue('version')) {
     console.log(app.toString())
     return ExitCodes.Ok
