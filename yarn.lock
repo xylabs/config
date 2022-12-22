@@ -2833,6 +2833,8 @@ __metadata:
     "tsconfig-gen:test": dist/cjs/bin/tsconfig-gen-test.js
     up: dist/cjs/bin/up.js
     updo: dist/cjs/bin/updo.js
+    upplug: dist/cjs/bin/upplug.js
+    upyarn: dist/cjs/bin/upyarn.js
     xy: dist/cjs/bin/xy
     yarn3only: dist/cjs/bin/yarn3only.js
   languageName: unknown
@@ -2918,6 +2920,8 @@ __metadata:
     tsconfig-gen-test: dist/cjs/bin/tsconfig-gen-test.js
     up: dist/cjs/bin/up.js
     updo: dist/cjs/bin/updo.js
+    upplug: dist/cjs/bin/upplug.js
+    upyarn: dist/cjs/bin/upyarn.js
     xy: dist/cjs/bin/xy
     yarn3only: dist/cjs/bin/yarn3only.js
   languageName: unknown

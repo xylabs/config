@@ -23,5 +23,5 @@ export const depsAll = ({ incremental }: DepsParams) => {
   const incrementalOptions = incremental ? ['--since', '-pA', '-j', '32'] : ['-pA', '-j', '32']
   const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-deps']]]
 
-  return runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...steps])
+  return runSteps(`Deps [All${incremental ? '-Incremental' : ''}]`, [...steps])
 }

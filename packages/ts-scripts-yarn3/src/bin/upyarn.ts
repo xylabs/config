@@ -2,4 +2,5 @@
 
 import { runXyWithWarning } from "../lib"
 
-runXyWithWarning('clean')
+runXyWithWarning('upyarn')
+

@@ -14,6 +14,7 @@ import {
   updateYarnPlugins,
   yarn3Only,
 } from '../../actions'
+import { updateYarnVersion } from '../../actions/upyarn'
 
 export const xyCommonCommands = (args: yargs.Argv) => {
   return args
@@ -118,13 +119,24 @@ export const xyCommonCommands = (args: yargs.Argv) => {
     )
     .command(
       'upplug',
-      'Upplug - Update Yarn Plugins',
+      'UpPlug - Update Yarn Plugins',
       (yargs) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Upplug')
+        if (argv.verbose) console.info('UpPlug')
         process.exitCode = updateYarnPlugins()
+      },
+    )
+    .command(
+      'upyarn',
+      'UpYarn - Update Yarn Version',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.info('UpYarn')
+        process.exitCode = updateYarnVersion()
       },
     )
     .command(
