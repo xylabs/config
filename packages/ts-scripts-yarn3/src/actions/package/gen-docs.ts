@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
-import { Application } from 'typedoc'
+import chalk from 'chalk'
+import { Application, ArgumentsReader, TSConfigReader, TypeDocReader } from 'typedoc'
 
 const ExitCodes = {
   CompileError: 3,
@@ -16,9 +17,14 @@ export const packageGenDocs = async () => {
   const pkg = process.env.INIT_CWD
   const app = new Application()
 
+  app.options.addReader(new ArgumentsReader(0))
+  app.options.addReader(new TypeDocReader())
+  app.options.addReader(new TSConfigReader())
+  app.options.addReader(new ArgumentsReader(300))
+
   app.bootstrap({
-    entryPointStrategy: 'packages',
-    entryPoints: [pkg ?? '.'],
+    entryPointStrategy: 'resolve',
+    entryPoints: [`${pkg}/src`],
     excludeExternals: true,
     json: `${pkg}/dist/docs.json`,
     logLevel: 'Error',
@@ -29,6 +35,7 @@ export const packageGenDocs = async () => {
 }
 
 const runTypeDoc = async (app: Application) => {
+  const pkgName = process.env.npm_package_name
   if (app.options.getValue('version')) {
     console.log(app.toString())
     return ExitCodes.Ok
@@ -106,6 +113,6 @@ const runTypeDoc = async (app: Application) => {
       return ExitCodes.OutputError
     }
   }
-
+  console.log(chalk.green(`${pkgName} - Ok`))
   return ExitCodes.Ok
 }
