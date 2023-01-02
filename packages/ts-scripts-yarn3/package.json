@@ -47,8 +47,8 @@
     "updo": "dist/cjs/bin/updo.js",
     "upplug": "dist/cjs/bin/upplug.js",
     "upyarn": "dist/cjs/bin/upyarn.js",
-    "xy": "dist/cjs/bin/xy",
-    "xy-esm": "dist/esm/bin/xy",
+    "xy": "dist/cjs/bin/xy.js",
+    "xy-ts": "src/bin/xy-ts.ts",
     "yarn3only": "dist/cjs/bin/yarn3only.js"
   },
   "bugs": {
@@ -139,5 +139,6 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.11.17"
+  "version": "2.12.0-rc.2",
+  "stableVersion": "2.11.17"
 }
