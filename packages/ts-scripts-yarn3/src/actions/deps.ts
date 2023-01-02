@@ -1,14 +1,27 @@
-import { runSteps, ScriptStep, yarnWorkspaces } from '../lib'
+import { runSteps, ScriptStep } from '../lib'
 
-export const deps = () => {
-  const workspaces = yarnWorkspaces()
+export interface DepsParams {
+  incremental?: boolean
+  pkg?: string
+}
 
-  const steps = workspaces.map<ScriptStep>(({ location }) => ['yarn', ['depcheck', `${location}/.`, '--ignore-patterns=*.stories.*,*.spec.*']])
+export interface DepsPackageParams {
+  pkg: string
+}
 
-  return runSteps(
-    'Deps',
-    steps,
-    false,
-    workspaces.map(({ name }) => name),
-  )
+export const deps = ({ pkg, incremental }: DepsParams) => {
+  return pkg ? depsPackage({ pkg }) : depsAll({ incremental })
+}
+
+export const depsPackage = ({ pkg }: DepsPackageParams) => {
+  const steps: ScriptStep[] = [['yarn', ['workspace', pkg, 'run', 'package-deps']]]
+
+  return runSteps(`Deps [${pkg}]`, [...steps])
+}
+
+export const depsAll = ({ incremental }: DepsParams) => {
+  const incrementalOptions = incremental ? ['--since', '-pA', '-j', '32'] : ['-pA', '-j', '32']
+  const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-deps']]]
+
+  return runSteps(`Deps [All${incremental ? '-Incremental' : ''}]`, [...steps])
 }

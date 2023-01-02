@@ -4,8 +4,9 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/.DS_Store": true,
-    "**/node_modules": false,
-    "**/dist": false
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.tsconfig.*": true
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
@@ -40,11 +41,16 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "cSpell.words": [
+    "autocrlf",
+    "buildci",
+    "depcheckrc",
     "gitlint",
+    "ignorecase",
     "relint",
     "Relinting",
     "sonarjs",
     "upplug",
+    "upyarn",
     "xylabs"
   ]
 }

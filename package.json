@@ -12,10 +12,10 @@
     "url": "https://github.com/xylabs/ts-scripts/issues"
   },
   "dependencies": {
-    "@types/jest": "^29.2.4",
+    "@types/jest": "^29.2.5",
     "depcheck": "^1.4.3",
     "jest": "^29.3.1",
-    "npm-check-updates": "^16.6.0",
+    "npm-check-updates": "^16.6.2",
     "parse-git-config": "^3.0.0",
     "rimraf": "^3.0.2"
   },
@@ -24,12 +24,13 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
-    "@xylabs/ts-scripts-yarn3": "^2",
-    "@xylabs/tsconfig": "^2",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "@xylabs/eslint-config": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/tsconfig": "^2.11.17",
     "cpy-cli": "^4.2.0",
-    "eslint": "^8.29.0",
+    "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-deprecation": "^1.3.3",
@@ -40,6 +41,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-workspaces": "^0.7.0",
     "prettier": "^2.8.1",
     "typescript": "^4.9.4"
   },
@@ -58,44 +60,22 @@
     "type": "git",
     "url": "https://github.com/xylabs/config.git"
   },
+  "engines": {
+    "node": ">=14.16"
+  },
+  "sideEffects": false,
+  "version": "2.11.17",
+  "packageManager": "yarn@3.3.1",
   "scripts": {
     "build": "echo Building... && yarn compile",
-    "compile": "echo Compiling... && yarn compile:esm && yarn compile:cjs && yarn lint-fast",
+    "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 run compile && xy compile",
     "compile:cjs": "echo Compiling CJS... && yarn workspaces foreach -ptA run compile:package:cjs",
     "compile:esm": "echo Compiling ESM... && yarn workspaces foreach -ptA run compile:package:esm",
-    "ws:test": "echo Workspace Test... && yarn workspaces foreach -ptA exec node $INIT_CWD/packages/ts-scripts-yarn3/dist/cjs/ws-test.js",
-    "lint-pkg": "npmPkgJsonLint .",
     "deploy": "yarn deploy-patch",
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
     "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common",
     "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach -ptv npm publish",
-    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next",
-    "clean": "echo Cleaning... && yarn workspaces foreach -pA run clean:package",
-    "deps": "yarn workspaces foreach -pAv run deps:package",
-    "lint": "echo Linting... && yarn eslint .",
-    "lint-fast": "echo Linting fast... && yarn eslint . --cache",
-    "lint-profile": "echo Profiling Lint... && TIMING=1 && yarn eslint .",
-    "cycle": "yarn workspaces foreach -pv run cycle:package",
-    "fix": "yarn workspaces foreach -pv run fix:package",
-    "outdated": "yarn workspaces foreach -pv outdated",
-    "up": "yarn workspaces foreach -pv up",
-    "updo3": "yarn install && yarn upgrade-interactive && yarn dedupe",
-    "clean:package": "tsc --build $INIT_CWD/tsconfig.build.esm.json --clean && tsc --build $INIT_CWD/tsconfig.build.cjs.json --clean",
-    "fix:package": "yarn eslint $INIT_CWD/src --fix",
-    "lint:package": "yarn eslint $INIT_CWD/src",
-    "cycle:package": "yarn eslint --rule \"import/no-cycle:[1, { maxDepth: 10 }]\" $INIT_CWD/src",
-    "deps:package": "depcheck $INIT_CWD",
-    "compile:package:cjs": "tsc --build $INIT_CWD/tsconfig.build.cjs.json",
-    "compile:package:esm": "tsc --build $INIT_CWD/tsconfig.build.esm.json",
-    "test": "yarn jest .",
-    "license": "yarn license-checker --exclude \"MIT, ISC, Apache-2.0, BSD, BSD-2-Clause, CC-BY-4.0, Unlicense, CC-BY-3.0, CC0-1.0\""
-  },
-  "engines": {
-    "node": ">=14.16"
-  },
-  "sideEffects": false,
-  "version": "2.10.0-rc.12",
-  "packageManager": "yarn@3.3.0",
-  "stableVersion": "2.9.0"
+    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next"
+  }
 }

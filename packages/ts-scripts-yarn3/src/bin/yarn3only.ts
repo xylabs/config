@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runXy } from "../lib"
+import { runXyWithWarning } from "../lib"
 
-runXy('yarn3only')
+runXyWithWarning('yarn3only')

@@ -2,10 +2,15 @@
   "compilerOptions": {
     "module": "CommonJS",
     "outDir": "./dist/cjs",
-    "rootDir": "./src",
     "target": "ES6"
   },
-  "exclude": ["src/**/*.spec.ts"],
+  "exclude": [
+    "**/*.spec.*",
+    "**/*.stories.*",
+    "**/*.example.*"
+  ],
   "extends": "./tsconfig.json",
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

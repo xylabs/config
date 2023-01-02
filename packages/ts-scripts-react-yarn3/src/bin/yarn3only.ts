@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { runXy } from '@xylabs/ts-scripts-yarn3'
+import { runXyWithWarning } from '@xylabs/ts-scripts-yarn3'
 
-runXy('yarn3only')
+runXyWithWarning('yarn3only')

@@ -1,24 +1,27 @@
-import { runSteps } from '../lib'
+import { runSteps, ScriptStep } from '../lib'
 
-export const genDocs = () => {
-  return runSteps('Generate TypeDocs', [
-    [
-      'yarn',
-      [
-        'workspaces',
-        'foreach',
-        '-ptA',
-        'run',
-        'typedoc',
-        '--logLevel',
-        'Error',
-        '--tsconfig',
-        './.tsconfig.build.esm.json',
-        '--excludeExternals',
-        './src/index.ts',
-        '--json',
-        './dist/docs.json',
-      ],
-    ],
-  ])
+export interface GenDocsParams {
+  incremental?: boolean
+  pkg?: string
+}
+
+export interface GenDocsPackageParams {
+  pkg: string
+}
+
+export const genDocs = ({ pkg, incremental }: GenDocsParams) => {
+  return pkg ? genDocsPackage({ pkg }) : genDocsAll({ incremental })
+}
+
+export const genDocsPackage = ({ pkg }: GenDocsPackageParams) => {
+  const steps: ScriptStep[] = [['yarn', ['workspace', pkg, 'run', 'package-gen-docs']]]
+
+  return runSteps(`GenDocs [${pkg}]`, [...steps])
+}
+
+export const genDocsAll = ({ incremental }: GenDocsParams) => {
+  const incrementalOptions = incremental ? ['--since', '-pA', '-j', '32'] : ['-pA', '-j', '32']
+  const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-gen-docs']]]
+
+  return runSteps(`GenDocs [All${incremental ? '-Incremental' : ''}]`, [...steps])
 }
