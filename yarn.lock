@@ -2726,7 +2726,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.47.1
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.11.16
+    "@xylabs/tsconfig": ^2.11.17
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.31.0
@@ -2988,6 +2988,7 @@ __metadata:
     upplug: dist/cjs/bin/upplug.js
     upyarn: dist/cjs/bin/upyarn.js
     xy: dist/cjs/bin/xy
+    xy-esm: dist/esm/bin/xy
     yarn3only: dist/cjs/bin/yarn3only.js
   languageName: unknown
   linkType: soft
@@ -3079,7 +3080,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.11.16, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.11.17, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:

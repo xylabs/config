@@ -48,6 +48,7 @@
     "upplug": "dist/cjs/bin/upplug.js",
     "upyarn": "dist/cjs/bin/upyarn.js",
     "xy": "dist/cjs/bin/xy",
+    "xy-esm": "dist/esm/bin/xy",
     "yarn3only": "dist/cjs/bin/yarn3only.js"
   },
   "bugs": {
@@ -138,5 +139,5 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.11.16"
+  "version": "2.11.17"
 }
