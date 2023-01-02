@@ -24,11 +24,12 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "@xylabs/tsconfig": "^2.11.17",
+    "@xylabs/tsconfig": "^2.12.0-rc.2",
     "cpy-cli": "^4.2.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
@@ -43,6 +44,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-workspaces": "^0.7.0",
     "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
   "homepage": "https://xylabs.com",
@@ -64,7 +66,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.11.17",
+  "version": "2.12.0-rc.2",
   "packageManager": "yarn@3.3.1",
   "scripts": {
     "build": "echo Building... && yarn compile",
@@ -77,5 +79,6 @@
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common",
     "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach -ptv npm publish",
     "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next"
-  }
+  },
+  "stableVersion": "2.11.17"
 }
