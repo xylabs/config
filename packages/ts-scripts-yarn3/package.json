@@ -139,5 +139,5 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.12.5"
+  "version": "2.12.6"
 }
