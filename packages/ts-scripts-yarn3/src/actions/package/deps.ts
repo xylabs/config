@@ -28,7 +28,7 @@ export const packageDeps = async () => {
 
   const unused: depcheck.Results = {
     ...unusedCode,
-    devDependencies: [...unusedTests.devDependencies, ...unusedTests.dependencies],
+    devDependencies: unusedTests.devDependencies,
   }
 
   const errorCount =
