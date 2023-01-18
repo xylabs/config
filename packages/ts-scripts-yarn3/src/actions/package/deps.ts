@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import chalk from 'chalk'
 import depcheck from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
@@ -17,7 +18,18 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const unused = await depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] })
+  const unusedList = await Promise.all([
+    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),
+    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.ts', '*.d.ts', 'dist'] }),
+  ])
+
+  const unusedCode = unusedList[0]
+  const unusedTests = unusedList[1]
+
+  const unused: depcheck.Results = {
+    ...unusedCode,
+    devDependencies: [...unusedTests.devDependencies, ...unusedTests.dependencies],
+  }
 
   const errorCount =
     unused.dependencies.length +
