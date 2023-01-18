@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-import { runSteps } from '@xylabs/ts-scripts-yarn3'
+import { rimrafSync } from 'rimraf'
 
 export const clean = () => {
-  return runSteps('Clean', [
-    ['yarn', ['xy', 'rimraf', '-q', 'dist']],
-    ['yarn', ['xy', 'rimraf', '-q', 'build']],
-    ['yarn', ['xy', 'rimraf', '-q', '.eslintcache']],
-  ])
+  console.log('Clean [dist]')
+  rimrafSync('dist')
+  console.log('Clean [build]')
+  rimrafSync('build')
+  console.log('Clean [.eslintcache]')
+  rimrafSync('.eslintcache')
+  return 0
 }

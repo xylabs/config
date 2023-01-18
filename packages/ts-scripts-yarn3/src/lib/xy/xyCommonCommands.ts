@@ -7,7 +7,6 @@ import {
   gitlint,
   gitlintFix,
   license,
-  runRimraf,
   test,
   tsconfigGen,
   tsconfigGenClean,
@@ -137,17 +136,6 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.info('UpYarn')
         process.exitCode = updateYarnVersion()
-      },
-    )
-    .command(
-      'rimraf',
-      'Run rimraf',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.info('Rimraf')
-        process.exitCode = runRimraf()
       },
     )
     .command(

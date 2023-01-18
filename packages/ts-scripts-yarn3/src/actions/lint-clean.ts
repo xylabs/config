@@ -1,8 +1,9 @@
+import { rimrafSync } from 'rimraf'
+
 import { runSteps } from '../lib'
 
 export const lintClean = () => {
-  return runSteps('Lint [Clean]', [
-    ['yarn', ['xy', 'rimraf', '.eslintcache']],
-    ['yarn', ['eslint', '.', '--cache']],
-  ])
+  console.log('Clean [.eslintcache]')
+  rimrafSync('.eslintcache')
+  return runSteps('Lint [Clean]', [['yarn', ['eslint', '.', '--cache']]])
 }
