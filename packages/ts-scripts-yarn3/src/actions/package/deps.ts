@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 import chalk from 'chalk'
-import depcheck from 'depcheck'
+import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
 
 export const packageDeps = async () => {
@@ -20,7 +20,11 @@ export const packageDeps = async () => {
 
   const unusedList = await Promise.all([
     depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),
-    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.ts', '*.d.ts', 'dist'] }),
+    depcheck(`${pkg}/.`, {
+      ignoreMatches,
+      ignorePatterns: ['*.ts', '*.d.ts', 'dist'],
+      specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
+    }),
   ])
 
   const unusedCode = unusedList[0]
