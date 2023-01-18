@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { cycle, fix, lint, lintFast, lintProfile, relint, sonar } from '../../actions'
+import { cycle, fix, lint, lintProfile, relint, sonar } from '../../actions'
 
 export const xyLintCommands = (args: yargs.Argv) => {
   return args
@@ -27,7 +27,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.info('Lint')
-        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : argv.cache ? lintFast() : lint()
+        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint()
       },
     )
     .command(

@@ -40,7 +40,6 @@
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint": "^8.32.0",
-    "rimraf": "^4.1.1",
     "tslib": "^2.4.1"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",

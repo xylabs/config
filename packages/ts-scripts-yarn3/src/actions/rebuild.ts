@@ -7,8 +7,8 @@ export interface RebuildParams {
 
 export const rebuild = ({ target }: RebuildParams) => {
   return runSteps('Rebuild', [
-    ['yarn', 'clean'],
+    ['yarn', 'xy clean'],
     ['yarn', target ? `xy compile -t ${target}` : 'xy compile'],
-    ['yarn', 'lint'],
+    ['yarn', 'xy lint'],
   ])
 }

@@ -8,7 +8,7 @@ export interface BuildParams {
 export const build = ({ target }: BuildParams) => {
   return runSteps('Build', [
     ['yarn', target ? `xy compile -t ${target}` : 'xy compile'],
-    ['yarn', 'lint'],
+    ['yarn', 'xy lint'],
     ['yarn', 'xy deps'],
   ])
 }
