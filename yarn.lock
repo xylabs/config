@@ -2215,16 +2215,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:*":
-  version: 8.0.0
-  resolution: "@types/glob@npm:8.0.0"
-  dependencies:
-    "@types/minimatch": "*"
-    "@types/node": "*"
-  checksum: 1817b05f5a8aed851d102a65b5e926d5c777bef927ea62b36d635860eef5364f2046bb5a692d135b6f2b28f34e4a9d44ade9396122c0845bcc7636d35f624747
-  languageName: node
-  linkType: hard
-
 "@types/glob@npm:^7.1.1":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
@@ -2396,16 +2386,6 @@ __metadata:
   version: 2.7.2
   resolution: "@types/prettier@npm:2.7.2"
   checksum: b47d76a5252265f8d25dd2fe2a5a61dc43ba0e6a96ffdd00c594cb4fd74c1982c2e346497e3472805d97915407a09423804cc2110a0b8e1b22cffcab246479b7
-  languageName: node
-  linkType: hard
-
-"@types/rimraf@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@types/rimraf@npm:3.0.2"
-  dependencies:
-    "@types/glob": "*"
-    "@types/node": "*"
-  checksum: b47fa302f46434cba704d20465861ad250df79467d3d289f9d6490d3aeeb41e8cb32dd80bd1a8fd833d1e185ac719fbf9be12e05ad9ce9be094d8ee8f1405347
   languageName: node
   linkType: hard
 
@@ -2727,7 +2707,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.48.2
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.12.8
+    "@xylabs/tsconfig": ^2.12.9
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.32.0
@@ -2820,7 +2800,6 @@ __metadata:
     prettier: ^2.8.3
     remark-lint-maximum-line-length: ^3.1.2
     remark-preset-lint-markdown-style-guide: ^5.1.2
-    rimraf: ^4.1.1
     tslib: ^2.4.1
     typescript: ^4.9.4
   peerDependencies:
@@ -2860,7 +2839,6 @@ __metadata:
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
     prettier: ^2.8.3
-    rimraf: ^4.1.1
     source-map-explorer: ^2.5.3
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
@@ -2917,7 +2895,6 @@ __metadata:
     "@types/lodash": ^4.14.191
     "@types/node": ^18.11.18
     "@types/parse-git-config": ^3.0.1
-    "@types/rimraf": ^3.0.2
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: ^4.1.2
@@ -2940,7 +2917,6 @@ __metadata:
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
     prettier: ^2.8.3
-    rimraf: ^4.1.1
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
     ts-prune: ^0.10.3
@@ -2977,7 +2953,6 @@ __metadata:
     rebuild: dist/cjs/bin/rebuild.js
     reinstall: dist/cjs/bin/reinstall.js
     relint: dist/cjs/bin/relint.js
-    rimraf: dist/cjs/bin/rimraf.js
     sonar: dist/cjs/bin/sonar.js
     test: dist/cjs/bin/test.js
     tsconfig-gen: dist/cjs/bin/tsconfig-gen.js
@@ -3082,7 +3057,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.12.8, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.12.9, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
