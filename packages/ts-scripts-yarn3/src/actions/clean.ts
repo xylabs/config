@@ -5,5 +5,5 @@ export interface CleanParams {
 }
 
 export const clean = () => {
-  return runSteps('Clean', [['yarn', 'workspaces foreach -ptA run package-clean']])
+  return runSteps('Clean', [['yarn', 'workspaces foreach -pA run package-clean']])
 }

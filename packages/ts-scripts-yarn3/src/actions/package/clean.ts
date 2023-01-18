@@ -11,8 +11,11 @@ export const packageClean = () => {
   const dist = `${pkg}/dist`
   rmSync(dist, { force: true, recursive: true })
 
-  return (
-    runSteps('Package Clean [ESM]', [['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`, '--clean']]]) &&
-    runSteps('Package Clean [CJS]', [['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`, '--clean']]])
-  )
+  const build = `${pkg}/build`
+  rmSync(build, { force: true, recursive: true })
+
+  return runSteps('Package Clean', [
+    ['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`, '--clean']],
+    ['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`, '--clean']],
+  ])
 }
