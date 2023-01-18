@@ -28,7 +28,8 @@ export const packageDeps = async () => {
 
   const unused: depcheck.Results = {
     ...unusedCode,
-    devDependencies: unusedTests.devDependencies,
+    /* we only reports the unused devDeps if both are not using it */
+    devDependencies: unusedTests.devDependencies.filter((value) => !!unusedCode.devDependencies.find((devValue) => devValue === value)),
   }
 
   const errorCount =
@@ -64,9 +65,18 @@ export const packageDeps = async () => {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
-  if (Object.entries(unused.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(unused.missing).length} Missing dependencies`)]
-    Object.entries(unused.missing).forEach(([key, value]) => {
+  if (Object.entries(unusedCode.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(unusedCode.missing).length} Missing dependencies`)]
+    Object.entries(unusedCode.missing).forEach(([key, value]) => {
+      message.push(`${key}`)
+      message.push(chalk.gray(`  ${value.pop()}`))
+    })
+    console.log(chalk.yellow(message.join('\n')))
+  }
+
+  if (Object.entries(unusedTests.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(unusedTests.missing).length} Missing devDependencies`)]
+    Object.entries(unusedTests.missing).forEach(([key, value]) => {
       message.push(`${key}`)
       message.push(chalk.gray(`  ${value.pop()}`))
     })
