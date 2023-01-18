@@ -18,6 +18,8 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
+  ignoreMatches.push('@xylabs/ts-scripts-yarn3')
+
   const unusedList = await Promise.all([
     depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),
     depcheck(`${pkg}/.`, {
