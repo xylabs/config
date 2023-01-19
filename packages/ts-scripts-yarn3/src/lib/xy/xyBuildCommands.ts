@@ -1,3 +1,4 @@
+import { getHeapStatistics } from 'v8'
 import yargs from 'yargs'
 
 import { build, compile, copyAssets, rebuild } from '../../actions'
@@ -14,6 +15,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.info(`Building-Heap: ${JSON.stringify(getHeapStatistics())}`)
         process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -27,6 +29,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.info(`Compiling-Heap: ${JSON.stringify(getHeapStatistics())}`)
         process.exitCode = compile({ incremental: !!argv.incremental, pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )

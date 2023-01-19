@@ -16,6 +16,7 @@ export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: stri
     }
     spawn(command, Array.isArray(args) ? args : args.split(' '), {
       ...config,
+      env: { FORCE_COLOR: '3', ...process.env },
       shell: true,
       stdio: 'inherit',
     }).on('close', (code) => {
