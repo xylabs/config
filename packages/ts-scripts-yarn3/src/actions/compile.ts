@@ -14,7 +14,7 @@ export interface CompilePackageParams {
 }
 
 export const compile = ({ verbose, target, pkg, incremental }: CompileParams) => {
-  return pkg ? compilePackage({ pkg, target, verbose }) : compileAll({ incremental, target })
+  return pkg ? compilePackage({ pkg, target, verbose }) : compileAll({ incremental, target, verbose })
 }
 
 export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
