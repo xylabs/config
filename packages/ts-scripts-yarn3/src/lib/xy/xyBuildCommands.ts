@@ -14,8 +14,15 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.log(`Building: ${argv.package ?? 'all'}`)
-        if (argv.verbose) console.log(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
+        if (argv.verbose) {
+          console.log(`Building: ${argv.package ?? 'all'}`)
+          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
+          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
+          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
+        }
+
         process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs', verbose: !!argv.verbose })
       },
     )
@@ -28,8 +35,14 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.log(`Compiling: ${argv.package ?? 'all'}`)
-        if (argv.verbose) console.log(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
+        if (argv.verbose) {
+          console.log(`Compiling: ${argv.package ?? 'all'}`)
+          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
+          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
+          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
+        }
         process.exitCode = compile({
           incremental: !!argv.incremental,
           pkg: argv.package as string,

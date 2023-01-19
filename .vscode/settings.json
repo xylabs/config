@@ -46,6 +46,7 @@
     "depcheckrc",
     "gitlint",
     "ignorecase",
+    "Malloced",
     "relint",
     "Relinting",
     "sonarjs",
