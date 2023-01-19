@@ -12,7 +12,7 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Building')
+        if (argv.verbose) console.log('Building')
         process.exitCode = build()
       },
     )
@@ -23,7 +23,7 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Building CI')
+        if (argv.verbose) console.log('Building CI')
         process.exitCode = buildci()
       },
     )
@@ -36,7 +36,7 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Compiling: ${argv.package ?? 'all'}`)
         process.exitCode = compile({ target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -49,7 +49,7 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
         })
       },
       async (argv) => {
-        if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Copying Assets: ${argv.package ?? 'all'}`)
         process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -62,7 +62,7 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Rebuilding: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Rebuilding: ${argv.package ?? 'all'}`)
         process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
       },
     )

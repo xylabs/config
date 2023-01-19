@@ -14,7 +14,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Analyzing')
+        if (argv.verbose) console.log('Analyzing')
         process.exitCode = analyze()
       },
     )
@@ -25,7 +25,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Ejecting')
+        if (argv.verbose) console.log('Ejecting')
         process.exitCode = eject()
       },
     )
@@ -36,7 +36,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Generating Sitemap')
+        if (argv.verbose) console.log('Generating Sitemap')
         process.exitCode = sitemap()
       },
     )
@@ -47,7 +47,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Starting')
+        if (argv.verbose) console.log('Starting')
         process.exitCode = start()
       },
     )

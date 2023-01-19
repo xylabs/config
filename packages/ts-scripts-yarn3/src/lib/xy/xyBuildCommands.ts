@@ -14,8 +14,8 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
-        if (argv.verbose) console.info(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
+        if (argv.verbose) console.log(`Building: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
         process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs', verbose: !!argv.verbose })
       },
     )
@@ -28,8 +28,8 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-        if (argv.verbose) console.info(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
+        if (argv.verbose) console.log(`Compiling: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
         process.exitCode = compile({ incremental: !!argv.incremental, pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -42,7 +42,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Rebuilding: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Rebuilding: ${argv.package ?? 'all'}`)
         process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -55,7 +55,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       async (argv) => {
-        if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Copying Assets: ${argv.package ?? 'all'}`)
         process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
       },
     )

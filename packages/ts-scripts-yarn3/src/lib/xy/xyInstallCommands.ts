@@ -13,7 +13,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Cleaning: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Cleaning: ${argv.package ?? 'all'}`)
         process.exitCode = clean()
       },
     )
@@ -24,7 +24,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Reinstalling')
+        if (argv.verbose) console.log('Reinstalling')
         process.exitCode = reinstall()
       },
     )
@@ -35,7 +35,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Up')
+        if (argv.verbose) console.log('Up')
         process.exitCode = up()
       },
     )
@@ -46,7 +46,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Updo')
+        if (argv.verbose) console.log('Updo')
         process.exitCode = updo()
       },
     )

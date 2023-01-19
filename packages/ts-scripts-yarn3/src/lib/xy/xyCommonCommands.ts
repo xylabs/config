@@ -27,7 +27,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`License: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`License: ${argv.package ?? 'all'}`)
         process.exitCode = license()
       },
     )
@@ -40,7 +40,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Dead')
+        if (argv.verbose) console.log('Dead')
         process.exitCode = dead()
       },
     )
@@ -53,7 +53,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Checking Dependencies: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Checking Dependencies: ${argv.package ?? 'all'}`)
         process.exitCode = deps({ incremental: !!argv.incremental, pkg: argv.package as string })
       },
     )
@@ -66,7 +66,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Generating TypeDocs: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Generating TypeDocs: ${argv.package ?? 'all'}`)
         process.exitCode = genDocs({ incremental: !!argv.incremental, pkg: argv.package as string })
       },
     )
@@ -77,7 +77,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Gitlint')
+        if (argv.verbose) console.log('Gitlint')
         process.exitCode = argv.fix ? gitlintFix() : gitlint()
       },
     )
@@ -88,7 +88,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Testing')
+        if (argv.verbose) console.log('Testing')
         process.exitCode = test()
       },
     )
@@ -101,7 +101,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`TsconfigGen: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`TsconfigGen: ${argv.package ?? 'all'}`)
         process.exitCode = tsconfigGen({ target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -112,7 +112,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Tsconfig Clean')
+        if (argv.verbose) console.log('Tsconfig Clean')
         process.exitCode = tsconfigGenClean()
       },
     )
@@ -123,7 +123,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('UpPlug')
+        if (argv.verbose) console.log('UpPlug')
         process.exitCode = updateYarnPlugins()
       },
     )
@@ -134,7 +134,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('UpYarn')
+        if (argv.verbose) console.log('UpYarn')
         process.exitCode = updateYarnVersion()
       },
     )
@@ -145,7 +145,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Yarn 3 Check')
+        if (argv.verbose) console.log('Yarn 3 Check')
         process.exitCode = yarn3Only()
       },
     )

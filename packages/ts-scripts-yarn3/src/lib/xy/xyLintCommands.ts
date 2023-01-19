@@ -13,7 +13,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Cycle')
+        if (argv.verbose) console.log('Cycle')
         process.exitCode = cycle()
       },
     )
@@ -26,7 +26,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Lint')
+        if (argv.verbose) console.log('Lint')
         process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint()
       },
     )
@@ -39,7 +39,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Fix')
+        if (argv.verbose) console.log('Fix')
         process.exitCode = fix()
       },
     )
@@ -52,7 +52,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Relinting')
+        if (argv.verbose) console.log('Relinting')
         process.exitCode = relint()
       },
     )
@@ -63,7 +63,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Sonar Check')
+        if (argv.verbose) console.log('Sonar Check')
         process.exitCode = sonar()
       },
     )
