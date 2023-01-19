@@ -30,7 +30,12 @@ export const xyBuildCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log(`Compiling: ${argv.package ?? 'all'}`)
         if (argv.verbose) console.log(`Heap Size: ${getHeapStatistics().total_available_size.toLocaleString()}`)
-        process.exitCode = compile({ incremental: !!argv.incremental, pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = compile({
+          incremental: !!argv.incremental,
+          pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
       },
     )
     .command(
