@@ -18,7 +18,7 @@ export const compile = ({ verbose, target, pkg, incremental }: CompileParams) =>
 }
 
 export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
-  const verboseOptions = verbose ? [' -v'] : []
+  const verboseOptions = verbose ? ['-v'] : []
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'
       ? [
@@ -41,7 +41,7 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
 }
 
 export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
-  const verboseOptions = verbose ? [' -v'] : []
+  const verboseOptions = verbose ? ['-v'] : []
   const incrementalOptions = incremental ? ['--since', '-ptA', '-j', '32'] : ['-ptA', '-j', '32']
   const cjsSteps: ScriptStep[] =
     !target || target === 'cjs'

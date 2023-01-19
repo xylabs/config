@@ -7,9 +7,11 @@ export interface BuildParams {
 }
 
 export const build = ({ target, verbose }: BuildParams) => {
+  const verboseOptions = verbose ? ['-v'] : []
+  const targetOptions = target ? ['-t', target] : []
   return runSteps('Build', [
-    ['yarn', target ? `xy compile -t ${target}${verbose ? ' -v' : ''}` : 'xy compile'],
-    ['yarn', 'xy lint'],
-    ['yarn', 'xy deps'],
+    ['yarn', ['xy', 'compile', ...targetOptions, ...verboseOptions]],
+    ['yarn', ['xy', 'lint', ...verboseOptions]],
+    ['yarn', ['xy', 'deps', ...verboseOptions]],
   ])
 }
