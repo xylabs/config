@@ -18,7 +18,7 @@ export const tsconfigGenCjs = (pkg?: string) => {
         outDir: './dist/cjs',
         target: 'ES6',
       },
-      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*'],
+      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
       extends: './tsconfig.json',
       include: ['src'],
     },

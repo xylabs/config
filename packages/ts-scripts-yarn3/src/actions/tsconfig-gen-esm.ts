@@ -18,7 +18,7 @@ export const tsconfigGenEsm = (pkg?: string) => {
         outDir: './dist/esm',
         target: 'ES2022',
       },
-      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*'],
+      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
       extends: './tsconfig.json',
       include: ['src'],
     },
