@@ -105,5 +105,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.12.21"
+  "version": "2.12.22"
 }
