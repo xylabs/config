@@ -1,3 +1,4 @@
+import { version } from 'os'
 import { getHeapStatistics } from 'v8'
 import yargs from 'yargs'
 
@@ -16,6 +17,8 @@ export const xyBuildCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) {
           console.log(`Building: ${argv.package ?? 'all'}`)
+          console.log(`OS: ${version}`)
+          console.log(`Node: ${process.version}`)
           console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
           console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
           console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
@@ -37,6 +40,8 @@ export const xyBuildCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
+          console.log(`OS: ${version}`)
+          console.log(`Node: ${process.version}`)
           console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
           console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
           console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
