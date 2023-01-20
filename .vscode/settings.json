@@ -1,11 +1,7 @@
 {
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/.DS_Store": true,
-    "**/node_modules": false,
-    "**/dist": false,
+    "**/node_modules": true,
+    "**/dist": true,
     "**/.tsconfig.*": true
   },
   "editor.formatOnSave": true,
