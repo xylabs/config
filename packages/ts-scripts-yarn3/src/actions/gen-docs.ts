@@ -20,7 +20,7 @@ export const genDocsPackage = ({ pkg }: GenDocsPackageParams) => {
 }
 
 export const genDocsAll = ({ incremental }: GenDocsParams) => {
-  const incrementalOptions = incremental ? ['--since', '-pA', '-j', '32'] : ['-pA', '-j', '32']
+  const incrementalOptions = incremental ? ['--since', '-pA'] : ['-pA']
   const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-gen-docs']]]
 
   return runSteps(`GenDocs [All${incremental ? '-Incremental' : ''}]`, [...steps])
