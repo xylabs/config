@@ -14,9 +14,9 @@ export const tsconfigGenEsm = (pkg?: string) => {
   const config = JSON.stringify(
     {
       compilerOptions: {
-        module: 'ES2022',
+        module: 'ESNEXT',
         outDir: './dist/esm',
-        target: 'ES2022',
+        target: 'ESNEXT',
       },
       exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
       extends: './tsconfig.json',
