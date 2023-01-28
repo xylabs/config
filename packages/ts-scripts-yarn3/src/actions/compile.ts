@@ -20,7 +20,7 @@ export const compile = ({ verbose, target, pkg, incremental }: CompileParams) =>
 export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
   const verboseOptions = verbose ? ['-v'] : []
   const cjsSteps: ScriptStep[] =
-    !target || target === 'cjs'
+    target === 'cjs'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', pkg, '-t', 'cjs', ...verboseOptions]],
           ['yarn', ['workspace', pkg, 'run', 'package-compile-cjs', ...verboseOptions]],
@@ -29,7 +29,7 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
       : []
 
   const esmSteps: ScriptStep[] =
-    !target || target === 'esm'
+    target === 'esm'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', pkg, '-t', 'esm', ...verboseOptions]],
           ['yarn', ['workspace', pkg, 'run', 'package-compile-esm', ...verboseOptions]],
@@ -37,14 +37,22 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
         ]
       : []
 
-  return runSteps(`Compile [${pkg}]`, [...esmSteps]) || runSteps('Compile', [...cjsSteps])
+  const bothSteps: ScriptStep[] = !target
+    ? [
+        ['yarn', ['xy', 'tsconfig-gen', pkg, ...verboseOptions]],
+        ['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions]],
+        ['yarn', ['xy', 'copy-assets', pkg, ...verboseOptions]],
+      ]
+    : []
+
+  return runSteps(`Compile [${pkg}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
 }
 
 export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
   const verboseOptions = verbose ? ['-v'] : []
   const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
   const cjsSteps: ScriptStep[] =
-    !target || target === 'cjs'
+    target === 'cjs'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', '-t', 'cjs', ...verboseOptions]],
           ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-cjs', ...verboseOptions]],
@@ -53,7 +61,7 @@ export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
       : []
 
   const esmSteps: ScriptStep[] =
-    !target || target === 'esm'
+    target === 'esm'
       ? [
           ['yarn', ['xy', 'tsconfig-gen', '-t', 'esm', ...verboseOptions]],
           ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-esm', ...verboseOptions]],
@@ -61,8 +69,13 @@ export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
         ]
       : []
 
-  return (
-    runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps]) ||
-    runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...cjsSteps])
-  )
+  const bothSteps: ScriptStep[] = !target
+    ? [
+        ['yarn', ['xy', 'tsconfig-gen', ...verboseOptions]],
+        ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile', ...verboseOptions]],
+        ['yarn', ['xy', 'copy-assets', ...verboseOptions]],
+      ]
+    : []
+
+  return runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
 }
