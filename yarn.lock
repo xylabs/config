@@ -2707,7 +2707,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.49.0
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.12.26
+    "@xylabs/tsconfig": ^2.12.27
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.32.0
@@ -2946,6 +2946,7 @@ __metadata:
     lint-fast: dist/cjs/bin/lint-fast.js
     lint-profile: dist/cjs/bin/lint-profile.js
     package-clean: dist/cjs/bin/package/clean.js
+    package-compile: dist/cjs/bin/package/compile.js
     package-compile-cjs: dist/cjs/bin/package/compile-cjs.js
     package-compile-esm: dist/cjs/bin/package/compile-esm.js
     package-deps: dist/cjs/bin/package/deps.js
@@ -3057,7 +3058,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.12.26, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.12.27, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
