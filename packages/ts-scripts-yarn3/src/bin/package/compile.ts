@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { packageCompileCjs, packageCompileEsm } from '../../actions'
+import { packageCompile } from '../../actions'
 
-packageCompileCjs()
-packageCompileEsm()
+packageCompile()
