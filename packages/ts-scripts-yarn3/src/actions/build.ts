@@ -1,8 +1,8 @@
 import { runSteps } from '../lib'
 
 export interface BuildParams {
-  target?: 'esm' | 'cjs'
   pkg?: string
+  target?: 'esm' | 'cjs'
   verbose?: boolean
 }
 

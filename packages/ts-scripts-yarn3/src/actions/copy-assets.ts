@@ -5,8 +5,8 @@ import path from 'path/posix'
 import { yarnWorkspaces } from '../lib'
 
 export interface CopyAssetsParams {
-  target?: 'esm' | 'cjs'
   pkg?: string
+  target?: 'esm' | 'cjs'
 }
 
 const copyPackageTargetAssets = async (target: 'esm' | 'cjs', name: string, location: string) => {

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+  extends: ['@xylabs', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
   plugins: ['react', 'react-hooks'],
   rules: {
     'import/no-nodejs-modules': ['error'],

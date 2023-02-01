@@ -1,8 +1,8 @@
 import { runSteps } from '../lib'
 
 export interface RebuildParams {
-  target?: 'esm' | 'cjs'
   pkg?: string
+  target?: 'esm' | 'cjs'
 }
 
 export const rebuild = ({ target }: RebuildParams) => {

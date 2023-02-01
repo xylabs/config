@@ -1,15 +1,15 @@
 import { runSteps, ScriptStep } from '../lib'
 
 export interface CompileParams {
-  target?: 'esm' | 'cjs'
   incremental?: boolean
   pkg?: string
+  target?: 'esm' | 'cjs'
   verbose?: boolean
 }
 
 export interface CompilePackageParams {
-  target?: 'esm' | 'cjs'
   pkg: string
+  target?: 'esm' | 'cjs'
   verbose?: boolean
 }
 
