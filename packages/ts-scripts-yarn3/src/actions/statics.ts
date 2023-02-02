@@ -107,7 +107,7 @@ export const confirmStaticPackages = () => {
   const pathToPackageJSON = `${process.cwd()}/package.json`
   const packageJSON = readFileSync(pathToPackageJSON).toString()
   const parsedPackageJSON = JSON.parse(packageJSON)
-  const statics = parsedPackageJSON?.xy?.deps.statics
+  const statics = parsedPackageJSON?.xy?.deps?.statics
 
   return detectDuplicates(statics)
 }
