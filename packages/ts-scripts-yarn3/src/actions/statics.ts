@@ -4,6 +4,8 @@ import { readFileSync } from 'fs'
 
 import { safeExit } from '../lib'
 
+const DefaultDependencies = ['axios', '@xylabs/pixel']
+
 interface DependencyEntry {
   children: Record<string, Record<string, string>>
   value: string
@@ -62,12 +64,14 @@ class DetectDuplicates {
   private resultsFactory = (dependency: string): Results => ({ currentVersion: undefined, dependency, duplicateVersions: [] })
 }
 
-export const detectDuplicates = (dependencies?: string[]) => {
+export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
   let exitCode = 0
+  let dependencies: string[]
   return safeExit(() => {
-    if (dependencies === undefined || dependencies.length === 0) {
-      console.log('No dependencies required static checks')
-      return
+    if (depsFromPackageJSON === undefined || depsFromPackageJSON.length === 0) {
+      dependencies = DefaultDependencies
+    } else {
+      dependencies = depsFromPackageJSON
     }
 
     dependencies.forEach((dependency) => {
@@ -86,7 +90,9 @@ export const detectDuplicates = (dependencies?: string[]) => {
         exitCode = new DetectDuplicates(output, dependency).detect()
         return
       } else {
-        console.log(`🚨 Library ${dependency} was not found`)
+        if (depsFromPackageJSON) {
+          console.log(`🚨 Library ${dependency} was not found`)
+        }
         exitCode = 1
         return
       }
