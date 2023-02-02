@@ -68,7 +68,7 @@ export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
   let exitCode = 0
   let dependencies: string[]
   return safeExit(() => {
-    if (depsFromPackageJSON === undefined || depsFromPackageJSON.length === 0) {
+    if (depsFromPackageJSON?.length === 0) {
       dependencies = DefaultDependencies
     } else {
       dependencies = depsFromPackageJSON
