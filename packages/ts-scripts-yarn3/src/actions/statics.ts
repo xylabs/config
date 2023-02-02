@@ -3,6 +3,12 @@ import { execSync } from 'child_process'
 
 import { safeExit } from '../lib'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TestCases = {
+  failure: 'normalize-package-data',
+  success: 'lodash',
+}
+
 interface DependencyEntry {
   children: Record<string, Record<string, string>>
   value: string
@@ -12,25 +18,27 @@ type DependencyEntries = DependencyEntry[]
 
 interface Results {
   currentVersion: string | undefined
+  dependency: string
   duplicateVersions: string[]
-  errors: string[]
 }
 
 class DetectDuplicates {
+  private dependency: string
   private dependencyEntries: DependencyEntries
 
-  constructor(output: string) {
+  constructor(output: string, dependency: string) {
+    this.dependency = dependency
     this.dependencyEntries = this.formatOutput(output)
   }
 
   public detect() {
-    const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory())
-    if (result.errors.length) {
-      console.error('Errors: ', result.errors)
-      console.error('Duplicate Versions: ', result.duplicateVersions)
+    const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
+    if (result.duplicateVersions.length) {
+      console.error(`\n🚨 Duplicates found for: ${this.dependency} \n`)
+      console.error(result.duplicateVersions.toString().replaceAll(',', '\n'), '\n')
       return 1
     } else {
-      console.log('No Duplicates')
+      console.log(`👍 No Duplicates of ${this.dependency}`)
       return 0
     }
   }
@@ -44,8 +52,6 @@ class DetectDuplicates {
     }
 
     if (acc.currentVersion && acc.currentVersion !== version) {
-      const error = `currentVersion: ${acc.currentVersion} doesn't match version: ${version}`
-      acc.errors.push(error)
       acc.duplicateVersions.push(version)
     }
     return acc
@@ -58,27 +64,38 @@ class DetectDuplicates {
     return JSON.parse(collection)
   }
 
-  private resultsFactory = (): Results => ({ currentVersion: undefined, duplicateVersions: [], errors: [] })
+  private resultsFactory = (dependency: string): Results => ({ currentVersion: undefined, dependency, duplicateVersions: [] })
 }
 
-export const confirmStaticPackages = () => {
+export const confirmStaticPackages = (dependencies = [TestCases.success]) => {
   console.log(chalk.green('Confirming Static Packages'))
+  let exitCode = 0
   return safeExit(() => {
-    let output: string
+    if (dependencies) {
+      dependencies.forEach((dependency) => {
+        let output: string
 
-    try {
-      const cmd = 'yarn why lodash --json'
-      output = execSync(cmd).toString()
-    } catch (e) {
-      console.error(`Error running yarn why: ${e}`)
-      return 1
-    }
+        try {
+          const cmd = `yarn why ${dependency} --json`
+          output = execSync(cmd).toString()
+        } catch (e) {
+          console.error(`Error running yarn why: ${e}`)
+          exitCode = 1
+          return
+        }
 
-    if (output) {
-      return new DetectDuplicates(output).detect()
+        if (output) {
+          exitCode = new DetectDuplicates(output, dependency).detect()
+          return
+        } else {
+          console.log(`🚨 Library ${dependency} was not found`)
+          exitCode = 1
+          return
+        }
+      })
+      return exitCode
     } else {
-      console.log('Library was not found')
+      console.log('No dependencies required static checks')
     }
-    return 0
   })
 }
