@@ -4,7 +4,7 @@ import { readFileSync } from 'fs'
 
 import { safeExit } from '../lib'
 
-const DefaultDependencies = ['axios', '@xylabs/pixel']
+const DefaultDependencies = ['axios', '@xylabs/pixel', 'react', 'graphql', 'react-router', '@mui/material', '@mui/styles']
 
 interface DependencyEntry {
   children: Record<string, Record<string, string>>
@@ -91,7 +91,7 @@ export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
         return
       } else {
         if (depsFromPackageJSON) {
-          console.log(`🚨 Library ${dependency} was not found`)
+          console.log(`🚨 Library ${dependency} was requested in package.json but not found`)
         }
         exitCode = 1
         return
