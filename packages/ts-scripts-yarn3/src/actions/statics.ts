@@ -1,13 +1,8 @@
 import chalk from 'chalk'
 import { execSync } from 'child_process'
+import { readFileSync } from 'fs'
 
 import { safeExit } from '../lib'
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const TestCases = {
-  failure: 'normalize-package-data',
-  success: 'lodash',
-}
 
 interface DependencyEntry {
   children: Record<string, Record<string, string>>
@@ -67,35 +62,46 @@ class DetectDuplicates {
   private resultsFactory = (dependency: string): Results => ({ currentVersion: undefined, dependency, duplicateVersions: [] })
 }
 
-export const confirmStaticPackages = (dependencies = [TestCases.success]) => {
-  console.log(chalk.green('Confirming Static Packages'))
+export const detectDuplicates = (dependencies?: string[]) => {
   let exitCode = 0
   return safeExit(() => {
-    if (dependencies) {
-      dependencies.forEach((dependency) => {
-        let output: string
-
-        try {
-          const cmd = `yarn why ${dependency} --json`
-          output = execSync(cmd).toString()
-        } catch (e) {
-          console.error(`Error running yarn why: ${e}`)
-          exitCode = 1
-          return
-        }
-
-        if (output) {
-          exitCode = new DetectDuplicates(output, dependency).detect()
-          return
-        } else {
-          console.log(`🚨 Library ${dependency} was not found`)
-          exitCode = 1
-          return
-        }
-      })
-      return exitCode
-    } else {
+    if (dependencies === undefined || dependencies.length === 0) {
       console.log('No dependencies required static checks')
+      return
     }
+
+    dependencies.forEach((dependency) => {
+      let output: string
+
+      try {
+        const cmd = `yarn why ${dependency} --json`
+        output = execSync(cmd).toString()
+      } catch (e) {
+        console.error(`Error running yarn why: ${e}`)
+        exitCode = 1
+        return
+      }
+
+      if (output) {
+        exitCode = new DetectDuplicates(output, dependency).detect()
+        return
+      } else {
+        console.log(`🚨 Library ${dependency} was not found`)
+        exitCode = 1
+        return
+      }
+    })
+    return exitCode
   })
+}
+
+export const confirmStaticPackages = () => {
+  console.log(chalk.green('Confirming Static Packages'))
+
+  const pathToPackageJSON = `${process.cwd()}/package.json`
+  const packageJSON = readFileSync(pathToPackageJSON).toString()
+  const parsedPackageJSON = JSON.parse(packageJSON)
+  const statics = parsedPackageJSON?.xy?.deps.statics
+
+  return detectDuplicates(statics)
 }
