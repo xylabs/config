@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-internal-modules
+import uniq from 'lodash/uniq'
 import { EOL } from 'os'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
@@ -45,7 +47,12 @@ export class DuplicateDetector {
     }
 
     if (acc.currentVersion && acc.currentVersion !== version) {
+      // if first duplicate, push the current version as the first duplicate
+      if (acc.duplicateVersions.length === 0) {
+        acc.duplicateVersions.push(acc.currentVersion)
+      }
       acc.duplicateVersions.push(version)
+      acc.duplicateVersions = uniq(acc.duplicateVersions)
     }
     return acc
   }
