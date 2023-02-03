@@ -1,13 +1,13 @@
-import { compile, copyAssets, rebuild } from '@xylabs/ts-scripts-yarn3'
+import { compile, copyAssets } from '@xylabs/ts-scripts-yarn3'
 import yargs from 'yargs'
 
-import { build, buildci } from '../actions'
+import { build, buildci, rebuild } from '../actions'
 
 export const xyReactBuildCommands = (args: yargs.Argv) => {
   return args
     .command(
       'build',
-      'Build - Build React project',
+      'Build - Build React project && Packages',
       (yargs) => {
         return yargs
       },
@@ -54,16 +54,14 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
       },
     )
     .command(
-      'rebuild [package]',
+      'rebuild',
       'Rebuild - Clean, Compile & Lint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to rebuild',
-        })
+        return yargs
       },
       (argv) => {
-        if (argv.verbose) console.log(`Rebuilding: ${argv.package ?? 'all'}`)
-        process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
+        if (argv.verbose) console.log('Rebuilding')
+        process.exitCode = rebuild()
       },
     )
 }
