@@ -2,7 +2,7 @@ import chalk from 'chalk'
 
 import { detect, parsedPackageJSON } from '../lib'
 
-export const checkAllDependenciesForDuplicates = () => {
+export const duplicateDependencies = () => {
   console.log(chalk.green('Checking all Dependencies for Duplicates'))
 
   const allDependencies = parsedPackageJSON()?.dependencies

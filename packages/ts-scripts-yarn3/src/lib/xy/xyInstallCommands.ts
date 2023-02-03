@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { checkAllDependenciesForDuplicates, clean, confirmStaticDependencies, reinstall, up, updo } from '../../actions'
+import { clean, confirmStaticDependencies, duplicateDependencies, reinstall, up, updo } from '../../actions'
 
 export const xyInstallCommands = (args: yargs.Argv) => {
   return args
@@ -62,14 +62,14 @@ export const xyInstallCommands = (args: yargs.Argv) => {
       },
     )
     .command(
-      'statics-all',
-      'Statics [All] - All Dependencies',
+      'dupdeps',
+      'Dupdeps - Duplicate Dependencies in package.json',
       (yargs) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.log('Statics')
-        process.exitCode = checkAllDependenciesForDuplicates()
+        if (argv.verbose) console.log('Dupdeps')
+        process.exitCode = duplicateDependencies()
       },
     )
 }

@@ -33,7 +33,7 @@ export class DuplicateDetector {
       console.error(result.duplicateVersions.toString().replaceAll(',', EOL), EOL)
       return 1
     } else {
-      console.log(`👍 No Duplicates of ${this.dependency}`)
+      console.log(`👍 ${this.dependency}`)
       return 0
     }
   }

@@ -11,12 +11,3 @@ export const confirmStaticDependencies = () => {
 
   return detect(statics, DefaultDependencies)
 }
-
-export const checkAllDependenciesForDuplicates = () => {
-  console.log(chalk.green('Checking all Dependencies for Duplicates'))
-
-  const allDependencies = parsedPackageJSON()?.dependencies
-  const dependencies = Object.entries(allDependencies).map(([k]) => k)
-
-  return detect(dependencies)
-}
