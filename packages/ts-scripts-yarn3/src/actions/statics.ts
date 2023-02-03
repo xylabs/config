@@ -1,69 +1,9 @@
 import chalk from 'chalk'
 import { execSync } from 'child_process'
-import { readFileSync } from 'fs'
-import { EOL } from 'os'
 
-import { safeExit } from '../lib'
+import { DetectDuplicates, parsedPackageJSON, safeExit } from '../lib'
 
-const DefaultDependencies = ['axios', '@xylabs/pixel', 'react', 'graphql', 'react-router', '@mui/material', '@mui/styles']
-
-interface DependencyEntry {
-  children: Record<string, Record<string, string>>
-  value: string
-}
-
-type DependencyEntries = DependencyEntry[]
-
-interface Results {
-  currentVersion: string | undefined
-  dependency: string
-  duplicateVersions: string[]
-}
-
-class DetectDuplicates {
-  private dependency: string
-  private dependencyEntries: DependencyEntries
-
-  constructor(output: string, dependency: string) {
-    this.dependency = dependency
-    this.dependencyEntries = this.formatOutput(output)
-  }
-
-  public detect() {
-    const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
-    if (result.duplicateVersions.length) {
-      console.error(`${EOL}🚨 Duplicates found for: ${this.dependency} ${EOL}`)
-      console.error(result.duplicateVersions.toString().replaceAll(',', EOL), EOL)
-      return 1
-    } else {
-      console.log(`👍 No Duplicates of ${this.dependency}`)
-      return 0
-    }
-  }
-
-  private detectReducer(acc: Results, entry: DependencyEntry) {
-    const version = Object.entries(entry.children).map(([k]) => k)[0]
-
-    if (!acc.currentVersion) {
-      acc.currentVersion = version
-      return acc
-    }
-
-    if (acc.currentVersion && acc.currentVersion !== version) {
-      acc.duplicateVersions.push(version)
-    }
-    return acc
-  }
-
-  private formatOutput(output: string) {
-    const withCommas = output.replace(/\r\n/g, '').replace(/\n/g, ',')
-    const cleanCollection = withCommas.substring(0, withCommas.length - 1)
-    const collection = `[${cleanCollection}]`
-    return JSON.parse(collection)
-  }
-
-  private resultsFactory = (dependency: string): Results => ({ currentVersion: undefined, dependency, duplicateVersions: [] })
-}
+const DefaultDependencies = ['axios', '@xylabs/pixel', 'react', 'graphql', 'react-router', '@mui/material', '@mui/styles', '@mui/system']
 
 export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
   let exitCode = 0
@@ -87,6 +27,7 @@ export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
         exitCode = new DetectDuplicates(output, dependency).detect()
         return
       } else {
+        console.log(dependency)
         if (depsFromPackageJSON) {
           console.log(`🚨 Library ${dependency} was requested in package.json but not found`)
         }
@@ -101,10 +42,7 @@ export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
 export const confirmStaticPackages = () => {
   console.log(chalk.green('Confirming Static Packages'))
 
-  const pathToPackageJSON = process.env.npm_package_json ?? ''
-  const packageJSON = readFileSync(pathToPackageJSON).toString()
-  const parsedPackageJSON = JSON.parse(packageJSON)
-  const statics = parsedPackageJSON?.xy?.deps?.statics
+  const statics = parsedPackageJSON()?.xy?.deps?.statics
 
   return detectDuplicates(statics)
 }
