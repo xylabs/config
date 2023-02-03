@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import { execSync } from 'child_process'
 import { readFileSync } from 'fs'
+import { EOL } from 'os'
 
 import { safeExit } from '../lib'
 
@@ -31,7 +32,7 @@ class DetectDuplicates {
   public detect() {
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
     if (result.duplicateVersions.length) {
-      console.error(`\n🚨 Duplicates found for: ${this.dependency} \n`)
+      console.error(`${EOL}🚨 Duplicates found for: ${this.dependency} ${EOL}`)
       console.error(result.duplicateVersions.toString().replaceAll(',', '\n'), '\n')
       return 1
     } else {
@@ -66,14 +67,10 @@ class DetectDuplicates {
 
 export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
   let exitCode = 0
-  let dependencies: string[]
-  return safeExit(() => {
-    if (depsFromPackageJSON?.length === 0) {
-      dependencies = DefaultDependencies
-    } else {
-      dependencies = depsFromPackageJSON
-    }
 
+  const dependencies = depsFromPackageJSON === undefined || depsFromPackageJSON.length === 0 ? DefaultDependencies : depsFromPackageJSON
+
+  return safeExit(() => {
     dependencies.forEach((dependency) => {
       let output: string
 
