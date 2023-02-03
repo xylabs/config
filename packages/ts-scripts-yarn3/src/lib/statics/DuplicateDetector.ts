@@ -15,7 +15,7 @@ interface Results {
   duplicateVersions: string[]
 }
 
-export class DetectDuplicates {
+export class DuplicateDetector {
   private dependency: string
   private dependencyEntries: DependencyEntries
 

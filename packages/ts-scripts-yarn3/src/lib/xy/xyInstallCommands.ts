@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { clean, confirmStaticPackages, reinstall, up, updo } from '../../actions'
+import { clean, confirmStaticDependencies, reinstall, up, updo } from '../../actions'
 
 export const xyInstallCommands = (args: yargs.Argv) => {
   return args
@@ -58,7 +58,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('Statics')
-        process.exitCode = confirmStaticPackages()
+        process.exitCode = confirmStaticDependencies()
       },
     )
 }

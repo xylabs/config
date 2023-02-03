@@ -1,1 +1,2 @@
-export * from './DetectDuplicates'
+export * from './detect'
+export * from './DuplicateDetector'
