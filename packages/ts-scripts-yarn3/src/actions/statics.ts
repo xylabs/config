@@ -33,7 +33,7 @@ class DetectDuplicates {
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
     if (result.duplicateVersions.length) {
       console.error(`${EOL}🚨 Duplicates found for: ${this.dependency} ${EOL}`)
-      console.error(result.duplicateVersions.toString().replaceAll(',', '\n'), '\n')
+      console.error(result.duplicateVersions.toString().replaceAll(',', EOL), EOL)
       return 1
     } else {
       console.log(`👍 No Duplicates of ${this.dependency}`)
@@ -68,7 +68,7 @@ class DetectDuplicates {
 export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
   let exitCode = 0
 
-  const dependencies = depsFromPackageJSON === undefined || depsFromPackageJSON.length === 0 ? DefaultDependencies : depsFromPackageJSON
+  const dependencies = depsFromPackageJSON?.length ? depsFromPackageJSON : DefaultDependencies
 
   return safeExit(() => {
     dependencies.forEach((dependency) => {
@@ -101,7 +101,7 @@ export const detectDuplicates = (depsFromPackageJSON?: string[]) => {
 export const confirmStaticPackages = () => {
   console.log(chalk.green('Confirming Static Packages'))
 
-  const pathToPackageJSON = `${process.cwd()}/package.json`
+  const pathToPackageJSON = process.env.npm_package_json ?? ''
   const packageJSON = readFileSync(pathToPackageJSON).toString()
   const parsedPackageJSON = JSON.parse(packageJSON)
   const statics = parsedPackageJSON?.xy?.deps?.statics
