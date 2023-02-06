@@ -1,7 +1,7 @@
 export const defaultBuildConfig = {
-  "compilerOptions": {
-    rootDir: "src"
+  compilerOptions: {
+    rootDir: 'src',
   },
-  exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
+  exclude: ['**/build', '**/dist', '**/node_modules', '**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
   include: ['src'],
 }
