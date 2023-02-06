@@ -13,6 +13,5 @@ export const build = ({ target, verbose }: BuildParams) => {
     ['yarn', ['xy', 'compile', ...targetOptions, ...verboseOptions]],
     ['yarn', ['xy', 'lint', ...verboseOptions]],
     ['yarn', ['xy', 'deps', ...verboseOptions]],
-    ['yarn', ['xy', 'statics', ...verboseOptions]],
   ])
 }

@@ -1,12 +1,12 @@
 import chalk from 'chalk'
 
-import { detect, parsedPackageJSON } from '../lib'
+import { detectDuplicateDependencies, parsedPackageJSON } from '../lib'
 
-export const duplicateDependencies = () => {
+export const dupdeps = () => {
   console.log(chalk.green('Checking all Dependencies for Duplicates'))
 
   const allDependencies = parsedPackageJSON()?.dependencies
   const dependencies = Object.entries(allDependencies).map(([k]) => k)
 
-  return detect(dependencies)
+  return detectDuplicateDependencies(dependencies)
 }

@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 import { safeExit } from '../safeExit'
 import { DuplicateDetector } from './DuplicateDetector'
 
-export const detect = (depsFromPackageJSON?: string[], DefaultDependencies?: string[]) => {
+export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], DefaultDependencies?: string[]) => {
   let exitCode = 0
 
   const dependencies = depsFromPackageJSON?.length ? depsFromPackageJSON : DefaultDependencies

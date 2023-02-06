@@ -6,5 +6,7 @@ import { xyLintCommands } from './xyLintCommands'
 import { xyParseOptions } from './xyParseOptions'
 
 export const xy = () => {
-  return xyBuildCommands(xyCommonCommands(xyInstallCommands(xyDeployCommands(xyLintCommands(xyParseOptions()))))).help().argv
+  return xyBuildCommands(xyCommonCommands(xyInstallCommands(xyDeployCommands(xyLintCommands(xyParseOptions())))))
+    .demandCommand()
+    .help().argv
 }

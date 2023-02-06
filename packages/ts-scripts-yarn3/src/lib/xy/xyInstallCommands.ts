@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { clean, confirmStaticDependencies, duplicateDependencies, reinstall, up, updo } from '../../actions'
+import { clean, dupdeps, reinstall, statics, up, updo } from '../../actions'
 
 export const xyInstallCommands = (args: yargs.Argv) => {
   return args
@@ -58,7 +58,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('Statics')
-        process.exitCode = confirmStaticDependencies()
+        process.exitCode = statics()
       },
     )
     .command(
@@ -69,7 +69,7 @@ export const xyInstallCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('Dupdeps')
-        process.exitCode = duplicateDependencies()
+        process.exitCode = dupdeps()
       },
     )
 }
