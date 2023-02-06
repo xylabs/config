@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { readFileSync, writeFileSync } from 'fs'
 
-import { yarnWorkspaces } from '../lib'
+import { createBuildConfig, yarnWorkspaces } from '../lib'
 
 export const tsconfigGenCjs = (pkg?: string) => {
   const workspaces = yarnWorkspaces()
@@ -11,23 +11,9 @@ export const tsconfigGenCjs = (pkg?: string) => {
 
   console.log(chalk.green('Generate Configs [CJS]'))
 
-  const config = JSON.stringify(
-    {
-      compilerOptions: {
-        module: 'CommonJS',
-        outDir: './dist/cjs',
-        target: 'ES6',
-      },
-      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
-      extends: './tsconfig.json',
-      include: ['src'],
-    },
-    null,
-    2,
-  )
-
   return workspaceList
     .map(({ location, name }) => {
+      const config = JSON.stringify(createBuildConfig(location, 'CommonJS', 'ES6', 'cjs'), null, 2)
       try {
         let currentConfig: string | undefined
         try {
