@@ -1,4 +1,7 @@
+export * from './dependencies'
 export * from './isYarnVersionOrGreater'
+export * from './jsonFormatters'
+export * from './parsedPackageJSON'
 export * from './processEx'
 export * from './runSteps'
 export * from './runStepsAsync'

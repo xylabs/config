@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { clean, reinstall, up, updo } from '../../actions'
+import { clean, confirmStaticDependencies, duplicateDependencies, reinstall, up, updo } from '../../actions'
 
 export const xyInstallCommands = (args: yargs.Argv) => {
   return args
@@ -48,6 +48,28 @@ export const xyInstallCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Updo')
         process.exitCode = updo()
+      },
+    )
+    .command(
+      'statics',
+      'Statics - Confirming Static Packages',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Statics')
+        process.exitCode = confirmStaticDependencies()
+      },
+    )
+    .command(
+      'dupdeps',
+      'Dupdeps - Duplicate Dependencies in package.json',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Dupdeps')
+        process.exitCode = duplicateDependencies()
       },
     )
 }
