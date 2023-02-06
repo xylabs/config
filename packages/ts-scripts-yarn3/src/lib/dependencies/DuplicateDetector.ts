@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 // eslint-disable-next-line import/no-internal-modules
 import uniq from 'lodash/uniq'
 import { EOL } from 'os'
@@ -29,11 +30,11 @@ export class DuplicateDetector {
   public detect() {
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
     if (result.duplicateVersions.length) {
-      console.error(`${EOL}🚨 Duplicates found for: ${this.dependency} ${EOL}`)
-      console.error(result.duplicateVersions.toString().replaceAll(',', EOL), EOL)
+      console.log(chalk.yellow(`${EOL}Duplicates found for: ${this.dependency}`))
+      console.log(chalk.grey(`  ${result.duplicateVersions.toString().replaceAll(',', `${EOL}  `)}`, EOL))
       return 1
     } else {
-      console.log(`👍 ${this.dependency}`)
+      console.log(`${this.dependency} - OK`)
       return 0
     }
   }
@@ -46,7 +47,7 @@ export class DuplicateDetector {
       return acc
     }
 
-    if (acc.currentVersion && acc.currentVersion !== version) {
+    if (acc.currentVersion && acc.currentVersion !== version && !version.includes('@virtual:')) {
       // if first duplicate, push the current version as the first duplicate
       if (acc.duplicateVersions.length === 0) {
         acc.duplicateVersions.push(acc.currentVersion)
