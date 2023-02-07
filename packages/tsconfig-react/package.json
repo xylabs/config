@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
-  "name": "@xylabs/tsconfig-rect",
+  "name": "@xylabs/tsconfig-react",
   "author": {
     "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
