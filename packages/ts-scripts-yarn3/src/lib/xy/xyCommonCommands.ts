@@ -26,9 +26,9 @@ export const xyCommonCommands = (args: yargs.Argv) => {
           describe: 'Specific package to check',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) console.log(`License: ${argv.package ?? 'all'}`)
-        process.exitCode = license()
+        process.exitCode = await license()
       },
     )
     .command(

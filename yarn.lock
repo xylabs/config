@@ -2303,6 +2303,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/license-checker@npm:^25.0.3":
+  version: 25.0.3
+  resolution: "@types/license-checker@npm:25.0.3"
+  checksum: c75c6671c190ba54f83ab98ced157318a8ce80b181af1b1158cf8a5ffaa15043402f089967a0aa232a470344716bf083f52349c040536d9f8aa506a91ef76968
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:^4.14.191":
   version: 4.14.191
   resolution: "@types/lodash@npm:4.14.191"
@@ -2823,6 +2830,7 @@ __metadata:
     "@babel/preset-env": ^7.20.2
     "@types/depcheck": ^0.9.1
     "@types/jest": ^29.4.0
+    "@types/license-checker": ^25.0.3
     "@types/lodash": ^4.14.191
     "@types/node": ^18.11.19
     "@types/parse-git-config": ^3.0.1
@@ -13788,11 +13796,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8f6260acc86b56bfdda6004bc53f32ea548f543e8baef7071c8e34d29d292f3e375c8416556c8de10b24deef6933cd1c16a8233dc84a3dd43a13a13265d0faab
+  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
   languageName: node
   linkType: hard
 
