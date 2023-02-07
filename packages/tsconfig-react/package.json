@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
-  "name": "@xylabs/tsconfig",
+  "name": "@xylabs/tsconfig-rect",
   "author": {
     "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
@@ -8,16 +8,20 @@
   },
   "bugs": {
     "email": "support@xylabs.com",
-    "url": "https://github.com/xylabs/tsconfig/issues"
+    "url": "https://github.com/xylabs/config/issues"
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "dependencies": {
-    "typescript": "^4.9.5"
+    "@xylabs/tsconfig-dom": "workspace:^"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "typescript": "^4.9.5"
   },
-  "homepage": "https://github.com/xylabs/tsconfig.git",
+  "peerDependencies": {
+    "typescript": "^4"
+  },
+  "homepage": "https://github.com/xylabs/config.git",
   "keywords": [
     "xylabs",
     "utility",
