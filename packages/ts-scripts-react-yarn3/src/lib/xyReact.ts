@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { xyCommonCommands, xyInstallCommands, xyLintCommands, xyParseOptions } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 import { analyze, eject, sitemap, start } from '../actions'
 import { xyReactBuildCommands } from './xyReactBuildCommands'
@@ -51,5 +52,10 @@ export const xyReact = () => {
         process.exitCode = start()
       },
     )
+    .demandCommand(1)
+    .command('*', '', () => {
+      console.error(chalk.yellow(`Command not found [${chalk.magenta(process.argv[2])}]`))
+      console.log(chalk.gray("Try 'yarn xy --help' for list of commands"))
+    })
     .help().argv
 }
