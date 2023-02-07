@@ -2645,7 +2645,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.51.0
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.13.8
+    "@xylabs/tsconfig": ^2.13.9
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.33.0
@@ -2997,9 +2997,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig-rect@workspace:packages/tsconfig-react":
+"@xylabs/tsconfig-react@workspace:packages/tsconfig-react":
   version: 0.0.0-use.local
-  resolution: "@xylabs/tsconfig-rect@workspace:packages/tsconfig-react"
+  resolution: "@xylabs/tsconfig-react@workspace:packages/tsconfig-react"
   dependencies:
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig-dom": "workspace:^"
@@ -3009,7 +3009,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.13.8, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.13.9, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
