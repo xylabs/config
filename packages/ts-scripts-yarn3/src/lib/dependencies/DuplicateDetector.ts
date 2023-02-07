@@ -5,6 +5,18 @@ import { EOL } from 'os'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
 
+const trimVirtualMeta = (dependencies: DependencyEntries): DependencyEntries => {
+  return dependencies.map((dependency) => {
+    const virtualParts = dependency.value.split('virtual:')
+    if (virtualParts.length > 1) {
+      const hashParts = virtualParts[1].split('#')
+      return { children: dependency.children, value: virtualParts[0] + hashParts[1] }
+    } else {
+      return dependency
+    }
+  })
+}
+
 interface DependencyEntry {
   children: Record<string, Record<string, string>>
   value: string
@@ -24,7 +36,7 @@ export class DuplicateDetector {
 
   constructor(output: string, dependency: string) {
     this.dependency = dependency
-    this.dependencyEntries = multiLineToJSONArray(output)
+    this.dependencyEntries = trimVirtualMeta(multiLineToJSONArray(output))
   }
 
   public detect() {
