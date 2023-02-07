@@ -5,20 +5,40 @@ import { EOL } from 'os'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
 
-const trimVirtualMeta = (dependencies: DependencyEntries): DependencyEntries => {
-  return dependencies.map((dependency) => {
-    const virtualParts = dependency.value.split('virtual:')
-    if (virtualParts.length > 1) {
-      const hashParts = virtualParts[1].split('#')
-      return { children: dependency.children, value: virtualParts[0] + hashParts[1] }
-    } else {
-      return dependency
+interface ChildFields {
+  descriptor: string
+  locator: string
+}
+
+const trimVirtualMeta = (value: string): string => {
+  const virtualParts = value.split('virtual:')
+  if (virtualParts.length > 1) {
+    const hashParts = virtualParts[1].split('#')
+    return virtualParts[0] + hashParts[1]
+  } else {
+    return value
+  }
+}
+
+const trimObjectDependencyVirtualMeta = (obj: Record<string, ChildFields>): Record<string, ChildFields> => {
+  const resultObj: Record<string, ChildFields> = {}
+  Object.entries(obj).forEach(([key, value]) => {
+    resultObj[trimVirtualMeta(key)] = {
+      descriptor: trimVirtualMeta(value.descriptor),
+      locator: trimVirtualMeta(value.locator),
     }
+  })
+  return resultObj
+}
+
+const trimDependencyVirtualMeta = (dependencies: DependencyEntries): DependencyEntries => {
+  return dependencies.map((dependency) => {
+    return { children: trimObjectDependencyVirtualMeta(dependency.children), value: trimVirtualMeta(dependency.value) }
   })
 }
 
 interface DependencyEntry {
-  children: Record<string, Record<string, string>>
+  children: Record<string, ChildFields>
   value: string
 }
 
@@ -36,7 +56,7 @@ export class DuplicateDetector {
 
   constructor(output: string, dependency: string) {
     this.dependency = dependency
-    this.dependencyEntries = trimVirtualMeta(multiLineToJSONArray(output))
+    this.dependencyEntries = trimDependencyVirtualMeta(multiLineToJSONArray(output))
   }
 
   public detect() {
