@@ -7,7 +7,7 @@ const getGeneralTypescriptConfig = (location: string) => {
   try {
     generalConfig = readFileSync(`${location}/tsconfig.json`, { encoding: 'utf8' })
   } catch (ex) {
-    throw new Error('No tsconfig.json file found')
+    return false
   }
   return JSON.parse(generalConfig)
 }
@@ -18,8 +18,11 @@ export const createBuildConfig = (
   target: 'ESNext' | 'ES6',
   outDirSuffix: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Record<string, any> => {
+): Record<string, any> | undefined => {
   const generalConfigObject = getGeneralTypescriptConfig(location)
+  if (generalConfigObject === false) {
+    return undefined
+  }
   return {
     ...generalConfigObject,
     compilerOptions: {
