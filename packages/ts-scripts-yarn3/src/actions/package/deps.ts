@@ -19,6 +19,10 @@ export const packageDeps = async () => {
   }
 
   ignoreMatches.push('@xylabs/ts-scripts-yarn3')
+  ignoreMatches.push('@xylabs/tsconfig')
+  ignoreMatches.push('@xylabs/tsconfig-dom')
+  ignoreMatches.push('@xylabs/tsconfig-react')
+  ignoreMatches.push('typescript')
 
   const unusedList = await Promise.all([
     depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),

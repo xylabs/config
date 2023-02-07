@@ -1,6 +1,7 @@
 {
   "files.exclude": {
-
+    "**/.tsconfig.*": true,
+    "node_modules": true
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
