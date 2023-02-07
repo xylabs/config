@@ -18,9 +18,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNEXT",
-    "rootDir": "src",
-    "rootDirs": ["src", "package.json"]
+    "target": "ESNEXT"
   },
   "exclude": [".*", "dist", "node_modules", "storybook-static", "build"],
   "ts-node": {
