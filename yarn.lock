@@ -2663,7 +2663,7 @@ __metadata:
     jest: ^29.4.2
     npm-check-updates: ^16.6.5
     parse-git-config: ^3.0.0
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     rimraf: ^4.1.2
     ts-node: ^10.9.1
     typescript: ^4.9.5
@@ -2702,7 +2702,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-workspaces: ^0.7.0
     markdown-eslint-parser: ^1.2.1
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     remark-lint-maximum-line-length: ^3.1.2
     remark-preset-lint-markdown-style-guide: ^5.1.2
     typescript: ^4.9.5
@@ -2735,7 +2735,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-workspaces: ^0.7.0
     markdown-eslint-parser: ^1.2.1
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     remark-lint-maximum-line-length: ^3.1.2
     remark-preset-lint-markdown-style-guide: ^5.1.2
     tslib: ^2.5.0
@@ -2776,7 +2776,7 @@ __metadata:
     npm-package-json-lint: ^6.4.0
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     source-map-explorer: ^2.5.3
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
@@ -2855,7 +2855,7 @@ __metadata:
     npm-package-json-lint: ^6.4.0
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
     ts-prune: ^0.10.3
@@ -2934,7 +2934,7 @@ __metadata:
     npm-package-json-lint: ^6.4.0
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
-    prettier: ^2.8.3
+    prettier: ^2.8.4
     rimraf: ^4.1.2
     ts-jest: ^29.0.5
     ts-prune: ^0.10.3
@@ -2994,6 +2994,18 @@ __metadata:
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     typescript: ^4.9.5
+  languageName: unknown
+  linkType: soft
+
+"@xylabs/tsconfig-jest@workspace:packages/tsconfig-jest":
+  version: 0.0.0-use.local
+  resolution: "@xylabs/tsconfig-jest@workspace:packages/tsconfig-jest"
+  dependencies:
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/tsconfig": "workspace:^"
+    typescript: ^4.9.5
+  peerDependencies:
+    typescript: ^4
   languageName: unknown
   linkType: soft
 
@@ -10414,12 +10426,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.3":
-  version: 2.8.3
-  resolution: "prettier@npm:2.8.3"
+"prettier@npm:^2.8.4":
+  version: 2.8.4
+  resolution: "prettier@npm:2.8.4"
   bin:
     prettier: bin-prettier.js
-  checksum: 92f2ceb522d454370e02082aa74ad27388672f7cee8975028b59517c069fe643bdc73e322675c8faf2ff173d7a626d1a6389f26b474000308e793aa25fff46e5
+  checksum: c173064bf3df57b6d93d19aa98753b9b9dd7657212e33b41ada8e2e9f9884066bb9ca0b4005b89b3ab137efffdf8fbe0b462785aba20364798ff4303aadda57e
   languageName: node
   linkType: hard
 
