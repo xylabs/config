@@ -1,3 +1,5 @@
+import { version } from 'os'
+import { getHeapStatistics } from 'v8'
 import yargs from 'yargs'
 
 import { build, compile, copyAssets, rebuild } from '../../actions'
@@ -13,8 +15,18 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Building: ${argv.package ?? 'all'}`)
-        process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
+        if (argv.verbose) {
+          console.log(`Building: ${argv.package ?? 'all'}`)
+          console.log(`OS: ${version}`)
+          console.log(`Node: ${process.version}`)
+          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
+          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
+          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
+        }
+
+        process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs', verbose: !!argv.verbose })
       },
     )
     .command(
@@ -26,8 +38,22 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Compiling: ${argv.package ?? 'all'}`)
-        process.exitCode = compile({ incremental: !!argv.incremental, pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
+        if (argv.verbose) {
+          console.log(`Compiling: ${argv.package ?? 'all'}`)
+          console.log(`OS: ${version}`)
+          console.log(`Node: ${process.version}`)
+          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
+          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
+          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
+          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
+        }
+        process.exitCode = compile({
+          incremental: !!argv.incremental,
+          pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
       },
     )
     .command(
@@ -39,7 +65,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info(`Rebuilding: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Rebuilding: ${argv.package ?? 'all'}`)
         process.exitCode = rebuild({ target: argv.target as 'esm' | 'cjs' })
       },
     )
@@ -52,7 +78,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         })
       },
       async (argv) => {
-        if (argv.verbose) console.info(`Copying Assets: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log(`Copying Assets: ${argv.package ?? 'all'}`)
         process.exitCode = await copyAssets({ target: argv.target as 'esm' | 'cjs' })
       },
     )

@@ -1,5 +1,6 @@
+/* eslint-disable max-statements */
 import chalk from 'chalk'
-import depcheck from 'depcheck'
+import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
 
 export const packageDeps = async () => {
@@ -17,7 +18,30 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const unused = await depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] })
+  ignoreMatches.push('@xylabs/ts-scripts-yarn3')
+  ignoreMatches.push('@xylabs/tsconfig')
+  ignoreMatches.push('@xylabs/tsconfig-dom')
+  ignoreMatches.push('@xylabs/tsconfig-react')
+  ignoreMatches.push('@xylabs/tsconfig-jest')
+  ignoreMatches.push('typescript')
+
+  const unusedList = await Promise.all([
+    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),
+    depcheck(`${pkg}/.`, {
+      ignoreMatches,
+      ignorePatterns: ['*.ts', '*.d.ts', 'dist'],
+      specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
+    }),
+  ])
+
+  const unusedCode = unusedList[0]
+  const unusedTests = unusedList[1]
+
+  const unused: depcheck.Results = {
+    ...unusedCode,
+    /* we only reports the unused devDeps if both are not using it */
+    devDependencies: unusedTests.devDependencies.filter((value) => !!unusedCode.devDependencies.find((devValue) => devValue === value)),
+  }
 
   const errorCount =
     unused.dependencies.length +
@@ -52,9 +76,18 @@ export const packageDeps = async () => {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
-  if (Object.entries(unused.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(unused.missing).length} Missing dependencies`)]
-    Object.entries(unused.missing).forEach(([key, value]) => {
+  if (Object.entries(unusedCode.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(unusedCode.missing).length} Missing dependencies`)]
+    Object.entries(unusedCode.missing).forEach(([key, value]) => {
+      message.push(`${key}`)
+      message.push(chalk.gray(`  ${value.pop()}`))
+    })
+    console.log(chalk.yellow(message.join('\n')))
+  }
+
+  if (Object.entries(unusedTests.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(unusedTests.missing).length} Missing devDependencies`)]
+    Object.entries(unusedTests.missing).forEach(([key, value]) => {
       message.push(`${key}`)
       message.push(chalk.gray(`  ${value.pop()}`))
     })

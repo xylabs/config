@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json.schemastore.org/tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "declaration": true,
@@ -6,19 +7,20 @@
     "downlevelIteration": true,
     "esModuleInterop": true,
     "importHelpers": true,
+    "incremental": true,
     "lib": [
-      "ES2022"
+      "ESNEXT"
     ],
-    "module": "ES2022",
+    "module": "ESNEXT",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ESNEXT"
   },
-  "exclude": [".*", "dist", "node_modules", "storybook-static", "build", "**/*.spec"],
+  "exclude": [".*", "dist", "node_modules", "storybook-static", "build"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

@@ -1,8 +1,8 @@
 import { spawnSync } from 'child_process'
 
 export interface Workspace {
-  name: string
   location: string
+  name: string
 }
 
 export const yarnWorkspaces = (): Workspace[] => {

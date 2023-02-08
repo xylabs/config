@@ -1,12 +1,7 @@
 {
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/.DS_Store": true,
-    "**/node_modules": false,
-    "**/dist": false,
-    "**/.tsconfig.*": true
+    "**/.tsconfig.*": true,
+    "node_modules": true
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
@@ -44,8 +39,10 @@
     "autocrlf",
     "buildci",
     "depcheckrc",
+    "Dupdeps",
     "gitlint",
     "ignorecase",
+    "Malloced",
     "relint",
     "Relinting",
     "sonarjs",

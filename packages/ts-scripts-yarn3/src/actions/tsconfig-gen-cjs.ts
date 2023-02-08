@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { readFileSync, writeFileSync } from 'fs'
 
-import { yarnWorkspaces } from '../lib'
+import { createBuildConfig, yarnWorkspaces } from '../lib'
 
 export const tsconfigGenCjs = (pkg?: string) => {
   const workspaces = yarnWorkspaces()
@@ -11,33 +11,23 @@ export const tsconfigGenCjs = (pkg?: string) => {
 
   console.log(chalk.green('Generate Configs [CJS]'))
 
-  const config = JSON.stringify(
-    {
-      compilerOptions: {
-        module: 'CommonJS',
-        outDir: './dist/cjs',
-        target: 'ES6',
-      },
-      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*'],
-      extends: './tsconfig.json',
-      include: ['src'],
-    },
-    null,
-    2,
-  )
-
   return workspaceList
     .map(({ location, name }) => {
       try {
-        let currentConfig: string | undefined
-        try {
-          currentConfig = readFileSync(`${location}/.tsconfig.build.cjs.json`, { encoding: 'utf8' })
-        } catch (ex) {
-          currentConfig = undefined
-        }
-        if (currentConfig !== config) {
-          console.log(chalk.gray(`Updating CJS tsconfig [${name}]`))
-          writeFileSync(`${location}/.tsconfig.build.cjs.json`, config, { encoding: 'utf8' })
+        const configObject = createBuildConfig(location, 'CommonJS', 'ES6', 'cjs')
+        if (configObject) {
+          const config = JSON.stringify(createBuildConfig(location, 'CommonJS', 'ES6', 'cjs'), null, 2)
+
+          let currentConfig: string | undefined
+          try {
+            currentConfig = readFileSync(`${location}/.tsconfig.build.cjs.json`, { encoding: 'utf8' })
+          } catch (ex) {
+            currentConfig = undefined
+          }
+          if (currentConfig !== config) {
+            console.log(chalk.gray(`Updating CJS tsconfig [${name}]`))
+            writeFileSync(`${location}/.tsconfig.build.cjs.json`, config, { encoding: 'utf8' })
+          }
         }
         return 0
       } catch (ex) {

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json.schemastore.org/package.json",
+  "name": "@xylabs/tsconfig-jest",
+  "author": {
+    "email": "support@xylabs.com",
+    "name": "XY Labs Development Team",
+    "url": "https://xylabs.com"
+  },
+  "bugs": {
+    "email": "support@xylabs.com",
+    "url": "https://github.com/xylabs/config/issues"
+  },
+  "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests",
+  "dependencies": {
+    "@types/node": "^18.13.0",
+    "@xylabs/tsconfig": "workspace:^",
+    "jest-extended": "^3.2.3",
+    "jest-sorted": "^1.0.14",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "typescript": "^4"
+  },
+  "homepage": "https://github.com/xylabs/config.git",
+  "keywords": [
+    "xylabs",
+    "utility",
+    "config",
+    "typescript",
+    "tsconfig"
+  ],
+  "license": "LGPL-3.0-or-later",
+  "main": "./tsconfig.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xylabs/config.git"
+  },
+  "sideEffects": false,
+  "version": "2.13.12"
+}

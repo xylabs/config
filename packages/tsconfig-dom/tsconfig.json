@@ -1,9 +1,10 @@
 {
+  "$schema": "http://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ES2022"
+      "ESNEXT"
     ]
   },
   "extends": "@xylabs/tsconfig"

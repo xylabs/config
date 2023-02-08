@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { cycle, fix, lint, lintFast, lintProfile, relint, sonar } from '../../actions'
+import { cycle, fix, lint, lintProfile, relint, sonar } from '../../actions'
 
 export const xyLintCommands = (args: yargs.Argv) => {
   return args
@@ -13,7 +13,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Cycle')
+        if (argv.verbose) console.log('Cycle')
         process.exitCode = cycle()
       },
     )
@@ -26,8 +26,8 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Lint')
-        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : argv.cache ? lintFast() : lint()
+        if (argv.verbose) console.log('Lint')
+        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint()
       },
     )
     .command(
@@ -39,7 +39,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Fix')
+        if (argv.verbose) console.log('Fix')
         process.exitCode = fix()
       },
     )
@@ -52,7 +52,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
-        if (argv.verbose) console.info('Relinting')
+        if (argv.verbose) console.log('Relinting')
         process.exitCode = relint()
       },
     )
@@ -63,7 +63,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Sonar Check')
+        if (argv.verbose) console.log('Sonar Check')
         process.exitCode = sonar()
       },
     )

@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "jest-extended",
+      "jest-sorted",
+      "jest",
+      "node",
+      "reflect-metadata"
+    ]
+  },
+  "extends": "@xylabs/tsconfig"
+}

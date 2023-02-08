@@ -3,8 +3,8 @@ import { tsconfigGenEsm } from './tsconfig-gen-esm'
 import { tsconfigGenTest } from './tsconfig-gen-test'
 
 export interface TsconfigGenParams {
-  target?: 'esm' | 'cjs'
   pkg?: string
+  target?: 'esm' | 'cjs'
 }
 
 export const tsconfigGen = ({ target, pkg }: TsconfigGenParams) => {

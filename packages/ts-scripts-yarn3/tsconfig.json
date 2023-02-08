@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "rootDir": "./src"
+    "composite": true
   },
   "extends": "@xylabs/tsconfig"
 }

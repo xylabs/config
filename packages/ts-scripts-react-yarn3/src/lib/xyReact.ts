@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { xyCommonCommands, xyInstallCommands, xyLintCommands, xyParseOptions } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 import { analyze, eject, sitemap, start } from '../actions'
 import { xyReactBuildCommands } from './xyReactBuildCommands'
@@ -14,7 +15,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Analyzing')
+        if (argv.verbose) console.log('Analyzing')
         process.exitCode = analyze()
       },
     )
@@ -25,7 +26,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Ejecting')
+        if (argv.verbose) console.log('Ejecting')
         process.exitCode = eject()
       },
     )
@@ -36,7 +37,7 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Generating Sitemap')
+        if (argv.verbose) console.log('Generating Sitemap')
         process.exitCode = sitemap()
       },
     )
@@ -47,9 +48,14 @@ export const xyReact = () => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Starting')
+        if (argv.verbose) console.log('Starting')
         process.exitCode = start()
       },
     )
+    .demandCommand(1)
+    .command('*', '', () => {
+      console.error(chalk.yellow(`Command not found [${chalk.magenta(process.argv[2])}]`))
+      console.log(chalk.gray("Try 'yarn xy --help' for list of commands"))
+    })
     .help().argv
 }

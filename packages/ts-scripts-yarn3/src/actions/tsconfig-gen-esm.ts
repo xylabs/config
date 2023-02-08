@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { readFileSync, writeFileSync } from 'fs'
 
-import { yarnWorkspaces } from '../lib'
+import { createBuildConfig, yarnWorkspaces } from '../lib'
 
 export const tsconfigGenEsm = (pkg?: string) => {
   const workspaces = yarnWorkspaces()
@@ -11,33 +11,22 @@ export const tsconfigGenEsm = (pkg?: string) => {
 
   console.log(chalk.green('Generate Configs [ESM]'))
 
-  const config = JSON.stringify(
-    {
-      compilerOptions: {
-        module: 'ES2022',
-        outDir: './dist/esm',
-        target: 'ES2022',
-      },
-      exclude: ['**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*'],
-      extends: './tsconfig.json',
-      include: ['src'],
-    },
-    null,
-    2,
-  )
-
   return workspaceList
     .map(({ location, name }) => {
       try {
-        let currentConfig: string | undefined
-        try {
-          currentConfig = readFileSync(`${location}/.tsconfig.build.esm.json`, { encoding: 'utf8' })
-        } catch (ex) {
-          currentConfig = undefined
-        }
-        if (currentConfig !== config) {
-          console.log(chalk.gray(`Updating ESM tsconfig [${name}]`))
-          writeFileSync(`${location}/.tsconfig.build.esm.json`, config, { encoding: 'utf8' })
+        const configObject = createBuildConfig(location, 'ESNext', 'ESNext', 'esm')
+        if (configObject) {
+          const config = JSON.stringify(configObject, null, 2)
+          let currentConfig: string | undefined
+          try {
+            currentConfig = readFileSync(`${location}/.tsconfig.build.esm.json`, { encoding: 'utf8' })
+          } catch (ex) {
+            currentConfig = undefined
+          }
+          if (currentConfig !== config) {
+            console.log(chalk.gray(`Updating ESM tsconfig [${name}]`))
+            writeFileSync(`${location}/.tsconfig.build.esm.json`, config, { encoding: 'utf8' })
+          }
         }
         return 0
       } catch (ex) {

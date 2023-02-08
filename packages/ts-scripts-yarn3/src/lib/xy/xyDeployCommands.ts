@@ -11,7 +11,7 @@ export const xyDeployCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Deploy patch')
+        if (argv.verbose) console.log('Deploy patch')
         process.exitCode = deploy()
       },
     )
@@ -22,7 +22,7 @@ export const xyDeployCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Deploy minor')
+        if (argv.verbose) console.log('Deploy minor')
         process.exitCode = deployMinor()
       },
     )
@@ -33,7 +33,7 @@ export const xyDeployCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Deploy major')
+        if (argv.verbose) console.log('Deploy major')
         process.exitCode = deployMajor()
       },
     )
@@ -44,7 +44,7 @@ export const xyDeployCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
-        if (argv.verbose) console.info('Deploy next')
+        if (argv.verbose) console.log('Deploy next')
         process.exitCode = deployNext()
       },
     )

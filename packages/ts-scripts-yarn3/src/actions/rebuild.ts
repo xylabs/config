@@ -1,14 +1,14 @@
 import { runSteps } from '../lib'
 
 export interface RebuildParams {
-  target?: 'esm' | 'cjs'
   pkg?: string
+  target?: 'esm' | 'cjs'
 }
 
 export const rebuild = ({ target }: RebuildParams) => {
   return runSteps('Rebuild', [
-    ['yarn', 'clean'],
+    ['yarn', 'xy clean'],
     ['yarn', target ? `xy compile -t ${target}` : 'xy compile'],
-    ['yarn', 'lint'],
+    ['yarn', 'xy lint'],
   ])
 }
