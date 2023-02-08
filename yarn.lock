@@ -2645,7 +2645,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.51.0
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.13.12
+    "@xylabs/tsconfig": ^2.14.0-rc.1
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.33.0
@@ -2751,7 +2751,6 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.12
     "@babel/preset-env": ^7.20.2
-    "@types/jest": ^29.4.0
     "@types/json-schema": ^7.0.11
     "@types/node": ^18.13.0
     "@types/yargs": ^17.0.22
@@ -2829,7 +2828,6 @@ __metadata:
     "@babel/core": ^7.20.12
     "@babel/preset-env": ^7.20.2
     "@types/depcheck": ^0.9.1
-    "@types/jest": ^29.4.0
     "@types/license-checker": ^25.0.3
     "@types/lodash": ^4.14.191
     "@types/node": ^18.13.0
@@ -2847,7 +2845,6 @@ __metadata:
     jest-environment-jsdom: ^29.4.2
     jest-extended: ^3.2.3
     jest-mock-extended: ^3.0.1
-    jest-sorted: ^1.0.14
     license-checker: ^25.0.1
     lodash: ^4.17.21
     node-cmd: ^5.0.0
@@ -2856,6 +2853,7 @@ __metadata:
     npm-package-json-lint-config-default: ^5.0.0
     parse-git-config: ^3.0.0
     prettier: ^2.8.4
+    reflect-metadata: ^0.1.13
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
     ts-prune: ^0.10.3
@@ -3001,12 +2999,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-jest@workspace:packages/tsconfig-jest"
   dependencies:
-    "@types/node": ^18.13.0
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
-    jest-extended: ^3.2.3
-    jest-sorted: ^1.0.14
-    reflect-metadata: ^0.1.13
     typescript: ^4.9.5
   peerDependencies:
     typescript: ^4
@@ -3025,7 +3019,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.13.12, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.14.0-rc.1, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
