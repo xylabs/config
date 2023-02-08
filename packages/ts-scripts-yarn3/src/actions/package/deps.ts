@@ -22,6 +22,7 @@ export const packageDeps = async () => {
   ignoreMatches.push('@xylabs/tsconfig')
   ignoreMatches.push('@xylabs/tsconfig-dom')
   ignoreMatches.push('@xylabs/tsconfig-react')
+  ignoreMatches.push('@xylabs/tsconfig-jest')
   ignoreMatches.push('typescript')
 
   const unusedList = await Promise.all([
