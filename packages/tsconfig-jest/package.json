@@ -12,7 +12,11 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests",
   "dependencies": {
-    "@xylabs/tsconfig": "workspace:^"
+    "@types/node": "^18.13.0",
+    "@xylabs/tsconfig": "workspace:^",
+    "jest-extended": "^3.2.3",
+    "jest-sorted": "^1.0.14",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
