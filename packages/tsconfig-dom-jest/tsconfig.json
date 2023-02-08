@@ -8,5 +8,5 @@
       "reflect-metadata"
     ]
   },
-  "extends": "@xylabs/tsconfig"
+  "extends": "@xylabs/tsconfig-dom"
 }
