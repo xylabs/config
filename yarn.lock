@@ -2987,13 +2987,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@xylabs/tsconfig-dom-jest@workspace:packages/tsconfig-dom-jest":
+  version: 0.0.0-use.local
+  resolution: "@xylabs/tsconfig-dom-jest@workspace:packages/tsconfig-dom-jest"
+  dependencies:
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/tsconfig-dom": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@xylabs/tsconfig-dom@workspace:^, @xylabs/tsconfig-dom@workspace:packages/tsconfig-dom":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
   dependencies:
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
-    typescript: ^4.9.5
   languageName: unknown
   linkType: soft
 
@@ -3026,7 +3034,6 @@ __metadata:
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    typescript: ^4.9.5
   languageName: unknown
   linkType: soft
 

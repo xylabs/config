@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
-  "name": "@xylabs/tsconfig-dom",
+  "name": "@xylabs/tsconfig-dom-jest",
   "author": {
     "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
@@ -10,9 +10,9 @@
     "email": "support@xylabs.com",
     "url": "https://github.com/xylabs/config/issues"
   },
-  "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
+  "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests [DOM]",
   "dependencies": {
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig-dom": "workspace:^"
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^"
