@@ -50,6 +50,7 @@
     "@babel/preset-env": "^7.20.2",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@types/node": "^18.13.0",
     "chalk": "^4.1.2",
     "cpy": "^8.1.2",
     "depcheck": "^1.4.3",
@@ -80,7 +81,6 @@
   "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/json-schema": "^7.0.11",
-    "@types/node": "^18.13.0",
     "@types/yargs": "^17.0.22",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^"

@@ -95,7 +95,6 @@
     "@types/depcheck": "^0.9.1",
     "@types/license-checker": "^25.0.3",
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.13.0",
     "@types/parse-git-config": "^3.0.1"
   },
   "homepage": "https://xylabs.com",
