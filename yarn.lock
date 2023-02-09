@@ -2354,7 +2354,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.13.0":
+"@types/node@npm:*, @types/node@npm:^18.13.0, @types/node@npm:~18.13.0":
   version: 18.13.0
   resolution: "@types/node@npm:18.13.0"
   checksum: 4ea10f8802848b01672bce938f678b6774ca2cee0c9774f12275ab064ae07818419c3e2e41d6257ce7ba846d1ea26c63214aa1dfa4166fa3746291752b8c6416
@@ -2830,7 +2830,7 @@ __metadata:
     "@types/depcheck": ^0.9.1
     "@types/license-checker": ^25.0.3
     "@types/lodash": ^4.14.191
-    "@types/node": ^18.13.0
+    "@types/node": ~18.13.0
     "@types/parse-git-config": ^3.0.1
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
@@ -2855,6 +2855,7 @@ __metadata:
     parse-git-config: ^3.0.0
     prettier: ^2.8.4
     reflect-metadata: ^0.1.13
+    rimraf: ^4.1.2
     supertest: ^6.3.3
     ts-jest: ^29.0.5
     ts-node: ^10.9.1

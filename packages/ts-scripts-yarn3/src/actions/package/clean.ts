@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import { rmSync } from 'fs'
-
-import { runSteps } from '../../lib'
+import { rimrafSync } from 'rimraf'
 
 export const packageClean = () => {
   const pkg = process.env.INIT_CWD
@@ -14,8 +13,5 @@ export const packageClean = () => {
   const build = `${pkg}/build`
   rmSync(build, { force: true, recursive: true })
 
-  return runSteps('Package Clean', [
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`, '--clean']],
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`, '--clean']],
-  ])
+  rimrafSync(`${pkg}/**/*.tsbuildinfo`)
 }
