@@ -4,6 +4,7 @@ import { runSteps, ScriptStep } from '../lib'
 
 export interface CompileParams {
   incremental?: boolean
+  jobs?: number
   pkg?: string
   target?: 'esm' | 'cjs'
   verbose?: boolean
@@ -30,18 +31,26 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
   return runSteps(`Compile [${pkg}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
 }
 
-export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
+export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
+  const jobsOptions = jobs ? ['-j', `${jobs}`] : []
+  if (jobs) {
+    console.log(chalk.blue(`Jobs set to [${jobs}]`))
+  }
   const cjsSteps: ScriptStep[] =
-    target === 'cjs' ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-cjs', ...verboseOptions]]] : []
+    target === 'cjs'
+      ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile-cjs', ...verboseOptions]]]
+      : []
 
   const esmSteps: ScriptStep[] =
-    target === 'esm' ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-esm', ...verboseOptions]]] : []
+    target === 'esm'
+      ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile-esm', ...verboseOptions]]]
+      : []
 
   const bothSteps: ScriptStep[] = !target
-    ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile', ...verboseOptions]]]
+    ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile', ...verboseOptions]]]
     : []
 
   const result = runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps, ...cjsSteps, ...bothSteps])

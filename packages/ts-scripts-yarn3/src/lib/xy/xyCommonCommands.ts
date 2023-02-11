@@ -54,7 +54,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log(`Checking Dependencies: ${argv.package ?? 'all'}`)
-        process.exitCode = deps({ incremental: !!argv.incremental, pkg: argv.package as string })
+        process.exitCode = deps({ incremental: !!argv.incremental, jobs: argv.jobs as number, pkg: argv.package as string })
       },
     )
     .command(

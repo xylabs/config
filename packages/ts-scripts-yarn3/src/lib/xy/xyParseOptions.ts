@@ -4,6 +4,12 @@ import { hideBin } from 'yargs/helpers'
 
 export const xyParseOptions = (): yargs.Argv => {
   return yargs(hideBin(process.argv))
+    .option('jobs', {
+      alias: 'j',
+      default: undefined,
+      description: 'Max parallel jobs',
+      type: 'number',
+    })
     .option('verbose', {
       alias: 'v',
       default: false,

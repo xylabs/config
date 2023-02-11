@@ -17,7 +17,12 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           console.log(`Building: ${argv.package ?? 'all'}`)
         }
 
-        process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs', verbose: !!argv.verbose })
+        process.exitCode = build({
+          jobs: argv.jobs as number,
+          pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
       },
     )
     .command(
@@ -34,6 +39,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         }
         process.exitCode = compile({
           incremental: !!argv.incremental,
+          jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',
           verbose: !!argv.verbose,
