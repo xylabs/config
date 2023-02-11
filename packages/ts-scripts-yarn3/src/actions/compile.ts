@@ -1,3 +1,5 @@
+import chalk from 'chalk'
+
 import { runSteps, ScriptStep } from '../lib'
 
 export interface CompileParams {
@@ -29,6 +31,7 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
 }
 
 export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
+  const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
   const cjsSteps: ScriptStep[] =
@@ -41,5 +44,7 @@ export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
     ? [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile', ...verboseOptions]]]
     : []
 
-  return runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
+  const result = runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
+  console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+  return result
 }
