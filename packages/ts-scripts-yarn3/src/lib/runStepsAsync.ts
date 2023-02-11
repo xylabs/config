@@ -5,7 +5,7 @@ import { existsSync } from 'fs'
 import { ScriptStep } from './runSteps'
 
 export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: string) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const [command, args, config] = step
     if (message) {
       console.log(chalk.gray(message))
@@ -22,9 +22,15 @@ export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: stri
     }).on('close', (code) => {
       if (code) {
         if (exitOnFail) {
-          process.exit(code)
+          console.error(
+            chalk.blue(
+              `Command Exited With Non-Zero Result [${chalk.gray(code)}] | ${chalk.yellow(command)} ${chalk.white(
+                Array.isArray(args) ? args.join(' ') : args,
+              )}`,
+            ),
+          )
         }
-        reject(code)
+        resolve(code)
       } else {
         resolve(0)
       }
@@ -41,7 +47,7 @@ export const runStepsAsync = async (name: string, steps: ScriptStep[], exitOnFai
     }
     return 0
   } catch (ex) {
-    console.log(ex)
+    console.error(chalk.red(ex))
     process.exit(-1)
   }
 }

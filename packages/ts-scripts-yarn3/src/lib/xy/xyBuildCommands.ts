@@ -12,12 +12,12 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           describe: 'Specific package to build',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) {
           console.log(`Building: ${argv.package ?? 'all'}`)
         }
 
-        process.exitCode = build({
+        process.exitCode = await build({
           jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',

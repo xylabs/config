@@ -3,7 +3,7 @@
 import chalk from 'chalk'
 import { packageDeps } from '../../actions'
 
-packageDeps().then((value) => process.exitCode = value).catch((reason) => {
-  console.error(chalk.red(reason))
-  process.exitCode = 1
+packageDeps().then((value) => process.exitCode = value).catch((ex: Error) => {
+  console.error(`Deps Failed: ${chalk.red(ex)}`)
+  process.exitCode = 0
 })

@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { runSteps } from '../lib'
+import { runStepsAsync } from '../lib'
 
 export interface BuildParams {
   jobs?: number
@@ -9,7 +9,7 @@ export interface BuildParams {
   verbose?: boolean
 }
 
-export const build = ({ jobs, target, verbose }: BuildParams) => {
+export const build = async ({ jobs, target, verbose }: BuildParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
@@ -17,7 +17,8 @@ export const build = ({ jobs, target, verbose }: BuildParams) => {
   if (jobs) {
     console.log(chalk.blue(`Jobs set to [${jobs}]`))
   }
-  const result = runSteps('Build', [
+
+  const result = await runStepsAsync('Build', [
     ['yarn', ['xy', 'compile', ...targetOptions, ...verboseOptions, ...jobsOptions]],
     ['yarn', ['xy', 'lint', ...verboseOptions]],
     ['yarn', ['xy', 'deps', ...verboseOptions, ...jobsOptions]],

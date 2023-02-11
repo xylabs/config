@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "rootDirs": [
-      "package.json"
-    ],
     "composite": true,
-    "rootDir": "src",
     "module": "ESNext",
     "outDir": "./dist/esm",
     "target": "ESNext"
