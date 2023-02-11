@@ -14,4 +14,5 @@ export const packageClean = () => {
   rmSync(build, { force: true, recursive: true })
 
   rimrafSync(`${pkg}/**/*.tsbuildinfo`)
+  rimrafSync(`${pkg}/**/.tsconfig.*`)
 }
