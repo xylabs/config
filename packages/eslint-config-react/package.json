@@ -42,7 +42,7 @@
     "@types/node": "^18.13.0",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "eslint": "^8.33.0"
+    "eslint": "^8.34.0"
   },
   "peerDependencies": {
     "eslint": "^8.23.0"
