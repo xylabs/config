@@ -1,11 +1,15 @@
-import { runSteps } from '../../lib'
+import { runStepsAsync } from '../../lib'
+import { packageCopyAssets } from './copy-assets'
+import { packageTsconfigGenCjs } from './tsconfig-gen-cjs'
 
-export const packageCompileCjs = () => {
+export const packageCompileCjs = async () => {
   const pkg = process.env.INIT_CWD
 
-  return runSteps('Package Compile [CJS]', [
-    ['yarn', ['package-tsconfig-gen-cjs']],
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`]],
-    ['yarn', ['package-copy-assets-cjs']],
-  ])
+  packageTsconfigGenCjs()
+  return (
+    await Promise.all([
+      packageCopyAssets({ target: 'cjs' }),
+      runStepsAsync('Package Compile [CJS]', [['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`]]]),
+    ])
+  ).reduce((prev, value) => prev + value)
 }

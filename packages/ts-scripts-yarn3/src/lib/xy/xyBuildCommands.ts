@@ -33,11 +33,11 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           describe: 'Specific package to compile',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
         }
-        process.exitCode = compile({
+        process.exitCode = await compile({
           incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,

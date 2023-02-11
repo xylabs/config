@@ -1,15 +1,6 @@
-import { runSteps, runStepsAsync } from '../../lib'
+import { packageCompileCjs } from './compile-cjs'
+import { packageCompileEsm } from './compile-esm'
 
-export const packageCompile = () => {
-  return runSteps('Package Compile', [
-    ['yarn', ['package-compile-cjs']],
-    ['yarn', ['package-compile-esm']],
-  ])
-}
-
-export const packageCompileAsync = () => {
-  return runStepsAsync('Package Compile', [
-    ['yarn', ['package-compile-cjs']],
-    ['yarn', ['package-compile-esm']],
-  ])
+export const packageCompile = async () => {
+  return (await Promise.all([packageCompileEsm(), packageCompileCjs()])).reduce((prev, value) => prev + value)
 }
