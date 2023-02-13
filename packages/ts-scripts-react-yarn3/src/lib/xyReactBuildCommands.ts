@@ -35,9 +35,9 @@ export const xyReactBuildCommands = (args: yargs.Argv) => {
           describe: 'Specific package to compile',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) console.log(`Compiling: ${argv.package ?? 'all'}`)
-        process.exitCode = compile({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = await compile({ target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
