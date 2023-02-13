@@ -5,6 +5,5 @@ export const build = () => {
     ['yarn', ['xy', 'compile']],
     ['yarn', 'xy lint'],
     ['yarn', 'xy deps'],
-    ['ts-node-script', './scripts/sitemap.ts'],
   ])
 }
