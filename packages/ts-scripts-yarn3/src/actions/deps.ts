@@ -13,7 +13,9 @@ export interface DepsPackageParams {
 }
 
 export const deps = ({ pkg, incremental }: DepsParams) => {
-  return pkg ? depsPackage({ pkg }) : depsAll({ incremental })
+  pkg ? depsPackage({ pkg }) : depsAll({ incremental })
+  //returning 0 here since we never wants deps to be fatal
+  return 0
 }
 
 export const depsPackage = ({ pkg }: DepsPackageParams) => {

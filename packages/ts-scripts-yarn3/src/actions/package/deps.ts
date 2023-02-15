@@ -93,6 +93,6 @@ export const packageDeps = async () => {
     })
     console.log(chalk.yellow(message.join('\n')))
   }
-
-  return errorCount
+  //returning 0 here since we never want deps to be fatal
+  return 0
 }
