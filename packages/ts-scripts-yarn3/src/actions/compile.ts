@@ -24,7 +24,7 @@ export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) =
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
 
-  return runStepsAsync(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile-cjs', ...verboseOptions, ...targetOptions]]])
+  return runStepsAsync(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
 }
 
 export const compileAll = async ({ jobs, verbose, target, incremental }: CompileParams) => {
@@ -37,7 +37,7 @@ export const compileAll = async ({ jobs, verbose, target, incremental }: Compile
     console.log(chalk.blue(`Jobs set to [${jobs}]`))
   }
 
-  const result = await runStepsAsync(`Compile [All${incremental ? '-Incremental' : ''}]`, [
+  const result = await runStepsAsync(`Compile${incremental ? '-Incremental' : ''} [All]`, [
     ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile', ...verboseOptions, ...targetOptions]],
   ])
   console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)

@@ -18,6 +18,7 @@ export const xyBuildCommands = (args: yargs.Argv) => {
         }
 
         process.exitCode = await build({
+          incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',

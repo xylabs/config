@@ -33,7 +33,7 @@ export const depsAll = ({ incremental, jobs }: DepsParams) => {
   const incrementalOptions = incremental ? ['--since', '-pA'] : ['-pA']
   const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...jobsOptions, ...incrementalOptions, 'run', 'package-deps']]]
 
-  const result = runSteps(`Deps [All${incremental ? '-Incremental' : ''}]`, [...steps])
+  const result = runSteps(`Deps${incremental ? '-Incremental' : ''} [All]`, [...steps])
   console.log(`${chalk.gray('Dep checked in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
   return result
 }
