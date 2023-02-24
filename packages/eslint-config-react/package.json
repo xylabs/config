@@ -14,8 +14,8 @@
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-syntax-flow": "^7.18.6",
     "@babel/plugin-transform-react-jsx": "^7.20.13",
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
     "@xylabs/eslint-config": "workspace:^",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react-app": "^7.0.1",
@@ -39,7 +39,7 @@
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.14.1",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint": "^8.34.0"
