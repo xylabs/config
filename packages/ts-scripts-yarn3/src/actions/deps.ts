@@ -1,7 +1,10 @@
+import chalk from 'chalk'
+
 import { runSteps, ScriptStep } from '../lib'
 
 export interface DepsParams {
   incremental?: boolean
+  jobs?: number
   pkg?: string
 }
 
@@ -10,7 +13,9 @@ export interface DepsPackageParams {
 }
 
 export const deps = ({ pkg, incremental }: DepsParams) => {
-  return pkg ? depsPackage({ pkg }) : depsAll({ incremental })
+  pkg ? depsPackage({ pkg }) : depsAll({ incremental })
+  //returning 0 here since we never wants deps to be fatal
+  return 0
 }
 
 export const depsPackage = ({ pkg }: DepsPackageParams) => {
@@ -19,9 +24,16 @@ export const depsPackage = ({ pkg }: DepsPackageParams) => {
   return runSteps(`Deps [${pkg}]`, [...steps])
 }
 
-export const depsAll = ({ incremental }: DepsParams) => {
+export const depsAll = ({ incremental, jobs }: DepsParams) => {
+  const start = Date.now()
+  const jobsOptions = jobs ? ['-j', `${jobs}`] : []
+  if (jobs) {
+    console.log(chalk.blue(`Jobs set to [${jobs}]`))
+  }
   const incrementalOptions = incremental ? ['--since', '-pA'] : ['-pA']
-  const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-deps']]]
+  const steps: ScriptStep[] = [['yarn', ['workspaces', 'foreach', ...jobsOptions, ...incrementalOptions, 'run', 'package-deps']]]
 
-  return runSteps(`Deps [All${incremental ? '-Incremental' : ''}]`, [...steps])
+  const result = runSteps(`Deps${incremental ? '-Incremental' : ''} [All]`, [...steps])
+  console.log(`${chalk.gray('Dep checked in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+  return result
 }

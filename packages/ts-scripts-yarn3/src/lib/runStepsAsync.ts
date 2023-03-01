@@ -5,7 +5,7 @@ import { existsSync } from 'fs'
 import { ScriptStep } from './runSteps'
 
 export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: string) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<number>((resolve) => {
     const [command, args, config] = step
     if (message) {
       console.log(chalk.gray(message))
@@ -21,10 +21,17 @@ export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: stri
       stdio: 'inherit',
     }).on('close', (code) => {
       if (code) {
+        console.error(
+          chalk.red(
+            `Command Exited With Non-Zero Result [${chalk.gray(code)}] | ${chalk.yellow(command)} ${chalk.white(
+              Array.isArray(args) ? args.join(' ') : args,
+            )}`,
+          ),
+        )
         if (exitOnFail) {
           process.exit(code)
         }
-        reject(code)
+        resolve(code)
       } else {
         resolve(0)
       }
@@ -36,12 +43,13 @@ export const runStepsAsync = async (name: string, steps: ScriptStep[], exitOnFai
   try {
     const pkgName = process.env.npm_package_name
     console.log(chalk.green(`${name} [${pkgName}]`))
+    let result = 0
     for (let i = 0; i < steps.length; i++) {
-      await runStepAsync(steps[i], exitOnFail, messages?.[i])
+      result += await runStepAsync(steps[i], exitOnFail, messages?.[i])
     }
-    return 0
+    return result
   } catch (ex) {
-    console.log(ex)
+    console.error(chalk.red(ex))
     process.exit(-1)
   }
 }

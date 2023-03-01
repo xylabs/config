@@ -13,6 +13,8 @@
     ],
     "module": "ESNEXT",
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,

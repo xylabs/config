@@ -5,6 +5,7 @@
       "jest-extended",
       "jest-sorted",
       "jest",
+      "node",
       "reflect-metadata"
     ]
   },

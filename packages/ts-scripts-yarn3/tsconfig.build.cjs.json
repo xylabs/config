@@ -1,15 +1,10 @@
 {
   "compilerOptions": {
-    "rootDirs": [
-      "package.json"
-    ],
     "composite": true,
-    "rootDir": "src",
     "module": "CommonJS",
     "outDir": "./dist/cjs",
     "target": "ES6"
   },
-  "extends": "@xylabs/tsconfig",
   "exclude": [
     "**/build",
     "**/dist",
@@ -21,6 +16,7 @@
     "**/spec/*",
     "**/stories/*"
   ],
+  "extends": "@xylabs/tsconfig",
   "include": [
     "src"
   ]

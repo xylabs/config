@@ -27,7 +27,7 @@ export const xyLintCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('Lint')
-        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint()
+        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint({ pkg: argv.package as string })
       },
     )
     .command(

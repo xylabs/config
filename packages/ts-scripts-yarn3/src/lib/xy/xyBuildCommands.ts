@@ -1,5 +1,3 @@
-import { version } from 'os'
-import { getHeapStatistics } from 'v8'
 import yargs from 'yargs'
 
 import { build, compile, copyAssets, rebuild } from '../../actions'
@@ -14,19 +12,18 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           describe: 'Specific package to build',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) {
           console.log(`Building: ${argv.package ?? 'all'}`)
-          console.log(`OS: ${version}`)
-          console.log(`Node: ${process.version}`)
-          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
-          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
-          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
-          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
-          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
         }
 
-        process.exitCode = build({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs', verbose: !!argv.verbose })
+        process.exitCode = await build({
+          incremental: !!argv.incremental,
+          jobs: argv.jobs as number,
+          pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
       },
     )
     .command(
@@ -37,19 +34,13 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           describe: 'Specific package to compile',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
-          console.log(`OS: ${version}`)
-          console.log(`Node: ${process.version}`)
-          console.log(`Heap Size (Total Available): ${getHeapStatistics().total_available_size.toLocaleString()}`)
-          console.log(`Heap Size (Limit): ${getHeapStatistics().heap_size_limit.toLocaleString()}`)
-          console.log(`Heap Size (Malloced): ${getHeapStatistics().malloced_memory.toLocaleString()}`)
-          console.log(`Heap Size (Peek Malloced): ${getHeapStatistics().peak_malloced_memory.toLocaleString()}`)
-          console.log(`Heap Size (Used): ${getHeapStatistics().used_heap_size.toLocaleString()}`)
         }
-        process.exitCode = compile({
+        process.exitCode = await compile({
           incremental: !!argv.incremental,
+          jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',
           verbose: !!argv.verbose,

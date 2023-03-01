@@ -1,19 +1,6 @@
-import { runSteps, runStepsAsync } from '../../lib'
+import { packageCompileCjs } from './compile-cjs'
+import { packageCompileEsm } from './compile-esm'
 
-export const packageCompile = () => {
-  const pkg = process.env.INIT_CWD
-
-  return runSteps('Package Compile', [
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`]],
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`]],
-  ])
-}
-
-export const packageCompileAsync = () => {
-  const pkg = process.env.INIT_CWD
-
-  return runStepsAsync('Package Compile', [
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.cjs.json`]],
-    ['tsc', ['--build', `${pkg}/.tsconfig.build.esm.json`]],
-  ])
+export const packageCompile = async () => {
+  return (await Promise.all([packageCompileEsm(), packageCompileCjs()])).reduce((prev, value) => prev + value, 0)
 }

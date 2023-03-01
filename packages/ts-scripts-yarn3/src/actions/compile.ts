@@ -1,7 +1,10 @@
-import { runSteps, ScriptStep } from '../lib'
+import chalk from 'chalk'
+
+import { runStepsAsync } from '../lib'
 
 export interface CompileParams {
   incremental?: boolean
+  jobs?: number
   pkg?: string
   target?: 'esm' | 'cjs'
   verbose?: boolean
@@ -13,69 +16,30 @@ export interface CompilePackageParams {
   verbose?: boolean
 }
 
-export const compile = ({ verbose, target, pkg, incremental }: CompileParams) => {
-  return pkg ? compilePackage({ pkg, target, verbose }) : compileAll({ incremental, target, verbose })
+export const compile = async ({ verbose, target, pkg, incremental }: CompileParams) => {
+  return pkg ? await compilePackage({ pkg, target, verbose }) : await compileAll({ incremental, target, verbose })
 }
 
 export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
   const verboseOptions = verbose ? ['-v'] : []
-  const cjsSteps: ScriptStep[] =
-    target === 'cjs'
-      ? [
-          ['yarn', ['xy', 'tsconfig-gen', pkg, '-t', 'cjs', ...verboseOptions]],
-          ['yarn', ['workspace', pkg, 'run', 'package-compile-cjs', ...verboseOptions]],
-          ['yarn', ['xy', 'copy-assets', pkg, '-t', 'cjs', ...verboseOptions]],
-        ]
-      : []
+  const targetOptions = target ? ['-t', target] : []
 
-  const esmSteps: ScriptStep[] =
-    target === 'esm'
-      ? [
-          ['yarn', ['xy', 'tsconfig-gen', pkg, '-t', 'esm', ...verboseOptions]],
-          ['yarn', ['workspace', pkg, 'run', 'package-compile-esm', ...verboseOptions]],
-          ['yarn', ['xy', 'copy-assets', pkg, '-t', 'esm', ...verboseOptions]],
-        ]
-      : []
-
-  const bothSteps: ScriptStep[] = !target
-    ? [
-        ['yarn', ['xy', 'tsconfig-gen', pkg, ...verboseOptions]],
-        ['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions]],
-        ['yarn', ['xy', 'copy-assets', pkg, ...verboseOptions]],
-      ]
-    : []
-
-  return runSteps(`Compile [${pkg}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
+  return runStepsAsync(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
 }
 
-export const compileAll = ({ verbose, target, incremental }: CompileParams) => {
+export const compileAll = async ({ jobs, verbose, target, incremental }: CompileParams) => {
+  const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
+  const targetOptions = target ? ['-t', target] : []
   const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
-  const cjsSteps: ScriptStep[] =
-    target === 'cjs'
-      ? [
-          ['yarn', ['xy', 'tsconfig-gen', '-t', 'cjs', ...verboseOptions]],
-          ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-cjs', ...verboseOptions]],
-          ['yarn', ['xy', 'copy-assets', '-t', 'cjs', ...verboseOptions]],
-        ]
-      : []
+  const jobsOptions = jobs ? ['-j', `${jobs}`] : []
+  if (jobs) {
+    console.log(chalk.blue(`Jobs set to [${jobs}]`))
+  }
 
-  const esmSteps: ScriptStep[] =
-    target === 'esm'
-      ? [
-          ['yarn', ['xy', 'tsconfig-gen', '-t', 'esm', ...verboseOptions]],
-          ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile-esm', ...verboseOptions]],
-          ['yarn', ['xy', 'copy-assets', '-t', 'esm', ...verboseOptions]],
-        ]
-      : []
-
-  const bothSteps: ScriptStep[] = !target
-    ? [
-        ['yarn', ['xy', 'tsconfig-gen', ...verboseOptions]],
-        ['yarn', ['workspaces', 'foreach', ...incrementalOptions, 'run', 'package-compile', ...verboseOptions]],
-        ['yarn', ['xy', 'copy-assets', ...verboseOptions]],
-      ]
-    : []
-
-  return runSteps(`Compile [All${incremental ? '-Incremental' : ''}]`, [...esmSteps, ...cjsSteps, ...bothSteps])
+  const result = await runStepsAsync(`Compile${incremental ? '-Incremental' : ''} [All]`, [
+    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile', ...verboseOptions, ...targetOptions]],
+  ])
+  console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+  return result
 }
