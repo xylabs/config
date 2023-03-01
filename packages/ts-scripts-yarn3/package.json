@@ -29,13 +29,13 @@
     "lint-profile": "dist/cjs/bin/lint-profile.js",
     "package-clean": "dist/cjs/bin/package/clean.js",
     "package-compile": "dist/cjs/bin/package/compile.js",
-    "package-recompile": "dist/cjs/bin/package/recompile.js",
     "package-compile-cjs": "dist/cjs/bin/package/compile-cjs.js",
     "package-compile-esm": "dist/cjs/bin/package/compile-esm.js",
     "package-copy-assets-cjs": "dist/cjs/bin/package/copy-assets-cjs.js",
     "package-copy-assets-esm": "dist/cjs/bin/package/copy-assets-esm.js",
     "package-deps": "dist/cjs/bin/package/deps.js",
     "package-gen-docs": "dist/cjs/bin/package/gen-docs.js",
+    "package-recompile": "dist/cjs/bin/package/recompile.js",
     "package-tsconfig-gen": "dist/cjs/bin/package/tsconfig-gen.js",
     "package-tsconfig-gen-cjs": "dist/cjs/bin/package/tsconfig-gen-cjs.js",
     "package-tsconfig-gen-esm": "dist/cjs/bin/package/tsconfig-gen-esm.js",
@@ -146,5 +146,6 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.15.0"
+  "version": "2.16.0-rc.1",
+  "stableVersion": "2.15.0"
 }

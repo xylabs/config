@@ -106,5 +106,6 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.15.0"
+  "version": "2.16.0-rc.1",
+  "stableVersion": "2.15.0"
 }
