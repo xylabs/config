@@ -2,9 +2,11 @@ import chalk from 'chalk'
 import { spawn } from 'child_process'
 import { existsSync } from 'fs'
 
+import { checkResult } from './checkResult'
 import { ScriptStep } from './runSteps'
+import { safeExitAsync } from './safeExit'
 
-export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: string) => {
+export const runStepAsync = (name: string, step: ScriptStep, exitOnFail = true, message?: string) => {
   return new Promise<number>((resolve) => {
     const [command, args, config] = step
     if (message) {
@@ -28,9 +30,7 @@ export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: stri
             )}`,
           ),
         )
-        if (exitOnFail) {
-          process.exit(code)
-        }
+        checkResult(name, code, 'error', exitOnFail)
         resolve(code)
       } else {
         resolve(0)
@@ -40,16 +40,13 @@ export const runStepAsync = (step: ScriptStep, exitOnFail = true, message?: stri
 }
 
 export const runStepsAsync = async (name: string, steps: ScriptStep[], exitOnFail = true, messages?: string[]) => {
-  try {
+  return await safeExitAsync(async () => {
     const pkgName = process.env.npm_package_name
     console.log(chalk.green(`${name} [${pkgName}]`))
     let result = 0
     for (let i = 0; i < steps.length; i++) {
-      result += await runStepAsync(steps[i], exitOnFail, messages?.[i])
+      result += await runStepAsync(name, steps[i], exitOnFail, messages?.[i])
     }
     return result
-  } catch (ex) {
-    console.error(chalk.red(ex))
-    process.exit(-1)
-  }
+  })
 }

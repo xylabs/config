@@ -19,24 +19,25 @@ export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], Defa
         } catch (e) {
           console.error(`Error running yarn why: ${e}`)
           exitCode = 1
-          return
+          return exitCode
         }
 
         if (output) {
           exitCode = new DuplicateDetector(output, dependency).detect()
-          return
+          return exitCode
         } else {
           console.log(`${dependency} - N/A`)
           if (depsFromPackageJSON) {
             console.log(`🚨 Library ${dependency} was requested in package.json but not found`)
           }
           exitCode = 1
-          return
+          return exitCode
         }
       })
       return exitCode
     } else {
       console.log('🚨 No dependencies where passed')
+      return exitCode
     }
   })
 }

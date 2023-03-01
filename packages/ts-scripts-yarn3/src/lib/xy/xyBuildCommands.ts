@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-import { build, compile, copyAssets, rebuild } from '../../actions'
+import { build, compile, copyAssets, rebuild, recompile } from '../../actions'
 
 export const xyBuildCommands = (args: yargs.Argv) => {
   return args
@@ -39,6 +39,27 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
         }
         process.exitCode = await compile({
+          incremental: !!argv.incremental,
+          jobs: argv.jobs as number,
+          pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
+      },
+    )
+    .command(
+      'recompile [package]',
+      'Re-compile with Typescript & Copy Images',
+      (yargs) => {
+        return yargs.positional('package', {
+          describe: 'Specific package to re-compile',
+        })
+      },
+      async (argv) => {
+        if (argv.verbose) {
+          console.log(`Re-compiling: ${argv.package ?? 'all'}`)
+        }
+        process.exitCode = await recompile({
           incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,

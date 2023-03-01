@@ -2,16 +2,28 @@
 
 import { processEx } from './processEx'
 
-const safeExit = (func: () => number | undefined) => {
+const safeExit = (func: () => number, exitOnFail = true): number => {
   try {
     const result = func()
-    if (result) {
+    if (result && exitOnFail) {
       process.exit(result)
     }
     return result
   } catch (ex) {
-    processEx(ex)
+    return processEx(ex)
   }
 }
 
-export { safeExit }
+const safeExitAsync = async (func: () => Promise<number>, exitOnFail = true): Promise<number> => {
+  try {
+    const result = await func()
+    if (result && exitOnFail) {
+      process.exit(result)
+    }
+    return result
+  } catch (ex) {
+    return processEx(ex)
+  }
+}
+
+export { safeExit, safeExitAsync }
