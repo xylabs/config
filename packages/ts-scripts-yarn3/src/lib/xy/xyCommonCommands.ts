@@ -7,6 +7,7 @@ import {
   gitlint,
   gitlintFix,
   license,
+  retest,
   test,
   tsconfigGen,
   tsconfigGenClean,
@@ -79,6 +80,17 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Gitlint')
         process.exitCode = argv.fix ? gitlintFix() : gitlint()
+      },
+    )
+    .command(
+      'retest',
+      'Re-Test - Run Jest Tests with cleaned cache',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Re-Testing')
+        process.exitCode = retest()
       },
     )
     .command(
