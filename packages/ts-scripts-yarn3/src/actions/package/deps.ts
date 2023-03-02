@@ -3,6 +3,8 @@ import chalk from 'chalk'
 import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
 
+import { checkResult } from '../../lib'
+
 export const packageDeps = async () => {
   const pkg = process.env.INIT_CWD
   const pkgName = process.env.npm_package_name
@@ -93,6 +95,9 @@ export const packageDeps = async () => {
     })
     console.log(chalk.yellow(message.join('\n')))
   }
+
+  checkResult(`Deps [${pkgName}]`, errorCount, 'warn', false)
+
   //returning 0 here since we never want deps to be fatal
   return 0
 }

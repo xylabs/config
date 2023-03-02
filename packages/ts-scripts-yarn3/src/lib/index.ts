@@ -1,3 +1,4 @@
+export * from './checkResult'
 export * from './createBuildConfig'
 export * from './defaultBuildConfig'
 export * from './dependencies'

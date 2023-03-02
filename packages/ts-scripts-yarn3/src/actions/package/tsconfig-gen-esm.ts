@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'fs'
 
 import { createBuildConfig } from '../../lib'
 
-export const packageTsconfigGenEsm = () => {
+export const packageTsconfigGenEsm = (quiet = false) => {
   const pkg = process.env.INIT_CWD ?? './'
   const pkgName = process.env.npm_package_name
 
@@ -19,7 +19,9 @@ export const packageTsconfigGenEsm = () => {
         currentConfig = undefined
       }
       if (currentConfig !== config) {
-        console.log(chalk.gray(`Updating ESM tsconfig [${pkgName}]`))
+        if (!quiet) {
+          console.log(chalk.gray(`Updating ESM tsconfig [${pkgName}]`))
+        }
         writeFileSync(`${pkg}/.tsconfig.build.esm.json`, config, { encoding: 'utf8' })
       }
     }

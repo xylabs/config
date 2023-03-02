@@ -35,10 +35,12 @@
     "package-copy-assets-esm": "dist/cjs/bin/package/copy-assets-esm.js",
     "package-deps": "dist/cjs/bin/package/deps.js",
     "package-gen-docs": "dist/cjs/bin/package/gen-docs.js",
+    "package-recompile": "dist/cjs/bin/package/recompile.js",
     "package-tsconfig-gen": "dist/cjs/bin/package/tsconfig-gen.js",
     "package-tsconfig-gen-cjs": "dist/cjs/bin/package/tsconfig-gen-cjs.js",
     "package-tsconfig-gen-esm": "dist/cjs/bin/package/tsconfig-gen-esm.js",
     "rebuild": "dist/cjs/bin/rebuild.js",
+    "recompile": "dist/cjs/bin/recompile.js",
     "reinstall": "dist/cjs/bin/reinstall.js",
     "relint": "dist/cjs/bin/relint.js",
     "sonar": "dist/cjs/bin/sonar.js",
@@ -144,5 +146,6 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.15.0"
+  "version": "2.16.0-rc.2",
+  "stableVersion": "2.15.0"
 }
