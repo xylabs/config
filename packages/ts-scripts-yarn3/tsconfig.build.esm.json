@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
+    "rootDirs": [
+      "package.json"
+    ],
     "composite": true,
+    "declarationDir": "./dist/types",
+    "typeRoots": [],
     "module": "ESNext",
     "outDir": "./dist/esm",
     "target": "ESNext"
   },
+  "extends": "@xylabs/tsconfig",
   "exclude": [
     "**/build",
     "**/dist",
@@ -16,7 +23,6 @@
     "**/spec/*",
     "**/stories/*"
   ],
-  "extends": "@xylabs/tsconfig",
   "include": [
     "src"
   ]

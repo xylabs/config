@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "declarationDir": "./dist/types",
+    "typeRoots": []
   },
-  "extends": "../../tsconfig.json"
+  "extends": "@xylabs/tsconfig",
+  "include": ["src"]
 }

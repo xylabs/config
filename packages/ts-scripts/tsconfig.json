@@ -2,5 +2,6 @@
   "compilerOptions": {
     "composite": true
   },
-  "extends": "../../tsconfig.json"
+  "extends": "@xylabs/tsconfig",
+  "include": ["src"]
 }
