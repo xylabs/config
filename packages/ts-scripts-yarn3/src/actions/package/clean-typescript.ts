@@ -8,12 +8,10 @@ export const packageCleanTypescript = () => {
   console.log(chalk.green(`Cleaning Typescript [${pkgName}]`))
 
   const buildInfo = path.join(pkg, '*.tsbuildinfo')
-  console.log(chalk.gray(`rimraf [${buildInfo}]`))
-  rimrafSync(buildInfo)
+  rimrafSync(buildInfo, { glob: true })
 
   const tsConfig = path.join(pkg, '.tsconfig.*')
-  console.log(chalk.gray(`rimraf [${tsConfig}]`))
-  rimrafSync(tsConfig)
+  rimrafSync(tsConfig, { glob: true })
 
   return 0
 }

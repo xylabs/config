@@ -7,7 +7,7 @@ export const cleanESLint = () => {
   const pkgName = process.env.npm_package_name
   console.log(chalk.green(`Cleaning ESLint [${pkgName}]`))
 
-  rimrafSync(path.join(pkg, '.eslintcache'))
+  rimrafSync(path.join(pkg, '.eslintcache'), { glob: true })
 
   return 0
 }
