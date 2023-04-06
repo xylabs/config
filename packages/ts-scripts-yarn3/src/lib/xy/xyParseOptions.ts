@@ -4,6 +4,7 @@ import { hideBin } from 'yargs/helpers'
 
 export const xyParseOptions = (): yargs.Argv => {
   return yargs(hideBin(process.argv))
+    .scriptName('xy')
     .option('jobs', {
       alias: 'j',
       default: undefined,
