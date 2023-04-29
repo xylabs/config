@@ -25,9 +25,9 @@ export const xyLintCommands = (args: yargs.Argv) => {
           describe: 'Specific package to check',
         })
       },
-      (argv) => {
+      async (argv) => {
         if (argv.verbose) console.log('Lint')
-        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : lint({ pkg: argv.package as string })
+        process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : await lint({ pkg: argv.package as string })
       },
     )
     .command(

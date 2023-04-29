@@ -1,6 +1,7 @@
 import { rmSync } from 'fs'
 
-import { runSteps, yarnWorkspaces } from '../lib'
+import { yarnWorkspaces } from '../lib'
+import { lint } from './lint'
 
 export const lintClean = () => {
   console.log('Lint Clean [.eslintcache]')
@@ -18,5 +19,5 @@ export const lintClean = () => {
       }
     })
     .reduce((prev, result) => prev || result, 0)
-  return result || runSteps('Lint [Clean]', [['yarn', ['eslint', '.', '--cache']]])
+  return result || lint()
 }
