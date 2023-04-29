@@ -63,13 +63,13 @@
     "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "@types/node": "~18.15.11",
+    "@babel/core": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "@types/node": "~18.16.2",
     "chalk": "^4.1.2",
     "cpy": "^8.1.2",
     "depcheck": "^1.4.3",
-    "eslint": "^8.37.0",
+    "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-sonarjs": "^0.19.0",
@@ -81,11 +81,11 @@
     "license-checker": "^25.0.1",
     "lodash": "^4.17.21",
     "node-cmd": "^5.0.0",
-    "npm-check-updates": "^16.10.2",
+    "npm-check-updates": "^16.10.9",
     "npm-package-json-lint": "^6.4.0",
     "npm-package-json-lint-config-default": "^5.0.0",
     "parse-git-config": "^3.0.0",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^4.4.1",
     "supertest": "^6.3.3",
@@ -94,13 +94,13 @@
     "ts-prune": "^0.10.3",
     "typedoc": "^0.23.28",
     "typescript": "^4.9.5",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/depcheck": "^0.9.1",
     "@types/license-checker": "^25.0.3",
-    "@types/lodash": "^4.14.192",
+    "@types/lodash": "^4.14.194",
     "@types/parse-git-config": "^3.0.1",
     "@xylabs/eslint-config": "^2.16.5",
     "@xylabs/tsconfig": "^2.16.5"
