@@ -19,7 +19,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "typescript": "^4"
+    "typescript": "^5"
   },
   "homepage": "https://github.com/xylabs/config.git",
   "keywords": [

@@ -3140,7 +3140,7 @@ __metadata:
     "@xylabs/tsconfig": "workspace:^"
     typescript: ^5.0.4
   peerDependencies:
-    typescript: ^4
+    typescript: ^5
   languageName: unknown
   linkType: soft
 
@@ -3152,7 +3152,7 @@ __metadata:
     "@xylabs/tsconfig-dom": "workspace:^"
     typescript: ^5.0.4
   peerDependencies:
-    typescript: ^4
+    typescript: ^5
   languageName: unknown
   linkType: soft
 
