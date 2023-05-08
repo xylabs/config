@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: ['plugin:@typescript-eslint/recommended'],
   overrides: [
     {
       files: ['*.ts*', '*.d.ts*'],
@@ -107,6 +107,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
+    project: 'tsconfig.json',
     sourceType: 'module',
   },
   settings: {
