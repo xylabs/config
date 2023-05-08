@@ -49,7 +49,7 @@
     "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
-    "@babel/core": "^7.21.5",
+    "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
     "@types/node": "^18.16.3",
     "@xylabs/eslint-config": "workspace:^",
@@ -127,5 +127,5 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.17.6"
+  "version": "2.17.7"
 }
