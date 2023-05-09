@@ -105,8 +105,8 @@
     "@types/license-checker": "^25.0.3",
     "@types/lodash": "^4.14.194",
     "@types/parse-git-config": "^3.0.1",
-    "@xylabs/eslint-config": "^2.17.11",
-    "@xylabs/tsconfig": "^2.17.11"
+    "@xylabs/eslint-config": "^2.17.12",
+    "@xylabs/tsconfig": "^2.17.12"
   },
   "homepage": "https://xylabs.com",
   "keywords": [
@@ -150,5 +150,5 @@
     "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
   },
   "sideEffects": false,
-  "version": "2.17.11"
+  "version": "2.17.12"
 }
