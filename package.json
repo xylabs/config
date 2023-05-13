@@ -66,7 +66,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "2.17.12",
+  "version": "2.17.13",
   "packageManager": "yarn@3.4.1",
   "scripts": {
     "build": "echo Building... && yarn compile",
