@@ -78,7 +78,6 @@
     "ts-node": "^10.9.1",
     "ts-prune": "^0.10.3",
     "typedoc": "^0.23.28",
-    "typescript": "^5.0.4",
     "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",
@@ -86,7 +85,11 @@
     "@types/json-schema": "^7.0.11",
     "@types/yargs": "^17.0.24",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": "workspace:^",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "typescript": "^4 || ^5"
   },
   "homepage": "https://xylabs.com",
   "keywords": [

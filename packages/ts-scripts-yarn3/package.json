@@ -95,7 +95,6 @@
     "ts-node": "^10.9.1",
     "ts-prune": "^0.10.3",
     "typedoc": "^0.23.28",
-    "typescript": "^5.0.4",
     "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",
@@ -106,7 +105,11 @@
     "@types/lodash": "^4.14.194",
     "@types/parse-git-config": "^3.0.1",
     "@xylabs/eslint-config": "^2.17.12",
-    "@xylabs/tsconfig": "^2.17.12"
+    "@xylabs/tsconfig": "^2.17.12",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "typescript": "^4 || ^5"
   },
   "homepage": "https://xylabs.com",
   "keywords": [

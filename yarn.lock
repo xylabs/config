@@ -2896,6 +2896,8 @@ __metadata:
     typedoc: ^0.23.28
     typescript: ^5.0.4
     yargs: ^17.7.2
+  peerDependencies:
+    typescript: ^4 || ^5
   bin:
     analyze: dist/cjs/bin/analyze.js
     build: dist/cjs/bin/build.js
@@ -2982,6 +2984,8 @@ __metadata:
     typedoc: ^0.23.28
     typescript: ^5.0.4
     yargs: ^17.7.2
+  peerDependencies:
+    typescript: ^4 || ^5
   bin:
     build: dist/cjs/bin/build.js
     clean: dist/cjs/bin/clean.js
