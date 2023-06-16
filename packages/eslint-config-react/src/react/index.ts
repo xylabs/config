@@ -9,7 +9,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': [
           'warn',
           {
-            additionalHooks: '(useAsyncEffect)',
+            additionalHooks: '(useAsyncEffect|usePromise)',
           },
         ],
         'react/prop-types': ['off'],
