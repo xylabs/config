@@ -114,7 +114,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log(`TsconfigGen: ${argv.package ?? 'all'}`)
-        process.exitCode = tsconfigGen({ target: argv.target as 'esm' | 'cjs' })
+        process.exitCode = tsconfigGen({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
       },
     )
     .command(
