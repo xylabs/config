@@ -73,15 +73,11 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       },
     )
     .command(
-      'clean-docs [package]',
+      'clean-docs',
       'CleanDocs - Clean TypeDocs',
-      (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to clean docs for',
-        })
-      },
+      (yargs) => yargs,
       (argv) => {
-        if (argv.verbose) console.log(`Cleaning TypeDocs: ${argv.package ?? 'all'}`)
+        if (argv.verbose) console.log('Cleaning TypeDocs: all')
         process.exitCode = cleanDocs()
       },
     )
