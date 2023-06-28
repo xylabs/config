@@ -1,5 +1,6 @@
 export * from './build'
 export * from './clean'
+export * from './clean-docs'
 export * from './compile'
 export * from './copy-assets'
 export * from './cycle'

@@ -1,6 +1,7 @@
 import yargs from 'yargs'
 
 import {
+  cleanDocs,
   dead,
   deps,
   genDocs,
@@ -69,6 +70,15 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log(`Generating TypeDocs: ${argv.package ?? 'all'}`)
         process.exitCode = genDocs({ incremental: !!argv.incremental, pkg: argv.package as string })
+      },
+    )
+    .command(
+      'clean-docs',
+      'CleanDocs - Clean TypeDocs',
+      (yargs) => yargs,
+      (argv) => {
+        if (argv.verbose) console.log('Cleaning TypeDocs: all')
+        process.exitCode = cleanDocs()
       },
     )
     .command(

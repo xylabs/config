@@ -1,11 +1,24 @@
 .*
+.env
+.eslintcache
+.example.env
 tsconfig*
-rollup.config.ts
+.tsconfig*
 jest.config.js
 rollup.config.ts
 yarn.lock
+**/*.spec.ts
+**/*.snap
 
-*.tsconfig*
+*.eslintcache
+*.tsbuildinfo
 
+.github
+docs
 .pnp.*
+.vscode
 .yarn/*
+coverage
+cspell.json
+node_modules
+swagger.json
