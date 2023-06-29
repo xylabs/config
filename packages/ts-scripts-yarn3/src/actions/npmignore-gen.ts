@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 
 import chalk from 'chalk'
 
-import { INIT_CWD, yarnWorkspaces } from '../lib'
+import { INIT_CWD, yarnWorkspace, yarnWorkspaces } from '../lib'
 
 const WINDOWS_NEWLINE_REGEX = /\r\n/g
 const CROSS_PLATFORM_NEWLINE = '\n'
@@ -35,7 +35,7 @@ const getNpmIgnoreEntries = (location: string): string[] => {
 const mergeNpmIgnoreEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
 
 export const npmignoreGen = (pkg?: string) => {
-  const workspaceList = yarnWorkspaces().filter(({ name }) => pkg === undefined || name === pkg)
+  const workspaceList = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
   console.log(chalk.green('Generate .npmignore Files'))
   const cwd = INIT_CWD() ?? '.'
   return workspaceList
