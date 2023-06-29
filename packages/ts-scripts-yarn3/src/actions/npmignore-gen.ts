@@ -11,9 +11,7 @@ const opts = { encoding: 'utf-8' } as const
 const empty = (value: string | undefined): boolean => value?.trim().length === 0
 const notEmpty = (value: string | undefined): boolean => !empty(value)
 
-const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
-  return new Set([...a, ...b])
-}
+const union = (a: string[], b: string[]): Set<string> => new Set([...new Set(a), ...new Set(b)])
 
 const readNpmIgnore = (location: string): string | undefined => {
   const npmignore = `${location}/.npmignore`
@@ -24,21 +22,17 @@ const writeNpmIgnore = (location: string, entries: string[]) => {
   const npmignore = `${location}/.npmignore`
   const data = entries.join(CROSS_PLATFORM_NEWLINE)
   // Check if the file is different before writing
-  if (!existsSync(npmignore) || readNpmIgnore(location) !== data) writeFileSync(npmignore, data, opts)
+  if (readNpmIgnore(location) !== data) writeFileSync(npmignore, data, opts)
 }
 
 const getNpmIgnoreEntries = (location: string): string[] => {
   const npmignore = `${location}/.npmignore`
   return existsSync(npmignore)
-    ? readFileSync(npmignore, opts).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE).filter(notEmpty)
+    ? readFileSync(npmignore, opts).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE).filter(notEmpty).sort()
     : []
 }
 
-const mergeNpmIgnoreEntries = (root: string[], pkg: string[]): string[] => {
-  const filteredRoot = new Set(root.filter(notEmpty).sort())
-  const filteredPkg = new Set(pkg.filter(notEmpty).sort())
-  return [...union(filteredRoot, filteredPkg)].sort()
-}
+const mergeNpmIgnoreEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
 
 export const npmignoreGen = (pkg?: string) => {
   const workspaceList = yarnWorkspaces().filter(({ name }) => pkg === undefined || name === pkg)
