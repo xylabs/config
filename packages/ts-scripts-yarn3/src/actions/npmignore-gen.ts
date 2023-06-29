@@ -7,22 +7,19 @@ const writeEntries = (location: string, entries: string[]) => writeLines(`${loca
 const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
 
 export const npmignoreGen = (pkg?: string) => {
-  const workspaceList = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
   console.log(chalk.green('Generate .npmignore Files'))
   const cwd = INIT_CWD() ?? '.'
-  return workspaceList
-    .map(({ location, name }) => {
-      try {
-        const root = readEntries(cwd)
-        const pkg = readEntries(location)
-        const merged = mergeEntries(root, pkg)
-        writeEntries(location, merged)
-        return 0
-      } catch (ex) {
-        const error = ex as Error
-        console.error(`Generate .npmignore Files [${name}] [${error.message}]`)
-        return 1
-      }
-    })
-    .reduce((prev, value) => prev || value, 0)
+  const workspaces = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
+  const results = workspaces.map(({ location, name }) => {
+    try {
+      writeEntries(location, mergeEntries(readEntries(cwd), readEntries(location)))
+      return 0
+    } catch (ex) {
+      const error = ex as Error
+      console.error(`Generate .npmignore Files [${name}] [${error.message}]`)
+      return 1
+    }
+  })
+  const succeeded = results.every((result) => result === 0)
+  return succeeded ? 0 : 1
 }
