@@ -12,6 +12,8 @@ export const yarnWorkspaces = (): Workspace[] => {
   }
   const list = result.stdout
     .toString()
+    // NOTE: This probably doesn't work on Windows
+    // TODO: Replace /r/n with /n first
     .split('\n')
     .slice(0, -1)
     .map((item) => {
