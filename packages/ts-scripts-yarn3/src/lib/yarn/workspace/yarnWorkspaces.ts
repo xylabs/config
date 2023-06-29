@@ -1,9 +1,6 @@
 import { spawnSync } from 'child_process'
 
-export interface Workspace {
-  location: string
-  name: string
-}
+import { Workspace } from './Workspace'
 
 export const yarnWorkspaces = (): Workspace[] => {
   const result = spawnSync('yarn', ['workspaces', 'list', '--json', '--recursive'], { encoding: 'utf8', shell: true })

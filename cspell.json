@@ -1,11 +1,11 @@
 {
-    "version": "0.2",
-    "ignorePaths": [],
-    "dictionaryDefinitions": [],
     "dictionaries": [],
+    "dictionaryDefinitions": [],
+    "ignorePaths": [],
+    "ignoreWords": [],
+    "import": [],
+    "version": "0.2",
     "words": [
         "npmignore"
-    ],
-    "ignoreWords": [],
-    "import": []
+    ]
 }

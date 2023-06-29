@@ -1,14 +1,12 @@
+import chalk from 'chalk'
 import { rmSync } from 'fs'
 
-import { yarnWorkspaces } from '../lib'
+import { yarnWorkspace, yarnWorkspaces } from '../lib'
 
 export const tsconfigGenClean = (pkg?: string) => {
-  const workspaces = yarnWorkspaces()
-  const workspaceList = workspaces.filter(({ name }) => {
-    return pkg === undefined || name === pkg
-  })
-
-  return workspaceList
+  const workspaces = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
+  console.log(chalk.green('Clean TSConfigs'))
+  return workspaces
     .map(({ location, name }) => {
       const dist = `${location}/**/.tsconfig*`
       try {

@@ -5,6 +5,7 @@ import {
   dead,
   deps,
   genDocs,
+  gitignoreGen,
   gitlint,
   gitlintFix,
   license,
@@ -91,6 +92,17 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Gitlint')
         process.exitCode = argv.fix ? gitlintFix() : gitlint()
+      },
+    )
+    .command(
+      'gitignore-gen',
+      'GitIgnore Gen - Generate .gitignore files',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('GitIgnore Gen')
+        process.exitCode = gitignoreGen()
       },
     )
     .command(
