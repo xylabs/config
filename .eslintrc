@@ -1,13 +1,21 @@
 {
   "root": true,
-  "ignorePatterns": ["node_modules/", "dist/"],
+  "ignorePatterns": [
+    "**/dist",
+    "**/node_modules",
+    "**/docs",
+    "coverage",
+    "docker",
+    "swagger.json",
+    ".yarn",
+    "dist",
+    "docs"
+  ],
   "extends": [
     "@xylabs"
   ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "rules": {
+    "import/no-nodejs-modules": ["warn"],
     "import/no-internal-modules": [
       "warn", {
         "allow": [
