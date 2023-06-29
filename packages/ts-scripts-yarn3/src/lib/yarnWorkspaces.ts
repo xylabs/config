@@ -22,6 +22,8 @@ export const yarnWorkspaces = (): Workspace[] => {
   return list
 }
 
-export const yarnWorkspace = (pkg: string): Workspace | undefined => {
-  return yarnWorkspaces().find(({ name }) => name === pkg)
+export const yarnWorkspace = (pkg: string): Workspace => {
+  const workspace = yarnWorkspaces().find(({ name }) => name === pkg)
+  if (!workspace) throw new Error(`Workspace ${pkg} not found`)
+  return workspace
 }
