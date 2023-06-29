@@ -4,6 +4,11 @@ import chalk from 'chalk'
 
 import { INIT_CWD, yarnWorkspaces } from '../lib'
 
+const WINDOWS_NEWLINE_REGEX = /\r\n/g
+const NEWLINE = '\n'
+
+const fileOpts = { encoding: 'utf-8' } as const
+
 const empty = (value: string | undefined): boolean => value?.trim().length === 0
 
 const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
@@ -11,7 +16,13 @@ const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
 }
 
 const getNpmIgnore = (location: string): string[] => {
-  return existsSync(location) ? readFileSync(`${location}/.npmignore`, { encoding: 'utf8' }).replace(/\r\n/g, '\n').split('\n').filter(empty) : []
+  const file = `${location}/.npmignore`
+  return existsSync(file)
+    ? readFileSync(file, fileOpts)
+        .replace(WINDOWS_NEWLINE_REGEX, NEWLINE)
+        .split(NEWLINE)
+        .filter((v) => !empty(v))
+    : []
 }
 
 const mergeWithPrecedence = (root: string[], pkg: string[]): string[] => {
@@ -22,7 +33,7 @@ const mergeWithPrecedence = (root: string[], pkg: string[]): string[] => {
 
 const writeNpmIgnore = (location: string, entries: string[]) => {
   // TODO: Check if the file is different before writing
-  writeFileSync(`${location}/.npmignore`, entries.join('\n'), { encoding: 'utf8' })
+  writeFileSync(`${location}/.npmignore`, entries.join('\n'), fileOpts)
 }
 
 export const npmignoreGen = (pkg?: string) => {
@@ -39,7 +50,9 @@ export const npmignoreGen = (pkg?: string) => {
         const cwd = INIT_CWD() ?? '.'
         const root = getNpmIgnore(cwd)
         const pkg = getNpmIgnore(location)
-        writeNpmIgnore(location, mergeWithPrecedence(root, pkg))
+        console.log(root)
+        console.log(pkg)
+        // writeNpmIgnore(location, mergeWithPrecedence(root, pkg))
         return 0
       } catch (ex) {
         const error = ex as Error
