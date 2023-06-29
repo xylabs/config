@@ -8,8 +8,8 @@ const WINDOWS_NEWLINE_REGEX = /\r\n/g
 const CROSS_PLATFORM_NEWLINE = '\n'
 const opts = { encoding: 'utf-8' } as const
 
-const empty = (value: string | undefined): boolean => value?.trim().length === 0
-const notEmpty = (value: string | undefined): boolean => !empty(value)
+const empty = (value?: string | undefined): boolean => value?.trim().length === 0
+const notEmpty = (value?: string | undefined): boolean => !empty(value)
 
 const union = (a: string[], b: string[]): Set<string> => new Set([...new Set(a), ...new Set(b)])
 
