@@ -10,6 +10,7 @@ const NEWLINE = '\n'
 const fileOpts = { encoding: 'utf-8' } as const
 
 const empty = (value: string | undefined): boolean => value?.trim().length === 0
+const notEmpty = (value: string | undefined): boolean => value?.trim().length !== 0
 
 const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
   return new Set([...a, ...b])
@@ -17,23 +18,19 @@ const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
 
 const getNpmIgnore = (location: string): string[] => {
   const file = `${location}/.npmignore`
-  return existsSync(file)
-    ? readFileSync(file, fileOpts)
-        .replace(WINDOWS_NEWLINE_REGEX, NEWLINE)
-        .split(NEWLINE)
-        .filter((v) => !empty(v))
-    : []
+  return existsSync(file) ? readFileSync(file, fileOpts).replace(WINDOWS_NEWLINE_REGEX, NEWLINE).split(NEWLINE).filter(notEmpty) : []
 }
 
 const mergeWithPrecedence = (root: string[], pkg: string[]): string[] => {
-  const filteredRoot = new Set(root.filter(empty).sort())
-  const filteredPkg = new Set(pkg.filter(empty).sort())
+  const filteredRoot = new Set(root.filter(notEmpty).sort())
+  const filteredPkg = new Set(pkg.filter(notEmpty).sort())
   return [...union(filteredRoot, filteredPkg)].sort()
 }
 
 const writeNpmIgnore = (location: string, entries: string[]) => {
   // TODO: Check if the file is different before writing
-  writeFileSync(`${location}/.npmignore`, entries.join('\n'), fileOpts)
+  const data = entries.join(NEWLINE)
+  writeFileSync(`${location}/.npmignore`, data, fileOpts)
 }
 
 export const npmignoreGen = (pkg?: string) => {
