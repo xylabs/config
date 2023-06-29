@@ -5,11 +5,9 @@ import chalk from 'chalk'
 import { INIT_CWD, yarnWorkspaces } from '../lib'
 
 const WINDOWS_NEWLINE_REGEX = /\r\n/g
-const NEWLINE = '\n'
-
+const CROSS_PLATFORM_NEWLINE = '\n'
 const fileOpts = { encoding: 'utf-8' } as const
 
-const empty = (value: string | undefined): boolean => value?.trim().length === 0
 const notEmpty = (value: string | undefined): boolean => value?.trim().length !== 0
 
 const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
@@ -18,7 +16,9 @@ const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
 
 const getNpmIgnore = (location: string): string[] => {
   const file = `${location}/.npmignore`
-  return existsSync(file) ? readFileSync(file, fileOpts).replace(WINDOWS_NEWLINE_REGEX, NEWLINE).split(NEWLINE).filter(notEmpty) : []
+  return existsSync(file)
+    ? readFileSync(file, fileOpts).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE).filter(notEmpty)
+    : []
 }
 
 const mergeWithPrecedence = (root: string[], pkg: string[]): string[] => {
@@ -29,7 +29,7 @@ const mergeWithPrecedence = (root: string[], pkg: string[]): string[] => {
 
 const writeNpmIgnore = (location: string, entries: string[]) => {
   // TODO: Check if the file is different before writing
-  const data = entries.join(NEWLINE)
+  const data = entries.join(CROSS_PLATFORM_NEWLINE)
   writeFileSync(`${location}/.npmignore`, data, fileOpts)
 }
 
@@ -51,7 +51,7 @@ export const npmignoreGen = (pkg?: string) => {
         return 0
       } catch (ex) {
         const error = ex as Error
-        console.error(`tsconfig (CJS) generate failed [${name}] [${error.message}]`)
+        console.error(`Generate .npmignore Files [${name}] [${error.message}]`)
         return 1
       }
     })
