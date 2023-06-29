@@ -15,9 +15,16 @@ const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
   return new Set([...a, ...b])
 }
 
-const getNpmIgnore = (location: string): string | undefined => {
+const readNpmIgnore = (location: string): string | undefined => {
   const npmignore = `${location}/.npmignore`
   return existsSync(npmignore) ? readFileSync(npmignore, opts) : undefined
+}
+
+const writeNpmIgnore = (location: string, entries: string[]) => {
+  const npmignore = `${location}/.npmignore`
+  const data = entries.join(CROSS_PLATFORM_NEWLINE)
+  // Check if the file is different before writing
+  if (!existsSync(npmignore) || readNpmIgnore(location) !== data) writeFileSync(npmignore, data, opts)
 }
 
 const getNpmIgnoreEntries = (location: string): string[] => {
@@ -31,21 +38,6 @@ const mergeNpmIgnoreEntries = (root: string[], pkg: string[]): string[] => {
   const filteredRoot = new Set(root.filter(notEmpty).sort())
   const filteredPkg = new Set(pkg.filter(notEmpty).sort())
   return [...union(filteredRoot, filteredPkg)].sort()
-}
-
-const writeNpmIgnore = (location: string, entries: string[]) => {
-  const data = entries.join(CROSS_PLATFORM_NEWLINE)
-  const npmignore = `${location}/.npmignore`
-  const writeNewNpmIgnore = () => writeFileSync(npmignore, data, opts)
-  // Check if the file is different before writing
-  if (existsSync(npmignore)) {
-    const existing = getNpmIgnore(location)
-    if (existing !== data) {
-      writeNewNpmIgnore()
-    }
-  } else {
-    writeNewNpmIgnore()
-  }
 }
 
 export const npmignoreGen = (pkg?: string) => {
