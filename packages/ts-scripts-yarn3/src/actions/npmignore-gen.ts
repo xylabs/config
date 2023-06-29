@@ -1,15 +1,9 @@
 import chalk from 'chalk'
 
-import { CROSS_PLATFORM_NEWLINE, INIT_CWD, readNonEmptyLines, tryReadFileSync, union, writeLines, yarnWorkspace, yarnWorkspaces } from '../lib'
+import { INIT_CWD, readNonEmptyLines, union, writeLines, yarnWorkspace, yarnWorkspaces } from '../lib'
 
-const writeNpmIgnore = (location: string, entries: string[]) => {
-  const existing = tryReadFileSync(`${location}/.npmignore`)
-  const desired = entries.join(CROSS_PLATFORM_NEWLINE)
-  // Check if the file is different before writing
-  if (existing !== desired) writeLines(`${location}/.npmignore`, entries)
-}
-
-const getEntries = (location: string): string[] => readNonEmptyLines(`${location}/.npmignore`).sort()
+const readEntries = (location: string): string[] => readNonEmptyLines(`${location}/.npmignore`)
+const writeEntries = (location: string, entries: string[]) => writeLines(`${location}/.npmignore`, entries)
 const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
 
 export const npmignoreGen = (pkg?: string) => {
@@ -19,10 +13,10 @@ export const npmignoreGen = (pkg?: string) => {
   return workspaceList
     .map(({ location, name }) => {
       try {
-        const root = getEntries(cwd)
-        const pkg = getEntries(location)
+        const root = readEntries(cwd)
+        const pkg = readEntries(location)
         const merged = mergeEntries(root, pkg)
-        writeNpmIgnore(location, merged)
+        writeEntries(location, merged)
         return 0
       } catch (ex) {
         const error = ex as Error
