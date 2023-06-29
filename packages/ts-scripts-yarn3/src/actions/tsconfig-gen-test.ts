@@ -1,37 +1,32 @@
 import chalk from 'chalk'
 import { readFileSync, writeFileSync } from 'fs'
 
-import { yarnWorkspaces } from '../lib'
+import { yarnWorkspace, yarnWorkspaces } from '../lib'
 
+const tsconfigName = '.tsconfig.build.test.json'
+const tsconfig = JSON.stringify(
+  {
+    extends: './tsconfig.json',
+    include: ['src/**/*.spec.ts'],
+  },
+  null,
+  2,
+)
 export const tsconfigGenTest = (pkg?: string) => {
-  const workspaces = yarnWorkspaces()
-  const workspaceList = workspaces.filter(({ name }) => {
-    return pkg === undefined || name === pkg
-  })
-
+  const workspaces = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
   console.log(chalk.green('Generate Configs [Test]'))
-
-  const config = JSON.stringify(
-    {
-      extends: './tsconfig.json',
-      include: ['src/**/*.spec.ts'],
-    },
-    null,
-    2,
-  )
-
-  return workspaceList
+  return workspaces
     .map(({ location, name }) => {
       try {
         let currentConfig: string | undefined
         try {
-          currentConfig = readFileSync(`${location}/.tsconfig.build.test.json`, { encoding: 'utf8' })
+          currentConfig = readFileSync(`${location}/${tsconfigName}`, { encoding: 'utf8' })
         } catch (ex) {
           currentConfig = undefined
         }
-        if (currentConfig !== config) {
+        if (currentConfig !== tsconfig) {
           console.log(chalk.gray(`Updating TEST tsconfig [${name}]`))
-          writeFileSync(`${location}/.tsconfig.build.test.json`, config, { encoding: 'utf8' })
+          writeFileSync(`${location}/${tsconfigName}`, tsconfig, { encoding: 'utf8' })
         }
         return 0
       } catch (ex) {
