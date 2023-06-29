@@ -50,9 +50,7 @@ export const npmignoreGen = (pkg?: string) => {
         const cwd = INIT_CWD() ?? '.'
         const root = getNpmIgnore(cwd)
         const pkg = getNpmIgnore(location)
-        console.log(root)
-        console.log(pkg)
-        // writeNpmIgnore(location, mergeWithPrecedence(root, pkg))
+        writeNpmIgnore(location, mergeWithPrecedence(root, pkg))
         return 0
       } catch (ex) {
         const error = ex as Error
