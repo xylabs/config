@@ -8,6 +8,7 @@ import {
   gitlint,
   gitlintFix,
   license,
+  npmignoreGen,
   retest,
   test,
   tsconfigGen,
@@ -90,6 +91,17 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Gitlint')
         process.exitCode = argv.fix ? gitlintFix() : gitlint()
+      },
+    )
+    .command(
+      'npmignore-gen',
+      'NpmIgnore Gen - Generate .npmignore files',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('NpmIgnore Gen')
+        process.exitCode = npmignoreGen()
       },
     )
     .command(
