@@ -15,6 +15,11 @@ const union = <TKey>(a: Set<TKey>, b: Set<TKey>): Set<TKey> => {
   return new Set([...a, ...b])
 }
 
+const getNpmIgnore = (location: string): string | undefined => {
+  const npmignore = `${location}/.npmignore`
+  return existsSync(npmignore) ? readFileSync(npmignore, opts) : undefined
+}
+
 const getNpmIgnoreEntries = (location: string): string[] => {
   const npmignore = `${location}/.npmignore`
   return existsSync(npmignore)
@@ -29,13 +34,18 @@ const mergeNpmIgnoreEntries = (root: string[], pkg: string[]): string[] => {
 }
 
 const writeNpmIgnore = (location: string, entries: string[]) => {
-  // TODO: Check if the file is different before writing
   const data = entries.join(CROSS_PLATFORM_NEWLINE)
   const npmignore = `${location}/.npmignore`
+  const writeNewNpmIgnore = () => writeFileSync(npmignore, data, opts)
+  // Check if the file is different before writing
   if (existsSync(npmignore)) {
-    //
+    const existing = getNpmIgnore(location)
+    if (existing !== data) {
+      writeNewNpmIgnore()
+    }
+  } else {
+    writeNewNpmIgnore()
   }
-  writeFileSync(npmignore, data, opts)
 }
 
 export const npmignoreGen = (pkg?: string) => {
