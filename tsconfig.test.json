@@ -1,4 +1,8 @@
 {
-  "extends": "./tsconfig.json",
-  "include": ["**/*.spec.ts"]
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "extends": "@xylabs/tsconfig-jest",
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
