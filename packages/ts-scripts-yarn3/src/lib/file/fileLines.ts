@@ -10,5 +10,9 @@ export const readLines = (uri: PathLike, options: ReadFileSyncOptions = defaultR
 export const readNonEmptyLines = (uri: PathLike, options: ReadFileSyncOptions = defaultReadFileSyncOptions): string[] =>
   readLines(uri, options).filter(notEmpty)
 
-export const writeLines = (uri: PathLike, entries: string[], options: WriteFileOptions = defaultReadFileSyncOptions) =>
-  writeFileSync(uri, entries.join(CROSS_PLATFORM_NEWLINE), options)
+export const writeLines = (uri: PathLike, lines: string[], options: WriteFileOptions = defaultReadFileSyncOptions) => {
+  const existing = existsSync(uri) ? readFileSync(uri, options) : undefined
+  const desired = lines.join(CROSS_PLATFORM_NEWLINE)
+  // Check if the file is different before writing
+  if (existing !== desired) writeFileSync(uri, desired, options)
+}
