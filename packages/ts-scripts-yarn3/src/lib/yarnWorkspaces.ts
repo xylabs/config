@@ -21,3 +21,7 @@ export const yarnWorkspaces = (): Workspace[] => {
     })
   return list
 }
+
+export const yarnWorkspace = (pkg: string): Workspace | undefined => {
+  return yarnWorkspaces().find(({ name }) => name === pkg)
+}
