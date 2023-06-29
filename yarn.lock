@@ -3094,6 +3094,7 @@ __metadata:
   bin:
     build: dist/cjs/bin/build.js
     clean: dist/cjs/bin/clean.js
+    clean-docs: dist/cjs/bin/clean-docs.js
     compile: dist/cjs/bin/compile.js
     compile-cjs: dist/cjs/bin/compile-cjs.js
     compile-esm: dist/cjs/bin/compile-esm.js
