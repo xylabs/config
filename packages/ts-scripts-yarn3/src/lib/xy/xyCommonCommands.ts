@@ -5,10 +5,10 @@ import {
   dead,
   deps,
   genDocs,
-  generateIgnoreFiles,
   gitlint,
   gitlintFix,
   license,
+  npmignoreGen,
   retest,
   test,
   tsconfigGen,
@@ -101,7 +101,7 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('NpmIgnore Gen')
-        process.exitCode = generateIgnoreFiles()
+        process.exitCode = npmignoreGen()
       },
     )
     .command(
