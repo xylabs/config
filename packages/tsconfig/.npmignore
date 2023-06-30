@@ -18,4 +18,5 @@ jest.config.js
 node_modules
 rollup.config.ts
 swagger.json
+tsconfig*.json
 yarn.lock
