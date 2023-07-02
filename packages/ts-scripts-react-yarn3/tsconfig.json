@@ -4,6 +4,5 @@
     "declarationDir": "./dist/types",
     "typeRoots": []
   },
-  "extends": "@xylabs/tsconfig",
-  "include": ["src"]
+  "extends": "@xylabs/tsconfig"
 }

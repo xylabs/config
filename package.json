@@ -24,14 +24,14 @@
   "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/jest": "^29.5.2",
-    "@types/node": "^20.3.2",
+    "@types/node": "^20.3.3",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "@xylabs/eslint-config": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "^2.18.5",
     "cpy-cli": "^4.2.0",
-    "eslint": "^8.43.0",
+    "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-deprecation": "^1.4.1",
@@ -47,7 +47,7 @@
     "jest-sorted": "^1.0.14",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.5"
+    "typescript": "^5.1.6"
   },
   "homepage": "https://xylabs.com",
   "keywords": [

@@ -2,6 +2,5 @@
   "compilerOptions": {
     "composite": true
   },
-  "extends": "@xylabs/tsconfig",
-  "include": ["src"]
+  "extends": "@xylabs/tsconfig"
 }
