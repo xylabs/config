@@ -1,6 +1,7 @@
 import yargs from 'yargs'
 
 import { cycle, fix, lint, lintProfile, relint, sonar } from '../../actions'
+import chalk from 'chalk'
 
 export const xyLintCommands = (args: yargs.Argv) => {
   return args
@@ -13,8 +14,10 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
+        const start = Date.now()
         if (argv.verbose) console.log('Cycle')
         process.exitCode = cycle()
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
     .command(
@@ -27,7 +30,9 @@ export const xyLintCommands = (args: yargs.Argv) => {
       },
       async (argv) => {
         if (argv.verbose) console.log('Lint')
+        const start = Date.now()
         process.exitCode = argv.fix ? fix() : argv.profile ? lintProfile() : await lint({ pkg: argv.package as string })
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
     .command(
@@ -39,8 +44,10 @@ export const xyLintCommands = (args: yargs.Argv) => {
         })
       },
       (argv) => {
+        const start = Date.now()
         if (argv.verbose) console.log('Fix')
         process.exitCode = fix()
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
     .command(
@@ -53,7 +60,9 @@ export const xyLintCommands = (args: yargs.Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log('Relinting')
+        const start = Date.now()
         process.exitCode = relint()
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
     .command(
@@ -63,8 +72,10 @@ export const xyLintCommands = (args: yargs.Argv) => {
         return yargs
       },
       (argv) => {
+        const start = Date.now()
         if (argv.verbose) console.log('Sonar Check')
         process.exitCode = sonar()
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
 }

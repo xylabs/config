@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
-  plugins: ['import'],
+  plugins: ['import', 'simple-import-sort'],
   rules: {
     'import/namespace': ['warn'],
     'import/no-absolute-path': ['warn'],
@@ -22,6 +22,8 @@ module.exports = {
     'import/no-restricted-paths': ['warn'],
     'import/no-self-import': ['warn'],
     'import/no-useless-path-segments': ['warn'],
+    'simple-import-sort/exports': ['warn'],
+    'simple-import-sort/imports': ['warn'],
   },
   settings: {
     'import/parsers': {
@@ -30,7 +32,6 @@ module.exports = {
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
-        project: ['packages/*/tsconfig.json', 'tsconfig.json'],
       },
     },
   },
