@@ -1,5 +1,8 @@
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
+import { existsSync } from 'node:fs'
+import path from 'node:path'
+
 import chalk from 'chalk'
 import { Application, ArgumentsReader, TSConfigReader, TypeDocReader } from 'typedoc'
 
@@ -15,6 +18,13 @@ const ExitCodes = {
 
 export const packageGenDocs = async () => {
   const pkg = process.env.INIT_CWD
+
+  if (pkg) {
+    if (!existsSync(path.join(pkg, 'typedoc.json'))) {
+      return
+    }
+  }
+
   const app = new Application()
 
   app.options.addReader(new ArgumentsReader(0))
