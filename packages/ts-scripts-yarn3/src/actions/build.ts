@@ -24,7 +24,6 @@ export const build = async ({ incremental, jobs, target, verbose, pkg }: BuildPa
   const result = await runStepsAsync(`Build${incremental ? '-Incremental' : ''} [${pkg ?? 'All'}]`, [
     ['yarn', ['xy', 'recompile', ...pkgOptions, ...targetOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions]],
     ['yarn', ['xy', 'relint', ...pkgOptions, ...verboseOptions, ...incrementalOptions]],
-    ['yarn', ['xy', 'gen-docs', ...pkgOptions, ...verboseOptions, ...incrementalOptions]],
     ['yarn', ['xy', 'deps', ...pkgOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions]],
   ])
   console.log(`${chalk.gray('Built in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)

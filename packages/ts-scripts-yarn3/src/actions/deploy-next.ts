@@ -5,7 +5,6 @@ export const deployNext = () => {
     ['yarn', 'workspaces foreach --all version minor --deferred'],
     ['yarn', 'xy rebuild'],
     ['yarn', 'xy cycle'],
-    ['yarn', 'xy gen-docs'],
     ['yarn', 'version apply --all --prerelease'],
     ['yarn', 'workspaces foreach -pt npm publish --tag next'],
   ])
