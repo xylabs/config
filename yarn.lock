@@ -2863,7 +2863,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.60.1
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": ^2.18.10
+    "@xylabs/tsconfig": ^2.18.11
     cpy-cli: ^4.2.0
     depcheck: ^1.4.3
     eslint: ^8.44.0
@@ -2931,7 +2931,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config@^2.18.10, @xylabs/eslint-config@workspace:^, @xylabs/eslint-config@workspace:packages/eslint-config":
+"@xylabs/eslint-config@^2.18.11, @xylabs/eslint-config@workspace:^, @xylabs/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
   dependencies:
@@ -3060,8 +3060,8 @@ __metadata:
     "@types/parse-git-config": ^3.0.1
     "@typescript-eslint/eslint-plugin": ^5.60.1
     "@typescript-eslint/parser": ^5.60.1
-    "@xylabs/eslint-config": ^2.18.10
-    "@xylabs/tsconfig": ^2.18.10
+    "@xylabs/eslint-config": ^2.18.11
+    "@xylabs/tsconfig": ^2.18.11
     chalk: ^4.1.2
     cpy: ^8.1.2
     depcheck: ^1.4.3
@@ -3268,7 +3268,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.18.10, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@^2.18.11, @xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
