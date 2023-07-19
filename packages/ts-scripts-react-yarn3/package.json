@@ -55,7 +55,7 @@
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "chalk": "^4.1.2",
-    "cpy": "^8.1.2",
+    "cpy": "^10.1.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
