@@ -1,7 +1,7 @@
+import chalk from 'chalk'
 import yargs from 'yargs'
 
 import { cycle, fix, lint, lintProfile, relint, sonar } from '../../actions'
-import chalk from 'chalk'
 
 export const xyLintCommands = (args: yargs.Argv) => {
   return args

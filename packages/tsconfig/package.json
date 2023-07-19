@@ -12,7 +12,7 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "workspace:~"
   },
   "homepage": "https://github.com/xylabs/tsconfig.git",
   "keywords": [

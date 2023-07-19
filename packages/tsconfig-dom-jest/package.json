@@ -12,10 +12,10 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests [DOM]",
   "dependencies": {
-    "@xylabs/tsconfig-dom": "workspace:^"
+    "@xylabs/tsconfig-dom": "workspace:~"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "workspace:~"
   },
   "homepage": "https://github.com/xylabs/config.git",
   "keywords": [

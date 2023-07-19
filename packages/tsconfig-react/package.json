@@ -12,10 +12,10 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "dependencies": {
-    "@xylabs/tsconfig-dom": "workspace:^"
+    "@xylabs/tsconfig-dom": "workspace:~"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "workspace:~",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
