@@ -31,7 +31,7 @@ export const packageDeps = async () => {
     depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist', '.*'] }),
     depcheck(`${pkg}/.`, {
       ignoreMatches,
-      ignorePatterns: ['*.ts', '*.d.ts', 'dist'],
+      ignorePatterns: ['*.ts', '*.d.ts', 'dist', '.*'],
       specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
     }),
   ])
