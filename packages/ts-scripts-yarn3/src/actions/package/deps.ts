@@ -28,7 +28,7 @@ export const packageDeps = async () => {
   ignoreMatches.push('typescript')
 
   const unusedList = await Promise.all([
-    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist'] }),
+    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist', '.*'] }),
     depcheck(`${pkg}/.`, {
       ignoreMatches,
       ignorePatterns: ['*.ts', '*.d.ts', 'dist'],
