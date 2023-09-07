@@ -6,58 +6,59 @@
     "url": "https://xylabs.com"
   },
   "bin": {
-    "build": "dist/cjs/bin/build.js",
-    "clean": "dist/cjs/bin/clean.js",
-    "clean-docs": "dist/cjs/bin/clean-docs.js",
-    "compile": "dist/cjs/bin/compile.js",
-    "compile-cjs": "dist/cjs/bin/compile-cjs.js",
-    "compile-esm": "dist/cjs/bin/compile-esm.js",
-    "cycle": "dist/cjs/bin/cycle.js",
-    "dead": "dist/cjs/bin/dead.js",
-    "deploy": "dist/cjs/bin/deploy.js",
-    "deploy-major": "dist/cjs/bin/deploy-major.js",
-    "deploy-minor": "dist/cjs/bin/deploy-minor.js",
-    "deploy-next": "dist/cjs/bin/deploy-next.js",
-    "deps": "dist/cjs/bin/deps.js",
-    "fix": "dist/cjs/bin/fix.js",
-    "gen-docs": "dist/cjs/bin/gen-docs.js",
-    "gitlint": "dist/cjs/bin/gitlint.js",
-    "gitlint-fix": "dist/cjs/bin/gitlint-fix.js",
-    "license": "dist/cjs/bin/license.js",
-    "lint": "dist/cjs/bin/lint.js",
-    "lint-clean": "dist/cjs/bin/lint-clean.js",
-    "lint-fast": "dist/cjs/bin/lint-fast.js",
-    "lint-profile": "dist/cjs/bin/lint-profile.js",
-    "package-clean": "dist/cjs/bin/package/clean.js",
-    "package-compile": "dist/cjs/bin/package/compile.js",
-    "package-compile-cjs": "dist/cjs/bin/package/compile-cjs.js",
-    "package-compile-esm": "dist/cjs/bin/package/compile-esm.js",
-    "package-copy-assets-cjs": "dist/cjs/bin/package/copy-assets-cjs.js",
-    "package-copy-assets-esm": "dist/cjs/bin/package/copy-assets-esm.js",
-    "package-deps": "dist/cjs/bin/package/deps.js",
-    "package-gen-docs": "dist/cjs/bin/package/gen-docs.js",
-    "package-recompile": "dist/cjs/bin/package/recompile.js",
-    "package-tsconfig-gen": "dist/cjs/bin/package/tsconfig-gen.js",
-    "package-tsconfig-gen-cjs": "dist/cjs/bin/package/tsconfig-gen-cjs.js",
-    "package-tsconfig-gen-esm": "dist/cjs/bin/package/tsconfig-gen-esm.js",
-    "rebuild": "dist/cjs/bin/rebuild.js",
-    "recompile": "dist/cjs/bin/recompile.js",
-    "reinstall": "dist/cjs/bin/reinstall.js",
-    "relint": "dist/cjs/bin/relint.js",
-    "sonar": "dist/cjs/bin/sonar.js",
-    "test": "dist/cjs/bin/test.js",
-    "tsconfig-gen": "dist/cjs/bin/tsconfig-gen.js",
-    "tsconfig-gen-cjs": "dist/cjs/bin/tsconfig-gen-cjs.js",
-    "tsconfig-gen-clean": "dist/cjs/bin/tsconfig-gen-clean.js",
-    "tsconfig-gen-esm": "dist/cjs/bin/tsconfig-gen-esm.js",
-    "tsconfig-gen-test": "dist/cjs/bin/tsconfig-gen-test.js",
-    "up": "dist/cjs/bin/up.js",
-    "updo": "dist/cjs/bin/updo.js",
-    "upplug": "dist/cjs/bin/upplug.js",
-    "upyarn": "dist/cjs/bin/upyarn.js",
-    "xy": "dist/cjs/bin/xy.js",
+    "build": "dist/bin/build.js",
+    "clean": "dist/bin/clean.js",
+    "clean-docs": "dist/bin/clean-docs.js",
+    "compile": "dist/bin/compile.js",
+    "compile-cjs": "dist/bin/compile-cjs.js",
+    "compile-esm": "dist/bin/compile-esm.js",
+    "cycle": "dist/bin/cycle.js",
+    "dead": "dist/bin/dead.js",
+    "deploy": "dist/bin/deploy.js",
+    "deploy-major": "dist/bin/deploy-major.js",
+    "deploy-minor": "dist/bin/deploy-minor.js",
+    "deploy-next": "dist/bin/deploy-next.js",
+    "deps": "dist/bin/deps.js",
+    "fix": "dist/bin/fix.js",
+    "gen-docs": "dist/bin/gen-docs.js",
+    "gitlint": "dist/bin/gitlint.js",
+    "gitlint-fix": "dist/bin/gitlint-fix.js",
+    "license": "dist/bin/license.js",
+    "lint": "dist/bin/lint.js",
+    "lint-clean": "dist/bin/lint-clean.js",
+    "lint-fast": "dist/bin/lint-fast.js",
+    "lint-profile": "dist/bin/lint-profile.js",
+    "package-clean": "dist/bin/package/clean.js",
+    "package-compile": "dist/bin/package/compile.js",
+    "package-compile-cjs": "dist/bin/package/compile-cjs.js",
+    "package-compile-esm": "dist/bin/package/compile-esm.js",
+    "package-copy-assets-cjs": "dist/bin/package/copy-assets-cjs.js",
+    "package-copy-assets-esm": "dist/bin/package/copy-assets-esm.js",
+    "package-deps": "dist/bin/package/deps.js",
+    "package-gen-docs": "dist/bin/package/gen-docs.js",
+    "package-publint": "dist/bin/package/publint.js",
+    "package-recompile": "dist/bin/package/recompile.js",
+    "package-tsconfig-gen": "dist/bin/package/tsconfig-gen.js",
+    "package-tsconfig-gen-cjs": "dist/bin/package/tsconfig-gen-cjs.js",
+    "package-tsconfig-gen-esm": "dist/bin/package/tsconfig-gen-esm.js",
+    "rebuild": "dist/bin/rebuild.js",
+    "recompile": "dist/bin/recompile.js",
+    "reinstall": "dist/bin/reinstall.js",
+    "relint": "dist/bin/relint.js",
+    "sonar": "dist/bin/sonar.js",
+    "test": "dist/bin/test.js",
+    "tsconfig-gen": "dist/bin/tsconfig-gen.js",
+    "tsconfig-gen-cjs": "dist/bin/tsconfig-gen-cjs.js",
+    "tsconfig-gen-clean": "dist/bin/tsconfig-gen-clean.js",
+    "tsconfig-gen-esm": "dist/bin/tsconfig-gen-esm.js",
+    "tsconfig-gen-test": "dist/bin/tsconfig-gen-test.js",
+    "up": "dist/bin/up.js",
+    "updo": "dist/bin/updo.js",
+    "upplug": "dist/bin/upplug.js",
+    "upyarn": "dist/bin/upyarn.js",
+    "xy": "dist/bin/xy.js",
     "xy-ts": "src/bin/xy-ts.ts",
-    "yarn3only": "dist/cjs/bin/yarn3only.js"
+    "yarn3only": "dist/bin/yarn3only.js"
   },
   "bugs": {
     "email": "support@xylabs.com",
@@ -90,6 +91,7 @@
     "npm-package-json-lint-config-default": "^6.0.0",
     "parse-git-config": "^3.0.0",
     "prettier": "^3.0.3",
+    "publint": "^0.2.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^4.4.1",
     "supertest": "^6.3.3",
@@ -97,6 +99,7 @@
     "ts-node": "^10.9.1",
     "ts-prune": "^0.10.3",
     "tslib": "^2.6.2",
+    "tsup": "^7.2.0",
     "typedoc": "^0.24.8",
     "yargs": "^17.7.2"
   },
@@ -109,6 +112,7 @@
     "@types/parse-git-config": "^3.0.1",
     "@xylabs/eslint-config": "^2.19.4",
     "@xylabs/tsconfig": "^2.19.4",
+    "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
@@ -124,27 +128,34 @@
   "publishConfig": {
     "access": "public"
   },
-  "browser": "dist/esm/index.js",
   "exports": {
     ".": {
-      "node": {
-        "import": "./dist/esm/index.js",
-        "require": "./dist/cjs/index.js"
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       },
-      "browser": {
-        "import": "./dist/esm/index.js",
-        "require": "./dist/cjs/index.js"
-      },
-      "default": "./dist/esm/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
     },
     "./dist/docs.json": {
       "default": "./dist/docs.json"
     },
+    "./cjs": {
+      "default": "./dist/index.js"
+    },
+    "./docs": {
+      "default": "./dist/docs.json"
+    },
+    "./esm": {
+      "default": "./dist/index.mjs"
+    },
     "./package.json": "./package.json"
   },
-  "main": "dist/esm/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/xylabs/config.git"
@@ -153,7 +164,7 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "compile": "tsc --build tsconfig.build.cjs.json && tsc --build tsconfig.build.esm.json"
+    "compile": "tsup"
   },
   "sideEffects": false,
   "version": "2.19.4"

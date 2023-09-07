@@ -43,9 +43,11 @@
     "gitlint",
     "ignorecase",
     "Malloced",
+    "publint",
     "relint",
     "Relinting",
     "sonarjs",
+    "tsup",
     "upplug",
     "upyarn",
     "xylabs"

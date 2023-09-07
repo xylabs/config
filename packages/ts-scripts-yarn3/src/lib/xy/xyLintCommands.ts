@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import yargs from 'yargs'
 
-import { cycle, fix, lint, lintProfile, relint, sonar } from '../../actions'
+import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../../actions'
 
 export const xyLintCommands = (args: yargs.Argv) => {
   return args
@@ -62,6 +62,21 @@ export const xyLintCommands = (args: yargs.Argv) => {
         if (argv.verbose) console.log('Relinting')
         const start = Date.now()
         process.exitCode = relint()
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
+      },
+    )
+    .command(
+      'publint [package]',
+      'Publint - Run Publint',
+      (yargs) => {
+        return yargs.positional('package', {
+          describe: 'Specific package to publint',
+        })
+      },
+      async (argv) => {
+        if (argv.verbose) console.log('Publint')
+        const start = Date.now()
+        process.exitCode = await publint({ pkg: argv.package as string, verbose: !!argv.verbose })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
