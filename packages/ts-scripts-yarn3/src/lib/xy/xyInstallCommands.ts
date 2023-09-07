@@ -6,15 +6,20 @@ export const xyInstallCommands = (args: yargs.Argv) => {
   return args
     .command(
       'clean [package]',
-      'Clean - Remove intermediate files',
+      'Clean',
       (yargs) => {
         return yargs.positional('package', {
           describe: 'Specific package to clean',
         })
       },
-      (argv) => {
-        if (argv.verbose) console.log(`Cleaning: ${argv.package ?? 'all'}`)
-        process.exitCode = clean()
+      async (argv) => {
+        if (argv.verbose) {
+          console.log(`Cleaning: ${argv.package ?? 'all'}`)
+        }
+        process.exitCode = await clean({
+          pkg: argv.package as string,
+          verbose: !!argv.verbose,
+        })
       },
     )
     .command(
