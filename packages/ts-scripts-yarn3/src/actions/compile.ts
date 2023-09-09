@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { runStepsAsync } from '../lib'
+import { runSteps } from '../lib'
 
 export interface CompileParams {
   incremental?: boolean
@@ -16,18 +16,18 @@ export interface CompilePackageParams {
   verbose?: boolean
 }
 
-export const compile = async ({ verbose, target, pkg, incremental }: CompileParams) => {
-  return pkg ? await compilePackage({ pkg, target, verbose }) : await compileAll({ incremental, target, verbose })
+export const compile = ({ verbose, target, pkg, incremental }: CompileParams) => {
+  return pkg ? compilePackage({ pkg, target, verbose }) : compileAll({ incremental, target, verbose })
 }
 
 export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
 
-  return runStepsAsync(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
+  return runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
 }
 
-export const compileAll = async ({ jobs, verbose, target, incremental }: CompileParams) => {
+export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
@@ -37,7 +37,7 @@ export const compileAll = async ({ jobs, verbose, target, incremental }: Compile
     console.log(chalk.blue(`Jobs set to [${jobs}]`))
   }
 
-  const result = await runStepsAsync(`Compile${incremental ? '-Incremental' : ''} [All]`, [
+  const result = runSteps(`Compile${incremental ? '-Incremental' : ''} [All]`, [
     ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile', ...verboseOptions, ...targetOptions]],
   ])
   console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)

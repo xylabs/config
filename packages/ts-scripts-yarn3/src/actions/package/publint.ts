@@ -2,7 +2,6 @@ import { promises as fs } from 'fs'
 
 export const packagePublint = async () => {
   const pkgDir = process.env.INIT_CWD
-  console.log(`packagePublint: ${pkgDir}`)
 
   const pkg = JSON.parse(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))
 
