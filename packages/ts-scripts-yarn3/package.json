@@ -100,7 +100,7 @@
     "ts-prune": "^0.10.3",
     "tslib": "^2.6.2",
     "tsup": "^7.2.0",
-    "typedoc": "^0.25.1",
+    "typedoc": "^0.24",
     "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",
@@ -110,8 +110,8 @@
     "@types/license-checker": "^25.0.4",
     "@types/lodash": "^4.14.198",
     "@types/parse-git-config": "^3.0.1",
-    "@xylabs/eslint-config": "^2.19.6",
-    "@xylabs/tsconfig": "^2.19.6",
+    "@xylabs/eslint-config": "^2.19.8",
+    "@xylabs/tsconfig": "^2.19.8",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
@@ -164,8 +164,8 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "compile": "tsup || publint"
+    "compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "2.19.6"
+  "version": "2.19.8"
 }
