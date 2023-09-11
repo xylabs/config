@@ -3135,7 +3135,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.0
     "@xylabs/eslint-config": "workspace:~"
     "@xylabs/ts-scripts-yarn3": "workspace:~"
-    "@xylabs/tsconfig": ^2.19.10
+    "@xylabs/tsconfig": ^2.19.11
     cpy-cli: ^4.2.0
     depcheck: ^1.4.6
     eslint: ^8.49.0
@@ -3203,7 +3203,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config@^2.19.10, @xylabs/eslint-config@workspace:packages/eslint-config, @xylabs/eslint-config@workspace:~":
+"@xylabs/eslint-config@^2.19.11, @xylabs/eslint-config@workspace:packages/eslint-config, @xylabs/eslint-config@workspace:~":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
   dependencies:
@@ -3280,43 +3280,43 @@ __metadata:
   peerDependencies:
     typescript: ^4 || ^5
   bin:
-    analyze: dist/cjs/bin/analyze.js
-    build: dist/cjs/bin/build.js
-    build-ci: dist/cjs/bin/build-ci.js
-    clean: dist/cjs/bin/clean.js
-    cycle: dist/cjs/bin/cycle.js
-    dead: dist/cjs/bin/dead.js
-    deps: dist/cjs/bin/deps.js
-    eject: dist/cjs/bin/build.js
-    fix: dist/cjs/bin/fix.js
-    gitlint: dist/cjs/bin/gitlint.js
-    gitlint-fix: dist/cjs/bin/gitlint-fix.js
-    license: dist/cjs/bin/license.js
-    lint: dist/cjs/bin/lint.js
-    lint-clean: dist/cjs/bin/lint-clean.js
-    lint-fast: dist/cjs/bin/lint-fast.js
-    lint-profile: dist/cjs/bin/lint-profile.js
-    package-clean: dist/cjs/bin/package/clean.js
-    package-compile: dist/cjs/bin/package/compile.js
-    package-deps: dist/cjs/bin/package/deps.js
-    rebuild: dist/cjs/bin/rebuild.js
-    reinstall: dist/cjs/bin/reinstall.js
-    relint: dist/cjs/bin/relint.js
-    sitemap: dist/cjs/bin/sitemap.js
-    sonar: dist/cjs/bin/sonar.js
-    start: dist/cjs/bin/start.js
-    test: dist/cjs/bin/test.js
-    tsconfig-gen: dist/cjs/bin/tsconfig-gen.js
-    "tsconfig-gen:cjs": dist/cjs/bin/tsconfig-gen-cjs.js
-    "tsconfig-gen:clean": dist/cjs/bin/tsconfig-gen-clean.js
-    "tsconfig-gen:esm": dist/cjs/bin/tsconfig-gen-esm.js
-    "tsconfig-gen:test": dist/cjs/bin/tsconfig-gen-test.js
-    up: dist/cjs/bin/up.js
-    updo: dist/cjs/bin/updo.js
-    upplug: dist/cjs/bin/upplug.js
-    upyarn: dist/cjs/bin/upyarn.js
-    xy: dist/cjs/bin/xy
-    yarn3only: dist/cjs/bin/yarn3only.js
+    analyze: dist/bin/analyze.js
+    build: dist/bin/build.js
+    build-ci: dist/bin/build-ci.js
+    clean: dist/bin/clean.js
+    cycle: dist/bin/cycle.js
+    dead: dist/bin/dead.js
+    deps: dist/bin/deps.js
+    eject: dist/bin/build.js
+    fix: dist/bin/fix.js
+    gitlint: dist/bin/gitlint.js
+    gitlint-fix: dist/bin/gitlint-fix.js
+    license: dist/bin/license.js
+    lint: dist/bin/lint.js
+    lint-clean: dist/bin/lint-clean.js
+    lint-fast: dist/bin/lint-fast.js
+    lint-profile: dist/bin/lint-profile.js
+    package-clean: dist/bin/package/clean.js
+    package-compile: dist/bin/package/compile.js
+    package-deps: dist/bin/package/deps.js
+    rebuild: dist/bin/rebuild.js
+    reinstall: dist/bin/reinstall.js
+    relint: dist/bin/relint.js
+    sitemap: dist/bin/sitemap.js
+    sonar: dist/bin/sonar.js
+    start: dist/bin/start.js
+    test: dist/bin/test.js
+    tsconfig-gen: dist/bin/tsconfig-gen.js
+    "tsconfig-gen:cjs": dist/bin/tsconfig-gen-cjs.js
+    "tsconfig-gen:clean": dist/bin/tsconfig-gen-clean.js
+    "tsconfig-gen:esm": dist/bin/tsconfig-gen-esm.js
+    "tsconfig-gen:test": dist/bin/tsconfig-gen-test.js
+    up: dist/bin/up.js
+    updo: dist/bin/updo.js
+    upplug: dist/bin/upplug.js
+    upyarn: dist/bin/upyarn.js
+    xy: dist/bin/xy
+    yarn3only: dist/bin/yarn3only.js
   languageName: unknown
   linkType: soft
 
@@ -3334,8 +3334,8 @@ __metadata:
     "@types/parse-git-config": ^3.0.1
     "@typescript-eslint/eslint-plugin": ^6.7.0
     "@typescript-eslint/parser": ^6.7.0
-    "@xylabs/eslint-config": ^2.19.10
-    "@xylabs/tsconfig": ^2.19.10
+    "@xylabs/eslint-config": ^2.19.11
+    "@xylabs/tsconfig": ^2.19.11
     chalk: ^4.1.2
     cpy: ^8.1.2
     depcheck: ^1.4.6
@@ -3546,7 +3546,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^2.19.10, @xylabs/tsconfig@workspace:packages/tsconfig, @xylabs/tsconfig@workspace:~":
+"@xylabs/tsconfig@^2.19.11, @xylabs/tsconfig@workspace:packages/tsconfig, @xylabs/tsconfig@workspace:~":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
