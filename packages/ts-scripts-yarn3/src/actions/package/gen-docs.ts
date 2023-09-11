@@ -38,7 +38,7 @@ export const packageGenDocs = async () => {
     excludeExternals: true,
     json: `${pkg}/dist/docs.json`,
     logLevel: 'Error',
-    tsconfig: `${pkg}/.tsconfig.build.esm.json`,
+    tsconfig: `${pkg}/tsconfig.json`,
   })
 
   return await runTypeDoc(app)
