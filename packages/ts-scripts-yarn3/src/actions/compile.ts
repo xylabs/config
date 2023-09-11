@@ -31,7 +31,7 @@ export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams
   const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
-  const incrementalOptions = incremental ? ['--since', '-ptR'] : ['-ptR']
+  const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []
   if (jobs) {
     console.log(chalk.blue(`Jobs set to [${jobs}]`))
