@@ -1,0 +1,12 @@
+releases:
+  "@xylabs/config": major
+  "@xylabs/eslint-config": major
+  "@xylabs/eslint-config-react": major
+  "@xylabs/ts-scripts": major
+  "@xylabs/ts-scripts-react-yarn3": major
+  "@xylabs/ts-scripts-yarn3": major
+  "@xylabs/tsconfig": major
+  "@xylabs/tsconfig-dom": major
+  "@xylabs/tsconfig-dom-jest": major
+  "@xylabs/tsconfig-jest": major
+  "@xylabs/tsconfig-react": major
