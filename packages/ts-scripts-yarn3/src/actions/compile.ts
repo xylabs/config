@@ -10,7 +10,7 @@ export interface CompileParams {
   verbose?: boolean
 }
 
-export interface CompilePackageParams {
+interface CompilePackageParams {
   pkg: string
   target?: 'esm' | 'cjs'
   verbose?: boolean

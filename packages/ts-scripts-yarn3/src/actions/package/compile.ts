@@ -1,9 +1,14 @@
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
+import chalk from 'chalk'
 import { copyFile } from 'fs/promises'
 import { rollup } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
+
+export interface CompilePackageParams {
+  verbose?: boolean
+}
 
 const buildIt = async () => {
   await (
@@ -19,7 +24,7 @@ const buildIt = async () => {
           declaration: true,
           declarationMap: true,
           emitDeclarationOnly: false,
-          exclude: ['src/**/*.spec.*', 'dist', 'docs'],
+          exclude: ['**/*.spec.*', 'dist', 'docs'],
           outDir: 'dist',
           rootDir: 'src',
           tsconfig: 'tsconfig.json',
@@ -45,7 +50,7 @@ const buildIt = async () => {
           declaration: true,
           declarationMap: true,
           emitDeclarationOnly: false,
-          exclude: ['src/**/*.spec.*', 'dist', 'docs'],
+          exclude: ['**/*.spec.*', 'dist', 'docs'],
           outDir: 'dist',
           rootDir: 'src',
           tsconfig: 'tsconfig.json',
@@ -64,6 +69,10 @@ const buildIt = async () => {
   return 0
 }
 
-export const packageCompile = async () => {
+export const packageCompile = async ({ verbose }: CompilePackageParams = {verbose: false}) => {
+  if (verbose) {
+    const pkgName = process.env.npm_package_name
+    console.log(chalk.green(`Compiling ${pkgName}`))
+  }
   return await buildIt()
 }
