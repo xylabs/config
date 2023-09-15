@@ -12,8 +12,6 @@ import {
   npmignoreGen,
   retest,
   test,
-  tsconfigGen,
-  tsconfigGenClean,
   updateYarnPlugins,
   updateYarnVersion,
   yarn3Only,
@@ -136,30 +134,6 @@ export const xyCommonCommands = (args: yargs.Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Testing')
         process.exitCode = test()
-      },
-    )
-    .command(
-      'tsconfig-gen [package]',
-      'Tsconfig Gen - Generate tsconfig.json file for building',
-      (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package for generation',
-        })
-      },
-      (argv) => {
-        if (argv.verbose) console.log(`TsconfigGen: ${argv.package ?? 'all'}`)
-        process.exitCode = tsconfigGen({ pkg: argv.package as string, target: argv.target as 'esm' | 'cjs' })
-      },
-    )
-    .command(
-      'tsconfig-clean',
-      'Tsconfig Clean - Remove generated tsconfig.json files',
-      (yargs) => {
-        return yargs
-      },
-      (argv) => {
-        if (argv.verbose) console.log('Tsconfig Clean')
-        process.exitCode = tsconfigGenClean()
       },
     )
     .command(

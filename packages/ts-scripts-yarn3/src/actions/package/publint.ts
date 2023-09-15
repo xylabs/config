@@ -20,6 +20,5 @@ export const packagePublint = async () => {
     console.log(formatMessage(message, pkg))
   })
 
-  //returning 0 here since we never want publint to be fatal
-  return 0
+  return messages.length
 }

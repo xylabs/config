@@ -5,5 +5,5 @@ import { packagePublint } from '../../actions'
 
 packagePublint().then((value) => process.exitCode = value).catch((ex: Error) => {
   console.error(`Publint Failed: ${chalk.red(ex)}`)
-  process.exitCode = 0
+  process.exitCode = -1
 })

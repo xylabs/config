@@ -139,8 +139,9 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "package-compile": "tsup && publint"
+    "package-compile": "tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration && publint"
   },
   "sideEffects": false,
-  "version": "2.19.12"
+  "version": "3.0.0-rc.2",
+  "stableVersion": "2.19.12"
 }
