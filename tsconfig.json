@@ -2,9 +2,8 @@
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,
-    "typeRoots": ["./node_modules/@types"],
     "types": ["jest", "node", "json-schema"]
   },
-  "exclude": ["**/dist", "**/node_modules"],
+  "exclude": ["dist", "node_modules"],
   "extends": "@xylabs/tsconfig"
 }
