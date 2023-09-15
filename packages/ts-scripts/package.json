@@ -81,10 +81,12 @@
   "devDependencies": {
     "@types/node": "^20.6.0",
     "@types/parse-git-config": "^3.0.1",
-    "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "@xylabs/tsconfig": "workspace:~",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/tsconfig": "workspace:^",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0"
+    "eslint-plugin-prettier": "^5.0.0",
+    "publint": "^0.2.2",
+    "tsup": "^7.2.0"
   },
   "homepage": "https://xylabs.com",
   "keywords": [
@@ -102,6 +104,9 @@
   },
   "engines": {
     "node": ">=14.16"
+  },
+  "scripts": {
+    "package-compile": "tsup && publint"
   },
   "sideEffects": false,
   "version": "3.0.0-rc.27",

@@ -30,7 +30,7 @@
     "@typescript-eslint/parser": "^6.7.0",
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "@xylabs/tsconfig": "^3.0.0-rc.27",
+    "@xylabs/tsconfig": "workspace:^",
     "cpy-cli": "^4.2.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",

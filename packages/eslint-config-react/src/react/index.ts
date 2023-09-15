@@ -1,4 +1,4 @@
-module.exports = {
+const reactConfig = {
   overrides: [
     {
       extends: ['@xylabs', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
@@ -23,3 +23,6 @@ module.exports = {
     },
   ],
 }
+
+// eslint-disable-next-line import/no-default-export
+export default reactConfig

@@ -14,41 +14,52 @@ export interface CompilePackageParams {
   verbose?: boolean
 }
 
-const rollItUp = async (input: string[], format: 'cjs' | 'esm', ext: string) => {
-  await (
-    await rollup({
-      input,
-      logLevel: 'warn',
-      perf: true,
-      plugins: [
-        commonjs(),
-        externalDeps(),
-        nodeExternals(),
-        typescript({
-          declaration: true,
-          declarationMap: true,
-          emitDeclarationOnly: false,
-          esModuleInterop: true,
-          exclude: ['**/*.spec.*', 'dist', 'docs'],
-          outDir: 'dist',
-          rootDir: 'src',
-          tsconfig: 'tsconfig.json',
-        }),
-      ],
+const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => {
+  const input = await getInputs(subDir)
+  if (input.length) {
+    await (
+      await rollup({
+        input: input.map((file) => `./src/${file}`),
+        logLevel: 'warn',
+        perf: true,
+        plugins: [
+          commonjs(),
+          externalDeps(),
+          nodeExternals(),
+          typescript({
+            baseUrl: './src',
+            declaration: !subDir,
+            declarationMap: !subDir,
+            emitDeclarationOnly: false,
+            esModuleInterop: true,
+            exclude: ['**/*.spec.*', 'dist', 'docs'],
+            outDir: subDir ? `dist/${subDir}` : 'dist',
+            rootDir: 'src',
+            tsconfig: 'tsconfig.json',
+          }),
+        ],
+      })
+    ).write({
+      dir: subDir ? `dist/${subDir}` : 'dist',
+      dynamicImportInCjs: true,
+      entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
+      format,
+      sourcemap: true,
     })
-  ).write({
-    dir: 'dist',
-    dynamicImportInCjs: true,
-    entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
-    format,
-    sourcemap: true,
-  })
+  }
 }
 
-const getInputs = async () => {
-  return (await readdir('src', { recursive: true }))
+const getInputs = async (subDir?: string) => {
+  return (await readdir(subDir ? `src/${subDir}` : 'src', { recursive: false }))
     .filter((file) => (file.endsWith('.ts') || file.endsWith('.tsx')) && !file.endsWith('d.ts') && !file.endsWith('spec.ts'))
-    .map((file) => `src/${file}`)
+    .map((file) => (subDir ? `${subDir}/${file}` : file))
+}
+
+const getInputDirs = async () => {
+  return [
+    undefined,
+    ...(await readdir('src', { recursive: true, withFileTypes: true })).filter((file) => file.isDirectory()).map((file) => file.name),
+  ]
 }
 
 const getDistTypeFiles = async () => {
@@ -60,26 +71,34 @@ const getDistTypeMapFiles = async () => {
 }
 
 const buildIt = async (pkg: PackageJsonEx) => {
-  const input = await getInputs()
+  const inputDirs = await getInputDirs()
 
   const pkgType = pkg.type ?? 'commonjs'
 
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
   const cjsExt = pkgType === 'commonjs' ? 'js' : 'cjs'
 
-  await rollItUp(input, 'esm', esmExt)
-  await rollItUp(input, 'cjs', cjsExt)
+  await Promise.all(
+    inputDirs.map(async (inputDir) => {
+      await rollItUp('esm', esmExt, inputDir)
+      await rollItUp('cjs', cjsExt, inputDir)
+    }),
+  )
 
   //hybrid packages want two copies of the types
   const distTypeFiles = await getDistTypeFiles()
-  distTypeFiles.forEach(async (file) => {
-    await copyFile(file, file.replace('d.ts', 'd.mts'))
-  })
+  await Promise.all(
+    distTypeFiles.map(async (file) => {
+      await copyFile(file, file.replace('d.ts', 'd.mts'))
+    }),
+  )
 
   const distTypeMapFiles = await getDistTypeMapFiles()
-  distTypeMapFiles.forEach(async (file) => {
-    await copyFile(file, file.replace('d.ts.map', 'd.mts.map'))
-  })
+  await Promise.all(
+    distTypeMapFiles.map(async (file) => {
+      await copyFile(file, file.replace('d.ts.map', 'd.mts.map'))
+    }),
+  )
 
   return 0
 }
