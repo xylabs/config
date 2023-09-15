@@ -84,8 +84,6 @@ const getDistTypeMapFiles = async () => {
 const buildIt = async (pkg: PackageJsonEx) => {
   const inputDirs = await getInputDirs()
 
-  console.log(`InputDirs: ${JSON.stringify(inputDirs, null, 2)}`)
-
   const pkgType = pkg.type ?? 'commonjs'
 
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
