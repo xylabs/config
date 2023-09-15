@@ -142,6 +142,6 @@
     "package-compile": "tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration && publint"
   },
   "sideEffects": false,
-  "version": "3.0.0-rc.4",
+  "version": "3.0.0-rc.5",
   "stableVersion": "2.19.12"
 }
