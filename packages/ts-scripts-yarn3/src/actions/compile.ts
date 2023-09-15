@@ -28,7 +28,7 @@ export const compilePackage = ({ verbose, target, pkg, publint = true }: Compile
 
   return publint
     ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
-    : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile-only', ...verboseOptions, ...targetOptions]]])
+    : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
 }
 
 export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {

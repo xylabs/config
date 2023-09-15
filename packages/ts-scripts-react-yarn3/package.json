@@ -142,6 +142,6 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.0.0-rc.25",
+  "version": "3.0.0-rc.27",
   "stableVersion": "2.19.12"
 }

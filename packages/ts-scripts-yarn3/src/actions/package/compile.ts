@@ -40,7 +40,6 @@ const rollItUp = async (input: string[], format: 'cjs' | 'esm', ext: string) => 
     dir: 'dist',
     dynamicImportInCjs: true,
     entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
-    exports: 'named',
     format,
     sourcemap: true,
   })
@@ -50,6 +49,14 @@ const getInputs = async () => {
   return (await readdir('src', { recursive: true }))
     .filter((file) => (file.endsWith('.ts') || file.endsWith('.tsx')) && !file.endsWith('d.ts') && !file.endsWith('spec.ts'))
     .map((file) => `src/${file}`)
+}
+
+const getDistTypeFiles = async () => {
+  return (await readdir('dist', { recursive: true })).filter((file) => file.endsWith('d.ts')).map((file) => `dist/${file}`)
+}
+
+const getDistTypeMapFiles = async () => {
+  return (await readdir('dist', { recursive: true })).filter((file) => file.endsWith('d.ts.map')).map((file) => `dist/${file}`)
 }
 
 const buildIt = async (pkg: PackageJsonEx) => {
@@ -64,8 +71,15 @@ const buildIt = async (pkg: PackageJsonEx) => {
   await rollItUp(input, 'cjs', cjsExt)
 
   //hybrid packages want two copies of the types
-  await copyFile('./dist/index.d.ts', './dist/index.d.mts')
-  await copyFile('./dist/index.d.ts.map', './dist/index.d.mts.map')
+  const distTypeFiles = await getDistTypeFiles()
+  distTypeFiles.forEach(async (file) => {
+    await copyFile(file, file.replace('d.ts', 'd.mts'))
+  })
+
+  const distTypeMapFiles = await getDistTypeMapFiles()
+  distTypeMapFiles.forEach(async (file) => {
+    await copyFile(file, file.replace('d.ts.map', 'd.mts.map'))
+  })
 
   return 0
 }
