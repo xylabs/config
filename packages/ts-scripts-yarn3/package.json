@@ -108,8 +108,8 @@
     "@types/license-checker": "^25.0.4",
     "@types/lodash": "^4.14.198",
     "@types/parse-git-config": "^3.0.1",
-    "@xylabs/eslint-config": "^3.0.0-rc.17",
-    "@xylabs/tsconfig": "^3.0.0-rc.17",
+    "@xylabs/eslint-config": "^3.0.0-rc.18",
+    "@xylabs/tsconfig": "^3.0.0-rc.18",
     "publint": "^0.2.2",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
@@ -166,6 +166,6 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.0.0-rc.17",
+  "version": "3.0.0-rc.18",
   "stableVersion": "2.19.12"
 }
