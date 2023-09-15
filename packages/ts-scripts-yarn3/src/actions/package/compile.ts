@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
-import { copyFile } from 'fs/promises'
+import { copyFile, readdir } from 'fs/promises'
 import { rollup } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
@@ -11,9 +11,11 @@ export interface CompilePackageParams {
 }
 
 const buildIt = async () => {
+  const input = (await readdir('src')).filter((file) => file.endsWith('.ts') || file.endsWith('.tsx')).map((file) => `src/${file}`)
+
   await (
     await rollup({
-      input: 'src/index.ts',
+      input,
       logLevel: 'debug',
       perf: true,
       plugins: [
@@ -40,7 +42,7 @@ const buildIt = async () => {
 
   await (
     await rollup({
-      input: 'src/index.ts',
+      input,
       logLevel: 'warn',
       perf: true,
       plugins: [
@@ -69,7 +71,7 @@ const buildIt = async () => {
   return 0
 }
 
-export const packageCompile = async ({ verbose }: CompilePackageParams = {verbose: false}) => {
+export const packageCompile = async ({ verbose }: CompilePackageParams = { verbose: false }) => {
   if (verbose) {
     const pkgName = process.env.npm_package_name
     console.log(chalk.green(`Compiling ${pkgName}`))
