@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
-import { copyFile, readdir, readFile } from 'fs/promises'
+import { copyFile, readdir } from 'fs/promises'
 import { rollup } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
@@ -40,6 +40,7 @@ const rollItUp = async (input: string[], format: 'cjs' | 'esm', ext: string) => 
     dir: 'dist',
     dynamicImportInCjs: true,
     entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
+    exports: 'named',
     format,
     sourcemap: true,
   })
@@ -47,7 +48,7 @@ const rollItUp = async (input: string[], format: 'cjs' | 'esm', ext: string) => 
 
 const getInputs = async () => {
   return (await readdir('src', { recursive: true }))
-    .filter((file) => (file.endsWith('.ts') || file.endsWith('.tsx')) && !file.endsWith('d.ts'))
+    .filter((file) => (file.endsWith('.ts') || file.endsWith('.tsx')) && !file.endsWith('d.ts') && !file.endsWith('spec.ts'))
     .map((file) => `src/${file}`)
 }
 
@@ -57,7 +58,7 @@ const buildIt = async (pkg: PackageJsonEx) => {
   const pkgType = pkg.type ?? 'commonjs'
 
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
-  const cjsExt = pkgType === 'commonjs' ? 'cjs' : 'js'
+  const cjsExt = pkgType === 'commonjs' ? 'js' : 'cjs'
 
   await rollItUp(input, 'esm', esmExt)
   await rollItUp(input, 'cjs', cjsExt)
@@ -76,6 +77,8 @@ export const packageCompile = async ({ publint = true, verbose }: CompilePackage
   }
   const result = (await buildIt(await loadPackageConfig())) + (publint ? await packagePublint() : 0)
   if (result) {
+    const input = await getInputs()
+    console.log(`Inputs: ${JSON.stringify(input, null, 2)}`)
     console.error(chalk.red(`Compiling ${pkgName} Failed [${result}]`))
   } else if (verbose) {
     console.log(chalk.green(`Compiling ${pkgName} Done`))
