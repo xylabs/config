@@ -77,6 +77,6 @@
     "package-compile": "echo \"Compiling @xylabs/eslint-config-react\" && tsc -p tsconfig.build.json"
   },
   "sideEffects": false,
-  "version": "3.0.0-rc.6",
+  "version": "3.0.0-rc.15",
   "stableVersion": "2.19.12"
 }

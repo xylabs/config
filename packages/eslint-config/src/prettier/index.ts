@@ -1,4 +1,6 @@
-module.exports = {
+import { ESLint } from "eslint";
+
+export const prettierConfig: ESLint.ConfigData = {
   extends: ['plugin:prettier/recommended'],
   plugins: ['prettier'],
   rules: {

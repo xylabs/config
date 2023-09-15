@@ -29,7 +29,7 @@
     "@typescript-eslint/parser": "^6.7.0",
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "@xylabs/tsconfig": "^3.0.0-rc.6",
+    "@xylabs/tsconfig": "^3.0.0-rc.15",
     "cpy-cli": "^4.2.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
@@ -68,7 +68,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "3.0.0-rc.6",
+  "version": "3.0.0-rc.15",
   "packageManager": "yarn@3.4.1",
   "scripts": {
     "build": "echo Building... && yarn compile",

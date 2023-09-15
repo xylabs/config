@@ -3045,7 +3045,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:5.62.0, @typescript-eslint/utils@npm:^5.58.0":
+"@typescript-eslint/utils@npm:5.62.0, @typescript-eslint/utils@npm:^5.57.0, @typescript-eslint/utils@npm:^5.58.0":
   version: 5.62.0
   resolution: "@typescript-eslint/utils@npm:5.62.0"
   dependencies:
@@ -3180,7 +3180,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.0
     "@xylabs/eslint-config": "workspace:~"
     "@xylabs/ts-scripts-yarn3": "workspace:~"
-    "@xylabs/tsconfig": ^3.0.0-rc.6
+    "@xylabs/tsconfig": ^3.0.0-rc.15
     cpy-cli: ^4.2.0
     depcheck: ^1.4.6
     eslint: ^8.49.0
@@ -3248,7 +3248,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config@^3.0.0-rc.6, @xylabs/eslint-config@workspace:packages/eslint-config, @xylabs/eslint-config@workspace:~":
+"@xylabs/eslint-config@^3.0.0-rc.15, @xylabs/eslint-config@workspace:packages/eslint-config, @xylabs/eslint-config@workspace:~":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
   dependencies:
@@ -3262,7 +3262,7 @@ __metadata:
     eslint: ^8.49.0
     eslint-config-prettier: ^9.0.0
     eslint-import-resolver-typescript: ^3.6.0
-    eslint-plugin-deprecation: ^2.0.0
+    eslint-plugin-deprecation: ^1.5.0
     eslint-plugin-import: ^2.28.1
     eslint-plugin-json-es: ^1.5.7
     eslint-plugin-md: ^1.0.19
@@ -3380,8 +3380,8 @@ __metadata:
     "@types/parse-git-config": ^3.0.1
     "@typescript-eslint/eslint-plugin": ^6.7.0
     "@typescript-eslint/parser": ^6.7.0
-    "@xylabs/eslint-config": ^3.0.0-rc.6
-    "@xylabs/tsconfig": ^3.0.0-rc.6
+    "@xylabs/eslint-config": ^3.0.0-rc.15
+    "@xylabs/tsconfig": ^3.0.0-rc.15
     chalk: ^4.1.2
     cpy: ^8.1.2
     depcheck: ^1.4.6
@@ -3595,7 +3595,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@^3.0.0-rc.6, @xylabs/tsconfig@workspace:packages/tsconfig, @xylabs/tsconfig@workspace:~":
+"@xylabs/tsconfig@^3.0.0-rc.15, @xylabs/tsconfig@workspace:packages/tsconfig, @xylabs/tsconfig@workspace:~":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
@@ -6062,6 +6062,20 @@ __metadata:
     eslint:
       optional: true
   checksum: 74c6dfea7641ebcfe174be61168541a11a14aa8d72e515f5f09af55cd0d0862686104b0524aa4b8e0ce66418a44aa38a94d2588743db5fd07a6b49ffd16921d2
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-deprecation@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "eslint-plugin-deprecation@npm:1.5.0"
+  dependencies:
+    "@typescript-eslint/utils": ^5.57.0
+    tslib: ^2.3.1
+    tsutils: ^3.21.0
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+    typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
+  checksum: ec0ff3df1dbbbb85d14c8f6656bb126377280db58789c2ba3c4500250b291559c651a0fb2ac29aa977408fef3a919ad41e706100b55672ceb6c1ad09550e7396
   languageName: node
   linkType: hard
 

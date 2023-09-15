@@ -1,4 +1,6 @@
-module.exports = {
+import { ESLint } from "eslint";
+
+export const importConfig: ESLint.ConfigData = {
   extends: ['plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
   plugins: ['import', 'simple-import-sort'],
   rules: {

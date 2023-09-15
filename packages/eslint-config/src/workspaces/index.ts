@@ -1,4 +1,6 @@
-module.exports = {
+import { ESLint } from "eslint";
+
+export const workspacesConfig: ESLint.ConfigData = {
   extends: ['plugin:workspaces/recommended'],
   plugins: ['workspaces'],
   rules: {
