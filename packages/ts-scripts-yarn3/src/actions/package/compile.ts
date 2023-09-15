@@ -58,7 +58,18 @@ const getInputs = async (subDir?: string) => {
 const getInputDirs = async () => {
   return [
     undefined,
-    ...(await readdir('src', { recursive: true, withFileTypes: true })).filter((file) => file.isDirectory()).map((file) => file.name),
+    ...(await readdir('src', { recursive: true, withFileTypes: true }))
+      .filter((file) => file.isDirectory())
+      .map((file) => {
+        const pathParts = file.path.split('/')
+        pathParts.shift()
+        if (pathParts.length) {
+          const root = pathParts.join('/')
+          return `${root}/${file.name}`
+        } else {
+          return file.name
+        }
+      }),
   ]
 }
 
@@ -72,6 +83,8 @@ const getDistTypeMapFiles = async () => {
 
 const buildIt = async (pkg: PackageJsonEx) => {
   const inputDirs = await getInputDirs()
+
+  console.log(`InputDirs: ${JSON.stringify(inputDirs, null, 2)}`)
 
   const pkgType = pkg.type ?? 'commonjs'
 
