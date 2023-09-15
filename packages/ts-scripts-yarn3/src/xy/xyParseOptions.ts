@@ -1,8 +1,8 @@
-import yargs from 'yargs'
+import yargs, { Argv } from 'yargs'
 // eslint-disable-next-line import/no-internal-modules
 import { hideBin } from 'yargs/helpers'
 
-export const xyParseOptions = (): yargs.Argv => {
+export const xyParseOptions = (): Argv => {
   return yargs(hideBin(process.argv))
     .scriptName('yarn xy')
     .option('jobs', {

@@ -1,8 +1,5 @@
 {
-  "compilerOptions": {
-    "module": "CommonJS"
-  },
-  "exclude": ["src/**/*.spec.*", "dist", "docs", "spec"],
-  "extends": "./tsconfig.json",
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/**/*.spec.*", "dist", "docs"],
+  "extends": "./tsconfig.json"
 }

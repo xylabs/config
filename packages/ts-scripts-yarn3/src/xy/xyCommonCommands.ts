@@ -1,4 +1,4 @@
-import yargs from 'yargs'
+import { Argv } from 'yargs'
 
 import {
   cleanDocs,
@@ -15,9 +15,9 @@ import {
   updateYarnPlugins,
   updateYarnVersion,
   yarn3Only,
-} from '../../actions'
+} from '../actions'
 
-export const xyCommonCommands = (args: yargs.Argv) => {
+export const xyCommonCommands = (args: Argv) => {
   return args
 
     .command(

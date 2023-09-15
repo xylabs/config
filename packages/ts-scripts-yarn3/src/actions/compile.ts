@@ -6,25 +6,29 @@ export interface CompileParams {
   incremental?: boolean
   jobs?: number
   pkg?: string
+  publint?: boolean
   target?: 'esm' | 'cjs'
   verbose?: boolean
 }
 
 interface CompilePackageParams {
   pkg: string
+  publint?: boolean
   target?: 'esm' | 'cjs'
   verbose?: boolean
 }
 
-export const compile = ({ verbose, target, pkg, incremental }: CompileParams) => {
-  return pkg ? compilePackage({ pkg, target, verbose }) : compileAll({ incremental, target, verbose })
+export const compile = ({ verbose, target, pkg, incremental, publint }: CompileParams) => {
+  return pkg ? compilePackage({ pkg, publint, target, verbose }) : compileAll({ incremental, publint, target, verbose })
 }
 
-export const compilePackage = ({ verbose, target, pkg }: CompilePackageParams) => {
+export const compilePackage = ({ verbose, target, pkg, publint = true }: CompilePackageParams) => {
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
 
-  return runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
+  return publint
+    ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
+    : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile-only', ...verboseOptions, ...targetOptions]]])
 }
 
 export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {

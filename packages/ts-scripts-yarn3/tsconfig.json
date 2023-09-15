@@ -4,7 +4,7 @@
     "declarationMap": true,
     "declarationDir": "dist",
     "incremental": false,
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "extends": "@xylabs/tsconfig"
 }

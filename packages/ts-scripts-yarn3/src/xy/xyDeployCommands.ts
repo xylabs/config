@@ -1,8 +1,8 @@
-import yargs from 'yargs'
+import { Argv } from 'yargs'
 
-import { deploy, deployMajor, deployMinor, deployNext } from '../../actions'
+import { deploy, deployMajor, deployMinor, deployNext } from '../actions'
 
-export const xyDeployCommands = (args: yargs.Argv) => {
+export const xyDeployCommands = (args: Argv) => {
   return args
     .command(
       'deploy',

@@ -1,8 +1,8 @@
-import yargs from 'yargs'
+import { Argv } from 'yargs'
 
-import { clean, dupdeps, reinstall, statics, up, updo } from '../../actions'
+import { clean, dupdeps, reinstall, statics, up, updo } from '../actions'
 
-export const xyInstallCommands = (args: yargs.Argv) => {
+export const xyInstallCommands = (args: Argv) => {
   return args
     .command(
       'clean [package]',

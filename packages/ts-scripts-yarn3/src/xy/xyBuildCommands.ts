@@ -1,8 +1,8 @@
-import yargs from 'yargs'
+import { Argv } from 'yargs'
 
-import { build, compile, copyAssets, rebuild, recompile } from '../../actions'
+import { build, compile, copyAssets, rebuild, recompile } from '../actions'
 
-export const xyBuildCommands = (args: yargs.Argv) => {
+export const xyBuildCommands = (args: Argv) => {
   return args
     .command(
       'build [package]',
@@ -42,6 +42,28 @@ export const xyBuildCommands = (args: yargs.Argv) => {
           incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,
+          target: argv.target as 'esm' | 'cjs',
+          verbose: !!argv.verbose,
+        })
+      },
+    )
+    .command(
+      'compile-only [package]',
+      'Compile with Typescript & Copy Images (No Publint)',
+      (yargs) => {
+        return yargs.positional('package', {
+          describe: 'Specific package to compile',
+        })
+      },
+      async (argv) => {
+        if (argv.verbose) {
+          console.log(`Compiling: ${argv.package ?? 'all'}`)
+        }
+        process.exitCode = await compile({
+          incremental: !!argv.incremental,
+          jobs: argv.jobs as number,
+          pkg: argv.package as string,
+          publint: false,
           target: argv.target as 'esm' | 'cjs',
           verbose: !!argv.verbose,
         })

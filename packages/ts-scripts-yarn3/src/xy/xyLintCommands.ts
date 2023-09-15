@@ -1,9 +1,9 @@
 import chalk from 'chalk'
-import yargs from 'yargs'
+import { Argv } from 'yargs'
 
-import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../../actions'
+import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../actions'
 
-export const xyLintCommands = (args: yargs.Argv) => {
+export const xyLintCommands = (args: Argv) => {
   return args
     .command(
       'cycle [package]',

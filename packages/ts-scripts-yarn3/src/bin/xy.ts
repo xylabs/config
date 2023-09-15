@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { xy } from '../lib'
+import { xy } from '../xy'
 
 xy()

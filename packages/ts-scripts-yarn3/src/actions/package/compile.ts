@@ -1,22 +1,24 @@
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
-import { copyFile, readdir } from 'fs/promises'
+import { copyFile, readdir, readFile } from 'fs/promises'
 import { rollup } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
 
+import { loadPackageConfig, PackageJsonEx } from '../../loadPackageConfig'
+import { packagePublint } from './publint'
+
 export interface CompilePackageParams {
+  publint?: boolean
   verbose?: boolean
 }
 
-const buildIt = async () => {
-  const input = (await readdir('src')).filter((file) => file.endsWith('.ts') || file.endsWith('.tsx')).map((file) => `src/${file}`)
-
+const rollItUp = async (input: string[], format: 'cjs' | 'esm', ext: string) => {
   await (
     await rollup({
       input,
-      logLevel: 'debug',
+      logLevel: 'warn',
       perf: true,
       plugins: [
         commonjs(),
@@ -26,6 +28,7 @@ const buildIt = async () => {
           declaration: true,
           declarationMap: true,
           emitDeclarationOnly: false,
+          esModuleInterop: true,
           exclude: ['**/*.spec.*', 'dist', 'docs'],
           outDir: 'dist',
           rootDir: 'src',
@@ -35,46 +38,45 @@ const buildIt = async () => {
     })
   ).write({
     dir: 'dist',
-    entryFileNames: (chunkInfo) => `${chunkInfo.name}.mjs`,
-    format: 'esm',
+    dynamicImportInCjs: true,
+    entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
+    format,
     sourcemap: true,
   })
+}
 
-  await (
-    await rollup({
-      input,
-      logLevel: 'warn',
-      perf: true,
-      plugins: [
-        externalDeps(),
-        nodeExternals(),
-        typescript({
-          declaration: true,
-          declarationMap: true,
-          emitDeclarationOnly: false,
-          exclude: ['**/*.spec.*', 'dist', 'docs'],
-          outDir: 'dist',
-          rootDir: 'src',
-          tsconfig: 'tsconfig.json',
-        }),
-      ],
-    })
-  ).write({
-    dir: 'dist',
-    entryFileNames: (chunkInfo) => `${chunkInfo.name}.js`,
-    format: 'cjs',
-    sourcemap: true,
-  })
+const getInputs = async () => {
+  return (await readdir('src', { recursive: true }))
+    .filter((file) => (file.endsWith('.ts') || file.endsWith('.tsx')) && !file.endsWith('d.ts'))
+    .map((file) => `src/${file}`)
+}
+
+const buildIt = async (pkg: PackageJsonEx) => {
+  const input = await getInputs()
+
+  const esmExt = pkg.type === 'module' ? 'js' : 'mjs'
+  const cjsExt = pkg.type === 'commonjs' ? 'js' : 'cjs'
+
+  await rollItUp(input, 'esm', esmExt)
+  await rollItUp(input, 'cjs', cjsExt)
+
+  //hybrid packages want two copies of the types
   await copyFile('./dist/index.d.ts', './dist/index.d.mts')
   await copyFile('./dist/index.d.ts.map', './dist/index.d.mts.map')
 
   return 0
 }
 
-export const packageCompile = async ({ verbose }: CompilePackageParams = { verbose: false }) => {
+export const packageCompile = async ({ publint = true, verbose }: CompilePackageParams = { verbose: false }) => {
+  const pkgName = process.env.npm_package_name
   if (verbose) {
-    const pkgName = process.env.npm_package_name
-    console.log(chalk.green(`Compiling ${pkgName}`))
+    console.log(chalk.green(`Compiling ${pkgName} Start`))
   }
-  return await buildIt()
+  const result = (await buildIt(await loadPackageConfig())) + (publint ? await packagePublint() : 0)
+  if (result) {
+    console.error(chalk.red(`Compiling ${pkgName} Failed [${result}]`))
+  } else if (verbose) {
+    console.log(chalk.green(`Compiling ${pkgName} Done`))
+  }
+  return result
 }

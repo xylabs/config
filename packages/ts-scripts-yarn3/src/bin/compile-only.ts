@@ -2,4 +2,4 @@
 
 import { runXyWithWarning } from "../lib"
 
-runXyWithWarning('tsconfig-gen-clean')
+runXyWithWarning('compile-only')
