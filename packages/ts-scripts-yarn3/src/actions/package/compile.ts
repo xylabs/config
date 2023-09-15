@@ -54,8 +54,10 @@ const getInputs = async () => {
 const buildIt = async (pkg: PackageJsonEx) => {
   const input = await getInputs()
 
-  const esmExt = pkg.type === 'module' ? 'js' : 'mjs'
-  const cjsExt = pkg.type === 'commonjs' ? 'js' : 'cjs'
+  const pkgType = pkg.type ?? 'commonjs'
+
+  const esmExt = pkgType === 'module' ? 'js' : 'mjs'
+  const cjsExt = pkgType === 'commonjs' ? 'cjs' : 'js'
 
   await rollItUp(input, 'esm', esmExt)
   await rollItUp(input, 'cjs', cjsExt)
