@@ -60,7 +60,7 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
           }
         }
       }
-      console.log(chalk.yellow(`${level}: ${log.message}`))
+      console.log(chalk.yellow(`${level}: ${log.message} [${log.code}]`))
       if (log.id) {
         console.log(chalk.gray(log.id))
       }
