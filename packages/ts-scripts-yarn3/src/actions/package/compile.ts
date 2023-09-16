@@ -1,9 +1,10 @@
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
 import { cosmiconfig } from 'cosmiconfig'
 import { copyFile, readdir } from 'fs/promises'
-import { OutputOptions, rollup, RollupLog, RollupOptions, watch } from 'rollup'
+import { OutputOptions, rollup, RollupLog, RollupOptions } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
 
@@ -69,7 +70,7 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
       })
       return defaultHandler(level, log)
     },
-    plugins: [commonjs(), externalDeps(), nodeExternals(), tsPlugIn],
+    plugins: [commonjs(), externalDeps(), nodeExternals(), json(), tsPlugIn],
   }
 
   const outputOptions: OutputOptions = {

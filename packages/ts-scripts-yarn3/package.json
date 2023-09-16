@@ -60,6 +60,7 @@
     "@babel/core": "^7.22.19",
     "@babel/preset-env": "^7.22.15",
     "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-typescript": "^11.1.3",
     "@types/node": "^20.6.0",
     "@types/yargs": "^17.0.24",
@@ -168,5 +169,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.0.10"
+  "version": "3.0.11"
 }
