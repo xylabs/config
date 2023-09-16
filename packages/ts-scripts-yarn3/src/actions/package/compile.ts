@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
+import { cosmiconfig } from 'cosmiconfig'
 import { copyFile, readdir } from 'fs/promises'
 import { OutputOptions, rollup, RollupLog, RollupOptions, watch } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
@@ -15,15 +16,16 @@ export interface CompilePackageParams {
 }
 
 const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => {
-  const input = await getInputs(subDir)
+  const dir = subDir === '.' ? undefined : subDir
+  const input = await getInputs(dir)
   const tsPlugIn = typescript({
     baseUrl: 'src',
-    declaration: !subDir,
-    declarationMap: !subDir,
+    declaration: !dir || !subDir,
+    declarationMap: !dir || !subDir,
     emitDeclarationOnly: false,
     esModuleInterop: true,
     exclude: ['**/*.spec.*', 'dist', 'docs', 'node_modules', 'packages'],
-    outDir: subDir ? `dist/${subDir}` : 'dist',
+    outDir: dir ? `dist/${dir}` : 'dist',
     rootDir: 'src',
     tsconfig: 'tsconfig.json',
   })
@@ -34,9 +36,12 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
   const debugs: RollupLog[] = []
 
   const options: RollupOptions = {
-    input: input.map((file) => `./src/${file}`),
+    input: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     logLevel: 'warn',
     onLog: (level, log, defaultHandler) => {
+      if (log.code === 'EMPTY_BUNDLE') {
+        return defaultHandler(level, log)
+      }
       switch (level) {
         case 'warn': {
           warnings.push(log)
@@ -59,14 +64,14 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
           break
         }
       }
-      console.log(`Log: ${level}: ${log.cause}`)
+      console.log(`Log: ${level}: ${log.message}`)
       return defaultHandler(level, log)
     },
     plugins: [commonjs(), externalDeps(), nodeExternals(), tsPlugIn],
   }
 
   const outputOptions: OutputOptions = {
-    dir: subDir ? `dist/${subDir}` : 'dist',
+    dir: dir ? `dist/${dir}` : 'dist',
     dynamicImportInCjs: true,
     entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
     format,
@@ -86,10 +91,13 @@ const getInputs = async (subDir?: string) => {
     .map((file) => (subDir ? `${subDir}/${file}` : file))
 }
 
-const getInputDirs = async () => {
+const getInputDirs = async (depth: number) => {
+  if (depth === 0) {
+    return []
+  }
   return [
-    undefined,
-    ...(await readdir('src', { recursive: true, withFileTypes: true }))
+    '.',
+    ...(await readdir('src', { recursive: depth > 1, withFileTypes: true }))
       .filter((file) => file.isDirectory())
       .map((file) => {
         const pathParts = file.path.split('/')
@@ -112,19 +120,21 @@ const getDistTypeMapFiles = async () => {
   return (await readdir('dist', { recursive: true })).filter((file) => file.endsWith('d.ts.map')).map((file) => `dist/${file}`)
 }
 
-const buildIt = async (pkg: PackageJsonEx) => {
-  const inputDirs = await getInputDirs()
+const buildIt = async (pkg: PackageJsonEx, compileDepth: number) => {
+  const inputDirs = await getInputDirs(compileDepth)
 
   const pkgType = pkg.type ?? 'commonjs'
 
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
   const cjsExt = pkgType === 'commonjs' ? 'js' : 'cjs'
 
-  const rollupResult = await Promise.all(
-    inputDirs.map(async (inputDir) => {
-      return await rollItUp('esm', esmExt, inputDir) + await rollItUp('cjs', cjsExt, inputDir)
-    }),
-  )
+  const rollupResult = inputDirs.length
+    ? await Promise.all(
+        inputDirs.map(async (inputDir) => {
+          return (await rollItUp('esm', esmExt, inputDir)) + (await rollItUp('cjs', cjsExt, inputDir))
+        }),
+      )
+    : [(await rollItUp('esm', esmExt)) + (await rollItUp('cjs', cjsExt))]
 
   //hybrid packages want two copies of the types
   const distTypeFiles = await getDistTypeFiles()
@@ -145,11 +155,13 @@ const buildIt = async (pkg: PackageJsonEx) => {
 }
 
 export const packageCompile = async ({ publint = true, verbose }: CompilePackageParams = { verbose: false }) => {
+  const xyConfig = await cosmiconfig('xy').search()
+  const compileDepth: number = xyConfig?.config.compile?.depth ?? 0
   const pkgName = process.env.npm_package_name
   if (verbose) {
     console.log(chalk.green(`Compiling ${pkgName} Start`))
   }
-  const result = (await buildIt(await loadPackageConfig())) + (publint ? await packagePublint() : 0)
+  const result = (await buildIt(await loadPackageConfig(), compileDepth)) + (publint ? await packagePublint() : 0)
   if (result) {
     const input = await getInputs()
     console.log(`Inputs: ${JSON.stringify(input, null, 2)}`)
