@@ -76,5 +76,10 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.0.4"
+  "version": "3.0.6",
+  "xy": {
+    "compile": {
+      "depth": 10
+    }
+  }
 }

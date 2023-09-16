@@ -3395,6 +3395,7 @@ __metadata:
     "@xylabs/eslint-config": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: ^4.1.2
+    cosmiconfig: ^8.3.6
     cpy: ^8.1.2
     depcheck: ^1.4.6
     eslint: ^8.49.0
@@ -5090,7 +5091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^8.2.0":
+"cosmiconfig@npm:^8.2.0, cosmiconfig@npm:^8.3.6":
   version: 8.3.6
   resolution: "cosmiconfig@npm:8.3.6"
   dependencies:

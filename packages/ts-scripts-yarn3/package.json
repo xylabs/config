@@ -67,10 +67,10 @@
     "@typescript-eslint/parser": "^6.7.0",
     "@xylabs/tsconfig": "workspace:~",
     "chalk": "^4.1.2",
+    "cosmiconfig": "^8.3.6",
     "cpy": "^8.1.2",
     "depcheck": "^1.4.6",
     "eslint": "^8.49.0",
-    "cosmiconfig": "^8.3.6",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-sonarjs": "^0.21.0",
@@ -168,5 +168,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.0.4"
+  "version": "3.0.6"
 }
