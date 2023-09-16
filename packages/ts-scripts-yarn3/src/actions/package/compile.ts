@@ -39,39 +39,41 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
     input: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     logLevel: 'warn',
     onLog: (level, log, defaultHandler) => {
-      if (log.code === 'EMPTY_BUNDLE' || log.code === 'MIXED_EXPORTS') {
-        return defaultHandler(level, log)
-      }
-      switch (level) {
-        case 'warn': {
-          warnings.push(log)
-          console.warn(chalk.yellow(JSON.stringify(log, null, 2)))
-          break
-        }
-        case 'info': {
-          infos.push(log)
-          console.info(chalk.white(JSON.stringify(log, null, 2)))
-          break
-        }
-        case 'debug': {
-          debugs.push(log)
-          console.debug(chalk.gray(JSON.stringify(log, null, 2)))
-          break
-        }
-        default: {
-          errors.push(log)
-          console.error(chalk.red(JSON.stringify(log, null, 2)))
-          break
+      const pushLog = !(log.code === 'EMPTY_BUNDLE' || log.code === 'MIXED_EXPORTS')
+      if (pushLog) {
+        switch (level) {
+          case 'warn': {
+            warnings.push(log)
+            break
+          }
+          case 'info': {
+            infos.push(log)
+            break
+          }
+          case 'debug': {
+            debugs.push(log)
+            break
+          }
+          default: {
+            errors.push(log)
+            break
+          }
         }
       }
-      console.log(`Log: ${level}: ${log.message}`)
+      console.log(chalk.yellow(`${level}: ${log.message}`))
+      if (log.id) {
+        console.log(chalk.gray(log.id))
+      }
+      log.ids?.map((id) => {
+        console.log(chalk.gray(id))
+      })
       return defaultHandler(level, log)
     },
     plugins: [commonjs(), externalDeps(), nodeExternals(), tsPlugIn],
   }
 
   const outputOptions: OutputOptions = {
-    dir: dir ? `dist/${dir}` : 'dist',
+    dir: subDir ? `dist/${subDir}` : 'dist',
     dynamicImportInCjs: true,
     entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
     format,
@@ -121,6 +123,7 @@ const getDistTypeMapFiles = async () => {
 }
 
 const buildIt = async (pkg: PackageJsonEx, compileDepth: number) => {
+  console.log(`Compile Depth: ${compileDepth}`)
   const inputDirs = await getInputDirs(compileDepth)
 
   const pkgType = pkg.type ?? 'commonjs'
