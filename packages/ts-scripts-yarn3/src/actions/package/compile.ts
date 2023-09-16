@@ -39,7 +39,7 @@ const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => 
     input: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     logLevel: 'warn',
     onLog: (level, log, defaultHandler) => {
-      if (log.code === 'EMPTY_BUNDLE') {
+      if (log.code === 'EMPTY_BUNDLE' || log.code === 'MIXED_EXPORTS') {
         return defaultHandler(level, log)
       }
       switch (level) {
