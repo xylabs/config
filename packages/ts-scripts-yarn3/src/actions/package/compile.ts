@@ -2,7 +2,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import chalk from 'chalk'
 import { copyFile, readdir } from 'fs/promises'
-import { rollup } from 'rollup'
+import { OutputOptions, rollup, RollupLog, RollupOptions, watch } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
 
@@ -16,37 +16,68 @@ export interface CompilePackageParams {
 
 const rollItUp = async (format: 'cjs' | 'esm', ext: string, subDir?: string) => {
   const input = await getInputs(subDir)
-  if (input.length) {
-    await (
-      await rollup({
-        input: input.map((file) => `./src/${file}`),
-        logLevel: 'warn',
-        perf: true,
-        plugins: [
-          commonjs(),
-          externalDeps(),
-          nodeExternals(),
-          typescript({
-            baseUrl: 'src',
-            declaration: !subDir,
-            declarationMap: !subDir,
-            emitDeclarationOnly: false,
-            esModuleInterop: true,
-            exclude: ['**/*.spec.*', 'dist', 'docs', 'node_modules', 'packages'],
-            outDir: subDir ? `dist/${subDir}` : 'dist',
-            rootDir: 'src',
-            tsconfig: 'tsconfig.json',
-          }),
-        ],
-      })
-    ).write({
-      dir: subDir ? `dist/${subDir}` : 'dist',
-      dynamicImportInCjs: true,
-      entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
-      format,
-      sourcemap: true,
-    })
+  const tsPlugIn = typescript({
+    baseUrl: 'src',
+    declaration: !subDir,
+    declarationMap: !subDir,
+    emitDeclarationOnly: false,
+    esModuleInterop: true,
+    exclude: ['**/*.spec.*', 'dist', 'docs', 'node_modules', 'packages'],
+    outDir: subDir ? `dist/${subDir}` : 'dist',
+    rootDir: 'src',
+    tsconfig: 'tsconfig.json',
+  })
+
+  const errors: RollupLog[] = []
+  const warnings: RollupLog[] = []
+  const infos: RollupLog[] = []
+  const debugs: RollupLog[] = []
+
+  const options: RollupOptions = {
+    input: input.map((file) => `./src/${file}`),
+    logLevel: 'warn',
+    onLog: (level, log, defaultHandler) => {
+      switch (level) {
+        case 'warn': {
+          warnings.push(log)
+          console.warn(chalk.yellow(JSON.stringify(log, null, 2)))
+          break
+        }
+        case 'info': {
+          infos.push(log)
+          console.info(chalk.white(JSON.stringify(log, null, 2)))
+          break
+        }
+        case 'debug': {
+          debugs.push(log)
+          console.debug(chalk.gray(JSON.stringify(log, null, 2)))
+          break
+        }
+        default: {
+          errors.push(log)
+          console.error(chalk.red(JSON.stringify(log, null, 2)))
+          break
+        }
+      }
+      console.log(`Log: ${level}: ${log.cause}`)
+      return defaultHandler(level, log)
+    },
+    plugins: [commonjs(), externalDeps(), nodeExternals(), tsPlugIn],
   }
+
+  const outputOptions: OutputOptions = {
+    dir: subDir ? `dist/${subDir}` : 'dist',
+    dynamicImportInCjs: true,
+    entryFileNames: (chunkInfo) => `${chunkInfo.name}.${ext}`,
+    format,
+    sourcemap: true,
+  }
+
+  if (input.length) {
+    await (await rollup(options)).write(outputOptions)
+  }
+
+  return errors.length + warnings.length
 }
 
 const getInputs = async (subDir?: string) => {
@@ -89,10 +120,9 @@ const buildIt = async (pkg: PackageJsonEx) => {
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
   const cjsExt = pkgType === 'commonjs' ? 'js' : 'cjs'
 
-  await Promise.all(
+  const rollupResult = await Promise.all(
     inputDirs.map(async (inputDir) => {
-      await rollItUp('esm', esmExt, inputDir)
-      await rollItUp('cjs', cjsExt, inputDir)
+      return await rollItUp('esm', esmExt, inputDir) + await rollItUp('cjs', cjsExt, inputDir)
     }),
   )
 
@@ -111,7 +141,7 @@ const buildIt = async (pkg: PackageJsonEx) => {
     }),
   )
 
-  return 0
+  return rollupResult.reduce((prev, item) => prev + item, 0)
 }
 
 export const packageCompile = async ({ publint = true, verbose }: CompilePackageParams = { verbose: false }) => {
