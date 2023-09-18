@@ -1,4 +1,4 @@
-import { ESLint } from "eslint";
+import { ESLint } from 'eslint'
 
 export const rulesConfig: ESLint.ConfigData = {
   plugins: ['sort-keys-fix', 'no-secrets'],

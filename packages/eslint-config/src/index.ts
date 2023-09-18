@@ -72,4 +72,4 @@ const config: ESLint.ConfigData = {
   },
 }
 
-export default config
+module.exports = config

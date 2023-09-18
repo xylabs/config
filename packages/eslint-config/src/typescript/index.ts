@@ -1,18 +1,18 @@
-import { ESLint } from "eslint"
-import { cwd } from "process"
+import { ESLint } from 'eslint'
+import { cwd } from 'process'
 
 export const typescriptConfig: ESLint.ConfigData = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   overrides: [
     {
+      files: ['*.ts*', '*.d.ts*'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        tsconfigRootDir: cwd(),
         ecmaVersion: 'latest',
         project: ['./tsconfig.json'],
         sourceType: 'module',
+        tsconfigRootDir: cwd(),
       },
-      files: ['*.ts*', '*.d.ts*'],
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',

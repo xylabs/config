@@ -1,17 +1,20 @@
 import { build, defineConfig, Options } from 'tsup'
-import {getInputDirs, getInputs} from './inputs'
+
+import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
-import { loadConfig } from '../../../lib'
+import { getInputDirs, getInputs } from './inputs'
 import { packageCompileTscTypes } from './tscTypes'
 
-export type PackageCompileTsupParams = Partial<CompileParams & {
-  compile?: {
-    tsup?: {
-      options?: Options
+export type PackageCompileTsupParams = Partial<
+  CompileParams & {
+    compile?: {
+      tsup?: {
+        options?: Options
+      }
     }
   }
-}>
+>
 
 const compileSubDir = async (subDir?: string, options?: Options, verbose?: boolean) => {
   const dir = subDir === '.' ? undefined : subDir
@@ -22,8 +25,8 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     clean: true,
     dts: {
       entry: ['src/index.ts'],
+      only: false,
       resolve: false,
-      only: false
     },
     entry: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     format: ['cjs', 'esm'],
@@ -31,7 +34,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     sourcemap: true,
     splitting: false,
     tsconfig: 'tsconfig.json',
-    ...options
+    ...options,
   })
   const optionsList = (
     await Promise.all(
@@ -45,20 +48,22 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
   ).flat()
   await Promise.all(optionsList.map((options) => build(options)))
 
-  return await packageCompileTscTypes({verbose})
+  return await packageCompileTscTypes({ verbose })
 }
 
 export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   const config = await loadConfig(params)
   if (config.verbose) {
-    console.log(`Compiling with TSUP`)
+    console.log('Compiling with TSUP')
   }
   const inputDirs = await getInputDirs(config.compile?.depth)
 
-  const result = (await Promise.all(
-    inputDirs.map(async (inputDir) => {
-      return await compileSubDir(inputDir, config.compile?.tsup?.options, config.verbose )
-    }),
-  )).reduce(((prev, result) => prev + result), 0)
+  const result = (
+    await Promise.all(
+      inputDirs.map(async (inputDir) => {
+        return await compileSubDir(inputDir, config.compile?.tsup?.options, config.verbose)
+      }),
+    )
+  ).reduce((prev, result) => prev + result, 0)
   return result + (config.compile?.publint ? await packagePublint() : 0)
 }

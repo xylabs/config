@@ -1,4 +1,4 @@
-import { ESLint } from "eslint";
+import { ESLint } from 'eslint'
 
 export const markdownConfig: ESLint.ConfigData = {
   extends: ['plugin:md/recommended'],

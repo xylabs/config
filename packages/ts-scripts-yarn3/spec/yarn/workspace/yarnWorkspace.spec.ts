@@ -1,4 +1,4 @@
-import { yarnWorkspace } from '../yarnWorkspace'
+import { yarnWorkspace } from '../../../src'
 
 describe('yarnWorkspace', () => {
   describe('when workspace', () => {

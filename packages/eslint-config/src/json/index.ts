@@ -1,4 +1,4 @@
-import { ESLint } from "eslint";
+import { ESLint } from 'eslint'
 
 export const jsonConfig: ESLint.ConfigData = {
   overrides: [

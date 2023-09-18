@@ -5,17 +5,16 @@ import chalk from 'chalk'
 import { OutputOptions, rollup, RollupLog, RollupOptions } from 'rollup'
 import externalDeps from 'rollup-plugin-exclude-dependencies-from-bundle'
 import nodeExternals from 'rollup-plugin-node-externals'
-import { getInputDirs, getInputs } from './inputs'
-import { packagePublint } from '../publint'
-import { loadPackageConfig } from '../../../loadPackageConfig'
-import { CompileParams } from './CompileParams'
+
 import { loadConfig } from '../../../lib'
+import { loadPackageConfig } from '../../../loadPackageConfig'
+import { packagePublint } from '../publint'
+import { CompileParams } from './CompileParams'
+import { getInputDirs, getInputs } from './inputs'
 
-export interface PackageCompileRollupParams extends CompileParams {
+export interface PackageCompileRollupParams extends CompileParams {}
 
-}
-
-export const compileSubDir = async (format: 'cjs' | 'esm', ext: string, subDir?: string, verbose = false) => {
+export const compileSubDir = async (format: 'cjs' | 'esm', ext: string, subDir?: string, _verbose = false) => {
   const dir = subDir === '.' ? undefined : subDir
   const input = await getInputs(dir)
   const tsPlugIn = typescript({
@@ -99,10 +98,12 @@ export const packageCompileRollup = async (params?: PackageCompileRollupParams) 
   const esmExt = pkgType === 'module' ? 'js' : 'mjs'
   const cjsExt = pkgType === 'commonjs' ? 'js' : 'cjs'
 
-  const result = (await Promise.all(
-    inputDirs.map(async (inputDir) => {
-      return await compileSubDir('cjs', cjsExt, inputDir, verbose) + await compileSubDir('esm', esmExt, inputDir, verbose)
-    }),
-  )).reduce(((prev, result) => prev + result), 0)
+  const result = (
+    await Promise.all(
+      inputDirs.map(async (inputDir) => {
+        return (await compileSubDir('cjs', cjsExt, inputDir, verbose)) + (await compileSubDir('esm', esmExt, inputDir, verbose))
+      }),
+    )
+  ).reduce((prev, result) => prev + result, 0)
   return result + (publint ? await packagePublint() : 0)
 }

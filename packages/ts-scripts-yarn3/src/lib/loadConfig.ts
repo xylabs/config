@@ -1,7 +1,9 @@
 import chalk from 'chalk'
-import merge from 'lodash/merge'
 import { cosmiconfig } from 'cosmiconfig'
+// eslint-disable-next-line import/no-internal-modules
+import merge from 'lodash/merge'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let config: Record<string, any>
 
 export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
