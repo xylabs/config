@@ -2,7 +2,11 @@ import chalk from 'chalk'
 import { promises as fs } from 'fs'
 import { Message } from 'publint'
 
-export const packagePublint = async () => {
+export interface PackagePublintParams {
+  verbose?: boolean
+}
+
+export const packagePublint = async (params?: PackagePublintParams) => {
   const pkgDir = process.env.INIT_CWD
 
   const pkg = JSON.parse(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))

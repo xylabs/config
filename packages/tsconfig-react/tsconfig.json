@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx"
   },
+  "exclude": ["dist", "docs"],
   "extends": "@xylabs/tsconfig-dom"
 }

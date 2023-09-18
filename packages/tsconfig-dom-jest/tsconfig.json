@@ -1,5 +1,4 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "types": [
       "jest-extended",
@@ -9,5 +8,6 @@
       "reflect-metadata"
     ]
   },
+  "exclude": ["dist", "docs"],
   "extends": "@xylabs/tsconfig-dom"
 }

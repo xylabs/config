@@ -1,5 +1,4 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "declaration": true,
@@ -8,9 +7,6 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "incremental": false,
-    "lib": [
-      "ESNEXT"
-    ],
     "module": "ESNEXT",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -23,7 +19,7 @@
     "strict": true,
     "target": "ESNEXT"
   },
-  "exclude": [".*", "dist", "node_modules", "storybook-static", "build"],
+  "exclude": [".*", "dist", "node_modules", "storybook-static", "build", "docs"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
