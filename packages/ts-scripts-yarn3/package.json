@@ -168,5 +168,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.0.19"
+  "version": "3.0.20"
 }
