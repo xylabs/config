@@ -58,12 +58,17 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   }
   const inputDirs = await getInputDirs(config.compile?.depth)
 
-  const result = (
-    await Promise.all(
-      inputDirs.map(async (inputDir) => {
-        return await compileSubDir(inputDir, config.compile?.tsup?.options, config.verbose)
-      }),
-    )
-  ).reduce((prev, result) => prev + result, 0)
-  return result + (config.compile?.publint ? await packagePublint() : 0)
+  if (inputDirs.length) {
+    const result = (
+      await Promise.all(
+        inputDirs.map(async (inputDir) => {
+          return await compileSubDir(inputDir, config.compile?.tsup?.options, config.verbose)
+        }),
+      )
+    ).reduce((prev, result) => prev + result, 0)
+    return result + (config.compile?.publint ? await packagePublint() : 0)
+  } else {
+    const result = await compileSubDir(undefined, config.compile?.tsup?.options, config.verbose)
+    return result + (config.compile?.publint ? await packagePublint() : 0)
+  }
 }
