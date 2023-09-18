@@ -25,50 +25,42 @@ export const packageCompile = async (params?: PackageCompileParams): Promise<num
 
   const modes = config.compile?.modes ?? ['tsup']
   let modeIndex = 0
+  let result: number = 0
   while (modeIndex < modes.length) {
     const mode = modes[modeIndex]
     switch (mode) {
       case 'rollup': {
-        const result = packageCompileRollup(
+        result += await packageCompileRollup(
           merge({}, params, {
             compile: {
               publint: false,
             },
           }),
         )
-        if (result) {
-          return result
-        }
         break
       }
       case 'tsc': {
-        const result = packageCompileTsc(
+        result += await packageCompileTsc(
           merge({}, params, {
             compile: {
               publint: false,
             },
           }),
         )
-        if (result) {
-          return result
-        }
         break
       }
       case 'tsup': {
-        const result = packageCompileTsup(
+        result += await packageCompileTsup(
           merge({}, params, {
             compile: {
               publint: false,
             },
           }),
         )
-        if (result) {
-          return result
-        }
         break
       }
     }
     modeIndex++
   }
-  return publint ? await packagePublint(params) : 0
+  return result + (publint ? await packagePublint(params) : 0)
 }
