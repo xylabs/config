@@ -14,6 +14,7 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
       declaration: true,
       declarationMap: true,
       emitDeclarationOnly: true,
+      esModuleInterop: true,
       outDir: 'dist'
     },
     include: ['src'],
