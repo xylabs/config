@@ -21,6 +21,7 @@ export const packageCompile = async (params?: PackageCompileParams): Promise<num
   const pkg = process.env.INIT_CWD
   console.log(chalk.green(`Compiling ${pkg}`))
   const config = await loadConfig(params)
+  const publint = config.compile?.publint ?? true
 
   const modes = config.compile?.modes ?? ['tsup']
   let modeIndex = 0
@@ -69,5 +70,5 @@ export const packageCompile = async (params?: PackageCompileParams): Promise<num
     }
     modeIndex++
   }
-  return config.compile?.publint ? await packagePublint(params) : 0
+  return publint ? await packagePublint(params) : 0
 }

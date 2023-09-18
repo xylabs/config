@@ -53,6 +53,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
 
 export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   const config = await loadConfig(params)
+  const publint = config.compile?.publint ?? true
   if (config.verbose) {
     console.log('Compiling with TSUP')
   }
@@ -66,9 +67,9 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
         }),
       )
     ).reduce((prev, result) => prev + result, 0)
-    return result + (config.compile?.publint ? await packagePublint() : 0)
+    return result + (publint ? await packagePublint() : 0)
   } else {
     const result = await compileSubDir(undefined, config.compile?.tsup?.options, config.verbose)
-    return result + (config.compile?.publint ? await packagePublint() : 0)
+    return result + (publint ? await packagePublint() : 0)
   }
 }
