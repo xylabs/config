@@ -14,6 +14,7 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
       emitDeclarationOnly: true,
       esModuleInterop: true,
       outDir: 'dist',
+      skipLibCheck: true,
       sourceMap: true,
     },
     exclude: ['dist', 'docs'],
