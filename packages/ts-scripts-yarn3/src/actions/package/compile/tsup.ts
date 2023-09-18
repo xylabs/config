@@ -24,7 +24,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     cjsInterop: true,
     clean: true,
     dts: {
-      entry: ['src/index.ts'],
+      entry: input.map((entry) => `src/${entry}`),
       only: false,
       resolve: false,
     },
