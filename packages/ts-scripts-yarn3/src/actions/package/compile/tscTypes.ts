@@ -17,7 +17,7 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
       skipLibCheck: true,
       sourceMap: true,
     },
-    exclude: ['dist', 'docs'],
+    exclude: ['dist', 'docs', '*.spec.*', 'src/**/spec/**/*'],
     include: ['src'],
   }
 
