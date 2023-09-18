@@ -3,6 +3,7 @@ import { build, BuildOptions } from 'tsc-prog'
 
 import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
+import { copyTypeFiles } from './copyTypeFiles'
 
 export const packageCompileTscTypes = async (params?: CompileParams): Promise<number> => {
   const pkg = process.env.INIT_CWD
@@ -27,5 +28,6 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
   }
 
   build(buildOptions)
+  await copyTypeFiles()
   return 0
 }
