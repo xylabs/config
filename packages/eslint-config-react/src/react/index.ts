@@ -1,4 +1,7 @@
-const reactConfig = {
+import { ESLint } from 'eslint'
+
+export const reactConfig: ESLint.ConfigData = {
+  extends: [],
   overrides: [
     {
       extends: ['@xylabs', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
@@ -22,7 +25,7 @@ const reactConfig = {
       },
     },
   ],
+  plugins: [],
+  rules: {},
+  settings: [],
 }
-
-// eslint-disable-next-line import/no-default-export
-export default reactConfig

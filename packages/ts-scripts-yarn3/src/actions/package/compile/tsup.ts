@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { build, defineConfig, Options } from 'tsup'
 
 import { loadConfig } from '../../../lib'
@@ -28,15 +27,6 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     cjsInterop: true,
     clean: true,
     dts: false,
-    /*dts: {
-      compilerOptions: {
-        skipDefaultLibCheck: true,
-        skipLibCheck: true,
-      },
-      entry: input.map((entry) => `src/${entry}`),
-      only: false,
-      resolve: false,
-    },*/
     entry: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     format: ['cjs', 'esm'],
     outDir: subDir ? `dist/${subDir}` : 'dist',

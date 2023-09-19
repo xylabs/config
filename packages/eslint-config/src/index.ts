@@ -72,4 +72,11 @@ const config: ESLint.ConfigData = {
   },
 }
 
+/* We use export default to make the type generation correct */
+
+// eslint-disable-next-line import/no-default-export
+export default config
+
+/* We use module.exports to make the plugin load work */
+
 module.exports = config
