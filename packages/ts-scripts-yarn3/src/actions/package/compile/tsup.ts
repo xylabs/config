@@ -23,7 +23,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     bundle: true,
     cjsInterop: true,
     clean: true,
-    dts: {
+    /*dts: {
       compilerOptions: {
         skipDefaultLibCheck: true,
         skipLibCheck: true,
@@ -31,7 +31,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
       entry: input.map((entry) => `src/${entry}`),
       only: false,
       resolve: false,
-    },
+    },*/
     entry: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     format: ['cjs', 'esm'],
     outDir: 'dist',
