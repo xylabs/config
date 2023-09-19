@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import { build, defineConfig, Options } from 'tsup'
 
 import { loadConfig } from '../../../lib'
@@ -34,7 +35,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     },*/
     entry: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
     format: ['cjs', 'esm'],
-    outDir: 'dist',
+    outDir: subDir ? `dist/${subDir}` : 'dist',
     sourcemap: true,
     splitting: false,
     tsconfig: 'tsconfig.json',
@@ -59,7 +60,7 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   const config = await loadConfig(params)
   const publint = config.compile?.publint ?? true
   if (config.verbose) {
-    console.log('Compiling with TSUP')
+    console.log(`Compiling with TSUP [Depth: ${config.compile?.depth}]`)
   }
   const inputDirs = await getInputDirs(config.compile?.depth)
 

@@ -79,7 +79,7 @@
   "version": "3.0.24",
   "xy": {
     "compile": {
-      "depth": 10
+      "depth": 1
     }
   }
 }
