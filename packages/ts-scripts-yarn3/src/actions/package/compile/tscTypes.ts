@@ -1,5 +1,6 @@
 import { cwd } from 'process'
-import { build, BuildOptions, TsConfigCompilerOptions } from 'tsc-prog'
+import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
+import { DiagnosticCategory } from 'typescript'
 
 import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
@@ -8,7 +9,13 @@ import { getCompilerOptions } from './getCompilerOptions'
 
 export const packageCompileTscTypes = async (params?: CompileParams): Promise<number> => {
   const pkg = process.env.INIT_CWD
-  const buildOptions: BuildOptions = {
+
+  const config = await loadConfig(params)
+  if (config.verbose) {
+    console.log(`Compiling types with TSC [${pkg}]`)
+  }
+
+  const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions: getCompilerOptions({
       declaration: true,
@@ -19,16 +26,11 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
       skipLibCheck: true,
       sourceMap: true,
     }) as TsConfigCompilerOptions,
-    exclude: ['dist', 'docs', '*.spec.*', 'src/**/spec/**/*'],
+    configFilePath: 'tsconfig.json',
+    exclude: ['dist', 'docs', '**/*.spec.*', 'src/**/spec/**/*'],
     include: ['src'],
-  }
+  }).emit()
 
-  const config = await loadConfig(params)
-  if (config.verbose) {
-    console.log(`Compiling types with TSC [${pkg}]`)
-  }
-
-  build(buildOptions)
   await copyTypeFiles()
-  return 0
+  return result.diagnostics.map((value) => value.category === DiagnosticCategory.Error).length
 }
