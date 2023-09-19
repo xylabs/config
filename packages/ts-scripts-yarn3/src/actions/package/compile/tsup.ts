@@ -24,6 +24,10 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     cjsInterop: true,
     clean: true,
     dts: {
+      compilerOptions: {
+        skipDefaultLibCheck: true,
+        skipLibCheck: true,
+      },
       entry: input.map((entry) => `src/${entry}`),
       only: false,
       resolve: false,
