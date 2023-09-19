@@ -20,6 +20,9 @@ export type PackageCompileTsupParams = Partial<
 const compileSubDir = async (subDir?: string, options?: Options, verbose?: boolean) => {
   const dir = subDir === '.' ? undefined : subDir
   const input = await getInputs(dir)
+  if (input.length === 0) {
+    return 0
+  }
   const optionsResult = defineConfig({
     bundle: true,
     cjsInterop: true,
