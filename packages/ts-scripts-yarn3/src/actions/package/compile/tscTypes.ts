@@ -1,15 +1,16 @@
 import { cwd } from 'process'
-import { build, BuildOptions } from 'tsc-prog'
+import { build, BuildOptions, TsConfigCompilerOptions } from 'tsc-prog'
 
 import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
 import { copyTypeFiles } from './copyTypeFiles'
+import { getCompilerOptions } from './getCompilerOptions'
 
 export const packageCompileTscTypes = async (params?: CompileParams): Promise<number> => {
   const pkg = process.env.INIT_CWD
   const buildOptions: BuildOptions = {
     basePath: pkg ?? cwd(),
-    compilerOptions: {
+    compilerOptions: getCompilerOptions({
       declaration: true,
       declarationMap: true,
       emitDeclarationOnly: true,
@@ -17,7 +18,7 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
       outDir: 'dist',
       skipLibCheck: true,
       sourceMap: true,
-    },
+    }) as TsConfigCompilerOptions,
     exclude: ['dist', 'docs', '*.spec.*', 'src/**/spec/**/*'],
     include: ['src'],
   }

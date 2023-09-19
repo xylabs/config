@@ -15,6 +15,7 @@ import {
 
 import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
+import { getCompilerOptions } from './getCompilerOptions'
 import { getAllInputs } from './inputs'
 
 export type PackageCompileTscParams = Partial<
@@ -27,28 +28,6 @@ export type PackageCompileTscParams = Partial<
     }
   }
 >
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerOptions => {
-  let opts = {}
-  const config = readConfigFile(filename, sys.readFile).config
-  if (config.extends) {
-    const requirePath = require.resolve(config.extends)
-    opts = getCompilerOptionsJSONFollowExtends(requirePath)
-  }
-  if (config?.error) {
-    throw Error(`getCompilerOptionsJSONFollowExtends failed ${JSON.stringify(config?.error?.messageText, null, 2)}`)
-  }
-
-  return { ...opts, ...config.compilerOptions }
-}
-
-const getCompilerOptions = (options?: CompilerOptions, tsconfig: string = 'tsconfig.json'): CompilerOptions => {
-  const configFileName = findConfigFile('./', sys.fileExists, tsconfig)
-  const configFileCompilerOptions = configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined
-
-  return merge({}, configFileCompilerOptions, options)
-}
 
 const getConfigFile = (options?: CompilerOptions, tsconfig: string = 'tsconfig.json') => {
   const configFileName = findConfigFile('./', sys.fileExists, tsconfig)
