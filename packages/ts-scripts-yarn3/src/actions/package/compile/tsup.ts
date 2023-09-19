@@ -24,6 +24,7 @@ const compileSubDir = async (subDir?: string, options?: Options, verbose?: boole
     bundle: true,
     cjsInterop: true,
     clean: true,
+    dts: false,
     /*dts: {
       compilerOptions: {
         skipDefaultLibCheck: true,
