@@ -64,7 +64,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.0.33",
+  "version": "3.0.34",
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src",
     "package-clean": "echo Not cleaning..."

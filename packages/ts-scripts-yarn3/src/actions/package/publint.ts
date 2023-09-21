@@ -25,7 +25,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getValueFromPath = (obj: any, path: string[]): any => {
-    const index = path.pop()
+    const index = path.shift()
     if (index) {
       return getValueFromPath(obj[index], path)
     } else {
