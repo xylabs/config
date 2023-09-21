@@ -1,9 +1,8 @@
-import { build, defineConfig, Format, Options } from 'tsup'
+import { build, defineConfig, Options } from 'tsup'
 
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
-import { getInputDirs, getInputs } from './inputs'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
 

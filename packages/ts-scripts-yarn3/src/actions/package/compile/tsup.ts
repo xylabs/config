@@ -1,4 +1,4 @@
-import { build, defineConfig, Format, Options } from 'tsup'
+import { build, defineConfig, Options } from 'tsup'
 
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
