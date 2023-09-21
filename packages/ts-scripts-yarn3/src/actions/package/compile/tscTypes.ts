@@ -25,7 +25,6 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
       sourceMap: true,
       ...(compilerOptions ?? {}),
     }) as TsConfigCompilerOptions,
-    configFilePath: 'tsconfig.json',
     exclude: ['dist', 'docs', '**/*.spec.*', 'src/**/spec/**/*'],
     include: ['src'],
   }).emit()

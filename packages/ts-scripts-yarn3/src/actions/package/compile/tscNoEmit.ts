@@ -23,7 +23,6 @@ export const packageCompileTscNoEmit = (params?: CompileParams): number => {
       skipLibCheck: true,
       sourceMap: true,
     }) as TsConfigCompilerOptions,
-    configFilePath: 'tsconfig.json',
     exclude: ['dist', 'docs', '**/*.spec.*', 'src/**/spec/**/*'],
     include: ['src'],
   }).emit()
