@@ -77,7 +77,7 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
     return result || (await packageCompileTscTypes({ verbose })) || (publint ? await packagePublint() : 0)
   } else {
     return (
-      (await packageCompileTscNoEmit({ verbose })) ||
+      packageCompileTscNoEmit({ verbose }) ||
       (await compileSubDir(undefined, compile?.tsup?.options, verbose)) ||
       (await packageCompileTscTypes({ verbose })) ||
       (publint ? await packagePublint() : 0)

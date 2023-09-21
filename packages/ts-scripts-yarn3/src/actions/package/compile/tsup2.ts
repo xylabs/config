@@ -54,10 +54,11 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
   }
 
   return (
-    (await packageCompileTscNoEmit({ verbose })) ||
+    packageCompileTscNoEmit({ verbose }) ||
     (await compileFolder(compile?.tsup?.options, verbose)) ||
     (await compileFolder({ ...(compile?.tsup?.options ?? {}), clean: false, legacyOutput: true }, verbose)) ||
     (await packageCompileTscTypes({ verbose })) ||
+    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/esm' }, false)) ||
     (publint ? await packagePublint() : 0)
   )
 }

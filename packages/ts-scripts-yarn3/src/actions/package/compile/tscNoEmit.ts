@@ -2,16 +2,14 @@ import { cwd } from 'process'
 import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { DiagnosticCategory } from 'typescript'
 
-import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
 import { getCompilerOptions } from './getCompilerOptions'
 
-export const packageCompileTscNoEmit = async (params?: CompileParams): Promise<number> => {
+export const packageCompileTscNoEmit = (params?: CompileParams): number => {
   const pkg = process.env.INIT_CWD
 
-  const config = await loadConfig(params)
-  if (config.verbose) {
-    console.log(`Compiling with TSC [${pkg}]`)
+  if (params?.verbose) {
+    console.log(`Compiling with NoEmit TSC [${pkg}]`)
   }
 
   const result = createProgramFromConfig({

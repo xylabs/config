@@ -11,7 +11,7 @@ export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
     return merge({}, config, params)
   }
 
-  const cosmicConfigResult = await cosmiconfig('xy').search()
+  const cosmicConfigResult = await cosmiconfig('xy', { cache: true }).search()
   config = cosmicConfigResult?.config
   const configFilePath = cosmicConfigResult?.filepath
   if (configFilePath) {
