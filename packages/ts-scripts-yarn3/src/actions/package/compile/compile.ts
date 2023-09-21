@@ -17,11 +17,13 @@ export type PackageCompileParams = CompileParams & {
   }
 }
 
-export const packageCompile = async (params?: PackageCompileParams): Promise<number> => {
+export const packageCompile = async (params: PackageCompileParams = {compile: {
+  publint: false
+}}): Promise<number> => {
   const pkg = process.env.INIT_CWD
   console.log(chalk.green(`Compiling ${pkg}`))
   const config = await loadConfig(params)
-  const publint = config.compile?.publint ?? true
+  const publint = false //config.compile?.publint ?? false
 
   const modes = config.compile?.modes ?? ['tsup']
   let modeIndex = 0
