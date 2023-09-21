@@ -26,18 +26,32 @@ export const packagePublint = async (params?: PackagePublintParams) => {
   // eslint-disable-next-line import/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
+  const validMessage = (message: Message): boolean => {
+    switch (message.code) {
+      case 'FILE_INVALID_FORMAT':
+        return !message.args?.actualFilePath?.includes('/dist/esm')
+      case 'EXPORT_TYPES_INVALID_FORMAT':
+        return !message.path.includes('/dist/esm')
+      default:
+        return true
+    }
+  }
+
   //we filter out invalid file formats for the esm folder since it is intentionally done
-  const validMessages = messages.filter((message) => !(message.code === 'FILE_INVALID_FORMAT' && message.args.actualFilePath?.includes('/dist/esm')))
+  const validMessages = messages.filter(validMessage)
   validMessages.forEach((message: Message) => {
     switch (message.type) {
       case 'error':
         console.error(chalk.red(`[${message.code}] ${formatMessage(message, pkg)}`))
+        console.error(chalk.gray(message.path))
         break
       case 'warning':
         console.warn(chalk.yellow(formatMessage(message, pkg)))
+        console.error(chalk.gray(message.path))
         break
       default:
         console.info(chalk.white(formatMessage(message, pkg)))
+        console.error(chalk.gray(message.path))
         break
     }
   })
