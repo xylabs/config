@@ -8,12 +8,10 @@ export interface PackagePublintParams {
 
 export const packagePublint = async (params?: PackagePublintParams) => {
   const pkgDir = process.env.INIT_CWD
-
-  if (params?.verbose) {
-    console.log(chalk.gray(`Publint [Start]: ${pkgDir}`))
-  }
-
   const pkg = JSON.parse(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))
+
+  console.log(chalk.green(`Publint: ${pkg.name}`))
+  console.log(chalk.gray(pkgDir))
 
   const { publint } = await import('publint')
 
