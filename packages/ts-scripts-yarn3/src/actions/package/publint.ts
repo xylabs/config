@@ -35,13 +35,20 @@ export const packagePublint = async (params?: PackagePublintParams) => {
   const { formatMessage } = await import('publint/utils')
 
   const validMessage = (message: Message): boolean => {
-    switch (message.code) {
-      case 'FILE_INVALID_FORMAT':
-        return !message.args?.actualFilePath?.includes('/dist/esm')
-      case 'EXPORT_TYPES_INVALID_FORMAT':
-        return !`${getValueFromPath(pkg, message.path)}`.includes('/dist/esm')
-      default:
-        return true
+    try {
+      switch (message.code) {
+        case 'FILE_INVALID_FORMAT':
+          return !message.args?.actualFilePath?.includes('/dist/esm')
+        case 'EXPORT_TYPES_INVALID_FORMAT':
+          return !`${getValueFromPath(pkg, message.path)}`.includes('/dist/esm')
+        default:
+          return true
+      }
+    } catch (ex) {
+      const error = ex as Error
+      console.error(chalk.red(`validMessage Excepted: ${error.message}`))
+      console.error(chalk.gray(JSON.stringify(error.stack)))
+      return true
     }
   }
 
