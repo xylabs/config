@@ -7,7 +7,7 @@ import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
 import { packageCompileRollup } from './rollup'
 import { packageCompileTsc } from './tsc'
-import { packageCompileTsup } from './tsup'
+import { packageCompileTsup2 } from './tsup2'
 
 export type PackageCompileMode = 'tsup' | 'tsc' | 'rollup'
 
@@ -50,7 +50,7 @@ export const packageCompile = async (params?: PackageCompileParams): Promise<num
         break
       }
       case 'tsup': {
-        result += await packageCompileTsup(
+        result += await packageCompileTsup2(
           merge({}, params, {
             compile: {
               publint: false,

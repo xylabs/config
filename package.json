@@ -70,7 +70,7 @@
   },
   "sideEffects": false,
   "version": "3.0.28",
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && echo Bootstrap Build Done && yarn compile",
     "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",

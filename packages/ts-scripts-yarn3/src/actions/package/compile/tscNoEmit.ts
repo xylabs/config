@@ -4,15 +4,14 @@ import { DiagnosticCategory } from 'typescript'
 
 import { loadConfig } from '../../../lib'
 import { CompileParams } from './CompileParams'
-import { copyTypeFiles } from './copyTypeFiles'
 import { getCompilerOptions } from './getCompilerOptions'
 
-export const packageCompileTscTypes = async (params?: CompileParams): Promise<number> => {
+export const packageCompileTscNoEmit = async (params?: CompileParams): Promise<number> => {
   const pkg = process.env.INIT_CWD
 
   const config = await loadConfig(params)
   if (config.verbose) {
-    console.log(`Compiling types with TSC [${pkg}]`)
+    console.log(`Compiling with TSC [${pkg}]`)
   }
 
   const result = createProgramFromConfig({
@@ -20,8 +19,8 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
     compilerOptions: getCompilerOptions({
       declaration: true,
       declarationMap: true,
-      emitDeclarationOnly: true,
       esModuleInterop: true,
+      noEmit: true,
       outDir: 'dist',
       skipLibCheck: true,
       sourceMap: true,
@@ -31,7 +30,5 @@ export const packageCompileTscTypes = async (params?: CompileParams): Promise<nu
     include: ['src'],
   }).emit()
 
-  const diagResults = result.diagnostics.map((value) => value.category === DiagnosticCategory.Error).length
-  await copyTypeFiles()
-  return diagResults
+  return result.diagnostics.map((value) => value.category === DiagnosticCategory.Error).length
 }

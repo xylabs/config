@@ -7,7 +7,7 @@ import { getInputDirs, getInputs } from './inputs'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
 
-export type PackageCompileTsupParams = Partial<
+export type PackageCompileTsup2Params = Partial<
   CompileParams & {
     compile?: {
       tsup?: {
@@ -17,20 +17,15 @@ export type PackageCompileTsupParams = Partial<
   }
 >
 
-const compileSubDir = async (subDir?: string, options?: Options, _verbose?: boolean) => {
-  const dir = subDir === '.' ? undefined : subDir
-  const input = await getInputs(dir)
-  if (input.length === 0) {
-    return 0
-  }
+const compileFolder = async (options?: Options, _verbose?: boolean) => {
   const optionsResult = defineConfig({
     bundle: false,
     cjsInterop: true,
     clean: true,
     dts: false,
-    entry: subDir ? input.map((file) => `./src/${file}`) : ['./src/index.ts'],
+    entry: ['src'],
     format: ['cjs', 'esm'],
-    outDir: subDir ? `dist/${subDir}` : 'dist',
+    outDir: 'dist',
     silent: true,
     sourcemap: true,
     splitting: false,
@@ -52,35 +47,18 @@ const compileSubDir = async (subDir?: string, options?: Options, _verbose?: bool
   return 0
 }
 
-export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
+export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) => {
   const { verbose, compile } = await loadConfig(params)
   const publint = compile?.publint ?? true
   if (verbose) {
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
   }
-  const inputDirs = await getInputDirs(compile?.depth)
 
-  const noEmitResult = await packageCompileTscNoEmit({ verbose })
-
-  if (noEmitResult) {
-    return noEmitResult
-  }
-
-  if (inputDirs.length) {
-    const result = (
-      await Promise.all(
-        inputDirs.map(async (inputDir) => {
-          return await compileSubDir(inputDir, compile?.tsup?.options, verbose)
-        }),
-      )
-    ).reduce((prev, result) => prev + result, 0)
-    return result || (await packageCompileTscTypes({ verbose })) || (publint ? await packagePublint() : 0)
-  } else {
-    return (
-      (await packageCompileTscNoEmit({ verbose })) ||
-      (await compileSubDir(undefined, compile?.tsup?.options, verbose)) ||
-      (await packageCompileTscTypes({ verbose })) ||
-      (publint ? await packagePublint() : 0)
-    )
-  }
+  return (
+    (await packageCompileTscNoEmit({ verbose })) ||
+    (await compileFolder(compile?.tsup?.options, verbose)) ||
+    (await compileFolder({ ...(compile?.tsup?.options ?? {}), clean: false, legacyOutput: true }, verbose)) ||
+    (await packageCompileTscTypes({ verbose })) ||
+    (publint ? await packagePublint() : 0)
+  )
 }
