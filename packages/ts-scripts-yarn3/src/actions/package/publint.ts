@@ -23,6 +23,16 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     strict: true,
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getValueFromPath = (obj: any, path: string[]): any => {
+    const index = path.pop()
+    if (index) {
+      return getValueFromPath(obj[index], path)
+    } else {
+      return obj
+    }
+  }
+
   // eslint-disable-next-line import/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
@@ -31,7 +41,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
       case 'FILE_INVALID_FORMAT':
         return !message.args?.actualFilePath?.includes('/dist/esm')
       case 'EXPORT_TYPES_INVALID_FORMAT':
-        return !message.path.includes('/dist/esm')
+        return !`${getValueFromPath(pkg, message.path)}`.includes('/dist/esm')
       default:
         return true
     }
