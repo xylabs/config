@@ -1,23 +1,26 @@
 import { copyFile, readdir } from 'fs/promises'
+import { TsConfigCompilerOptions } from 'tsc-prog'
 
-const getDistTypeFiles = async () => {
-  return (await readdir('dist', { recursive: true })).filter((file) => file.endsWith('d.ts')).map((file) => `dist/${file}`)
+const getDistTypeFiles = async (compilerOptions: TsConfigCompilerOptions) => {
+  const outDir = compilerOptions.outDir ?? 'dist'
+  return (await readdir(outDir, { recursive: true })).filter((file) => file.endsWith('d.ts')).map((file) => `${outDir}/${file}`)
 }
 
-const getDistTypeMapFiles = async () => {
-  return (await readdir('dist', { recursive: true })).filter((file) => file.endsWith('d.ts.map')).map((file) => `dist/${file}`)
+const getDistTypeMapFiles = async (compilerOptions: TsConfigCompilerOptions) => {
+  const outDir = compilerOptions.outDir ?? 'dist'
+  return (await readdir(outDir, { recursive: true })).filter((file) => file.endsWith('d.ts.map')).map((file) => `${outDir}/${file}`)
 }
 
-export const copyTypeFiles = async () => {
+export const copyTypeFiles = async (compilerOptions: TsConfigCompilerOptions) => {
   //hybrid packages want two copies of the types
-  const distTypeFiles = await getDistTypeFiles()
+  const distTypeFiles = await getDistTypeFiles(compilerOptions)
   await Promise.all(
     distTypeFiles.map(async (file) => {
       await copyFile(file, file.replace('d.ts', 'd.mts'))
     }),
   )
 
-  const distTypeMapFiles = await getDistTypeMapFiles()
+  const distTypeMapFiles = await getDistTypeMapFiles(compilerOptions)
   await Promise.all(
     distTypeMapFiles.map(async (file) => {
       await copyFile(file, file.replace('d.ts.map', 'd.mts.map'))
