@@ -55,10 +55,10 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
 
   return (
     packageCompileTscNoEmit({ verbose }) ||
-    (await compileFolder(compile?.tsup?.options, verbose)) ||
-    (await compileFolder({ ...(compile?.tsup?.options ?? {}), clean: false, legacyOutput: true }, verbose)) ||
-    (await packageCompileTscTypes({ verbose })) ||
-    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/esm' }, false)) ||
+    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node' }, verbose)) ||
+    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outExtension: () => ({js: '.js'}), outDir: 'dist/browser', platform: 'browser' }, verbose)) ||
+    (await packageCompileTscTypes({ verbose}, { outDir: 'dist/browser' })) ||
+    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' }, false)) ||
     (publint ? await packagePublint() : 0)
   )
 }

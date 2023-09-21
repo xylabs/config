@@ -56,7 +56,7 @@
     "eslint"
   ],
   "license": "LGPL-3.0",
-  "main": "./dist/index.js",
+  "main": "./dist/node/index.js",
   "name": "@xylabs/eslint-config-react",
   "publishConfig": {
     "access": "public"
