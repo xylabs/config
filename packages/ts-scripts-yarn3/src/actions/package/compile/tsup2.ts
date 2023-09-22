@@ -27,7 +27,7 @@ const compileFolder = async (options?: Options, _verbose?: boolean) => {
     dts: false,
     entry: ['src'],
     format: ['cjs', 'esm'],
-    loader: {'.png': 'file', '.jpg': 'file', '.svg': 'file', '.gif': 'file', '.webp': 'file'},
+    loader: {'.png': 'copy', '.jpg': 'copy', '.svg': 'copy', '.gif': 'copy', '.webp': 'copy'},
     outDir,
     silent: true,
     sourcemap: true,
