@@ -161,12 +161,13 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "engines": {
-    "node": ">=14.16"
+    "node": ">=18.17.1"
   },
+  "engineStrict": true,
   "scripts": {
     "package-compile": "tsup && publint",
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.0.39"
+  "version": "3.0.52"
 }

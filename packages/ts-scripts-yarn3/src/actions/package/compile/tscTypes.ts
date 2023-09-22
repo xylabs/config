@@ -27,7 +27,7 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions,
-    exclude: ['dist', 'docs', '**/*.spec.*', 'src/**/spec/**/*'],
+    exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
     include: ['src'],
   }).emit()
 

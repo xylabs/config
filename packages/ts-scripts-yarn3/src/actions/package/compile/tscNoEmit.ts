@@ -15,15 +15,14 @@ export const packageCompileTscNoEmit = (params?: CompileParams): number => {
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions: getCompilerOptions({
-      declaration: true,
-      declarationMap: true,
+      declaration: false,
+      declarationMap: false,
       esModuleInterop: true,
       noEmit: true,
-      outDir: 'dist',
-      skipLibCheck: true,
-      sourceMap: true,
+      skipLibCheck: false,
+      sourceMap: false,
     }) as TsConfigCompilerOptions,
-    exclude: ['dist', 'docs', '**/*.spec.*', 'src/**/spec/**/*'],
+    exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
     include: ['src'],
   }).emit()
 

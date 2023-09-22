@@ -5,6 +5,7 @@ import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
+import { getAllInputs } from './inputs'
 
 export type PackageCompileTsup2Params = Partial<
   CompileParams & {
@@ -17,14 +18,18 @@ export type PackageCompileTsup2Params = Partial<
 >
 
 const compileFolder = async (options?: Options, _verbose?: boolean) => {
+  const outDir = options?.outDir ?? 'dist'
+  const entry = (await getAllInputs()).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.')).map((entry) => `src/${entry}`)
+  console.log(`Entry: ${JSON.stringify(entry, null, 2)}`)
   const optionsResult = defineConfig({
     bundle: false,
     cjsInterop: true,
     clean: true,
     dts: false,
-    entry: ['src'],
+    entry,
     format: ['cjs', 'esm'],
-    outDir: 'dist',
+    loader: {'.png': 'file', '.jpg': 'file', '.svg': 'file', '.gif': 'file', '.webp': 'file'},
+    outDir,
     silent: true,
     sourcemap: true,
     splitting: false,
@@ -55,10 +60,10 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
 
   return (
     packageCompileTscNoEmit({ verbose }) ||
-    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node' }, verbose)) ||
-    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outExtension: () => ({js: '.js'}), outDir: 'dist/browser', platform: 'browser' }, verbose)) ||
-    (await packageCompileTscTypes({ verbose}, { outDir: 'dist/browser' })) ||
-    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' }))
-    // || (publint ? await packagePublint() : 0)
+    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node' }, verbose))
+    || (await compileFolder({ ...(compile?.tsup?.options ?? {}), format: ['esm'], outExtension: ({format}) => (format === 'esm' ? {js: '.js'} : {js: '.cjs'}), outDir: 'dist/browser', platform: 'browser' }, verbose))
+    || (await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' }))
+    || (await packageCompileTscTypes({ verbose}, { outDir: 'dist/browser' }))
+    || (publint ? await packagePublint() : 0)
   )
 }
