@@ -20,7 +20,6 @@ export type PackageCompileTsup2Params = Partial<
 const compileFolder = async (options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
   const entry = (await getAllInputs()).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.')).map((entry) => `src/${entry}`)
-  console.log(`Entry: ${JSON.stringify(entry, null, 2)}`)
   const optionsResult = defineConfig({
     bundle: false,
     cjsInterop: true,
