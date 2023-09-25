@@ -36,7 +36,5 @@ export const getAllInputs = async (depth = 100) => {
 }
 
 export const getAllInputs2 = () => {
-  const globItems = glob.sync('src/**/*.*', { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
-  console.log(JSON.stringify(globItems, null, 2))
-  return globItems
+  return glob.sync('src/**/*.*', { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
 }
