@@ -3,7 +3,7 @@ import { build, defineConfig, Options } from 'tsup'
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
-import { getAllInputs } from './inputs'
+import { getAllInputs, getAllInputs2 } from './inputs'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
 
@@ -19,7 +19,7 @@ export type PackageCompileTsup2Params = Partial<
 
 const compileFolder = async (options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
-  const entry = (await getAllInputs()).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.')).map((entry) => `src/${entry}`)
+  const entry = getAllInputs2().filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
   const optionsResult = defineConfig({
     bundle: false,
     cjsInterop: true,
