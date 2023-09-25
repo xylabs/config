@@ -37,15 +37,18 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
     switch (diag.category) {
       case DiagnosticCategory.Error:
         console.error(chalk.red(diag.messageText))
-        console.error(chalk.grey(JSON.stringify(diag)))
+        console.error(chalk.grey(pkg))
+        console.error(chalk.blue(diag.file?.fileName))
         break
       case DiagnosticCategory.Warning:
         console.error(chalk.yellow(diag.messageText))
-        console.error(chalk.grey(JSON.stringify(diag)))
+        console.error(chalk.grey(pkg))
+        console.error(chalk.blue(diag.file?.fileName))
         break
       case DiagnosticCategory.Suggestion:
         console.error(chalk.white(diag.messageText))
-        console.error(chalk.grey(JSON.stringify(diag)))
+        console.error(chalk.grey(pkg))
+        console.error(chalk.blue(diag.file?.fileName))
         break
     }
   })
