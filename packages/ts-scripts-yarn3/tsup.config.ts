@@ -13,5 +13,6 @@ export default defineConfig({
   outDir: 'dist',
   sourcemap: true,
   splitting: false,
+  target: 'node16',
   tsconfig: 'tsconfig.build.json',
 })

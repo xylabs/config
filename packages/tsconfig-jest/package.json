@@ -15,8 +15,8 @@
     "@xylabs/tsconfig": "workspace:~"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.4",
-    "@types/node": "^20.6.1",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.7.0",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "typescript": "^5.2.2"
@@ -42,5 +42,5 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.0.62"
+  "version": "3.0.63"
 }

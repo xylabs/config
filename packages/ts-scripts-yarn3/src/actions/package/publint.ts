@@ -23,9 +23,10 @@ export const packagePublint = async (params?: PackagePublintParams) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getValueFromPath = (obj: any, path: string[]): any => {
-    const index = path.shift()
+    const localPath = [...path]
+    const index = localPath.shift()
     if (index) {
-      return getValueFromPath(obj[index], path)
+      return getValueFromPath(obj[index], localPath)
     } else {
       return obj
     }
@@ -38,9 +39,9 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     try {
       switch (message.code) {
         case 'FILE_INVALID_FORMAT':
-          return !message.args?.actualFilePath?.includes('/dist/esm')
+          return !message.args?.actualFilePath?.includes('/dist/browser')
         case 'EXPORT_TYPES_INVALID_FORMAT':
-          return !`${getValueFromPath(pkg, message.path)}`.includes('/dist/esm')
+          return !`${getValueFromPath(pkg, message.path)}`.includes('/dist/browser')
         default:
           return true
       }
@@ -58,15 +59,12 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     switch (message.type) {
       case 'error':
         console.error(chalk.red(`[${message.code}] ${formatMessage(message, pkg)}`))
-        console.error(chalk.gray(message.path))
         break
       case 'warning':
-        console.warn(chalk.yellow(formatMessage(message, pkg)))
-        console.error(chalk.gray(message.path))
+        console.error(chalk.yellow(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
       default:
-        console.info(chalk.white(formatMessage(message, pkg)))
-        console.error(chalk.gray(message.path))
+        console.error(chalk.white(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
     }
   })
@@ -75,5 +73,5 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))
   }
 
-  return 0 //validMessages.length
+  return validMessages.length
 }
