@@ -58,17 +58,19 @@
     "node": {
       "require": {
         "types": "./dist/node/index.d.ts",
-        "main": "./dist/node/index.js"
+        "default": "./dist/node/index.js"
       },
       "import": {
         "types": "./dist/node/index.d.mts",
-        "main": "./dist/node/index.mjs"
+        "default": "./dist/node/index.mjs"
       }
     },
     "browser": {
       "types": "./dist/browser/index.d.ts",
-      "main": "./dist/browser/index.js"
-    }
+      "default": "./dist/browser/index.js"
+    },
+    "types": "./dist/node/index.d.ts",
+    "default": "./dist/node/index.js"
   },
   "main": "./dist/node/index.js",
   "types": "./dist/node/index.d.ts",
@@ -81,7 +83,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.0.64",
+  "version": "3.0.65",
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   }

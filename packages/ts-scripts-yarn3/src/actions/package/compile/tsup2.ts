@@ -3,7 +3,7 @@ import { build, defineConfig, Options } from 'tsup'
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
-import { getAllInputs, getAllInputs2 } from './inputs'
+import { getAllInputs2 } from './inputs'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
 
