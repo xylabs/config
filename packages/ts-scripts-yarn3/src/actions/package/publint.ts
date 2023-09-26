@@ -40,9 +40,9 @@ export const packagePublint = async (params?: PackagePublintParams) => {
       const value = getValueFromPath(pkg, message.path)
       switch (message.code) {
         case 'FILE_INVALID_FORMAT':
-          return !message.args?.actualFilePath?.includes('/dist/browser') && !value?.includes('/dist/browser')
+          return !message.args?.actualFilePath?.includes('dist/browser') && !value?.includes('dist/browser')
         case 'EXPORT_TYPES_INVALID_FORMAT':
-          return !`${value}`.includes('/dist/browser')
+          return !`${value}`.includes('dist/browser')
         default:
           return true
       }
