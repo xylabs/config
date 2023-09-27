@@ -70,7 +70,13 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
           return folder
             ? await compileFolder(
                 folder,
-                { ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node', ...(typeof options === 'object' ? options : {}) },
+                {
+                  ...(compile?.tsup?.options ?? {}),
+                  outDir: 'dist/node',
+                  platform: 'node',
+                  target: 'esnext',
+                  ...(typeof options === 'object' ? options : {}),
+                },
                 verbose,
               )
             : 0
@@ -90,6 +96,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                   outDir: 'dist/browser',
                   outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                   platform: 'browser',
+                  target: 'esnext',
                   ...(typeof options === 'object' ? options : {}),
                 },
                 verbose,
