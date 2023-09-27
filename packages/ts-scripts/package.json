@@ -109,5 +109,5 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.0.73"
+  "version": "3.0.74"
 }

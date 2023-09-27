@@ -29,7 +29,6 @@ const compileFolder = async (folder: string, options?: Options, _verbose?: boole
     dts: false,
     entry,
     format: ['cjs', 'esm'],
-    loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'copy', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
     outDir,
     silent: true,
     sourcemap: true,
@@ -71,10 +70,11 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
             ? await compileFolder(
                 folder,
                 {
-                  ...(compile?.tsup?.options ?? {}),
                   outDir: 'dist/node',
                   platform: 'node',
-                  target: 'esnext',
+                  skipNodeModulesBundle: true,
+                  target: 'node16',
+                  ...(compile?.tsup?.options ?? {}),
                   ...(typeof options === 'object' ? options : {}),
                 },
                 verbose,
@@ -90,13 +90,15 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
             ? await compileFolder(
                 folder,
                 {
-                  ...(compile?.tsup?.options ?? {}),
                   bundle: false,
                   format: ['esm', 'cjs'],
+                  loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'copy', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
                   outDir: 'dist/browser',
                   outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                   platform: 'browser',
+                  skipNodeModulesBundle: true,
                   target: 'esnext',
+                  ...(compile?.tsup?.options ?? {}),
                   ...(typeof options === 'object' ? options : {}),
                 },
                 verbose,
