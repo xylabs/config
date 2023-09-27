@@ -17,6 +17,7 @@ export const copyTypeFiles = async (compilerOptions: TsConfigCompilerOptions) =>
   await Promise.all(
     distTypeFiles.map(async (file) => {
       await copyFile(file, file.replace('d.ts', 'd.mts'))
+      await copyFile(file, file.replace('d.ts', 'd.cts'))
     }),
   )
 
@@ -24,6 +25,7 @@ export const copyTypeFiles = async (compilerOptions: TsConfigCompilerOptions) =>
   await Promise.all(
     distTypeMapFiles.map(async (file) => {
       await copyFile(file, file.replace('d.ts.map', 'd.mts.map'))
+      await copyFile(file, file.replace('d.ts.map', 'd.cts.map'))
     }),
   )
 }
