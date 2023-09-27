@@ -166,6 +166,7 @@
   "engineStrict": true,
   "scripts": {
     "package-compile": "tsup && publint",
+    "package-recompile": "tsup && publint",
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
