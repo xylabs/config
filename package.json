@@ -69,7 +69,7 @@
     "node": ">=14.16"
   },
   "sideEffects": false,
-  "version": "3.0.69",
+  "version": "3.0.70",
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && echo Bootstrap Build Done && yarn compile",

@@ -10,7 +10,8 @@ import { packageCompileTscTypes } from './tscTypes'
 export type PackageCompileTsup2Params = Partial<
   CompileParams & {
     compile?: {
-      browser?: boolean
+      browser?: Record<string, Options | boolean>
+      node?: Record<string, Options | boolean>
       tsup?: {
         options?: Options
       }
@@ -18,9 +19,20 @@ export type PackageCompileTsup2Params = Partial<
   }
 >
 
-const compileFolder = async (options?: Options, _verbose?: boolean) => {
+const stringOrArray = (value: string[] | string | undefined) => {
+  if (value === undefined) {
+    return undefined
+  }
+  if (Array.isArray(value)) {
+    return value
+  } else {
+    return [value]
+  }
+}
+
+const compileFolder = async (folder: string, options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
-  const entry = getAllInputs2().filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
+  const entry = getAllInputs2(folder).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
   const optionsResult = defineConfig({
     bundle: false,
     cjsInterop: true,
@@ -58,26 +70,47 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
   }
 
-  const compileForBrowser = compile?.browser ?? true
+  const compileForNode = compile?.node ?? { src: {} }
+  const compileForBrowser = compile?.browser ?? { src: {} }
 
   return (
     packageCompileTscNoEmit({ verbose }) ||
-    (await compileFolder({ ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node' }, verbose)) ||
-    (compileForBrowser
-      ? await compileFolder(
-          {
-            ...(compile?.tsup?.options ?? {}),
-            bundle: true,
-            format: ['esm', 'cjs'],
-            outDir: 'dist/browser',
-            outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
-            platform: 'browser',
-          },
-          verbose,
-        )
-      : 0) ||
-    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' })) ||
-    (await packageCompileTscTypes({ verbose }, { outDir: 'dist/browser' })) ||
+    (
+      await Promise.all(
+        Object.entries(compileForNode).map(async ([folder, options]) => {
+          return folder
+            ? await compileFolder(
+                folder,
+                { ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node', ...(typeof options === 'object' ? options : {}) },
+                verbose,
+              )
+            : 0
+        }),
+      )
+    ).reduce((prev, value) => prev + value, 0) ||
+    (
+      await Promise.all(
+        Object.entries(compileForBrowser).map(async ([folder, options]) => {
+          return folder
+            ? await compileFolder(
+                folder,
+                {
+                  ...(compile?.tsup?.options ?? {}),
+                  bundle: true,
+                  format: ['esm', 'cjs'],
+                  outDir: 'dist/browser',
+                  outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                  platform: 'browser',
+                  ...(typeof options === 'object' ? options : {}),
+                },
+                verbose,
+              )
+            : 0
+        }),
+      )
+    ).reduce((prev, value) => prev + value, 0) ||
+    (compileForNode ? await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' }) : 0) ||
+    (compileForBrowser ? await packageCompileTscTypes({ verbose }, { outDir: 'dist/browser' }) : 0) ||
     (publint ? await packagePublint() : 0)
   )
 }

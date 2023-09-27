@@ -35,6 +35,6 @@ export const getAllInputs = async (depth = 100) => {
   return (await Promise.all(dirs.map(async (dir) => await getInputs(dir)))).flat()
 }
 
-export const getAllInputs2 = () => {
-  return glob.sync('src/**/*.*', { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
+export const getAllInputs2 = (folder: string) => {
+  return glob.sync(`${folder}/**/*.*`, { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
 }
