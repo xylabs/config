@@ -19,22 +19,11 @@ export type PackageCompileTsup2Params = Partial<
   }
 >
 
-const stringOrArray = (value: string[] | string | undefined) => {
-  if (value === undefined) {
-    return undefined
-  }
-  if (Array.isArray(value)) {
-    return value
-  } else {
-    return [value]
-  }
-}
-
 const compileFolder = async (folder: string, options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
   const entry = getAllInputs2(folder).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
   const optionsResult = defineConfig({
-    bundle: false,
+    bundle: true,
     cjsInterop: true,
     clean: true,
     dts: false,
