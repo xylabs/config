@@ -96,7 +96,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                 folder,
                 {
                   ...(compile?.tsup?.options ?? {}),
-                  bundle: true,
+                  bundle: false,
                   format: ['esm', 'cjs'],
                   outDir: 'dist/browser',
                   outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
