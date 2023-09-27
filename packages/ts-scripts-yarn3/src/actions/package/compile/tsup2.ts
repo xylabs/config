@@ -10,6 +10,7 @@ import { packageCompileTscTypes } from './tscTypes'
 export type PackageCompileTsup2Params = Partial<
   CompileParams & {
     compile?: {
+      browser?: boolean
       tsup?: {
         options?: Options
       }
@@ -57,19 +58,24 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
   }
 
+  const compileForBrowser = compile?.browser ?? true
+
   return (
     packageCompileTscNoEmit({ verbose }) ||
     (await compileFolder({ ...(compile?.tsup?.options ?? {}), outDir: 'dist/node', platform: 'node' }, verbose)) ||
-    (await compileFolder(
-      {
-        ...(compile?.tsup?.options ?? {}),
-        format: ['esm', 'cjs'],
-        outDir: 'dist/browser',
-        outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
-        platform: 'browser',
-      },
-      verbose,
-    )) ||
+    (compileForBrowser
+      ? await compileFolder(
+          {
+            ...(compile?.tsup?.options ?? {}),
+            bundle: true,
+            format: ['esm', 'cjs'],
+            outDir: 'dist/browser',
+            outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+            platform: 'browser',
+          },
+          verbose,
+        )
+      : 0) ||
     (await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' })) ||
     (await packageCompileTscTypes({ verbose }, { outDir: 'dist/browser' })) ||
     (publint ? await packagePublint() : 0)
