@@ -170,5 +170,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.0.77"
+  "version": "3.0.78"
 }

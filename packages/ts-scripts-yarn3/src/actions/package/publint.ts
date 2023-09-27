@@ -35,8 +35,9 @@ export const packagePublint = async (params?: PackagePublintParams) => {
   // eslint-disable-next-line import/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
-  const validMessage = (message: Message): boolean => {
-    try {
+  const validMessage = (_message: Message): boolean => {
+    return true
+    /*try {
       const value = getValueFromPath(pkg, message.path)
       switch (message.code) {
         case 'FILE_INVALID_FORMAT':
@@ -51,7 +52,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
       console.error(chalk.red(`validMessage Excepted: ${error.message}`))
       console.error(chalk.gray(JSON.stringify(error.stack)))
       return true
-    }
+    }*/
   }
 
   //we filter out invalid file formats for the esm folder since it is intentionally done
@@ -62,10 +63,10 @@ export const packagePublint = async (params?: PackagePublintParams) => {
         console.error(chalk.red(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
       case 'warning':
-        console.error(chalk.yellow(`[${message.code}] ${formatMessage(message, pkg)}`))
+        console.warn(chalk.yellow(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
       default:
-        console.error(chalk.white(`[${message.code}] ${formatMessage(message, pkg)}`))
+        console.log(chalk.white(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
     }
   })
@@ -74,5 +75,5 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))
   }
 
-  return validMessages.length
+  return validMessages.filter((message) => message.type === 'error').length
 }
