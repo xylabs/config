@@ -72,7 +72,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                 {
                   bundle: true,
                   format: ['cjs', 'esm'],
-                  loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'copy', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                  loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
                   outDir: 'dist/node',
                   platform: 'node',
                   skipNodeModulesBundle: true,
@@ -97,7 +97,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                     {
                       bundle: true,
                       format: ['cjs'],
-                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'copy', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
                       outDir: 'dist/browser',
                       outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                       platform: 'browser',
@@ -113,7 +113,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                     {
                       bundle: false,
                       format: ['esm'],
-                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'copy', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
                       outDir: 'dist/browser',
                       outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                       platform: 'browser',
