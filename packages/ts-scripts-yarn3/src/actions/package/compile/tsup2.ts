@@ -111,7 +111,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                   compileFolder(
                     folder,
                     {
-                      bundle: false,
+                      bundle: true,
                       format: ['esm'],
                       loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
                       outDir: 'dist/browser',

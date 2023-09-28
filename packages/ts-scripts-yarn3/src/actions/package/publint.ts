@@ -21,17 +21,6 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     strict: true,
   })
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getValueFromPath = (obj: any, path: string[]): any => {
-    const localPath = [...path]
-    const index = localPath.shift()
-    if (index) {
-      return getValueFromPath(obj[index], localPath)
-    } else {
-      return obj
-    }
-  }
-
   // eslint-disable-next-line import/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
