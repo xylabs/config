@@ -36,5 +36,6 @@ export const getAllInputs = async (depth = 100) => {
 }
 
 export const getAllInputs2 = (folder: string) => {
-  return glob.sync(`${folder}/**/*.*`, { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
+  /* tsup wants posix paths */
+  return glob.sync(`${folder}/**/*.*`, { posix: true, ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'] })
 }
