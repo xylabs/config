@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.5",
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.7.2",
     "@xylabs/eslint-config": "workspace:~",
     "chalk": "^4.1.2",
     "copyfiles": "^2.4.1",
@@ -79,13 +79,13 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.7.2",
     "@types/parse-git-config": "^3.0.2",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "publint": "^0.2.2",
+    "publint": "^0.2.3",
     "tsup": "^7.2.0"
   },
   "homepage": "https://xylabs.com",
@@ -109,5 +109,5 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.0.79"
+  "version": "3.0.80"
 }

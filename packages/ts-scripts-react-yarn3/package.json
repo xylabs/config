@@ -51,7 +51,7 @@
   "dependencies": {
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.7.2",
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "chalk": "^4.1.2",
@@ -82,10 +82,10 @@
   "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/json-schema": "^7.0.13",
-    "@types/yargs": "^17.0.25",
+    "@types/yargs": "^17.0.26",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
-    "publint": "^0.2.2",
+    "publint": "^0.2.3",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
@@ -141,5 +141,5 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.0.79"
+  "version": "3.0.80"
 }
