@@ -25,14 +25,7 @@ export const packageGenDocs = async () => {
     }
   }
 
-  const app = new Application()
-
-  app.options.addReader(new ArgumentsReader(0))
-  app.options.addReader(new TypeDocReader())
-  app.options.addReader(new TSConfigReader())
-  app.options.addReader(new ArgumentsReader(300))
-
-  app.bootstrap({
+  const app = await Application.bootstrap({
     entryPointStrategy: 'resolve',
     entryPoints: [`${pkg}/src`],
     excludeExternals: true,
@@ -40,6 +33,11 @@ export const packageGenDocs = async () => {
     logLevel: 'Error',
     tsconfig: `${pkg}/tsconfig.json`,
   })
+
+  app.options.addReader(new ArgumentsReader(0))
+  app.options.addReader(new TypeDocReader())
+  app.options.addReader(new TSConfigReader())
+  app.options.addReader(new ArgumentsReader(300))
 
   return await runTypeDoc(app)
 }
@@ -86,7 +84,7 @@ const runTypeDoc = async (app: Application) => {
     return ExitCodes.Ok
   }
 
-  const project = app.convert()
+  const project = await app.convert()
   if (!project) {
     return ExitCodes.CompileError
   }

@@ -101,7 +101,7 @@
     "tsc-prog": "^2.3.0",
     "tslib": "^2.6.2",
     "tsup": "^7.2.0",
-    "typedoc": "^0.24.8",
+    "typedoc": "^0.25.1",
     "types-package-json": "^2.0.39",
     "yargs": "^17.7.2"
   },
