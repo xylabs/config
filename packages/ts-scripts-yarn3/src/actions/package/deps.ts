@@ -20,18 +20,24 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  ignoreMatches.push('@xylabs/ts-scripts-yarn3')
-  ignoreMatches.push('@xylabs/tsconfig')
-  ignoreMatches.push('@xylabs/tsconfig-dom')
-  ignoreMatches.push('@xylabs/tsconfig-react')
-  ignoreMatches.push('@xylabs/tsconfig-jest')
-  ignoreMatches.push('typescript')
+  const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*']
+  const defaultIgnoreMatches = [
+    '@xylabs/ts-scripts-yarn3',
+    '@xylabs/tsconfig',
+    '@xylabs/tsconfig-dom',
+    '@xylabs/tsconfig-react',
+    '@xylabs/tsconfig-jest',
+    'typescript',
+  ]
 
   const unusedList = await Promise.all([
-    depcheck(`${pkg}/.`, { ignoreMatches, ignorePatterns: ['*.stories.*', '*.spec.*', '*.d.ts', 'dist', '.*'] }),
     depcheck(`${pkg}/.`, {
-      ignoreMatches,
-      ignorePatterns: ['*.ts', '*.d.ts', 'dist', '.*'],
+      ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
+      ignorePatterns: ['*.stories.*', '*.spec.*', ...defaultIgnorePatterns],
+    }),
+    depcheck(`${pkg}/.`, {
+      ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
+      ignorePatterns: [...defaultIgnorePatterns],
       specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
     }),
   ])
