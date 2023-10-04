@@ -8,7 +8,7 @@ import { copyTypeFiles } from './copyTypeFiles'
 import { getCompilerOptions } from './getCompilerOptions'
 
 export const packageCompileTscTypes = async (params?: CompileParams, compilerOptionsParam?: CompilerOptions, generateMts = true): Promise<number> => {
-  const pkg = process.env.INIT_CWD
+  const pkg = process.env.INIT_CWD ?? cwd()
 
   if (params?.verbose) {
     console.log(`Compiling types with TSC [${pkg}]`)
@@ -16,11 +16,14 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
 
   const compilerOptions = {
     ...getCompilerOptions({
+      baseUrl: pkg,
       declaration: true,
       declarationMap: true,
       emitDeclarationOnly: true,
       esModuleInterop: true,
       outDir: 'dist',
+      rootDir: 'src',
+      skipDefaultLibCheck: true,
       skipLibCheck: true,
       sourceMap: true,
     }),
@@ -34,7 +37,7 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
     include: ['src'],
   }).emit()
 
-  const diagResults = result.diagnostics.map((value) => value.category === DiagnosticCategory.Error).length
+  const diagResults = result.diagnostics.length
   result.diagnostics.forEach((diag) => {
     switch (diag.category) {
       case DiagnosticCategory.Error:

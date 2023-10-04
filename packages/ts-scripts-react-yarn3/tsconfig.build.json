@@ -1,5 +1,23 @@
 {
-  "exclude": ["src/**/*.spec.*", "dist", "docs"],
-  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "incremental": false,
+    "module": "ESNEXT",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNEXT"
+  },
+  "exclude": ["src/**/*.spec.*", "dist", "docs", "node_modules"],
   "include": ["src"]
 }
