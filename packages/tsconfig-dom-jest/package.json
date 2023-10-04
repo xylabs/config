@@ -39,5 +39,5 @@
     "package-recompile": "xy publint @xylabs/tsconfig-dom-jest"
   },
   "sideEffects": false,
-  "version": "3.0.84"
+  "version": "3.0.85"
 }
