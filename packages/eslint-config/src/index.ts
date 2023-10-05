@@ -2,6 +2,7 @@ import { ESLint } from 'eslint'
 // eslint-disable-next-line import/no-internal-modules
 import compact from 'lodash/compact'
 import { cwd } from 'process'
+
 import { importConfig } from './import'
 import { jsonConfig } from './json'
 import { markdownConfig } from './markdown'

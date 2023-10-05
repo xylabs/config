@@ -16,7 +16,6 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
 
   const compilerOptions = {
     ...getCompilerOptions({
-      baseUrl: pkg,
       declaration: true,
       declarationMap: true,
       emitDeclarationOnly: true,

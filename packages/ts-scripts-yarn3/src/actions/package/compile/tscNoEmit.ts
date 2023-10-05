@@ -1,9 +1,8 @@
 import chalk from 'chalk'
 import { cwd } from 'process'
+import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import {
   CompilerOptions,
-  createProgram,
-  CreateProgramOptions,
   DiagnosticCategory,
   FormatDiagnosticsHost,
   formatDiagnosticsWithColorAndContext,
@@ -14,7 +13,6 @@ import {
 
 import { CompileParams } from './CompileParams'
 import { getCompilerOptions } from './getCompilerOptions'
-import { getAllInputs2 } from './inputs'
 
 export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsParam?: CompilerOptions): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
@@ -29,38 +27,27 @@ export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsP
     console.log(`Compiling with NoEmit TSC [${pkg}]`)
   }
 
-  const options: CompilerOptions = {
+  const compilerOptions = {
     ...getCompilerOptions({
-      alwaysStrict: true,
-      baseUrl: pkg,
-      declaration: false,
-      declarationMap: false,
-      emitDeclarationOnly: false,
-      noEmit: true,
+      declaration: true,
+      declarationMap: true,
+      emitDeclarationOnly: true,
+      esModuleInterop: true,
       outDir: 'dist',
       rootDir: 'src',
       skipDefaultLibCheck: true,
       skipLibCheck: true,
-      sourceMap: false,
-      strict: true,
-      strictBindCallApply: true,
-      strictFunctionTypes: true,
-      strictNullChecks: true,
-      strictPropertyInitialization: true,
+      sourceMap: true,
     }),
     ...(compilerOptionsParam ?? {}),
-  }
+  } as TsConfigCompilerOptions
 
-  delete options['moduleResolution']
-
-  const rootNames = getAllInputs2(options.rootDir ?? 'src')
-
-  const programOptions: CreateProgramOptions = {
-    options,
-    rootNames,
-  }
-
-  const program = createProgram(programOptions)
+  const program = createProgramFromConfig({
+    basePath: pkg ?? cwd(),
+    compilerOptions,
+    exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
+    include: ['src'],
+  })
 
   console.log(`noEmit-Program: [${pkg ?? cwd()}] ${JSON.stringify(program.getSourceFiles().length, null, 2)}`)
 

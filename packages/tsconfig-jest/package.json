@@ -37,14 +37,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "package-compile": "xy publint @xylabs/tsconfig-jest",
-    "package-recompile": "xy publint @xylabs/tsconfig-jest"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.0.85"
+  "version": "3.0.86"
 }
