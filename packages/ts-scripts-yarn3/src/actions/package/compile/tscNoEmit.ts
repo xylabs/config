@@ -49,8 +49,6 @@ export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsP
     include: ['src'],
   })
 
-  console.log(`noEmit-Program: [${pkg ?? cwd()}] ${JSON.stringify(program.getSourceFiles().length, null, 2)}`)
-
   const results = getPreEmitDiagnostics(program)
 
   results.forEach((diag) => {
