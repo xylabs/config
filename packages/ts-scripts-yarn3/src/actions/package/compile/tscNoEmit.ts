@@ -55,7 +55,7 @@ export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsP
 
   results.forEach((diag) => {
     const lineAndChar: LineAndCharacter = diag.file ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0) : { character: 0, line: 0 }
-    console.log(chalk.cyan(`${pkg}/${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
+    console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
   })
 
