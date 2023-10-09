@@ -19,7 +19,7 @@ export type PackageCompileTsup2Params = Partial<
   }
 >
 
-const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, _verbose?: boolean) => {
+const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
@@ -48,6 +48,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   ).flat()
 
   await Promise.all(optionsList.map((options) => build(options)))
+  await packageCompileTscTypes(folder, { verbose }, { outDir })
 
   return 0
 }
@@ -134,8 +135,6 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
         }),
       )
     ).reduce((prev, value) => prev + value, 0) ||
-    (compileForNode ? await packageCompileTscTypes('src', { compile, verbose }, { outDir: 'dist/node' }) : 0) ||
-    (compileForBrowser ? await packageCompileTscTypes('src', { compile, verbose }, { outDir: 'dist/browser' }) : 0) ||
     (publint ? await packagePublint() : 0)
   )
 }
