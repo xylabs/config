@@ -2,8 +2,8 @@ import { build, defineConfig, Options } from 'tsup'
 
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
-import { CompileParams } from './CompileParams'
-import { getAllInputs2 } from './inputs'
+import { buildEntries } from './buildEntries'
+import { CompileParams, EntryMode } from './CompileParams'
 import { packageCompileTscNoEmit } from './tscNoEmit'
 import { packageCompileTscTypes } from './tscTypes'
 
@@ -19,9 +19,9 @@ export type PackageCompileTsup2Params = Partial<
   }
 >
 
-const compileFolder = async (folder: string, options?: Options, _verbose?: boolean) => {
+const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
-  const entry = getAllInputs2(folder).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
+  const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
     bundle: true,
     cjsInterop: true,
@@ -46,6 +46,9 @@ const compileFolder = async (folder: string, options?: Options, _verbose?: boole
         .flat(),
     )
   ).flat()
+
+  console.log(`Compile Folder: ${folder} [${entryMode}]`)
+
   await Promise.all(optionsList.map((options) => build(options)))
 
   return 0
@@ -69,6 +72,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
           return folder
             ? await compileFolder(
                 folder,
+                compile?.entryMode,
                 {
                   bundle: true,
                   format: ['cjs', 'esm'],
@@ -94,6 +98,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                 await Promise.all([
                   compileFolder(
                     folder,
+                    compile?.entryMode,
                     {
                       bundle: true,
                       format: ['cjs'],
@@ -110,6 +115,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
                   ),
                   compileFolder(
                     folder,
+                    compile?.entryMode,
                     {
                       bundle: true,
                       format: ['esm'],
@@ -130,8 +136,8 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
         }),
       )
     ).reduce((prev, value) => prev + value, 0) ||
-    (compileForNode ? await packageCompileTscTypes({ verbose }, { outDir: 'dist/node' }) : 0) ||
-    (compileForBrowser ? await packageCompileTscTypes({ verbose }, { outDir: 'dist/browser' }) : 0) ||
+    (compileForNode ? await packageCompileTscTypes('src', { compile, verbose }, { outDir: 'dist/node' }) : 0) ||
+    (compileForBrowser ? await packageCompileTscTypes('src', { compile, verbose }, { outDir: 'dist/browser' }) : 0) ||
     (publint ? await packagePublint() : 0)
   )
 }

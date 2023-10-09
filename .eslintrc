@@ -12,7 +12,7 @@
     "docs"
   ],
   "extends": [
-    "@xylabs"
+    "@xylabs", "plugin:deprecation/recommended"
   ],
   "rules": {
     "import/no-internal-modules": [

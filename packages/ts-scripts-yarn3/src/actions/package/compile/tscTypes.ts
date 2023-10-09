@@ -3,14 +3,21 @@ import { cwd } from 'process'
 import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
+import { buildEntries } from './buildEntries'
 import { CompileParams } from './CompileParams'
 import { copyTypeFiles } from './copyTypeFiles'
 import { getCompilerOptions } from './getCompilerOptions'
 
-export const packageCompileTscTypes = async (params?: CompileParams, compilerOptionsParam?: CompilerOptions, generateMts = true): Promise<number> => {
+export const packageCompileTscTypes = async (
+  folder: string = 'src',
+  { compile, verbose }: CompileParams = {},
+  compilerOptionsParam?: CompilerOptions,
+  generateMts = true,
+): Promise<number> => {
+  console.log(`Compile Types: ${folder} [${compile?.entryMode}]`)
   const pkg = process.env.INIT_CWD ?? cwd()
 
-  if (params?.verbose) {
+  if (verbose) {
     console.log(`Compiling types with TSC [${pkg}]`)
   }
 
@@ -19,9 +26,7 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
       declaration: true,
       declarationMap: true,
       emitDeclarationOnly: true,
-      esModuleInterop: true,
       outDir: 'dist',
-      rootDir: 'src',
       skipDefaultLibCheck: true,
       skipLibCheck: true,
       sourceMap: true,
@@ -29,11 +34,16 @@ export const packageCompileTscTypes = async (params?: CompileParams, compilerOpt
     ...(compilerOptionsParam ?? {}),
   } as TsConfigCompilerOptions
 
+  const files = buildEntries(folder, compile?.entryMode)
+
+  console.log(`Compile Files: ${JSON.stringify(files, null, 2)}`)
+  console.log(`Compiler Options: ${JSON.stringify(compilerOptions, null, 2)}`)
+
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions,
     exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
-    include: ['src'],
+    files,
   }).emit()
 
   const diagResults = result.diagnostics.length

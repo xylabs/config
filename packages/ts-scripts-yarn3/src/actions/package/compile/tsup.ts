@@ -74,12 +74,12 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
         }),
       )
     ).reduce((prev, result) => prev + result, 0)
-    return result || (await packageCompileTscTypes({ verbose })) || (publint ? await packagePublint() : 0)
+    return result || (await packageCompileTscTypes('src', { verbose })) || (publint ? await packagePublint() : 0)
   } else {
     return (
       packageCompileTscNoEmit({ verbose }) ||
       (await compileSubDir(undefined, compile?.tsup?.options, verbose)) ||
-      (await packageCompileTscTypes({ verbose })) ||
+      (await packageCompileTscTypes('src', { verbose })) ||
       (publint ? await packagePublint() : 0)
     )
   }
