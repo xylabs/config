@@ -1,18 +1,7 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/dist",
-    "**/node_modules",
-    "**/docs",
-    "coverage",
-    "docker",
-    "swagger.json",
-    ".yarn",
-    "dist",
-    "docs"
-  ],
   "extends": [
-    "@xylabs", "plugin:deprecation/recommended"
+    "@xylabs"
   ],
   "rules": {
     "import/no-internal-modules": [

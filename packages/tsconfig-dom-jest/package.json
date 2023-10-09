@@ -12,7 +12,12 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests [DOM]",
   "dependencies": {
-    "@xylabs/tsconfig-dom": "workspace:~"
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.8.4",
+    "@types/reflect-metadata": "^0.1.0",
+    "@xylabs/tsconfig-dom": "workspace:~",
+    "jest-extended": "^4.0.1",
+    "jest-sorted": "^1.0.14"
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:~"
@@ -35,5 +40,5 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.1.1"
+  "version": "3.1.2"
 }

@@ -1,1 +1,3 @@
-ignores: []
+ignores: [
+  "@xylabs/eslint-config"
+]

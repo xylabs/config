@@ -38,6 +38,7 @@
   "cSpell.words": [
     "autocrlf",
     "buildci",
+    "copyfiles",
     "depcheckrc",
     "Dupdeps",
     "gitlint",

@@ -19,7 +19,7 @@ const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
 
 const config: ESLint.ConfigData = {
   extends: [...toArray(xylabsConfig.extends), ...toArray(reactConfig.extends)],
-  ignorePatterns: ['node_modules', 'build', 'dist', 'docs', 'bin', 'storybook-static', 'package.json'],
+  ignorePatterns: [...toArray(xylabsConfig.ignorePatterns), 'node_modules', 'build', 'storybook-static'],
   overrides: [...toArray(xylabsConfig.overrides), ...toArray(reactConfig.overrides)],
   parserOptions: { ecmaVersion: 'latest', project: 'tsconfig.json', tsconfigRootDir: cwd() },
   plugins: [...toArray(xylabsConfig.plugins), ...toArray(reactConfig.plugins)],
