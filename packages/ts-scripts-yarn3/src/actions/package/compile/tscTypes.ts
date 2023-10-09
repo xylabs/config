@@ -10,7 +10,7 @@ import { getCompilerOptions } from './getCompilerOptions'
 
 export const packageCompileTscTypes = async (
   folder: string = 'src',
-  { compile, verbose }: CompileParams = {},
+  { verbose }: CompileParams = {},
   compilerOptionsParam?: CompilerOptions,
   generateMts = true,
 ): Promise<number> => {
@@ -33,7 +33,8 @@ export const packageCompileTscTypes = async (
     ...(compilerOptionsParam ?? {}),
   } as TsConfigCompilerOptions
 
-  const files = buildEntries(folder, compile?.entryMode)
+  //calling all here since the types do not get rolled up
+  const files = buildEntries(folder, 'all')
 
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
