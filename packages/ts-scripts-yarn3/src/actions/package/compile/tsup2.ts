@@ -47,8 +47,6 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     )
   ).flat()
 
-  console.log(`Compile Folder: ${folder} [${entryMode}]`)
-
   await Promise.all(optionsList.map((options) => build(options)))
 
   return 0

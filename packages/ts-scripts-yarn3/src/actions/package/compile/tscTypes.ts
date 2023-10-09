@@ -14,7 +14,6 @@ export const packageCompileTscTypes = async (
   compilerOptionsParam?: CompilerOptions,
   generateMts = true,
 ): Promise<number> => {
-  console.log(`Compile Types: ${folder} [${compile?.entryMode}]`)
   const pkg = process.env.INIT_CWD ?? cwd()
 
   if (verbose) {
@@ -35,9 +34,6 @@ export const packageCompileTscTypes = async (
   } as TsConfigCompilerOptions
 
   const files = buildEntries(folder, compile?.entryMode)
-
-  console.log(`Compile Files: ${JSON.stringify(files, null, 2)}`)
-  console.log(`Compiler Options: ${JSON.stringify(compilerOptions, null, 2)}`)
 
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
