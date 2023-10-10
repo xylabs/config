@@ -4,9 +4,9 @@ import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
 import { buildEntries } from './buildEntries'
-import { XyConfig } from './CompileParams'
 import { copyTypeFiles } from './copyTypeFiles'
 import { getCompilerOptions } from './getCompilerOptions'
+import { XyConfig } from './XyConfig'
 
 export const packageCompileTscTypes = async (
   folder: string = 'src',

@@ -12,8 +12,8 @@ import {
 } from 'typescript'
 
 import { packagePublint } from '../publint'
-import { XyTscConfig } from './CompileParams'
 import { getCompilerOptions } from './getCompilerOptions'
+import { XyTscConfig } from './XyConfig'
 
 export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()

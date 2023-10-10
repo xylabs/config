@@ -2,9 +2,9 @@ import { build, defineConfig, Options } from 'tsup'
 
 import { packagePublint } from '../publint'
 import { buildEntries } from './buildEntries'
-import { EntryMode, XyTsupConfig } from './CompileParams'
 import { packageCompileTsc } from './packageCompileTsc'
 import { packageCompileTscTypes } from './packageCompileTscTypes'
+import { EntryMode, XyTsupConfig } from './XyConfig'
 
 const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
