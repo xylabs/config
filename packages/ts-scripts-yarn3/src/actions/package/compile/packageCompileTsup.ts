@@ -1,23 +1,10 @@
 import { build, defineConfig, Options } from 'tsup'
 
-import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { buildEntries } from './buildEntries'
-import { CompileParams, EntryMode } from './CompileParams'
+import { EntryMode, XyTsupConfig } from './CompileParams'
 import { packageCompileTsc } from './packageCompileTsc'
-import { packageCompileTscTypes } from './tscTypes'
-
-export type PackageCompileTsupParams = Partial<
-  CompileParams & {
-    compile?: {
-      browser?: Record<string, Options | boolean>
-      node?: Record<string, Options | boolean>
-      tsup?: {
-        options?: Options
-      }
-    }
-  }
->
+import { packageCompileTscTypes } from './packageCompileTscTypes'
 
 const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
@@ -53,9 +40,10 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   return 0
 }
 
-export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
-  const { verbose, compile } = await loadConfig(params)
-  const publint = compile?.publint ?? true
+export const packageCompileTsup = async (config?: XyTsupConfig) => {
+  const compile = config?.compile
+  const publint = config?.publint ?? true
+  const verbose = config?.verbose ?? false
   if (verbose) {
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
   }
@@ -64,7 +52,7 @@ export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   const compileForBrowser = compile?.browser ?? { src: {} }
 
   return (
-    packageCompileTsc(true, { verbose }) ||
+    (await packageCompileTsc(true, { publint: false, verbose })) ||
     (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {

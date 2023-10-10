@@ -11,11 +11,15 @@ import {
   LineAndCharacter,
 } from 'typescript'
 
-import { CompileParams } from './CompileParams'
+import { packagePublint } from '../publint'
+import { XyTscConfig } from './CompileParams'
 import { getCompilerOptions } from './getCompilerOptions'
 
-export const packageCompileTsc = (noEmit?: boolean, params?: CompileParams, compilerOptionsParam?: CompilerOptions): number => {
+export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()
+
+  const publint = config?.publint ?? true
+  const verbose = config?.verbose ?? false
 
   const formatHost: FormatDiagnosticsHost = {
     getCanonicalFileName: (fileName) => fileName,
@@ -23,7 +27,7 @@ export const packageCompileTsc = (noEmit?: boolean, params?: CompileParams, comp
     getNewLine: () => '\n',
   }
 
-  if (params?.verbose) {
+  if (verbose) {
     console.log(`Compiling with NoEmit TSC [${pkg}]`)
   }
 
@@ -51,5 +55,5 @@ export const packageCompileTsc = (noEmit?: boolean, params?: CompileParams, comp
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
   })
 
-  return results.reduce((prev, diag) => (prev + diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
+  return results.reduce((prev, diag) => (prev + diag.category === DiagnosticCategory.Error ? 1 : 0), 0) || (publint ? await packagePublint() : 0)
 }

@@ -4,13 +4,13 @@ import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
 import { buildEntries } from './buildEntries'
-import { CompileParams } from './CompileParams'
+import { XyConfig } from './CompileParams'
 import { copyTypeFiles } from './copyTypeFiles'
 import { getCompilerOptions } from './getCompilerOptions'
 
 export const packageCompileTscTypes = async (
   folder: string = 'src',
-  { verbose }: CompileParams = {},
+  { verbose }: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
   generateMts = true,
 ): Promise<number> => {
