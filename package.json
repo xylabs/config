@@ -12,8 +12,7 @@
     "url": "https://github.com/xylabs/ts-scripts/issues"
   },
   "dependencies": {
-    "jest": "^29.7.0",
-    "rimraf": "^4.4.1"
+    "@xylabs/ts-scripts-yarn3": "workspace:~"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -26,8 +25,10 @@
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:^",
+    "jest": "^29.7.0",
     "jest-extended": "^4.0.1",
     "jest-sorted": "^1.0.14",
+    "rimraf": "^4.4.1",
     "typescript": "^5.2.2"
   },
   "homepage": "https://xylabs.com",
@@ -63,9 +64,5 @@
     "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next",
     "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next"
   },
-  "xy": {
-    "compile": {
-      "browser": false
-    }
-  }
+  "type": "module"
 }

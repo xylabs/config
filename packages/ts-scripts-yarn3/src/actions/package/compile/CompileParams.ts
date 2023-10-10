@@ -4,6 +4,8 @@ export interface RootParams {
 
 export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
+export type CompileMode = 'tsup' | 'tsc'
+
 export interface CompileParams extends RootParams {
   compile?: {
     depth?: number
@@ -11,6 +13,7 @@ export interface CompileParams extends RootParams {
     entryMode?: EntryMode
     /** @param files Manually specify the files to be compiled */
     files?: string[]
+    mode?: CompileMode
     publint?: boolean
   }
 }

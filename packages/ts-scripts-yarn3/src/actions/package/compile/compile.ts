@@ -1,72 +1,28 @@
 import chalk from 'chalk'
-// eslint-disable-next-line import/no-internal-modules
-import merge from 'lodash/merge'
 
 import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { CompileParams } from './CompileParams'
-import { packageCompileRollup } from './rollup'
-import { packageCompileTsc } from './tsc'
-import { packageCompileTsup2 } from './tsup2'
+import { packageCompileTsc } from './packageCompileTsc'
+import { packageCompileTsup } from './packageCompileTsup'
 
-export type PackageCompileMode = 'tsup' | 'tsc' | 'rollup'
-
-export type PackageCompileParams = CompileParams & {
-  compile?: {
-    modes?: PackageCompileMode[]
-  }
-}
-
-export const packageCompile = async (
-  params: PackageCompileParams = {
-    compile: {
-      publint: false,
-    },
-  },
-): Promise<number> => {
+export const packageCompile = async (params: CompileParams = {}): Promise<number> => {
   const pkg = process.env.INIT_CWD
   console.log(chalk.green(`Compiling ${pkg}`))
   const config = await loadConfig(params)
-  const publint = false //config.compile?.publint ?? false
+  const publint = config.compile?.publint ?? false
 
-  const modes = config.compile?.modes ?? ['tsup']
-  let modeIndex = 0
+  const mode = config.compile?.mode ?? 'tsup'
   let result: number = 0
-  while (modeIndex < modes.length) {
-    const mode = modes[modeIndex]
-    switch (mode) {
-      case 'rollup': {
-        result += await packageCompileRollup(
-          merge({}, params, {
-            compile: {
-              publint: false,
-            },
-          }),
-        )
-        break
-      }
-      case 'tsc': {
-        result += await packageCompileTsc(
-          merge({}, params, {
-            compile: {
-              publint: false,
-            },
-          }),
-        )
-        break
-      }
-      case 'tsup': {
-        result += await packageCompileTsup2(
-          merge({}, params, {
-            compile: {
-              publint: false,
-            },
-          }),
-        )
-        break
-      }
+  switch (mode) {
+    case 'tsc': {
+      result += packageCompileTsc(undefined, config)
+      break
     }
-    modeIndex++
+    case 'tsup': {
+      result += await packageCompileTsup(config)
+      break
+    }
   }
-  return result + (publint ? await packagePublint(params) : 0)
+  return result + (publint ? await packagePublint(config) : 0)
 }

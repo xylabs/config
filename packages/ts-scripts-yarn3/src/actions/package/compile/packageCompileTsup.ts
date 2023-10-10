@@ -4,10 +4,10 @@ import { loadConfig } from '../../../lib'
 import { packagePublint } from '../publint'
 import { buildEntries } from './buildEntries'
 import { CompileParams, EntryMode } from './CompileParams'
-import { packageCompileTscNoEmit } from './tscNoEmit'
+import { packageCompileTsc } from './packageCompileTsc'
 import { packageCompileTscTypes } from './tscTypes'
 
-export type PackageCompileTsup2Params = Partial<
+export type PackageCompileTsupParams = Partial<
   CompileParams & {
     compile?: {
       browser?: Record<string, Options | boolean>
@@ -53,7 +53,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   return 0
 }
 
-export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) => {
+export const packageCompileTsup = async (params?: PackageCompileTsupParams) => {
   const { verbose, compile } = await loadConfig(params)
   const publint = compile?.publint ?? true
   if (verbose) {
@@ -64,7 +64,7 @@ export const packageCompileTsup2 = async (params?: PackageCompileTsup2Params) =>
   const compileForBrowser = compile?.browser ?? { src: {} }
 
   return (
-    packageCompileTscNoEmit({ verbose }) ||
+    packageCompileTsc(true, { verbose }) ||
     (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {

@@ -14,7 +14,7 @@ import {
 import { CompileParams } from './CompileParams'
 import { getCompilerOptions } from './getCompilerOptions'
 
-export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsParam?: CompilerOptions): number => {
+export const packageCompileTsc = (noEmit?: boolean, params?: CompileParams, compilerOptionsParam?: CompilerOptions): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
 
   const formatHost: FormatDiagnosticsHost = {
@@ -29,17 +29,11 @@ export const packageCompileTscNoEmit = (params?: CompileParams, compilerOptionsP
 
   const compilerOptions = {
     ...getCompilerOptions({
-      declaration: true,
-      declarationMap: true,
-      emitDeclarationOnly: true,
-      esModuleInterop: true,
       outDir: 'dist',
       rootDir: 'src',
-      skipDefaultLibCheck: true,
-      skipLibCheck: true,
-      sourceMap: true,
     }),
     ...(compilerOptionsParam ?? {}),
+    ...(noEmit !== undefined ? { noEmit } : {}),
   } as TsConfigCompilerOptions
 
   const program = createProgramFromConfig({
