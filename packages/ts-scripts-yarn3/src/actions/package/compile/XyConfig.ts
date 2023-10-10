@@ -20,7 +20,7 @@ export interface CompileConfig {
 
 export type PackageCompileTsupConfig = CompileConfig & {
   browser?: Record<string, Options | boolean>
-  mode: 'tsup' | undefined
+  mode?: 'tsup'
   node?: Record<string, Options | boolean>
   tsup?: {
     options?: Options

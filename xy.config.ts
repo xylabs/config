@@ -1,6 +1,8 @@
-const config = {
+import { XyTsupConfig } from '@xylabs/ts-scripts-yarn3'
+
+const config: XyTsupConfig = {
   compile: {
-    browser: false,
+    browser: {}
   },
 }
 
