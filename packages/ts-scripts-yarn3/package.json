@@ -65,6 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@xylabs/tsconfig": "workspace:~",
+    "async-mutex": "^0.4.0",
     "chalk": "^4.1.2",
     "cosmiconfig": "^8.3.6",
     "cosmiconfig-typescript-loader": "^5.0.0",
@@ -167,5 +168,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.1.10"
+  "version": "3.1.11"
 }
