@@ -88,9 +88,6 @@
     "./cjs": {
       "default": "./dist/index.js"
     },
-    "./docs": {
-      "default": "./dist/docs.json"
-    },
     "./esm": {
       "default": "./dist/index.mjs"
     },

@@ -6,7 +6,6 @@ export const deploy = () => {
     ['yarn', 'xy clean'],
     ['yarn', 'xy build'],
     ['yarn', 'xy cycle'],
-    ['yarn', 'xy gen-docs'],
     ['yarn', 'version apply --all'],
     ['yarn', 'workspaces foreach -pt npm publish'],
   ])
