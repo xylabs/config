@@ -1,3 +1,4 @@
+import { merge } from 'lodash'
 import { build, defineConfig, Options } from 'tsup'
 
 import { packagePublint } from '../publint'
@@ -56,6 +57,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
     (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
+          const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
           return folder
             ? await compileFolder(
                 folder,
@@ -63,7 +65,11 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 {
                   bundle: true,
                   format: ['cjs', 'esm'],
-                  loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                  loader: merge(
+                    {},
+                    { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                    inEsBuildOptions?.loader,
+                  ),
                   outDir: 'dist/node',
                   platform: 'node',
                   skipNodeModulesBundle: true,
@@ -80,6 +86,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
     (
       await Promise.all(
         Object.entries(compileForBrowser).map(async ([folder, options]) => {
+          const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
           return folder
             ? (
                 await Promise.all([
@@ -89,7 +96,11 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                     {
                       bundle: true,
                       format: ['cjs'],
-                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                      loader: merge(
+                        {},
+                        { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                        inEsBuildOptions?.loader,
+                      ),
                       outDir: 'dist/browser',
                       outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                       platform: 'browser',
@@ -106,7 +117,11 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                     {
                       bundle: true,
                       format: ['esm'],
-                      loader: { '.gif': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                      loader: merge(
+                        {},
+                        { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                        inEsBuildOptions?.loader,
+                      ),
                       outDir: 'dist/browser',
                       outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                       platform: 'browser',

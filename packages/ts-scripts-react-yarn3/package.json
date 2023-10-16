@@ -55,10 +55,10 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/yargs": "^17.0.26",
+    "@types/yargs": "^17.0.28",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
-    "publint": "^0.2.3",
+    "publint": "^0.2.4",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
@@ -96,7 +96,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "license": "LGPL-3.0",
+  "license": "LGPL-3.0-only",
   "publishConfig": {
     "access": "public"
   },
@@ -112,5 +112,5 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.1.11"
+  "version": "3.1.12"
 }

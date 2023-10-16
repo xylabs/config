@@ -21,12 +21,12 @@
   "devDependencies": {
     "@types/jest": "^29.5.5",
     "@types/json-schema": "^7.0.13",
-    "@types/node": "^20.7.2",
+    "@types/node": "^20.8.6",
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:^",
     "jest": "^29.7.0",
-    "jest-extended": "^4.0.1",
+    "jest-extended": "^4.0.2",
     "jest-sorted": "^1.0.14",
     "rimraf": "^4.4.1",
     "typescript": "^5.2.2"
@@ -37,7 +37,7 @@
     "utility",
     "typescript"
   ],
-  "license": "LGPL-3.0",
+  "license": "LGPL-3.0-only",
   "name": "@xylabs/config",
   "publishConfig": {
     "access": "public"
@@ -51,7 +51,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.1.11",
+  "version": "3.1.12",
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && echo Bootstrap Build Done && yarn compile",
