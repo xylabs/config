@@ -60,17 +60,17 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-typescript": "^11.1.5",
-    "@types/node": "^20.8.6",
-    "@types/yargs": "^17.0.28",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
+    "@types/node": "^20.8.7",
+    "@types/yargs": "^17.0.29",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "@xylabs/tsconfig": "workspace:~",
     "async-mutex": "^0.4.0",
     "chalk": "^4.1.2",
     "cosmiconfig": "^8.3.6",
     "cosmiconfig-typescript-loader": "^5.0.0",
     "cpy": "^8.1.2",
-    "depcheck": "^1.4.6",
+    "depcheck": "^1.4.7",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
@@ -107,12 +107,12 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/eslint": "^8.44.4",
-    "@types/license-checker": "^25.0.4",
-    "@types/lodash": "^4.14.199",
-    "@types/parse-git-config": "^3.0.2",
-    "@xylabs/eslint-config": "workspace:^",
-    "@xylabs/tsconfig": "workspace:^",
+    "@types/eslint": "^8.44.6",
+    "@types/license-checker": "^25.0.5",
+    "@types/lodash": "^4.14.200",
+    "@types/parse-git-config": "^3.0.3",
+    "@xylabs/eslint-config": "workspace:~",
+    "@xylabs/tsconfig": "workspace:~",
     "publint": "^0.2.4",
     "typescript": "^5.2.2"
   },
@@ -168,5 +168,5 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.1.12"
+  "version": "3.1.13"
 }

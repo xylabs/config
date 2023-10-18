@@ -23,7 +23,6 @@ export const packageCompileTscTypes = async (
   const compilerOptions = {
     ...getCompilerOptions({
       declaration: true,
-      declarationMap: true,
       emitDeclarationOnly: true,
       outDir: 'dist',
       skipDefaultLibCheck: true,
