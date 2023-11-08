@@ -19,7 +19,7 @@
     "strict": true,
     "target": "ESNEXT"
   },
-  "exclude": [".github", ".vscode", ".yarn", "dist", "node_modules", "storybook-static", "build", "docs"],
+  "exclude": [".github", ".vscode", ".yarn", "dist", "node_modules", "storybook-static", "build"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
