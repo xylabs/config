@@ -17,8 +17,8 @@
     "jest-sorted": "^1.0.14"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.6",
-    "@types/node": "^20.8.7",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "typescript": "^5.2.2"

@@ -32,7 +32,7 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.extends),
     ...toArray(jsonConfig.extends),
   ],
-  ignorePatterns: ['node_modules', 'dist', 'docs', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
+  ignorePatterns: ['node_modules', 'dist', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
   overrides: [
     ...toArray(typescriptConfig.overrides),
     ...toArray(workspacesConfig.overrides),
