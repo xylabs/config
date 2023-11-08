@@ -1,7 +1,6 @@
 import { ESLint } from 'eslint'
 
 export const typescriptConfig: ESLint.ConfigData = {
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   overrides: [
     {
       files: ['*.ts*', '*.d.ts*'],
