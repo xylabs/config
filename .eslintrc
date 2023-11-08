@@ -1,8 +1,13 @@
 {
   "root": true,
   "extends": [
-    "@xylabs"
+    "@xylabs/base"
   ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": null,
+    "tsconfigRootDir": null
+  },
   "rules": {
     "import/no-internal-modules": [
       "warn", {

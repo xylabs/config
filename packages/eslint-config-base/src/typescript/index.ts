@@ -1,9 +1,17 @@
 import { ESLint } from 'eslint'
 
 export const typescriptConfig: ESLint.ConfigData = {
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   overrides: [
     {
       files: ['*.ts*', '*.d.ts*'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        project: null,
+        sourceType: 'module',
+        tsconfigRootDir: null,
+      },
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -94,7 +102,6 @@ export const typescriptConfig: ESLint.ConfigData = {
             },
           },
         ],
-        '@typescript-eslint/no-floating-promises': ['warn'],
         '@typescript-eslint/no-unused-vars': [
           'warn',
           {

@@ -3430,6 +3430,7 @@ __metadata:
     "@xylabs/eslint-config": "workspace:~"
     "@xylabs/ts-scripts-yarn3": "workspace:~"
     "@xylabs/tsconfig": "workspace:~"
+    eslint: ^8.53.0
     jest: ^29.7.0
     jest-extended: ^4.0.2
     jest-sorted: ^1.0.14
