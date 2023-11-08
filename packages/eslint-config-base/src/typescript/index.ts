@@ -6,10 +6,6 @@ export const typescriptConfig: ESLint.ConfigData = {
     {
       files: ['*.ts*', '*.d.ts*'],
       parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
