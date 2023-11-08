@@ -8,7 +8,7 @@ export const markdownConfig: ESLint.ConfigData = {
       parser: 'markdown-eslint-parser',
       rules: {
         'md/remark': [
-          'error',
+          'warn',
           {
             plugins: ['preset-lint-markdown-style-guide', 'frontmatter', ['lint-list-item-indent', 'tab-size']],
           },
