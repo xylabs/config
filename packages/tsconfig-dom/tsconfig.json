@@ -6,6 +6,6 @@
       "ESNEXT"
     ]
   },
-  "exclude": ["dist", "docs"],
+  "exclude": ["dist"],
   "extends": "@xylabs/tsconfig"
 }
