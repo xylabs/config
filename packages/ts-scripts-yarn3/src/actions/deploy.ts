@@ -7,6 +7,6 @@ export const deploy = () => {
     ['yarn', 'xy build'],
     ['yarn', 'xy cycle'],
     ['yarn', 'version apply --all'],
-    ['yarn', 'workspaces foreach -all npm publish'],
+    ['yarn', 'workspaces foreach --all npm publish'],
   ])
 }

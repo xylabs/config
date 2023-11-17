@@ -7,6 +7,6 @@ export const deployNext = () => {
     ['yarn', 'xy build'],
     ['yarn', 'xy cycle'],
     ['yarn', 'version apply --all --prerelease'],
-    ['yarn', 'workspaces foreach -pt npm publish --tag next'],
+    ['yarn', 'workspaces foreach --all npm publish --tag next'],
   ])
 }
