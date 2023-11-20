@@ -31,7 +31,7 @@ export const recompileAll = async ({ jobs, verbose, target, incremental }: Recom
   const start = Date.now()
   const verboseOptions = verbose ? ['-v'] : []
   const targetOptions = target ? ['-t', target] : []
-  const incrementalOptions = incremental ? ['--since', '-ptA'] : ['-ptA']
+  const incrementalOptions = incremental ? ['--since', '--parallel', '--topological-dev', '--all'] : ['--parallel', '--topological-dev', '--all']
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []
   if (jobs) {
     console.log(chalk.blue(`Jobs set to [${jobs}]`))
