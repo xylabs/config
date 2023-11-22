@@ -15,11 +15,11 @@ export const publint = async ({ verbose, pkg }: PublintParams) => {
 }
 
 export const publintPackage = ({ verbose, pkg }: PublintPackageParams) => {
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   return runStepsAsync(`Publint [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-publint', ...verboseOptions]]])
 }
 
 export const publintAll = ({ verbose }: PublintParams) => {
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   return runSteps('Publint', [['yarn', ['workspaces foreach -pA run package-publint', ...verboseOptions]]])
 }

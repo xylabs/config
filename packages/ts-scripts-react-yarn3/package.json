@@ -55,7 +55,7 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/yargs": "^17.0.31",
+    "@types/yargs": "^17.0.32",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
     "publint": "^0.2.5",
@@ -112,5 +112,5 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.2.8"
+  "version": "3.2.9"
 }

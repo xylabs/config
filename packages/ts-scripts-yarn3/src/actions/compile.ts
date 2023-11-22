@@ -23,7 +23,7 @@ export const compile = ({ verbose, target, pkg, incremental, publint }: CompileP
 }
 
 export const compilePackage = ({ verbose, target, pkg, publint = true }: CompilePackageParams) => {
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
 
   return publint
@@ -33,7 +33,7 @@ export const compilePackage = ({ verbose, target, pkg, publint = true }: Compile
 
 export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {
   const start = Date.now()
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
   const incrementalOptions = incremental ? ['--since', '-Apt', '--topological-dev'] : ['--parallel', '-Apt', '--topological-dev']
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []

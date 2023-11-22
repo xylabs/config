@@ -19,9 +19,9 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/jest": "^29.5.8",
+    "@types/jest": "^29.5.10",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^20.9.2",
+    "@types/node": "^20.9.4",
     "@xylabs/eslint-config": "workspace:~",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
@@ -52,7 +52,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.2.8",
+  "version": "3.2.9",
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",

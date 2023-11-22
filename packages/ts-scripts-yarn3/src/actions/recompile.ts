@@ -21,7 +21,7 @@ export const recompile = async ({ verbose, target, pkg, incremental }: Recompile
 }
 
 export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParams) => {
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
 
   return runStepsAsync(`Recompile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-recompile', ...verboseOptions, ...targetOptions]]])
@@ -29,7 +29,7 @@ export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParam
 
 export const recompileAll = async ({ jobs, verbose, target, incremental }: RecompileParams) => {
   const start = Date.now()
-  const verboseOptions = verbose ? ['-v'] : []
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
   const incrementalOptions = incremental ? ['--since', '-Apt', '--topological-dev'] : ['--parallel', '-Apt', '--topological-dev']
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []

@@ -56,8 +56,8 @@
     "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
-    "@types/jest": "^29.5.8",
-    "@types/node": "^20.9.2",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.9.4",
     "@xylabs/eslint-config": "workspace:~",
     "chalk": "^4.1.2",
     "copyfiles": "^2.4.1",
@@ -73,7 +73,7 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/node": "^20.9.2",
+    "@types/node": "^20.9.4",
     "@types/parse-git-config": "^3.0.4",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
@@ -101,5 +101,5 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.2.8"
+  "version": "3.2.9"
 }
