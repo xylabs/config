@@ -17,12 +17,10 @@ export const clean = async ({ verbose, pkg }: CleanParams) => {
 }
 
 export const cleanPackage = ({ verbose, pkg }: CleanPackageParams) => {
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-
-  return runStepsAsync(`Clean [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-clean', ...verboseOptions]]])
+  return runStepsAsync(`Clean [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-clean']]])
 }
 
 export const cleanAll = ({ verbose }: CleanParams) => {
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  return cleanESLint() + cleanDocs() + runSteps('Clean', [['yarn', ['workspaces foreach -pA run package-clean', ...verboseOptions]]])
+  return cleanESLint() + cleanDocs() + runSteps('Clean', [['yarn', ['workspaces foreach', '-pA', ...verboseOptions, 'run', 'package-clean']]])
 }

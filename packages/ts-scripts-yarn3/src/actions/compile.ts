@@ -23,12 +23,11 @@ export const compile = ({ verbose, target, pkg, incremental, publint }: CompileP
 }
 
 export const compilePackage = ({ verbose, target, pkg, publint = true }: CompilePackageParams) => {
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
 
   return publint
-    ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
-    : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...verboseOptions, ...targetOptions]]])
+    ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
+    : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
 }
 
 export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {
@@ -42,7 +41,7 @@ export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams
   }
 
   const result = runSteps(`Compile${incremental ? '-Incremental' : ''} [All]`, [
-    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-compile', ...verboseOptions, ...targetOptions]],
+    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-compile', ...targetOptions]],
   ])
   console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
   return result

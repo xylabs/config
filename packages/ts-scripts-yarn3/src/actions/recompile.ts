@@ -21,10 +21,9 @@ export const recompile = async ({ verbose, target, pkg, incremental }: Recompile
 }
 
 export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParams) => {
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []
 
-  return runStepsAsync(`Recompile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-recompile', ...verboseOptions, ...targetOptions]]])
+  return runStepsAsync(`Recompile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-recompile', ...targetOptions]]])
 }
 
 export const recompileAll = async ({ jobs, verbose, target, incremental }: RecompileParams) => {
@@ -38,7 +37,7 @@ export const recompileAll = async ({ jobs, verbose, target, incremental }: Recom
   }
 
   const result = await runStepsAsync(`Recompile${incremental ? '-Incremental' : ''} [All]`, [
-    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, 'run', 'package-recompile', ...verboseOptions, ...targetOptions]],
+    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]],
   ])
   console.log(`${chalk.gray('Recompiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
   return result
