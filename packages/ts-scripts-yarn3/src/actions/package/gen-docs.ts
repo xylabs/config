@@ -26,8 +26,8 @@ export const packageGenDocs = async () => {
   }
 
   const app = await Application.bootstrap({
-    entryPointStrategy: 'resolve',
-    entryPoints: [`${pkg}/src`],
+    entryPointStrategy: 'merge',
+    entryPoints: [`${pkg}/src/**/*.ts`, `${pkg}/packages/*/dist/docs.json`],
     excludeExternals: true,
     json: `${pkg}/dist/docs.json`,
     logLevel: 'Error',

@@ -1,5 +1,4 @@
 import { ESLint } from 'eslint'
-import { cwd } from 'process'
 
 export const typescriptConfig: ESLint.ConfigData = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
@@ -11,7 +10,6 @@ export const typescriptConfig: ESLint.ConfigData = {
         ecmaVersion: 'latest',
         project: ['./tsconfig.json'],
         sourceType: 'module',
-        tsconfigRootDir: cwd(),
       },
       plugins: ['@typescript-eslint'],
       rules: {

@@ -17,11 +17,11 @@
     "jest-sorted": "^1.0.14"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.10",
-    "@types/node": "^20.9.4",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.4",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -44,5 +44,5 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.2.10"
+  "version": "3.2.11"
 }
