@@ -31,9 +31,6 @@ export const importConfig: ESLint.ConfigData = {
     'simple-import-sort/imports': ['warn'],
   },
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
