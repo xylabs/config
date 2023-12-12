@@ -1,7 +1,6 @@
 import { ESLint } from 'eslint'
 // eslint-disable-next-line import/no-internal-modules
 import compact from 'lodash/compact'
-import { cwd } from 'process'
 
 import { importConfig } from './import'
 import { jsonConfig } from './json'
@@ -23,6 +22,7 @@ const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
 }
 
 const config: ESLint.ConfigData = {
+  ...typescriptConfig,
   extends: [
     ...toArray(typescriptConfig.extends),
     ...toArray(workspacesConfig.extends),
@@ -34,7 +34,6 @@ const config: ESLint.ConfigData = {
   ],
   ignorePatterns: ['node_modules', 'dist', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
   overrides: [
-    ...toArray(typescriptConfig.overrides),
     ...toArray(workspacesConfig.overrides),
     ...toArray(prettierConfig.overrides),
     ...toArray(rulesConfig.overrides),
@@ -42,7 +41,6 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.overrides),
     ...toArray(jsonConfig.overrides),
   ],
-  parserOptions: { ecmaVersion: 'latest', project: 'tsconfig.json', tsconfigRootDir: cwd() },
   plugins: [
     ...toArray(typescriptConfig.plugins),
     ...toArray(workspacesConfig.plugins),
