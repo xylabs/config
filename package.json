@@ -52,7 +52,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.2.14",
+  "version": "3.2.15",
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",

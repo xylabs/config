@@ -4,7 +4,9 @@ export const importConfig: ESLint.ConfigData = {
   extends: ['plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
   plugins: ['import', 'simple-import-sort'],
   rules: {
-    'import/namespace': ['warn'],
+    'import/default': ['off'],
+    'import/named': ['off'],
+    'import/namespace': ['off'],
     'import/no-absolute-path': ['warn'],
     'import/no-cycle': [
       'off',
@@ -21,6 +23,7 @@ export const importConfig: ESLint.ConfigData = {
       },
     ],
     'import/no-named-as-default': ['warn'],
+    'import/no-named-as-default-member': ['off'],
     'import/no-restricted-paths': ['warn'],
     'import/no-self-import': ['warn'],
     'import/no-useless-path-segments': ['warn'],

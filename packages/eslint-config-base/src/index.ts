@@ -42,7 +42,6 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.overrides),
     ...toArray(jsonConfig.overrides),
   ],
-  parserOptions: { ecmaVersion: 'latest', project: 'tsconfig.json', tsconfigRootDir: cwd() },
   plugins: [
     ...toArray(typescriptConfig.plugins),
     ...toArray(workspacesConfig.plugins),

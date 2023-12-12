@@ -5,13 +5,6 @@ export const typescriptConfig: ESLint.ConfigData = {
   overrides: [
     {
       files: ['*.ts*', '*.d.ts*'],
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaVersion: 'latest',
-        project: null,
-        sourceType: 'module',
-        tsconfigRootDir: null,
-      },
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
