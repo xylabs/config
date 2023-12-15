@@ -16,7 +16,7 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^2.0.0",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-json-es": "^1.5.7",
     "eslint-plugin-md": "^1.0.19",
     "eslint-plugin-no-secrets": "^0.8.9",
@@ -62,5 +62,5 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.2.17"
+  "version": "3.2.20"
 }
