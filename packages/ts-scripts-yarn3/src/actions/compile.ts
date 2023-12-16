@@ -22,12 +22,11 @@ export const compile = ({ verbose, target, pkg, incremental, publint }: CompileP
   return pkg ? compilePackage({ pkg, publint, target, verbose }) : compileAll({ incremental, publint, target, verbose })
 }
 
-export const compilePackage = ({ verbose, target, pkg, publint = true }: CompilePackageParams) => {
+export const compilePackage = ({ target, pkg, publint = true }: CompilePackageParams) => {
   const targetOptions = target ? ['-t', target] : []
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
   return publint
-    ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-compile', ...targetOptions]]])
+    ? runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
     : runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
 }
 

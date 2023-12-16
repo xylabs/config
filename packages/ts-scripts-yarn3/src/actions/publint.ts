@@ -14,9 +14,8 @@ export const publint = async ({ verbose, pkg }: PublintParams) => {
   return pkg ? await publintPackage({ pkg, verbose }) : publintAll({ verbose })
 }
 
-export const publintPackage = ({ verbose, pkg }: PublintPackageParams) => {
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  return runStepsAsync(`Publint [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-publint']]])
+export const publintPackage = ({ pkg }: PublintPackageParams) => {
+  return runStepsAsync(`Publint [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-publint']]])
 }
 
 export const publintAll = ({ verbose }: PublintParams) => {
