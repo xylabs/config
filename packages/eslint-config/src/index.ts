@@ -4,7 +4,7 @@ import compact from 'lodash/compact'
 
 import { importConfig } from './import'
 //import { jsonConfig } from './json'
-import { markdownConfig } from './markdown'
+//import { markdownConfig } from './markdown'
 import { prettierConfig } from './prettier'
 import { rulesConfig } from './rules'
 import { typescriptConfig } from './typescript'
@@ -25,48 +25,48 @@ const config: ESLint.ConfigData = {
   extends: [
     ...toArray(typescriptConfig.extends),
     ...toArray(workspacesConfig.extends),
-    ...toArray(prettierConfig.extends),
     ...toArray(rulesConfig.extends),
-    ...toArray(markdownConfig.extends),
+    //...toArray(markdownConfig.extends),
     ...toArray(importConfig.extends),
     //...toArray(jsonConfig.extends),
+    ...toArray(prettierConfig.extends),
   ],
   ignorePatterns: ['node_modules', 'dist', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
   overrides: [
     ...toArray(typescriptConfig.overrides),
     ...toArray(workspacesConfig.overrides),
-    ...toArray(prettierConfig.overrides),
     ...toArray(rulesConfig.overrides),
-    ...toArray(markdownConfig.overrides),
+    //...toArray(markdownConfig.overrides),
     ...toArray(importConfig.overrides),
     //...toArray(jsonConfig.overrides),
+    ...toArray(prettierConfig.overrides),
   ],
   plugins: [
     ...toArray(typescriptConfig.plugins),
     ...toArray(workspacesConfig.plugins),
-    ...toArray(prettierConfig.plugins),
     ...toArray(rulesConfig.plugins),
-    ...toArray(markdownConfig.plugins),
+    //...toArray(markdownConfig.plugins),
     ...toArray(importConfig.plugins),
     //...toArray(jsonConfig.plugins),
+    ...toArray(prettierConfig.plugins),
   ],
   rules: {
     ...typescriptConfig.rules,
     ...workspacesConfig.rules,
-    ...prettierConfig.rules,
     ...rulesConfig.rules,
-    ...markdownConfig.rules,
+    //...markdownConfig.rules,
     ...importConfig.rules,
     //...jsonConfig.rules,
+    ...prettierConfig.rules,
   },
   settings: {
     ...typescriptConfig.settings,
     ...workspacesConfig.settings,
-    ...prettierConfig.settings,
     ...rulesConfig.settings,
-    ...markdownConfig.settings,
+    //...markdownConfig.settings,
     ...importConfig.settings,
     //...jsonConfig.settings,
+    ...prettierConfig.settings,
   },
 }
 
