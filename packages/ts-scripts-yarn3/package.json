@@ -80,6 +80,7 @@
     "jest-extended": "^4.0.2",
     "jest-mock-extended": "^3.0.5",
     "jest-sorted": "^1.0.14",
+    "jsonc-eslint-parser": "^2.4.0",
     "license-checker": "^25.0.1",
     "lodash": "^4.17.21",
     "node-cmd": "^5.0.0",

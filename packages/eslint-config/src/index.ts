@@ -3,7 +3,7 @@ import { ESLint } from 'eslint'
 import compact from 'lodash/compact'
 
 import { importConfig } from './import'
-import { jsonConfig } from './json'
+//import { jsonConfig } from './json'
 import { markdownConfig } from './markdown'
 import { prettierConfig } from './prettier'
 import { rulesConfig } from './rules'
@@ -29,7 +29,7 @@ const config: ESLint.ConfigData = {
     ...toArray(rulesConfig.extends),
     ...toArray(markdownConfig.extends),
     ...toArray(importConfig.extends),
-    ...toArray(jsonConfig.extends),
+    //...toArray(jsonConfig.extends),
   ],
   ignorePatterns: ['node_modules', 'dist', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
   overrides: [
@@ -39,7 +39,7 @@ const config: ESLint.ConfigData = {
     ...toArray(rulesConfig.overrides),
     ...toArray(markdownConfig.overrides),
     ...toArray(importConfig.overrides),
-    ...toArray(jsonConfig.overrides),
+    //...toArray(jsonConfig.overrides),
   ],
   plugins: [
     ...toArray(typescriptConfig.plugins),
@@ -48,7 +48,7 @@ const config: ESLint.ConfigData = {
     ...toArray(rulesConfig.plugins),
     ...toArray(markdownConfig.plugins),
     ...toArray(importConfig.plugins),
-    ...toArray(jsonConfig.plugins),
+    //...toArray(jsonConfig.plugins),
   ],
   rules: {
     ...typescriptConfig.rules,
@@ -57,7 +57,7 @@ const config: ESLint.ConfigData = {
     ...rulesConfig.rules,
     ...markdownConfig.rules,
     ...importConfig.rules,
-    ...jsonConfig.rules,
+    //...jsonConfig.rules,
   },
   settings: {
     ...typescriptConfig.settings,
@@ -66,7 +66,7 @@ const config: ESLint.ConfigData = {
     ...rulesConfig.settings,
     ...markdownConfig.settings,
     ...importConfig.settings,
-    ...jsonConfig.settings,
+    //...jsonConfig.settings,
   },
 }
 

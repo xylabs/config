@@ -1,0 +1,14 @@
+releases:
+  "@xylabs/config": patch
+  "@xylabs/eslint-config": patch
+  "@xylabs/eslint-config-base": patch
+  "@xylabs/eslint-config-react": patch
+  "@xylabs/eslint-config-react-base": patch
+  "@xylabs/ts-scripts": patch
+  "@xylabs/ts-scripts-react-yarn3": patch
+  "@xylabs/ts-scripts-yarn3": patch
+  "@xylabs/tsconfig": patch
+  "@xylabs/tsconfig-dom": patch
+  "@xylabs/tsconfig-dom-jest": patch
+  "@xylabs/tsconfig-jest": patch
+  "@xylabs/tsconfig-react": patch

@@ -17,7 +17,8 @@ export const clean = async ({ verbose, pkg }: CleanParams) => {
 }
 
 export const cleanPackage = ({ verbose, pkg }: CleanPackageParams) => {
-  return runStepsAsync(`Clean [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-clean']]])
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
+  return runStepsAsync(`Clean [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-clean']]])
 }
 
 export const cleanAll = ({ verbose }: CleanParams) => {

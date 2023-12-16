@@ -3,12 +3,9 @@ import { ESLint } from 'eslint'
 export const jsonConfig: ESLint.ConfigData = {
   overrides: [
     {
-      extends: 'plugin:eslint-plugin-json-es/recommended',
+      extends: 'plugin:jsonc/recommended-with-jsonc',
       files: ['*.json'],
-      parser: 'eslint-plugin-json-es',
-      rules: {
-        'prettier/prettier': ['off'],
-      },
+      parser: 'jsonc-eslint-parser',
     },
   ],
 }
