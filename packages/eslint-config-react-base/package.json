@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@xylabs/eslint-config-base": "workspace:~",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-json-es": "^1.5.7",
-    "eslint-plugin-jsonc": "^2.11.1",
+    "eslint-plugin-jsonc": "^2.11.2",
     "eslint-plugin-md": "^1.0.19",
     "eslint-plugin-no-secrets": "^0.8.9",
-    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-prettier": "^5.1.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
@@ -37,10 +37,10 @@
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
@@ -64,5 +64,5 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.2.24"
+  "version": "3.2.25"
 }

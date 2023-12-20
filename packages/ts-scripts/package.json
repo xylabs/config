@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.11",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@xylabs/eslint-config": "workspace:~",
     "chalk": "^4.1.2",
     "copyfiles": "^2.4.1",
@@ -73,7 +73,7 @@
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@types/parse-git-config": "^3.0.4",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
@@ -101,5 +101,5 @@
     "package-compile": "tsup && publint"
   },
   "sideEffects": false,
-  "version": "3.2.24"
+  "version": "3.2.25"
 }
