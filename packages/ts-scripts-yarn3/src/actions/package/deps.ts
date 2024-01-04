@@ -33,7 +33,7 @@ export const packageDeps = async () => {
   ]
 
   const [codeResults, testsResults] = await Promise.all([
-    depcheck(`${pkg}/.`, {
+    depcheck(`${pkg}/src`, {
       ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
       ignorePatterns: ['*.stories.*', '*.spec.*', ...defaultIgnorePatterns],
       package: packageContent,
@@ -87,7 +87,9 @@ export const packageDeps = async () => {
 
   const declaredDeps = Object.keys(packageContent.dependencies ?? {})
 
-  const missingDeps = Object.keys(codeResults.using).filter((key) => !declaredDeps.includes(key) && !key.startsWith('@types/'))
+  const missingDeps = Object.keys(codeResults.using).filter(
+    (key) => !declaredDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
+  )
 
   if (Object.entries(codeResults.missing).length) {
     const message = [chalk.yellow(`${Object.entries(codeResults.missing).length} Missing dependencies`)]

@@ -1,4 +1,5 @@
 {
   "exclude": ["dist"],
-  "extends": "@xylabs/tsconfig"
+  "extends": "@xylabs/tsconfig",
+  "include": ["src"]
 }
