@@ -9,6 +9,8 @@ export const packageDeps = async () => {
   const pkg = process.env.INIT_CWD
   const pkgName = process.env.npm_package_name
 
+  const packageContent = existsSync(`${pkg}/package.json`) ? JSON.parse(readFileSync(`${pkg}/package.json`, { encoding: 'utf8' })) : undefined
+
   const rawIgnore = existsSync(`${pkg}/.depcheckrc`)
     ? readFileSync(`${pkg}/.depcheckrc`, { encoding: 'utf8' }).replace('ignores:', '"ignores":')
     : undefined
@@ -34,10 +36,12 @@ export const packageDeps = async () => {
     depcheck(`${pkg}/.`, {
       ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
       ignorePatterns: ['*.stories.*', '*.spec.*', ...defaultIgnorePatterns],
+      package: packageContent,
     }),
     depcheck(`${pkg}/.`, {
       ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
       ignorePatterns: [...defaultIgnorePatterns],
+      package: packageContent,
       specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
     }),
   ])
@@ -81,7 +85,9 @@ export const packageDeps = async () => {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
-  const missingDeps = Object.keys(codeResults.using).filter((key) => !codeResults.dependencies.includes(key))
+  const declaredDeps = Object.keys(packageContent.dependencies ?? {})
+
+  const missingDeps = Object.keys(codeResults.using).filter((key) => !declaredDeps.includes(key) && !key.startsWith('@types/'))
 
   if (Object.entries(codeResults.missing).length) {
     const message = [chalk.yellow(`${Object.entries(codeResults.missing).length} Missing dependencies`)]
@@ -92,7 +98,7 @@ export const packageDeps = async () => {
     console.log(chalk.yellow(message.join('\n')))
   }
 
-  if (Object.entries(codeResults.missing).length) {
+  if (missingDeps.length) {
     const message = [chalk.yellow(`${missingDeps.length} Missing dependencies [alt]`)]
     missingDeps.forEach((key) => {
       message.push(`${key}`)
