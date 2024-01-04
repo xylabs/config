@@ -30,7 +30,7 @@ export const packageDeps = async () => {
     'typescript',
   ]
 
-  const unusedList = await Promise.all([
+  const [codeResults, testsResults] = await Promise.all([
     depcheck(`${pkg}/.`, {
       ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
       ignorePatterns: ['*.stories.*', '*.spec.*', ...defaultIgnorePatterns],
@@ -42,13 +42,10 @@ export const packageDeps = async () => {
     }),
   ])
 
-  const unusedCode = unusedList[0]
-  const unusedTests = unusedList[1]
-
   const unused: depcheck.Results = {
-    ...unusedCode,
+    ...codeResults,
     /* we only reports the unused devDeps if both are not using it */
-    devDependencies: unusedTests.devDependencies.filter((value) => !!unusedCode.devDependencies.find((devValue) => devValue === value)),
+    devDependencies: testsResults.devDependencies.filter((value) => codeResults.devDependencies.includes(value)),
   }
 
   const errorCount =
@@ -84,18 +81,29 @@ export const packageDeps = async () => {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
-  if (Object.entries(unusedCode.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(unusedCode.missing).length} Missing dependencies`)]
-    Object.entries(unusedCode.missing).forEach(([key, value]) => {
+  const missingDeps = Object.keys(codeResults.using).filter((key) => !codeResults.dependencies.includes(key))
+
+  if (Object.entries(codeResults.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(codeResults.missing).length} Missing dependencies`)]
+    Object.entries(codeResults.missing).forEach(([key, value]) => {
       message.push(`${key}`)
       message.push(chalk.gray(`  ${value.pop()}`))
     })
     console.log(chalk.yellow(message.join('\n')))
   }
 
-  if (Object.entries(unusedTests.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(unusedTests.missing).length} Missing devDependencies`)]
-    Object.entries(unusedTests.missing).forEach(([key, value]) => {
+  if (Object.entries(codeResults.missing).length) {
+    const message = [chalk.yellow(`${missingDeps.length} Missing dependencies [alt]`)]
+    missingDeps.forEach((key) => {
+      message.push(`${key}`)
+      message.push(chalk.gray(`  ${codeResults.using[key].pop()}`))
+    })
+    console.log(chalk.yellow(message.join('\n')))
+  }
+
+  if (Object.entries(testsResults.missing).length) {
+    const message = [chalk.yellow(`${Object.entries(testsResults.missing).length} Missing devDependencies`)]
+    Object.entries(testsResults.missing).forEach(([key, value]) => {
       message.push(`${key}`)
       message.push(chalk.gray(`  ${value.pop()}`))
     })
