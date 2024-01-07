@@ -1,9 +1,31 @@
-/* eslint-disable max-statements */
 import chalk from 'chalk'
 import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
 
 import { checkResult } from '../../lib'
+
+const andStringArrays = (arrays: [string[], string[]]): string[] => {
+  return arrays[0].filter((value) => arrays[1].includes(value))
+}
+
+const reportUnused = (name: string, unused: depcheck.Results['dependencies']) => {
+  if (unused.length) {
+    const message = [chalk.yellow(`${unused.length} Unused ${name}`)]
+    unused.forEach((value) => message.push(chalk.gray(`  ${value}`)))
+    console.log(message.join('\n'))
+  }
+}
+
+const reportMissing = (name: string, missing: depcheck.Results['missing']) => {
+  if (missing.length) {
+    const message = [chalk.yellow(`${Object.entries(missing).length} Missing ${name}`)]
+    Object.entries(missing).forEach(([key, value]) => {
+      message.push(`${key}`)
+      message.push(chalk.gray(`  ${value.pop()}`))
+    })
+    console.log(chalk.yellow(message.join('\n')))
+  }
+}
 
 export const packageDeps = async () => {
   const pkg = process.env.INIT_CWD
@@ -22,7 +44,7 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*']
+  const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*', 'node_modules']
   const defaultIgnoreMatches = [
     '@xylabs/ts-scripts-yarn3',
     '@xylabs/tsconfig',
@@ -32,10 +54,10 @@ export const packageDeps = async () => {
     'typescript',
   ]
 
-  const [codeResults, testsResults] = await Promise.all([
+  const [srcUnused, allUnused] = await Promise.all([
     depcheck(`${pkg}/src`, {
       ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
-      ignorePatterns: ['*.stories.*', '*.spec.*', ...defaultIgnorePatterns],
+      ignorePatterns: ['*.stories.*', '*.spec.*', 'spec', ...defaultIgnorePatterns],
       package: packageContent,
     }),
     depcheck(`${pkg}/.`, {
@@ -47,9 +69,9 @@ export const packageDeps = async () => {
   ])
 
   const unused: depcheck.Results = {
-    ...codeResults,
-    /* we only reports the unused devDeps if both are not using it */
-    devDependencies: testsResults.devDependencies.filter((value) => codeResults.devDependencies.includes(value)),
+    ...srcUnused,
+    /* we only reports the unused devDeps if both src or other are not using it */
+    devDependencies: andStringArrays([allUnused.devDependencies, srcUnused.devDependencies]),
   }
 
   const errorCount =
@@ -65,17 +87,8 @@ export const packageDeps = async () => {
     console.log(`Deps [${pkgName}] - Ok`)
   }
 
-  if (unused.dependencies.length) {
-    const message = [chalk.yellow(`${unused.dependencies.length} Unused dependencies`)]
-    unused.dependencies.forEach((value) => message.push(chalk.gray(`  ${value}`)))
-    console.log(message.join('\n'))
-  }
-
-  if (unused.devDependencies.length) {
-    const message = [chalk.yellow(`${unused.devDependencies.length} Unused devDependencies`)]
-    unused.devDependencies.forEach((value) => message.push(chalk.gray(`  ${value}`)))
-    console.log(message.join('\n'))
-  }
+  reportUnused('dependencies', unused.dependencies)
+  reportUnused('devDependencies', unused.devDependencies)
 
   if (Object.entries(unused.invalidDirs).length) {
     Object.entries(unused.invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`)))
@@ -86,37 +99,19 @@ export const packageDeps = async () => {
   }
 
   const declaredDeps = Object.keys(packageContent.dependencies ?? {})
+  const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})
 
-  const missingDeps = Object.keys(codeResults.using).filter(
-    (key) => !declaredDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
+  const missingDeps = Object.keys(srcUnused.using).filter(
+    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
   )
 
-  if (Object.entries(codeResults.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(codeResults.missing).length} Missing dependencies`)]
-    Object.entries(codeResults.missing).forEach(([key, value]) => {
-      message.push(`${key}`)
-      message.push(chalk.gray(`  ${value.pop()}`))
-    })
-    console.log(chalk.yellow(message.join('\n')))
-  }
+  const missingDepsObject = Object.entries(srcUnused.missing).reduce(
+    (prev, [key, value]) => (missingDeps.includes(key) ? { ...prev, ...{ [key]: value } } : prev),
+    {},
+  )
 
-  if (missingDeps.length) {
-    const message = [chalk.yellow(`${missingDeps.length} Missing dependencies [alt]`)]
-    missingDeps.forEach((key) => {
-      message.push(`${key}`)
-      message.push(chalk.gray(`  ${codeResults.using[key].pop()}`))
-    })
-    console.log(chalk.yellow(message.join('\n')))
-  }
-
-  if (Object.entries(testsResults.missing).length) {
-    const message = [chalk.yellow(`${Object.entries(testsResults.missing).length} Missing devDependencies`)]
-    Object.entries(testsResults.missing).forEach(([key, value]) => {
-      message.push(`${key}`)
-      message.push(chalk.gray(`  ${value.pop()}`))
-    })
-    console.log(chalk.yellow(message.join('\n')))
-  }
+  reportMissing('dependencies', missingDepsObject)
+  reportMissing('devDependencies', allUnused.missing)
 
   checkResult(`Deps [${pkgName}]`, errorCount, 'warn', false)
 
