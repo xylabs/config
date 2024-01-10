@@ -74,12 +74,19 @@ export const packageDeps = async () => {
     devDependencies: andStringArrays([allUnused.devDependencies, srcUnused.devDependencies]),
   }
 
+  const declaredDeps = Object.keys(packageContent.dependencies ?? {})
+  const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})
+
+  const missingDeps = Object.keys(srcUnused.using).filter(
+    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
+  )
+
   const errorCount =
     unused.dependencies.length +
     unused.devDependencies.length +
     Object.entries(unused.invalidDirs).length +
     Object.entries(unused.invalidFiles).length +
-    Object.entries(unused.missing).length
+    missingDeps.length
 
   if (errorCount > 0) {
     console.log(`Deps [${pkgName}]`)
@@ -97,13 +104,6 @@ export const packageDeps = async () => {
   if (Object.entries(unused.invalidFiles).length) {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
-
-  const declaredDeps = Object.keys(packageContent.dependencies ?? {})
-  const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})
-
-  const missingDeps = Object.keys(srcUnused.using).filter(
-    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
-  )
 
   const missingDepsObject = Object.entries(srcUnused.missing).reduce(
     (prev, [key, value]) => (missingDeps.includes(key) ? { ...prev, ...{ [key]: value } } : prev),
