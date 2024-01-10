@@ -40,6 +40,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.2.30",
+  "version": "3.2.33",
   "type": "commonjs"
 }

@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import chalk from 'chalk'
 import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
@@ -17,11 +18,11 @@ const reportUnused = (name: string, unused: depcheck.Results['dependencies']) =>
 }
 
 const reportMissing = (name: string, missing: depcheck.Results['missing']) => {
-  if (missing.length) {
+  if (Object.keys(missing).length) {
     const message = [chalk.yellow(`${Object.entries(missing).length} Missing ${name}`)]
     Object.entries(missing).forEach(([key, value]) => {
       message.push(`${key}`)
-      message.push(chalk.gray(`  ${value.pop()}`))
+      message.push(chalk.gray(`  ${value.at(0)}`))
     })
     console.log(chalk.yellow(message.join('\n')))
   }
@@ -81,12 +82,22 @@ export const packageDeps = async () => {
     (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
   )
 
+  const missingDepsObject = Object.entries(srcUnused.missing).reduce(
+    (prev, [key, value]) => {
+      if (missingDeps.includes(key)) {
+        prev[key] = value
+      }
+      return prev
+    },
+    {} as Record<string, string[]>,
+  )
+
   const errorCount =
     unused.dependencies.length +
     unused.devDependencies.length +
     Object.entries(unused.invalidDirs).length +
     Object.entries(unused.invalidFiles).length +
-    missingDeps.length
+    Object.entries(missingDepsObject).length
 
   if (errorCount > 0) {
     console.log(`Deps [${pkgName}]`)
@@ -104,11 +115,6 @@ export const packageDeps = async () => {
   if (Object.entries(unused.invalidFiles).length) {
     Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
-
-  const missingDepsObject = Object.entries(srcUnused.missing).reduce(
-    (prev, [key, value]) => (missingDeps.includes(key) ? { ...prev, ...{ [key]: value } } : prev),
-    {},
-  )
 
   reportMissing('dependencies', missingDepsObject)
   reportMissing('devDependencies', allUnused.missing)
