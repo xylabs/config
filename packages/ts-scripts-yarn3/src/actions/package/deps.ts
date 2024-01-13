@@ -2,6 +2,7 @@
 import chalk from 'chalk'
 import depcheck, { special } from 'depcheck'
 import { existsSync, readFileSync } from 'fs'
+import { cwd } from 'process'
 
 import { checkResult } from '../../lib'
 
@@ -14,7 +15,7 @@ const defaultIgnoreDevDeps = [
   '@xylabs/tsconfig-jest',
   'typescript',
 ]
-const defaultIgnoreTests = ['*.stories.*', '*.spec.*', 'spec', 'stories']
+const defaultIgnoreDevPatterns = ['*.stories.*', '*.spec.*', 'spec', 'stories', 'tsconfig.json']
 
 const reportUnused = (name: string, unused: depcheck.Results['dependencies']) => {
   if (unused.length) {
@@ -35,8 +36,34 @@ const reportMissing = (name: string, missing: depcheck.Results['missing']) => {
   }
 }
 
+const analyzeDeps = async (pkg: string, ignoreMatches: string[]) => {
+  const packageContent = existsSync(`${pkg}/package.json`) ? JSON.parse(readFileSync(`${pkg}/package.json`, { encoding: 'utf8' })) : undefined
+  const [srcUnused, allUnused] = await Promise.all([
+    depcheck(`${pkg}/src`, {
+      ignoreMatches,
+      ignorePatterns: [...defaultIgnoreDevPatterns, ...defaultIgnorePatterns],
+      package: packageContent,
+    }),
+    depcheck(`${pkg}/.`, {
+      ignoreMatches: [...ignoreMatches, ...defaultIgnoreDevDeps],
+      ignorePatterns: [...defaultIgnorePatterns],
+      package: packageContent,
+      specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
+    }),
+  ])
+
+  const unusedDeps = srcUnused.dependencies
+  const unusedDevDeps = allUnused.devDependencies
+  const usedDeps = srcUnused.using
+  const usedDevDeps = allUnused.using
+  const missing = { ...srcUnused.missing, ...allUnused.missing }
+  const { invalidDirs, invalidFiles } = allUnused
+
+  return { invalidDirs, invalidFiles, missing, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps }
+}
+
 export const packageDeps = async () => {
-  const pkg = process.env.INIT_CWD
+  const pkg = process.env.INIT_CWD ?? cwd()
   const pkgName = process.env.npm_package_name
 
   const packageContent = existsSync(`${pkg}/package.json`) ? JSON.parse(readFileSync(`${pkg}/package.json`, { encoding: 'utf8' })) : undefined
@@ -52,26 +79,7 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const [srcUnused, allUnused] = await Promise.all([
-    depcheck(`${pkg}/src`, {
-      ignoreMatches,
-      ignorePatterns: [...defaultIgnoreTests, ...defaultIgnorePatterns],
-      package: packageContent,
-    }),
-    depcheck(`${pkg}/.`, {
-      ignoreMatches: [...ignoreMatches, ...defaultIgnoreDevDeps],
-      ignorePatterns: [...defaultIgnorePatterns],
-      package: packageContent,
-      specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
-    }),
-  ])
-
-  const unusedDeps = srcUnused.dependencies
-  const unusedDevDeps = allUnused.devDependencies
-  const usedDeps = srcUnused.using
-  const usedDevDeps = allUnused.using
-
-  const { invalidDirs, invalidFiles } = allUnused
+  const { invalidDirs, invalidFiles, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps, missing } = await analyzeDeps(pkg, ignoreMatches)
 
   const declaredDeps = Object.keys(packageContent.dependencies ?? {})
   const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})
@@ -85,24 +93,29 @@ export const packageDeps = async () => {
 
   const missingDepsObject: Record<string, string[]> = {}
   missingDeps.forEach((key) => {
-    missingDepsObject[key] = srcUnused.missing[key]
+    missingDepsObject[key] = missing[key] ?? [`devDep should be dep [${key}]`]
   })
 
   const missingDevDepsObject: Record<string, string[]> = {}
   missingDevDeps.forEach((key) => {
-    missingDevDepsObject[key] = allUnused.missing[key]
+    if (missing[key]) {
+      missingDevDepsObject[key] = missing[key]
+    }
   })
 
-  const errorCount =
-    unusedDeps.length +
-    unusedDevDeps.length +
-    Object.entries(invalidDirs).length +
-    Object.entries(invalidFiles).length +
-    missingDeps.length +
-    missingDevDeps.length
+  const errorCounts = [
+    unusedDeps.length,
+    unusedDevDeps.length,
+    Object.entries(invalidDirs).length,
+    Object.entries(invalidFiles).length,
+    Object.entries(missingDepsObject).length,
+    Object.entries(missingDevDepsObject).length,
+  ]
+
+  const errorCount = errorCounts.reduce((prev, count) => prev + count, 0)
 
   if (errorCount > 0) {
-    console.log(`Deps [${pkgName}]`)
+    console.log(`Deps [${pkgName}] = (${JSON.stringify(errorCounts)})`)
   } else {
     console.log(`Deps [${pkgName}] - Ok`)
   }
@@ -119,7 +132,7 @@ export const packageDeps = async () => {
   }
 
   reportMissing('dependencies', missingDepsObject)
-  reportMissing('devDependencies', allUnused.missing)
+  reportMissing('devDependencies', missingDevDepsObject)
 
   checkResult(`Deps [${pkgName}]`, errorCount, 'warn', false)
 
