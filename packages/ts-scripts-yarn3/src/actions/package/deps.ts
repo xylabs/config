@@ -5,9 +5,15 @@ import { existsSync, readFileSync } from 'fs'
 
 import { checkResult } from '../../lib'
 
-const andStringArrays = (arrays: [string[], string[]]): string[] => {
-  return arrays[0].filter((value) => arrays[1].includes(value))
-}
+const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*', 'node_modules']
+const defaultIgnoreDevDeps = [
+  '@xylabs/ts-scripts-yarn3',
+  '@xylabs/tsconfig',
+  '@xylabs/tsconfig-dom',
+  '@xylabs/tsconfig-react',
+  '@xylabs/tsconfig-jest',
+  'typescript',
+]
 
 const reportUnused = (name: string, unused: depcheck.Results['dependencies']) => {
   if (unused.length) {
@@ -45,58 +51,54 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*', 'node_modules']
-  const defaultIgnoreMatches = [
-    '@xylabs/ts-scripts-yarn3',
-    '@xylabs/tsconfig',
-    '@xylabs/tsconfig-dom',
-    '@xylabs/tsconfig-react',
-    '@xylabs/tsconfig-jest',
-    'typescript',
-  ]
-
   const [srcUnused, allUnused] = await Promise.all([
     depcheck(`${pkg}/src`, {
-      ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
+      ignoreMatches: ignoreMatches,
       ignorePatterns: ['*.stories.*', '*.spec.*', 'spec', ...defaultIgnorePatterns],
       package: packageContent,
     }),
     depcheck(`${pkg}/.`, {
-      ignoreMatches: [...defaultIgnoreMatches, ...ignoreMatches],
+      ignoreMatches: ignoreMatches,
       ignorePatterns: [...defaultIgnorePatterns],
       package: packageContent,
       specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
     }),
   ])
 
-  const unused: depcheck.Results = {
-    ...srcUnused,
-    /* we only reports the unused devDeps if both src or other are not using it */
-    devDependencies: andStringArrays([allUnused.devDependencies, srcUnused.devDependencies]),
-  }
+  const unusedDeps = srcUnused.dependencies
+  const unusedDevDeps = allUnused.devDependencies
+  const usedDeps = srcUnused.using
+  const usedDevDeps = allUnused.using
+
+  const { invalidDirs, invalidFiles } = allUnused
 
   const declaredDeps = Object.keys(packageContent.dependencies ?? {})
   const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})
+  const declaredDevDeps = Object.keys(packageContent.devDependencies ?? {})
 
-  const missingDeps = Object.keys(srcUnused.using).filter(
-    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/') && !defaultIgnoreMatches.includes(key),
+  const missingDeps = Object.keys(usedDeps).filter(
+    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/'),
   )
 
-  const missingDepsObject = Object.entries(srcUnused.missing).reduce(
-    (prev, [key, value]) => {
-      if (missingDeps.includes(key)) {
-        prev[key] = value
-      }
-      return prev
-    },
-    {} as Record<string, string[]>,
+  const missingDevDeps = Object.keys(usedDevDeps).filter(
+    (key) => !declaredDevDeps.includes(key) && !declaredDeps.includes(key) && !defaultIgnoreDevDeps.includes(key),
   )
+
+  const missingDepsObject: Record<string, string[]> = {}
+  missingDeps.forEach((key) => {
+    missingDepsObject[key] = srcUnused.missing[key]
+  })
+
+  const missingDevDepsObject: Record<string, string[]> = {}
+  missingDevDeps.forEach((key) => {
+    missingDevDepsObject[key] = allUnused.missing[key]
+  })
 
   const errorCount =
-    unused.dependencies.length +
-    unused.devDependencies.length +
-    Object.entries(unused.invalidDirs).length +
-    Object.entries(unused.invalidFiles).length +
+    unusedDeps.length +
+    unusedDevDeps.length +
+    Object.entries(invalidDirs).length +
+    Object.entries(invalidFiles).length +
     Object.entries(missingDepsObject).length
 
   if (errorCount > 0) {
@@ -105,15 +107,15 @@ export const packageDeps = async () => {
     console.log(`Deps [${pkgName}] - Ok`)
   }
 
-  reportUnused('dependencies', unused.dependencies)
-  reportUnused('devDependencies', unused.devDependencies)
+  reportUnused('dependencies', unusedDeps)
+  reportUnused('devDependencies', unusedDevDeps)
 
-  if (Object.entries(unused.invalidDirs).length) {
-    Object.entries(unused.invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`)))
+  if (Object.entries(invalidDirs).length) {
+    Object.entries(invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`)))
   }
 
-  if (Object.entries(unused.invalidFiles).length) {
-    Object.entries(unused.invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
+  if (Object.entries(invalidFiles).length) {
+    Object.entries(invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
   }
 
   reportMissing('dependencies', missingDepsObject)
