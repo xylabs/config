@@ -14,6 +14,7 @@ const defaultIgnoreDevDeps = [
   '@xylabs/tsconfig-jest',
   'typescript',
 ]
+const defaultIgnoreTests = ['*.stories.*', '*.spec.*', 'spec', 'stories']
 
 const reportUnused = (name: string, unused: depcheck.Results['dependencies']) => {
   if (unused.length) {
@@ -53,12 +54,12 @@ export const packageDeps = async () => {
 
   const [srcUnused, allUnused] = await Promise.all([
     depcheck(`${pkg}/src`, {
-      ignoreMatches: ignoreMatches,
-      ignorePatterns: ['*.stories.*', '*.spec.*', 'spec', ...defaultIgnorePatterns],
+      ignoreMatches,
+      ignorePatterns: [...defaultIgnoreTests, ...defaultIgnorePatterns],
       package: packageContent,
     }),
     depcheck(`${pkg}/.`, {
-      ignoreMatches: ignoreMatches,
+      ignoreMatches: [...ignoreMatches, ...defaultIgnoreDevDeps],
       ignorePatterns: [...defaultIgnorePatterns],
       package: packageContent,
       specials: [special.eslint, special.babel, special.bin, special.prettier, special.jest, special.mocha],
@@ -80,9 +81,7 @@ export const packageDeps = async () => {
     (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/'),
   )
 
-  const missingDevDeps = Object.keys(usedDevDeps).filter(
-    (key) => !declaredDevDeps.includes(key) && !declaredDeps.includes(key) && !defaultIgnoreDevDeps.includes(key),
-  )
+  const missingDevDeps = Object.keys(usedDevDeps).filter((key) => !declaredDevDeps.includes(key) && !declaredDeps.includes(key))
 
   const missingDepsObject: Record<string, string[]> = {}
   missingDeps.forEach((key) => {
@@ -99,7 +98,8 @@ export const packageDeps = async () => {
     unusedDevDeps.length +
     Object.entries(invalidDirs).length +
     Object.entries(invalidFiles).length +
-    Object.entries(missingDepsObject).length
+    missingDeps.length +
+    missingDevDeps.length
 
   if (errorCount > 0) {
     console.log(`Deps [${pkgName}]`)
