@@ -9,6 +9,7 @@ export const typescriptConfig: ESLint.ConfigData = {
       parserOptions: { ecmaVersion: 'latest', project: ['./tsconfig.json'], tsconfigRootDir: __dirname },
       plugins: ['@typescript-eslint'],
       rules: {
+        '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/member-delimiter-style': [
           'error',
@@ -97,6 +98,8 @@ export const typescriptConfig: ESLint.ConfigData = {
             },
           },
         ],
+        '@typescript-eslint/no-floating-promises': 'error',
+        '@typescript-eslint/no-misused-promises': 'error',
         '@typescript-eslint/no-unused-vars': [
           'warn',
           {
