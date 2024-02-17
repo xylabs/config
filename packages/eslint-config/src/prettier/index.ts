@@ -9,6 +9,7 @@ export const prettierConfig: ESLint.ConfigData = {
       {
         bracketSpacing: true,
         endOfLine: 'lf',
+        experimentalTernaries: true,
         printWidth: 150,
         semi: false,
         singleQuote: true,
