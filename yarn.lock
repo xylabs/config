@@ -2645,14 +2645,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/cli@npm:^0.1.65":
-  version: 0.1.65
-  resolution: "@swc/cli@npm:0.1.65"
+"@swc/cli@npm:^0.3.9":
+  version: 0.3.9
+  resolution: "@swc/cli@npm:0.3.9"
   dependencies:
     "@mole-inc/bin-wrapper": ^8.0.1
+    "@swc/counter": ^0.1.3
     commander: ^7.1.0
     fast-glob: ^3.2.5
     minimatch: ^9.0.3
+    piscina: ^4.3.0
     semver: ^7.3.8
     slash: 3.0.0
     source-map: ^0.7.3
@@ -2666,7 +2668,7 @@ __metadata:
     spack: bin/spack.js
     swc: bin/swc.js
     swcx: bin/swcx.js
-  checksum: 8c8336176ebcf41ee709a0c67c08004bab6359d0109e0232fc334a8e902d3a171bc85ea533722199a7e8aa935adaefbf35bc07d1b6bc8117a596b9fb14905a9c
+  checksum: 717e8bf57c3d7f7c16ee768860e6fddcc8ebc91218b5f7bd91948a21b1d45506af6b2e70c1e9fb560d0f07d66d16a9f9f0a3cbe3fab3aa0c43da2bc1dc470564
   languageName: node
   linkType: hard
 
@@ -2786,7 +2788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/counter@npm:^0.1.2":
+"@swc/counter@npm:^0.1.2, @swc/counter@npm:^0.1.3":
   version: 0.1.3
   resolution: "@swc/counter@npm:0.1.3"
   checksum: df8f9cfba9904d3d60f511664c70d23bb323b3a0803ec9890f60133954173047ba9bdeabce28cd70ba89ccd3fd6c71c7b0bd58be85f611e1ffbe5d5c18616598
@@ -3551,7 +3553,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config-base@workspace:packages/eslint-config-base"
   dependencies:
-    "@swc/cli": ^0.1.65
+    "@swc/cli": ^0.3.9
     "@swc/core": ^1.4.1
     "@types/node": ^20.11.19
     "@typescript-eslint/eslint-plugin": ^6.21.0
@@ -3567,7 +3569,7 @@ __metadata:
     eslint-plugin-md: ^1.0.19
     eslint-plugin-no-secrets: ^0.8.9
     eslint-plugin-prettier: ^5.1.3
-    eslint-plugin-simple-import-sort: ^10.0.0
+    eslint-plugin-simple-import-sort: ^12.0.0
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-unicorn: ^51.0.1
     eslint-plugin-workspaces: ^0.10.0
@@ -3605,7 +3607,7 @@ __metadata:
     eslint-plugin-prettier: ^5.1.3
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-simple-import-sort: ^10.0.0
+    eslint-plugin-simple-import-sort: ^12.0.0
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-workspaces: ^0.10.0
     jsonc-eslint-parser: ^2.4.0
@@ -3642,7 +3644,7 @@ __metadata:
     eslint-plugin-prettier: ^5.1.3
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-simple-import-sort: ^10.0.0
+    eslint-plugin-simple-import-sort: ^12.0.0
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-workspaces: ^0.10.0
     jsonc-eslint-parser: ^2.4.0
@@ -3661,7 +3663,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@swc/cli": ^0.1.65
+    "@swc/cli": ^0.3.9
     "@swc/core": ^1.4.1
     "@types/node": ^20.11.19
     "@typescript-eslint/eslint-plugin": ^6.21.0
@@ -3678,7 +3680,7 @@ __metadata:
     eslint-plugin-md: ^1.0.19
     eslint-plugin-no-secrets: ^0.8.9
     eslint-plugin-prettier: ^5.1.3
-    eslint-plugin-simple-import-sort: ^10.0.0
+    eslint-plugin-simple-import-sort: ^12.0.0
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-unicorn: ^51.0.1
     eslint-plugin-workspaces: ^0.10.0
@@ -3776,7 +3778,7 @@ __metadata:
     eslint: ^8.56.0
     eslint-config-prettier: ^9.1.0
     eslint-plugin-prettier: ^5.1.3
-    eslint-plugin-sonarjs: ^0.23.0
+    eslint-plugin-sonarjs: ^0.24.0
     glob: ^10.3.10
     jest: ^29.7.0
     jest-extended: ^4.0.2
@@ -3796,7 +3798,7 @@ __metadata:
     rimraf: ^4.4.1
     rollup: ^4.12.0
     rollup-plugin-exclude-dependencies-from-bundle: ^1.1.23
-    rollup-plugin-node-externals: ^6.1.2
+    rollup-plugin-node-externals: ^7.0.1
     supertest: ^6.3.4
     ts-jest: ^29.1.2
     ts-node: ^10.9.2
@@ -6630,21 +6632,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-simple-import-sort@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "eslint-plugin-simple-import-sort@npm:10.0.0"
+"eslint-plugin-simple-import-sort@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "eslint-plugin-simple-import-sort@npm:12.0.0"
   peerDependencies:
     eslint: ">=5.0.0"
-  checksum: 23221ff63f80f9c52da807d388ee8a51bc36a3b73345f60ec886e7973c28d75eb1d1e47f7f2916a7c1f94a1b5037b1450356a64a8fbd58096fd6bee57c6e3e48
+  checksum: 1b97055a9e8782099a788d030d3ceb03729bd7c9fe145eb617e5857c8c429d3124f1926621f4a363e1f2fad23037285b5b43ee01c6597eedb5f19b1d2f50604b
   languageName: node
   linkType: hard
 
-"eslint-plugin-sonarjs@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "eslint-plugin-sonarjs@npm:0.23.0"
+"eslint-plugin-sonarjs@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "eslint-plugin-sonarjs@npm:0.24.0"
   peerDependencies:
     eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-  checksum: 4f56557740ab438eee8d98e4d93363a8dadcf8d6d795a5d95e6a0b0d6335273a06c5633fe753271c6a56c14a3b0086014b8278984b5594fad5db274ec7fd7edf
+  checksum: 14e81d2b9efa9d309a0cf1758955708a3f73b1cdf129140607db983bb36027f1442a99fc0b254303307cf743bd241f88b07f95a68013502fbceca9565960ca02
   languageName: node
   linkType: hard
 
@@ -10978,6 +10980,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nice-napi@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "nice-napi@npm:1.0.2"
+  dependencies:
+    node-addon-api: ^3.0.0
+    node-gyp: latest
+    node-gyp-build: ^4.2.2
+  conditions: "!os=win32"
+  languageName: node
+  linkType: hard
+
 "nice-try@npm:^1.0.4":
   version: 1.0.5
   resolution: "nice-try@npm:1.0.5"
@@ -10985,10 +10998,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-addon-api@npm:^3.0.0":
+  version: 3.2.1
+  resolution: "node-addon-api@npm:3.2.1"
+  dependencies:
+    node-gyp: latest
+  checksum: 2369986bb0881ccd9ef6bacdf39550e07e089a9c8ede1cbc5fc7712d8e2faa4d50da0e487e333d4125f8c7a616c730131d1091676c9d499af1d74560756b4a18
+  languageName: node
+  linkType: hard
+
 "node-cmd@npm:^5.0.0":
   version: 5.0.0
   resolution: "node-cmd@npm:5.0.0"
   checksum: 4db15117c08a82bdc98725b6827b9e4ee2ca238534dcacb50caa3a77562583d1291f0c44db5629b4f9ea53bc10e3dcc9b5e02c9034f4645c6a8be3d36935aa46
+  languageName: node
+  linkType: hard
+
+"node-gyp-build@npm:^4.2.2":
+  version: 4.8.0
+  resolution: "node-gyp-build@npm:4.8.0"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: b82a56f866034b559dd3ed1ad04f55b04ae381b22ec2affe74b488d1582473ca6e7f85fccf52da085812d3de2b0bf23109e752a57709ac7b9963951c710fea40
   languageName: node
   linkType: hard
 
@@ -11924,6 +11957,18 @@ __metadata:
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
   checksum: 46a65fefaf19c6f57460388a5af9ab81e3d7fd0e7bc44ca59d753cb5c4d0df97c6c6e583674869762101836d68675f027d60f841c105d72734df9dfca97cbcc6
+  languageName: node
+  linkType: hard
+
+"piscina@npm:^4.3.0":
+  version: 4.3.2
+  resolution: "piscina@npm:4.3.2"
+  dependencies:
+    nice-napi: ^1.0.2
+  dependenciesMeta:
+    nice-napi:
+      optional: true
+  checksum: c80475ad32d320d7553fcfc655986d65f704767748f68aaa911ce7ee89697dc42805b148dc0e67701d56bbd181e5186898c47e4f4e8a67aecb2b810d1bf5e38a
   languageName: node
   linkType: hard
 
@@ -14141,12 +14186,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "rollup-plugin-node-externals@npm:6.1.2"
+"rollup-plugin-node-externals@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "rollup-plugin-node-externals@npm:7.0.1"
   peerDependencies:
     rollup: ^3.0.0 || ^4.0.0
-  checksum: fd139d95dd46b04cc5d337322724455b6d30971d99b9a303fef61d54c1b6a9f2be5b4d22e98c16670fd216e2d275db8fc842d7f395ddd78e0535b699fbbe1155
+  checksum: 3437d650577671d7a1320f5a5a21d6c435f10c30358fd2717fc9016445e8c4989ed2605d1d801ae7e1024b1e7debfa7cfb942c36512acc146e62f6b976c1afbd
   languageName: node
   linkType: hard
 
