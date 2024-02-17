@@ -27,12 +27,10 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   })
   const optionsList = (
     await Promise.all(
-      (Array.isArray(optionsResult) ? optionsResult : [optionsResult])
-        .map<Promise<Options[]>>(async (options) => {
-          const result = typeof options === 'function' ? await options({}) : [options]
-          return Array.isArray(result) ? result : [result]
-        })
-        .flat(),
+      (Array.isArray(optionsResult) ? optionsResult : [optionsResult]).flatMap<Promise<Options[]>>(async (options) => {
+        const result = typeof options === 'function' ? await options({}) : [options]
+        return Array.isArray(result) ? result : [result]
+      }),
     )
   ).flat()
 
@@ -59,8 +57,8 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
-          return folder
-            ? await compileFolder(
+          return folder ?
+              await compileFolder(
                 folder,
                 compile?.entryMode,
                 {
@@ -75,7 +73,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                   platform: 'node',
                   skipNodeModulesBundle: true,
                   target: 'node16',
-                  ...(compile?.tsup?.options ?? {}),
+                  ...compile?.tsup?.options,
                   ...(typeof options === 'object' ? options : {}),
                 },
                 verbose,
@@ -88,8 +86,8 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
       await Promise.all(
         Object.entries(compileForBrowser).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
-          return folder
-            ? (
+          return folder ?
+              (
                 await Promise.all([
                   compileFolder(
                     folder,
@@ -107,7 +105,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       platform: 'browser',
                       skipNodeModulesBundle: true,
                       target: 'esnext',
-                      ...(compile?.tsup?.options ?? {}),
+                      ...compile?.tsup?.options,
                       ...(typeof options === 'object' ? options : {}),
                     },
                     verbose,
@@ -128,7 +126,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       platform: 'browser',
                       skipNodeModulesBundle: true,
                       target: 'esnext',
-                      ...(compile?.tsup?.options ?? {}),
+                      ...compile?.tsup?.options,
                       ...(typeof options === 'object' ? options : {}),
                     },
                     verbose,

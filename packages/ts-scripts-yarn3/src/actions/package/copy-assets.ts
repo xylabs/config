@@ -1,6 +1,7 @@
+import path from 'node:path/posix'
+
 import chalk from 'chalk'
 import cpy from 'cpy'
-import path from 'path/posix'
 
 export interface PackageCopyAssetsParams {
   target?: 'esm' | 'cjs'
@@ -19,9 +20,9 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', name: string, location: s
     if (values.length > 0) {
       console.log(chalk.green(`Copying Assets [${target.toUpperCase()}] - ${name} - ${location}`))
     }
-    values.forEach((value) => {
+    for (const value of values) {
       console.log(`${value.split('/').pop()} => ./dist/${target}`)
-    })
+    }
     return 0
   } catch (ex) {
     const error = ex as Error
@@ -34,11 +35,14 @@ export const packageCopyAssets = async ({ target }: PackageCopyAssetsParams) => 
   const pkg = process.env.INIT_CWD ?? './'
   const pkgName = process.env.npm_package_name ?? 'Unknown'
   switch (target) {
-    case 'esm':
+    case 'esm': {
       return await copyTargetAssets('esm', pkgName, pkg)
-    case 'cjs':
+    }
+    case 'cjs': {
       return await copyTargetAssets('cjs', pkgName, pkg)
-    default:
+    }
+    default: {
       return (await copyTargetAssets('esm', pkgName, pkg)) || (await copyTargetAssets('cjs', pkgName, pkg))
+    }
   }
 }

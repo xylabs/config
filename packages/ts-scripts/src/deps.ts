@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { execSync } from 'child_process'
+import { execSync } from 'node:child_process'
 
 import { safeExit } from './lib'
 safeExit(() => {

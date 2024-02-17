@@ -5,9 +5,9 @@ describe('yarnWorkspaces', () => {
     const workspaces = yarnWorkspaces()
     expect(workspaces).toBeArray()
     expect(workspaces.length).toBeGreaterThan(0)
-    workspaces.forEach((workspace) => {
+    for (const workspace of workspaces) {
       expect(workspace.name).toBeString()
       expect(workspace.location).toBeString()
-    })
+    }
   })
 })

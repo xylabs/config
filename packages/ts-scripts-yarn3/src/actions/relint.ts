@@ -1,4 +1,4 @@
-import { rmSync } from 'fs'
+import { rmSync } from 'node:fs'
 
 import { runSteps, yarnWorkspaces } from '../lib'
 
@@ -17,6 +17,7 @@ export const relint = () => {
         return 1
       }
     })
+    // eslint-disable-next-line unicorn/no-array-reduce
     .reduce((prev, result) => prev || result, 0)
   return result || runSteps('Relint', [['yarn', ['eslint', '.', '--cache']]])
 }

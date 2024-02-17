@@ -10,7 +10,7 @@ export const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerO
     opts = getCompilerOptionsJSONFollowExtends(requirePath)
   }
   if (config?.error) {
-    throw Error(`getCompilerOptionsJSONFollowExtends failed ${JSON.stringify(config?.error?.messageText, null, 2)}`)
+    throw new Error(`getCompilerOptionsJSONFollowExtends failed ${JSON.stringify(config?.error?.messageText, null, 2)}`)
   }
 
   return { ...opts, ...config.compilerOptions }

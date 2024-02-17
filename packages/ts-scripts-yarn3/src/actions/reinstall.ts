@@ -1,4 +1,4 @@
-import { closeSync, openSync, rmSync } from 'fs'
+import { closeSync, openSync, rmSync } from 'node:fs'
 
 import { runSteps, yarnWorkspaces } from '../lib'
 
@@ -20,6 +20,7 @@ export const reinstall = () => {
         return 1
       }
     })
+    // eslint-disable-next-line unicorn/no-array-reduce
     .reduce((prev, result) => prev || result, 0)
 
   return result || runSteps('Reinstall', [['yarn', 'install --network-timeout 10000']])

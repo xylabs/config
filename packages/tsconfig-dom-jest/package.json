@@ -12,8 +12,8 @@
   },
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests [DOM]",
   "dependencies": {
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.19",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/tsconfig-dom": "workspace:~",
     "jest-extended": "^4.0.2",

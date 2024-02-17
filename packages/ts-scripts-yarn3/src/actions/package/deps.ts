@@ -1,8 +1,9 @@
 /* eslint-disable max-statements */
+import { existsSync, readFileSync } from 'node:fs'
+import { cwd } from 'node:process'
+
 import chalk from 'chalk'
 import depcheck, { special } from 'depcheck'
-import { existsSync, readFileSync } from 'fs'
-import { cwd } from 'process'
 
 import { checkResult } from '../../lib'
 
@@ -18,20 +19,19 @@ const defaultIgnoreDevDeps = [
 const defaultIgnoreDevPatterns = ['*.stories.*', '*.spec.*', 'spec', 'stories', 'tsconfig.json']
 
 const reportUnused = (name: string, unused: depcheck.Results['dependencies']) => {
-  if (unused.length) {
+  if (unused.length > 0) {
     const message = [chalk.yellow(`${unused.length} Unused ${name}`)]
-    unused.forEach((value) => message.push(chalk.gray(`  ${value}`)))
+    for (const value of unused) message.push(chalk.gray(`  ${value}`))
     console.log(message.join('\n'))
   }
 }
 
 const reportMissing = (name: string, missing: depcheck.Results['missing']) => {
-  if (Object.keys(missing).length) {
+  if (Object.keys(missing).length > 0) {
     const message = [chalk.yellow(`${Object.entries(missing).length} Missing ${name}`)]
-    Object.entries(missing).forEach(([key, value]) => {
-      message.push(`${key}`)
-      message.push(chalk.gray(`  ${value.at(0)}`))
-    })
+    for (const [key, value] of Object.entries(missing)) {
+      message.push(`${key}`, chalk.gray(`  ${value.at(0)}`))
+    }
     console.log(chalk.yellow(message.join('\n')))
   }
 }
@@ -68,9 +68,8 @@ export const packageDeps = async () => {
 
   const packageContent = existsSync(`${pkg}/package.json`) ? JSON.parse(readFileSync(`${pkg}/package.json`, { encoding: 'utf8' })) : undefined
 
-  const rawIgnore = existsSync(`${pkg}/.depcheckrc`)
-    ? readFileSync(`${pkg}/.depcheckrc`, { encoding: 'utf8' }).replace('ignores:', '"ignores":')
-    : undefined
+  const rawIgnore =
+    existsSync(`${pkg}/.depcheckrc`) ? readFileSync(`${pkg}/.depcheckrc`, { encoding: 'utf8' }).replace('ignores:', '"ignores":') : undefined
   let ignoreMatches: string[] = []
   try {
     ignoreMatches = rawIgnore ? (JSON.parse(`{${rawIgnore}}`).ignores as string[]) : []
@@ -92,16 +91,16 @@ export const packageDeps = async () => {
   const missingDevDeps = Object.keys(usedDevDeps).filter((key) => !declaredDevDeps.includes(key) && !declaredDeps.includes(key))
 
   const missingDepsObject: Record<string, string[]> = {}
-  missingDeps.forEach((key) => {
+  for (const key of missingDeps) {
     missingDepsObject[key] = missing[key] ?? [`devDep should be dep [${key}]`]
-  })
+  }
 
   const missingDevDepsObject: Record<string, string[]> = {}
-  missingDevDeps.forEach((key) => {
+  for (const key of missingDevDeps) {
     if (missing[key]) {
       missingDevDepsObject[key] = missing[key]
     }
-  })
+  }
 
   const errorCounts = [
     unusedDeps.length,
@@ -123,12 +122,12 @@ export const packageDeps = async () => {
   reportUnused('dependencies', unusedDeps)
   reportUnused('devDependencies', unusedDevDeps)
 
-  if (Object.entries(invalidDirs).length) {
-    Object.entries(invalidDirs).forEach(([key, value]) => console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`)))
+  if (Object.entries(invalidDirs).length > 0) {
+    for (const [key, value] of Object.entries(invalidDirs)) console.warn(chalk.gray(`Invalid Dir: ${key}: ${value}`))
   }
 
-  if (Object.entries(invalidFiles).length) {
-    Object.entries(invalidFiles).forEach(([key, value]) => console.warn(chalk.gray(`Invalid File: ${key}: ${value}`)))
+  if (Object.entries(invalidFiles).length > 0) {
+    for (const [key, value] of Object.entries(invalidFiles)) console.warn(chalk.gray(`Invalid File: ${key}: ${value}`))
   }
 
   reportMissing('dependencies', missingDepsObject)

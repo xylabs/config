@@ -1,8 +1,9 @@
+import { cwd } from 'node:process'
+
 import xylabsConfig from '@xylabs/eslint-config-base'
 import { ESLint } from 'eslint'
 // eslint-disable-next-line import/no-internal-modules
 import compact from 'lodash/compact'
-import { cwd } from 'process'
 
 import { reactConfig } from './react'
 
@@ -10,11 +11,7 @@ const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {
     return []
   }
-  if (Array.isArray(value)) {
-    return compact(value)
-  } else {
-    return compact([value])
-  }
+  return Array.isArray(value) ? compact(value) : compact([value])
 }
 
 const config: ESLint.ConfigData = {

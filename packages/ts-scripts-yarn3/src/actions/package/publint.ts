@@ -1,5 +1,6 @@
+import { promises as fs } from 'node:fs'
+
 import chalk from 'chalk'
-import { promises as fs } from 'fs'
 import { Message } from 'publint'
 
 export interface PackagePublintParams {
@@ -46,19 +47,22 @@ export const packagePublint = async (params?: PackagePublintParams) => {
 
   //we filter out invalid file formats for the esm folder since it is intentionally done
   const validMessages = messages.filter(validMessage)
-  validMessages.forEach((message: Message) => {
+  for (const message of validMessages) {
     switch (message.type) {
-      case 'error':
+      case 'error': {
         console.error(chalk.red(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
-      case 'warning':
+      }
+      case 'warning': {
         console.warn(chalk.yellow(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
-      default:
+      }
+      default: {
         console.log(chalk.white(`[${message.code}] ${formatMessage(message, pkg)}`))
         break
+      }
     }
-  })
+  }
 
   if (params?.verbose) {
     console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))

@@ -1,5 +1,6 @@
+import { cwd } from 'node:process'
+
 import chalk from 'chalk'
-import { cwd } from 'process'
 import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
@@ -29,7 +30,7 @@ export const packageCompileTscTypes = async (
       skipLibCheck: true,
       sourceMap: true,
     }),
-    ...(compilerOptionsParam ?? {}),
+    ...compilerOptionsParam,
   } as TsConfigCompilerOptions
 
   //calling all here since the types do not get rolled up
@@ -43,25 +44,28 @@ export const packageCompileTscTypes = async (
   }).emit()
 
   const diagResults = result.diagnostics.length
-  result.diagnostics.forEach((diag) => {
+  for (const diag of result.diagnostics) {
     switch (diag.category) {
-      case DiagnosticCategory.Error:
+      case DiagnosticCategory.Error: {
         console.error(chalk.red(diag.messageText))
         console.error(chalk.grey(pkg))
         console.error(chalk.blue(diag.file?.fileName))
         break
-      case DiagnosticCategory.Warning:
+      }
+      case DiagnosticCategory.Warning: {
         console.error(chalk.yellow(diag.messageText))
         console.error(chalk.grey(pkg))
         console.error(chalk.blue(diag.file?.fileName))
         break
-      case DiagnosticCategory.Suggestion:
+      }
+      case DiagnosticCategory.Suggestion: {
         console.error(chalk.white(diag.messageText))
         console.error(chalk.grey(pkg))
         console.error(chalk.blue(diag.file?.fileName))
         break
+      }
     }
-  })
+  }
   if (generateMts) {
     await copyTypeFiles(compilerOptions)
   }

@@ -1,6 +1,7 @@
+import { spawn } from 'node:child_process'
+import { existsSync } from 'node:fs'
+
 import chalk from 'chalk'
-import { spawn } from 'child_process'
-import { existsSync } from 'fs'
 
 import { checkResult } from './checkResult'
 import { ScriptStep } from './runSteps'
@@ -14,7 +15,7 @@ export const runStepAsync = (name: string, step: ScriptStep, exitOnFail = true, 
     }
     const argList = Array.isArray(args) ? args : args.split(' ')
     if (command === 'node' && !existsSync(argList[0])) {
-      throw Error(`File not found [${argList[0]}]`)
+      throw new Error(`File not found [${argList[0]}]`)
     }
     spawn(command, Array.isArray(args) ? args : args.split(' '), {
       ...config,
@@ -44,8 +45,8 @@ export const runStepsAsync = async (name: string, steps: ScriptStep[], exitOnFai
     const pkgName = process.env.npm_package_name
     console.log(chalk.green(`${name} [${pkgName}]`))
     let result = 0
-    for (let i = 0; i < steps.length; i++) {
-      result += await runStepAsync(name, steps[i], exitOnFail, messages?.[i])
+    for (const [i, step] of steps.entries()) {
+      result += await runStepAsync(name, step, exitOnFail, messages?.[i])
     }
     return result
   })

@@ -1,7 +1,8 @@
+import { EOL } from 'node:os'
+
 import chalk from 'chalk'
 // eslint-disable-next-line import/no-internal-modules
 import uniq from 'lodash/uniq'
-import { EOL } from 'os'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
 
@@ -22,12 +23,12 @@ const trimVirtualMeta = (value: string): string => {
 
 const trimObjectDependencyVirtualMeta = (obj: Record<string, ChildFields>): Record<string, ChildFields> => {
   const resultObj: Record<string, ChildFields> = {}
-  Object.entries(obj).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(obj)) {
     resultObj[trimVirtualMeta(key)] = {
       descriptor: trimVirtualMeta(value.descriptor),
       locator: trimVirtualMeta(value.locator),
     }
-  })
+  }
   return resultObj
 }
 
@@ -60,8 +61,9 @@ export class DuplicateDetector {
   }
 
   public detect() {
+    // eslint-disable-next-line unicorn/no-array-reduce
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
-    if (result.duplicateVersions.length) {
+    if (result.duplicateVersions.length > 0) {
       console.log(chalk.yellow(`${EOL}Duplicates found for: ${this.dependency}`))
       console.log(chalk.grey(`  ${result.duplicateVersions.toString().replaceAll(',', `${EOL}  `)}`, EOL))
       return 1

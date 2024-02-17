@@ -1,6 +1,7 @@
+import path from 'node:path/posix'
+
 import chalk from 'chalk'
 import cpy from 'cpy'
-import path from 'path/posix'
 
 import { yarnWorkspaces } from '../lib'
 
@@ -19,9 +20,9 @@ const copyPackageTargetAssets = async (target: 'esm' | 'cjs', name: string, loca
         parents: true,
       },
     )
-    values.forEach((value) => {
+    for (const value of values) {
       console.log(`${value.split('/').pop()} => ./dist/${target}`)
-    })
+    }
     return 0
   } catch (reason) {
     console.log(`Copy Failed: ${name}: ${reason}`)
@@ -48,6 +49,7 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', pkg?: string) => {
         return await copyPackageTargetAssets(target, name, location)
       }),
     )
+    // eslint-disable-next-line unicorn/no-array-reduce
     return results.reduce((prev, result) => prev || result, 0)
   }
   return 0
@@ -55,11 +57,14 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', pkg?: string) => {
 
 export const copyAssets = async ({ target, pkg }: CopyAssetsParams) => {
   switch (target) {
-    case 'esm':
+    case 'esm': {
       return await copyTargetAssets('esm', pkg)
-    case 'cjs':
+    }
+    case 'cjs': {
       return await copyTargetAssets('cjs', pkg)
-    default:
+    }
+    default: {
       return (await copyTargetAssets('esm', pkg)) || (await copyTargetAssets('cjs', pkg))
+    }
   }
 }

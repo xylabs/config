@@ -9,11 +9,7 @@ const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {
     return []
   }
-  if (Array.isArray(value)) {
-    return compact(value)
-  } else {
-    return compact([value])
-  }
+  return Array.isArray(value) ? compact(value) : compact([value])
 }
 
 const config: ESLint.ConfigData = {

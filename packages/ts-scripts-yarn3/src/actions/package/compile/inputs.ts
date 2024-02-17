@@ -1,4 +1,5 @@
-import { readdir } from 'fs/promises'
+import { readdir } from 'node:fs/promises'
+
 import { glob } from 'glob'
 
 export const getInputs = async (subDir?: string) => {
@@ -20,7 +21,7 @@ export const getInputDirs = async (depth: number = 0) => {
       .map((file) => {
         const pathParts = file.path?.split('/') ?? []
         pathParts.shift()
-        if (pathParts.length) {
+        if (pathParts.length > 0) {
           const root = pathParts.join('/')
           return `${root}/${file.name}`
         } else {

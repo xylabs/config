@@ -1,5 +1,6 @@
+import path from 'node:path'
+
 import chalk from 'chalk'
-import path from 'path'
 import { rimrafSync } from 'rimraf'
 
 import { yarnWorkspaces } from '../lib'

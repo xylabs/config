@@ -1,4 +1,5 @@
 import { ESLint } from 'eslint'
+import { Options } from 'prettier'
 
 export const prettierConfig: ESLint.ConfigData = {
   extends: ['plugin:prettier/recommended'],
@@ -9,13 +10,14 @@ export const prettierConfig: ESLint.ConfigData = {
       {
         bracketSpacing: true,
         endOfLine: 'lf',
+        experimentalTernaries: true,
         printWidth: 150,
         semi: false,
         singleQuote: true,
         tabWidth: 2,
         trailingComma: 'all',
         useTabs: false,
-      },
+      } satisfies Options,
     ],
   },
 }

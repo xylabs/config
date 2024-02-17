@@ -1,4 +1,4 @@
-import { execSync } from 'child_process'
+import { execSync } from 'node:child_process'
 
 import { safeExit } from '../safeExit'
 import { DuplicateDetector } from './DuplicateDetector'
@@ -10,7 +10,7 @@ export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], Defa
 
   return safeExit(() => {
     if (dependencies) {
-      dependencies.forEach((dependency) => {
+      for (const dependency of dependencies) {
         let output: string
 
         try {
@@ -19,21 +19,24 @@ export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], Defa
         } catch (e) {
           console.error(`Error running yarn why: ${e}`)
           exitCode = 1
-          return exitCode
+          exitCode
+          continue
         }
 
         if (output) {
           exitCode = new DuplicateDetector(output, dependency).detect()
-          return exitCode
+          exitCode
+          continue
         } else {
           console.log(`${dependency} - N/A`)
           if (depsFromPackageJSON) {
             exitCode = 1
             console.log(`🚨 Library ${dependency} was requested in package.json but not found`)
           }
-          return exitCode
+          exitCode
+          continue
         }
-      })
+      }
       return exitCode
     } else {
       console.log('🚨 No dependencies where passed')

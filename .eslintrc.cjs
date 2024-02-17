@@ -24,6 +24,7 @@ const finalConfig = {
     ".*"
   ],
   "rules": {
+    "unicorn/no-process-exit": ["off"],
     "no-restricted-imports": [
       "warn",
       {

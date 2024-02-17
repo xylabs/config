@@ -1,6 +1,7 @@
+import { spawnSync, SpawnSyncOptionsWithBufferEncoding } from 'node:child_process'
+import { existsSync } from 'node:fs'
+
 import chalk from 'chalk'
-import { spawnSync, SpawnSyncOptionsWithBufferEncoding } from 'child_process'
-import { existsSync } from 'fs'
 
 import { checkResult } from './checkResult'
 import { safeExit } from './safeExit'
@@ -14,14 +15,13 @@ export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, m
     const pkgName = process.env.npm_package_name
     console.log(chalk.green(`${name} [${pkgName}]`))
     let totalStatus = 0
-    for (let i = 0; i < steps.length; i++) {
-      const [command, args, config] = steps[i]
+    for (const [i, [command, args, config]] of steps.entries()) {
       if (messages?.[i]) {
         console.log(chalk.gray(messages?.[i]))
       }
       const argList = Array.isArray(args) ? args : args.split(' ')
       if (command === 'node' && !existsSync(argList[0])) {
-        throw Error(`File not found [${argList[0]}]`)
+        throw new Error(`File not found [${argList[0]}]`)
       }
       const status =
         spawnSync(command, Array.isArray(args) ? args : args.split(' '), {

@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
 import { defaultBuildConfig } from './defaultBuildConfig'
 
@@ -6,7 +6,7 @@ const getGeneralTypescriptConfig = (location: string) => {
   let generalConfig: string | undefined
   try {
     generalConfig = readFileSync(`${location}/tsconfig.json`, { encoding: 'utf8' })
-  } catch (ex) {
+  } catch {
     return false
   }
   return JSON.parse(generalConfig)
@@ -27,7 +27,7 @@ export const createBuildConfig = (
     ...generalConfigObject,
     compilerOptions: {
       ...defaultBuildConfig.compilerOptions,
-      ...(generalConfigObject.compilerOptions ?? {}),
+      ...generalConfigObject.compilerOptions,
       module,
       outDir: `./${generalConfigObject.compilerOptions?.outDir ?? 'dist'}/${outDirSuffix}`,
       target,

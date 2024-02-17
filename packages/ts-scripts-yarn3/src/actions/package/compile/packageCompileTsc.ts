@@ -1,5 +1,6 @@
+import { cwd } from 'node:process'
+
 import chalk from 'chalk'
-import { cwd } from 'process'
 import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import {
   CompilerOptions,
@@ -36,8 +37,8 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
       outDir: 'dist',
       rootDir: 'src',
     }),
-    ...(compilerOptionsParam ?? {}),
-    ...(noEmit !== undefined ? { noEmit } : {}),
+    ...compilerOptionsParam,
+    ...(noEmit === undefined ? {} : { noEmit }),
   } as TsConfigCompilerOptions
 
   const program = createProgramFromConfig({
@@ -49,11 +50,12 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
 
   const results = getPreEmitDiagnostics(program)
 
-  results.forEach((diag) => {
+  for (const diag of results) {
     const lineAndChar: LineAndCharacter = diag.file ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0) : { character: 0, line: 0 }
     console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
-  })
+  }
 
+  // eslint-disable-next-line unicorn/no-array-reduce
   return results.reduce((prev, diag) => (prev + diag.category === DiagnosticCategory.Error ? 1 : 0), 0) || (publint ? await packagePublint() : 0)
 }

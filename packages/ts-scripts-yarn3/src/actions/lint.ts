@@ -17,19 +17,19 @@ const dumpMessages = (lintResults: ESLint.LintResult[]) => {
   const colors: ('white' | 'red' | 'yellow')[] = ['white', 'yellow', 'red']
   const severity: string[] = ['none', 'warning', 'error']
 
-  lintResults.forEach((lintResult) => {
+  for (const lintResult of lintResults) {
     if (lintResult.messages.length > 0) {
       console.log(chalk.gray(`${lintResult.filePath}`))
-      lintResult.messages.forEach((message) => {
+      for (const message of lintResult.messages) {
         console.log(
           chalk.gray(`\t${message.line}:${message.column}`),
           chalk[colors[message.severity]](`\t${severity[message.severity]}`),
           chalk.white(`\t${message.message}`),
           chalk.gray(`\t${message.ruleId}`),
         )
-      })
+      }
     }
-  })
+  }
 }
 
 export const lintPackage = async ({ pkg }: LintParams) => {

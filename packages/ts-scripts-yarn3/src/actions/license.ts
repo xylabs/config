@@ -9,7 +9,7 @@ export const license = async (pkg?: string) => {
     return pkg === undefined || name === pkg
   })
 
-  const exclude: string[] = [
+  const exclude = new Set([
     'MIT',
     'MIT*',
     'ISC',
@@ -26,52 +26,56 @@ export const license = async (pkg?: string) => {
     'LGPL-3.0',
     'LGPL-3.0-or-later',
     'Python-2.0',
-  ]
+  ])
 
   console.log(chalk.green('License Checker'))
 
   return (
-    await Promise.all(
-      workspaceList.map(({ location, name }) => {
-        return new Promise<number>((resolve) => {
-          init({ production: true, start: location }, (error, packages) => {
-            if (error) {
-              console.error(chalk.red(`License Checker [${name}] Error`))
-              console.error(chalk.gray(error))
-              console.log('\n')
-              resolve(1)
-            } else {
-              console.log(chalk.green(`License Checker [${name}]`))
-              let count = 0
-              Object.entries(packages).forEach(([name, info]) => {
-                const licenses = Array.isArray(info.licenses) ? info.licenses : [info.licenses]
-                licenses.forEach((license) => {
-                  if (license) {
-                    //remove surrounding parens on some string
-                    if (license[0] === '(' && license[license.length - 1] === ')') {
-                      license = license.substring(1, license.length - 2)
-                    }
-                    //get list of OR licenses from string
-                    const orLicenses = license.split(' OR ')
-                    let orLicenseFound = false
-                    orLicenses.forEach((orLicense) => {
-                      if (exclude.includes(orLicense)) {
-                        orLicenseFound = true
+    (
+      await Promise.all(
+        workspaceList.map(({ location, name }) => {
+          return new Promise<number>((resolve) => {
+            init({ production: true, start: location }, (error, packages) => {
+              if (error) {
+                console.error(chalk.red(`License Checker [${name}] Error`))
+                console.error(chalk.gray(error))
+                console.log('\n')
+                resolve(1)
+              } else {
+                console.log(chalk.green(`License Checker [${name}]`))
+                let count = 0
+                for (const [name, info] of Object.entries(packages)) {
+                  const licenses = Array.isArray(info.licenses) ? info.licenses : [info.licenses]
+                  for (let license of licenses) {
+                    if (license) {
+                      //remove surrounding parens on some string
+                      if (license[0] === '(' && license.at(-1) === ')') {
+                        license = license.slice(1, -2)
                       }
-                    })
-                    if (!orLicenseFound) {
-                      count++
-                      console.warn(chalk.yellow(`${name}: Package License not allowed [${license}]`))
+                      //get list of OR licenses from string
+                      const orLicenses = license.split(' OR ')
+                      let orLicenseFound = false
+                      for (const orLicense of orLicenses) {
+                        if (exclude.has(orLicense)) {
+                          orLicenseFound = true
+                        }
+                      }
+                      if (!orLicenseFound) {
+                        count++
+                        console.warn(chalk.yellow(`${name}: Package License not allowed [${license}]`))
+                      }
                     }
                   }
-                })
-              })
-              console.log('\n')
-              resolve(count)
-            }
+                }
+                console.log('\n')
+                resolve(count)
+              }
+            })
           })
-        })
-      }),
+        }),
+      )
     )
-  ).reduce((prev, value) => prev || value, 0)
+      // eslint-disable-next-line unicorn/no-array-reduce
+      .reduce((prev, value) => prev || value, 0)
+  )
 }

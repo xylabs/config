@@ -19,16 +19,16 @@ export const gitlint = () => {
     valid++
   }
 
-  if (gitConfig.core.autocrlf !== false) {
-    warn('Please set core.autocrlf to FALSE in .git/config file [run yarn gitlint-fix]')
-  } else {
+  if (gitConfig.core.autocrlf === false) {
     valid++
+  } else {
+    warn('Please set core.autocrlf to FALSE in .git/config file [run yarn gitlint-fix]')
   }
 
-  if (gitConfig.core.eol !== 'lf') {
-    warn('Please set core.eol to "lf" in .git/config file [run yarn gitlint-fix]')
-  } else {
+  if (gitConfig.core.eol === 'lf') {
     valid++
+  } else {
+    warn('Please set core.eol to "lf" in .git/config file [run yarn gitlint-fix]')
   }
 
   const resultMessages: string[] = []

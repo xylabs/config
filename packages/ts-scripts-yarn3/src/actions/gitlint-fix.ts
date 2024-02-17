@@ -1,5 +1,6 @@
+import { execSync } from 'node:child_process'
+
 import chalk from 'chalk'
-import { execSync } from 'child_process'
 import { sync } from 'parse-git-config'
 
 export const gitlintFix = () => {

@@ -1,4 +1,4 @@
-import { rmSync } from 'fs'
+import { rmSync } from 'node:fs'
 
 import { yarnWorkspaces } from '../lib'
 import { lint } from './lint'
@@ -18,6 +18,7 @@ export const lintClean = () => {
         return 1
       }
     })
+    // eslint-disable-next-line unicorn/no-array-reduce
     .reduce((prev, result) => prev || result, 0)
   return result || lint()
 }

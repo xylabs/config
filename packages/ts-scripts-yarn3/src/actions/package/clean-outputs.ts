@@ -1,6 +1,7 @@
+import { rmSync } from 'node:fs'
+import path from 'node:path'
+
 import chalk from 'chalk'
-import { rmSync } from 'fs'
-import path from 'path'
 
 export const packageCleanOutputs = () => {
   const pkg = process.env.INIT_CWD ?? '.'
