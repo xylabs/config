@@ -33,6 +33,9 @@
     "rimraf": "^4.4.1",
     "typescript": "^5.3.3"
   },
+  "resolutions": {
+    "@typescript-eslint/parser": "^6.21.0"
+  },
   "homepage": "https://xylabs.com",
   "keywords": [
     "xylabs",
@@ -53,7 +56,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",
