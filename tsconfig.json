@@ -4,7 +4,6 @@
     "declarationMap": true,
     "types": ["jest", "node", "json-schema"]
   },
-  "exclude": ["dist"],
-  "extends": "@xylabs/tsconfig",
-  "include": ["src"]
+  "exclude": ["./node_modules", "./**/node_modules", "./dist", "./**/dist", "./**/docs", ".*"],
+  "extends": "@xylabs/tsconfig"
 }

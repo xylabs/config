@@ -60,7 +60,7 @@ export class DuplicateDetector {
     this.dependencyEntries = trimDependencyVirtualMeta(multiLineToJSONArray(output))
   }
 
-  public detect() {
+  detect() {
     // eslint-disable-next-line unicorn/no-array-reduce
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
     if (result.duplicateVersions.length > 0) {

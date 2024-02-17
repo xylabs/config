@@ -2,11 +2,7 @@ const finalConfig = {
   env: {
     es2024: true
   },
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "project": null,
-    "tsconfigRootDir": null
-  },
+  parserOptions: { ecmaVersion: 'latest', project: './tsconfig.json', sourceType: 'module', tsconfigRootDir: null },
   'extends': ['@xylabs/base'],
   "root": true,
   "ignorePatterns": [
