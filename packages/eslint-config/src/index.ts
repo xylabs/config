@@ -8,6 +8,7 @@ import { importConfig } from './import'
 import { prettierConfig } from './prettier'
 import { rulesConfig } from './rules'
 import { typescriptConfig } from './typescript'
+import { unicornConfig } from './unicorn'
 import { workspacesConfig } from './workspaces'
 
 const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
@@ -26,6 +27,7 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.extends),
     //...toArray(jsonConfig.extends),
     ...toArray(prettierConfig.extends),
+    ...toArray(unicornConfig.extends),
   ],
   ignorePatterns: ['node_modules', 'dist', 'bin', 'storybook-static', '.github', '.vscode', '.yarn', 'package.json'],
   overrides: [
@@ -36,6 +38,7 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.overrides),
     //...toArray(jsonConfig.overrides),
     ...toArray(prettierConfig.overrides),
+    ...toArray(unicornConfig.overrides),
   ],
   plugins: [
     ...toArray(typescriptConfig.plugins),
@@ -45,6 +48,7 @@ const config: ESLint.ConfigData = {
     ...toArray(importConfig.plugins),
     //...toArray(jsonConfig.plugins),
     ...toArray(prettierConfig.plugins),
+    ...toArray(unicornConfig.plugins),
   ],
   rules: {
     ...typescriptConfig.rules,
@@ -54,6 +58,7 @@ const config: ESLint.ConfigData = {
     ...importConfig.rules,
     //...jsonConfig.rules,
     ...prettierConfig.rules,
+    ...unicornConfig.rules,
   },
   settings: {
     ...typescriptConfig.settings,
@@ -63,6 +68,7 @@ const config: ESLint.ConfigData = {
     ...importConfig.settings,
     //...jsonConfig.settings,
     ...prettierConfig.settings,
+    ...unicornConfig.settings,
   },
 }
 
