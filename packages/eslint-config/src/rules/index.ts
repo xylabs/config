@@ -1,9 +1,11 @@
 import { ESLint } from 'eslint'
 
 export const rulesConfig: ESLint.ConfigData = {
+  extends: ['plugin:deprecation/recommended'],
   plugins: ['sort-keys-fix', 'no-secrets'],
   rules: {
     complexity: ['error', 18],
+    'deprecation/deprecation': ['warn'],
     'max-depth': ['error', 6],
     'max-lines': [
       'error',

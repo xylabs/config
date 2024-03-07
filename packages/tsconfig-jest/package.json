@@ -14,14 +14,14 @@
   "dependencies": {
     "@xylabs/tsconfig": "workspace:~",
     "jest-extended": "^4.0.2",
-    "jest-sorted": "^1.0.14"
+    "jest-sorted": "^1.0.15"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.25",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -44,6 +44,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.4.1",
+  "version": "3.5.0",
   "type": "commonjs"
 }

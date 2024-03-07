@@ -9,19 +9,14 @@ export const importConfig: ESLint.ConfigData = {
     'import/namespace': ['off'],
     'import/no-absolute-path': ['warn'],
     'import/no-cycle': [
-      'off',
+      'warn',
       {
         maxDepth: 2,
       },
     ],
     'import/no-default-export': ['warn'],
     'import/no-deprecated': ['warn'],
-    'import/no-internal-modules': [
-      'warn',
-      {
-        allow: ['lodash/*'],
-      },
-    ],
+    'import/no-internal-modules': ['warn'],
     'import/no-named-as-default': ['warn'],
     'import/no-named-as-default-member': ['off'],
     'import/no-restricted-paths': ['warn'],

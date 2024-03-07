@@ -60,7 +60,7 @@
     "@xylabs/tsconfig": "workspace:~",
     "publint": "^0.2.7",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -112,6 +112,6 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.4.1",
+  "version": "3.5.0",
   "type": "commonjs"
 }
