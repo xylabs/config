@@ -1,17 +1,15 @@
-import { rmSync } from 'node:fs'
+import { rm } from 'node:fs/promises'
 import path from 'node:path'
 
 import chalk from 'chalk'
 
-export const packageCleanOutputs = () => {
+export const packageCleanOutputs = async () => {
   const pkg = process.env.INIT_CWD ?? '.'
   const pkgName = process.env.npm_package_name
+  const folders: string[] = [path.join(pkg, 'dist'), path.join(pkg, 'build'), path.join(pkg, 'docs')]
   console.log(chalk.green(`Cleaning Outputs [${pkgName}]`))
 
-  const dist = path.join(pkg, 'dist')
-  rmSync(dist, { force: true, recursive: true })
+  await Promise.all(folders.map((folder) => rm(folder, { force: true, recursive: true })))
 
-  const build = path.join(pkg, 'build')
-  rmSync(build, { force: true, recursive: true })
   return 0
 }

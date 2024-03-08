@@ -1,6 +1,5 @@
-import { runSteps, runStepsAsync } from '../lib'
-import { cleanDocs } from './clean-docs'
-import { cleanESLint } from './clean-eslint'
+import { runStepsAsync } from '../lib'
+
 
 export interface CleanParams {
   pkg?: string
@@ -22,5 +21,5 @@ export const cleanPackage = ({ pkg }: CleanPackageParams) => {
 
 export const cleanAll = ({ verbose }: CleanParams) => {
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  return cleanESLint() + cleanDocs() + runSteps('Clean', [['yarn', ['workspaces foreach', '-pA', ...verboseOptions, 'run', 'package-clean']]])
+  return runStepsAsync('Clean', [['yarn', ['workspaces foreach', '-pA', '--jobs 64', ...verboseOptions, 'run', 'package-clean']]])
 }
