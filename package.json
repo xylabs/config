@@ -56,7 +56,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.5.2",
+  "version": "3.9.0",
   "packageManager": "yarn@4.1.1",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",
@@ -66,7 +66,7 @@
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
     "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common",
-    "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach -ptv npm publish",
+    "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach --all --parallel npm publish",
     "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next",
     "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach -ptv npm publish --tag next"
   },
