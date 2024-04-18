@@ -18,10 +18,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.2",
+    "@types/node": "^20.12.7",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -44,6 +44,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.9.0",
+  "version": "3.9.1",
   "type": "commonjs"
 }

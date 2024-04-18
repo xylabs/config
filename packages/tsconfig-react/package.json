@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -39,6 +39,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.9.0",
+  "version": "3.9.1",
   "type": "commonjs"
 }

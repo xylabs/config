@@ -1,9 +1,6 @@
 const finalConfig = {
-  env: {
-    es2024: true
-  },
   parserOptions: { ecmaVersion: 'latest', project: './tsconfig.json', sourceType: 'module', tsconfigRootDir: null },
-  'extends': ['@xylabs/base'],
+  'extends': ['@xylabs/eslint-config-flat'],
   "root": true,
   "ignorePatterns": [
     "dist",

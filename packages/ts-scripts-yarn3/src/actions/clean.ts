@@ -1,6 +1,5 @@
 import { runStepsAsync } from '../lib'
 
-
 export interface CleanParams {
   pkg?: string
   verbose?: boolean
