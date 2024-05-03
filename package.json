@@ -57,7 +57,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.9.1",
+  "version": "3.10.0",
   "packageManager": "yarn@4.1.1",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",
