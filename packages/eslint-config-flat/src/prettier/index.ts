@@ -1,8 +1,7 @@
-import { ESLint } from 'eslint'
+import prettier from 'eslint-plugin-prettier'
 
-export const prettierConfig: ESLint.ConfigData = {
-  extends: ['plugin:prettier/recommended'],
-  plugins: ['prettier'],
+export const prettierConfig= [{
+  plugins: {prettier},
   rules: {
     'prettier/prettier': [
       'warn',
@@ -19,4 +18,4 @@ export const prettierConfig: ESLint.ConfigData = {
       },
     ],
   },
-}
+}, prettier.configs?.recommended]

@@ -50,6 +50,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
 
   const compileForNode = compile?.node ?? { src: {} }
   const compileForBrowser = compile?.browser ?? { src: {} }
+  const compileForNeutral = compile?.neutral ?? { src: {} }
 
   return (
     (await packageCompileTsc(true, { publint: false, verbose })) ||
@@ -124,6 +125,61 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       outDir: 'dist/browser',
                       outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
                       platform: 'browser',
+                      skipNodeModulesBundle: true,
+                      target: 'esnext',
+                      ...compile?.tsup?.options,
+                      ...(typeof options === 'object' ? options : {}),
+                    },
+                    verbose,
+                  ),
+                ])
+              ).reduce((prev, value) => prev + value, 0)
+            : 0
+        }),
+      )
+    ).reduce((prev, value) => prev + value, 0) ||
+    (
+      await Promise.all(
+        Object.entries(compileForNeutral).map(async ([folder, options]) => {
+          const inEsBuildOptions = typeof compile?.neutral?.esbuildOptions === 'object' ? compile?.neutral?.esbuildOptions : {}
+          return folder ?
+              (
+                await Promise.all([
+                  compileFolder(
+                    folder,
+                    compile?.entryMode,
+                    {
+                      bundle: true,
+                      format: ['cjs'],
+                      loader: merge(
+                        {},
+                        { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                        inEsBuildOptions?.loader,
+                      ),
+                      outDir: 'dist/neutral',
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      platform: 'neutral',
+                      skipNodeModulesBundle: true,
+                      target: 'esnext',
+                      ...compile?.tsup?.options,
+                      ...(typeof options === 'object' ? options : {}),
+                    },
+                    verbose,
+                  ),
+                  compileFolder(
+                    folder,
+                    compile?.entryMode,
+                    {
+                      bundle: true,
+                      format: ['esm'],
+                      loader: merge(
+                        {},
+                        { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                        inEsBuildOptions?.loader,
+                      ),
+                      outDir: 'dist/neutral',
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      platform: 'neutral',
                       skipNodeModulesBundle: true,
                       target: 'esnext',
                       ...compile?.tsup?.options,

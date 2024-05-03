@@ -1,10 +1,8 @@
-import { ESLint } from 'eslint'
+import unicorn from 'eslint-plugin-unicorn'
 
-export const unicornConfig: ESLint.ConfigData = {
-  env: {
-    es2024: true,
-  },
-  extends: ['plugin:unicorn/recommended'],
+export const unicornConfig = [
+  {
+  plugins: {unicorn},
   rules: {
     'unicorn/catch-error-name': ['off'],
     'unicorn/consistent-function-scoping': ['off'],
@@ -19,4 +17,4 @@ export const unicornConfig: ESLint.ConfigData = {
     'unicorn/prefer-top-level-await': ['off'],
     'unicorn/prevent-abbreviations': ['off'],
   },
-}
+}]
