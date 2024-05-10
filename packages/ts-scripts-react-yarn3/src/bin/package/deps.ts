@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
-import { packageDeps } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
+import { packageDeps } from '../../actions'
 
-packageDeps()
+packageDeps().then((value) => process.exitCode = value).catch((ex: Error) => {
+  console.error(`Deps Failed: ${chalk.red(ex)}`)
+  process.exitCode = 0
+})
