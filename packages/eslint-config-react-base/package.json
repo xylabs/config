@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@xylabs/eslint-config-base": "workspace:~",
-    "eslint": "^9.1.1",
+    "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -26,7 +26,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "eslint-plugin-workspaces": "^0.10.0",
+    "eslint-plugin-workspaces": "^0.10.1",
     "jsonc-eslint-parser": "^2.4.0",
     "lodash": "^4.17.21",
     "markdown-eslint-parser": "^1.2.1",
@@ -37,10 +37,10 @@
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.11",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
-    "eslint": "^9.1.1",
+    "eslint": "^9.2.0",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
