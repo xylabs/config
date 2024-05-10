@@ -5,7 +5,7 @@ import { withError } from './withError'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const processEx = (ex: any) => {
-  const error = typeof ex === 'string' ? Error(ex) : ex
+  const error = typeof ex === 'string' ? new Error(ex) : ex
   const exitCode =
     withErrnoException(error, (error) => {
       if (error.code === 'ENOENT') {

@@ -1,7 +1,7 @@
 import ts from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 
-export const typescriptConfig: any[] = [
+export const typescriptConfig: unknown[] = [
   {
     files: ['*.ts', '*.d.ts', '*.tsx', '*.d.tsx', '*.js', '*.d.js', '*.jsx', '*.d.jsx'],
     languageOptions: {

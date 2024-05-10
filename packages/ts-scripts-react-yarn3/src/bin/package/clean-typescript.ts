@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { packageCleanTypescript } from '../../actions'
+import { packageCleanTypescript } from '@xylabs/ts-scripts-yarn3'
 
 packageCleanTypescript()

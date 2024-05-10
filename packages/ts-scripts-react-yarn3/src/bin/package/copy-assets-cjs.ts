@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
-import { packageCopyAssets } from '../../actions'
+import { packageCopyAssets } from '@xylabs/ts-scripts-yarn3'
 
 packageCopyAssets({target: 'cjs'}).then((value) => process.exitCode = value).catch((reason) => {
   console.error(chalk.red(reason))

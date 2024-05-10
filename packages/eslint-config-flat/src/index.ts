@@ -1,6 +1,8 @@
+/* eslint-disable import/no-internal-modules */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ESLint } from 'eslint'
-// eslint-disable-next-line import/no-internal-modules
 
+// eslint-disable-next-line import/no-internal-modules
 import { importConfig } from './import/index.js'
 import { jsonConfig } from './json/index.js'
 //import { markdownConfig } from './markdown'
@@ -20,4 +22,3 @@ export const config = [
   ...prettierConfig,
   ...unicornConfig,
 ]
-

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { packageCleanOutputs } from '../../actions'
+import { packageCleanOutputs } from '@xylabs/ts-scripts-yarn3'
 
 packageCleanOutputs()

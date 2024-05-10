@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
-import { packagePublint } from '../../actions'
+import { packagePublint } from '@xylabs/ts-scripts-yarn3'
 
 packagePublint().then((value) => process.exitCode = value).catch((ex: Error) => {
   console.error(`Publint Failed: ${chalk.red(ex)}`)

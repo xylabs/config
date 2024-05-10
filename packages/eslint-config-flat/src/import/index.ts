@@ -1,9 +1,9 @@
-import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import importPlugin from 'eslint-plugin-import'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export const importConfig = [
   {
-    plugins: {'simple-import-sort': simpleImportSort, import: importPlugin},
+    plugins: { import: importPlugin, 'simple-import-sort': simpleImportSort },
     rules: {
       'import/default': ['off'],
       'import/named': ['off'],
@@ -25,6 +25,6 @@ export const importConfig = [
       'import/no-useless-path-segments': ['warn'],
       'simple-import-sort/exports': ['warn'],
       'simple-import-sort/imports': ['warn'],
-    }
-  }
+    },
+  },
 ]

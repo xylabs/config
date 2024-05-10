@@ -19,6 +19,7 @@ export const getInputDirs = async (depth: number = 0) => {
     ...(await readdir('src', { recursive: true, withFileTypes: true }))
       .filter((file) => file.isDirectory())
       .map((file) => {
+        // eslint-disable-next-line deprecation/deprecation
         const pathParts = file.path?.split('/') ?? []
         pathParts.shift()
         if (pathParts.length > 0) {
