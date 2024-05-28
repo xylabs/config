@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNEXT"
-    ]
+    "lib": ["DOM", "DOM.Iterable", "ESNEXT"]
   },
   "exclude": ["dist"],
   "extends": "@xylabs/tsconfig"

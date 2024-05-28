@@ -1,5 +1,5 @@
 import { ESLint } from 'eslint'
-// eslint-disable-next-line import/no-internal-modules
+
 import compact from 'lodash/compact'
 
 import { importConfig } from './import'

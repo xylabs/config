@@ -1,7 +1,6 @@
 import { withErrnoException } from './withErrnoException'
 import { withError } from './withError'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const processEx = (ex: any) => {
   const error = typeof ex === 'string' ? new Error(ex) : ex
   const exitCode =

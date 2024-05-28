@@ -1,25 +1,13 @@
 const finalConfig = {
   env: {
-    es2024: true
+    es2024: true,
   },
-  'extends': ['@xylabs', 'plugin:deprecation/recommended'],
+  extends: ['@xylabs', 'plugin:deprecation/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', project: './tsconfig.json', sourceType: 'module', tsconfigRootDir: null },
-  'root': true,
-  'ignorePatterns': [
-    'dist',
-    'node_modules',
-    'docs',
-    'coverage',
-    'docker',
-    'nftData',
-    'testData.json',
-    '*.stories.*',
-    'swagger.json',
-    '.yarn',
-    '.*'
-  ],
-  'rules': {
+  root: true,
+  ignorePatterns: ['dist', 'node_modules', 'docs', 'coverage', 'docker', 'nftData', 'testData.json', '*.stories.*', 'swagger.json', '.yarn', '.*'],
+  rules: {
     'unicorn/no-process-exit': ['off'],
     'unicorn/no-static-only-class': ['off'],
     'import/no-cycle': ['warn'],
@@ -28,7 +16,7 @@ const finalConfig = {
     'no-restricted-imports': [
       'warn',
       {
-        'paths': [
+        paths: [
           '@types/node',
           '@xyo-network/archivist',
           '@xyo-network/bridge',
@@ -54,21 +42,17 @@ const finalConfig = {
           '../../../..',
           '../../../../..',
           '../../../../../..',
-          '../../../../../../..'
-        ]
-      }
+          '../../../../../../..',
+        ],
+      },
     ],
     'import/no-internal-modules': [
-      'warn', {
-        'allow': [
-          'source-map-support/*',
-          'lodash/*',
-          'aws-sdk/**/*',
-          'types/*'
-        ]
-      }
-    ]
-  }
+      'warn',
+      {
+        allow: ['source-map-support/*', 'lodash/*', 'aws-sdk/**/*', 'types/*'],
+      },
+    ],
+  },
 }
 
 module.exports = finalConfig

@@ -1,5 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
+  "name": "@xylabs/eslint-config-flat",
   "author": {
     "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
@@ -70,7 +71,6 @@
   "main": "./dist/node/index.cjs",
   "module": "./dist/node/index.js",
   "types": "./dist/node/index.d.ts",
-  "name": "@xylabs/eslint-config-flat",
   "publishConfig": {
     "access": "public"
   },

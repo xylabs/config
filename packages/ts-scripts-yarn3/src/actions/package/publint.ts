@@ -22,7 +22,6 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     strict: true,
   })
 
-  // eslint-disable-next-line import/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
   const validMessage = (_message: Message): boolean => {

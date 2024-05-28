@@ -5,15 +5,17 @@ import { config as xylabsConfig } from '@xylabs/eslint-config-flat'
 export default [
   ...xylabsConfig,
   {
-    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'build/**', 'node_modules/**'],
-    plugins: {...xylabsConfig.plugins},
+    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
     rules: {
+      '@typescript-eslint/no-explicit-any': ['off'],
+      'import/no-internal-modules': ['off'],
+      '@typescript-eslint/no-floating-promises': ['off'],
       'unicorn/no-process-exit': ['off'],
       'unicorn/no-static-only-class': ['off'],
       'no-restricted-imports': [
         'warn',
         {
-          'paths': [
+          paths: [
             '@types/node',
             '@xyo-network/archivist',
             '@xyo-network/bridge',
@@ -39,11 +41,10 @@ export default [
             '../../../..',
             '../../../../..',
             '../../../../../..',
-            '../../../../../../..'
-          ]
-        }
-      ]
-    }
+            '../../../../../../..',
+          ],
+        },
+      ],
+    },
   },
-
 ]

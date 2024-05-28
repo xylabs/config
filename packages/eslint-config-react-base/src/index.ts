@@ -3,15 +3,13 @@ import { cwd } from 'node:process'
 import xylabsConfig from '@xylabs/eslint-config-base'
 import { ESLint } from 'eslint'
 
-import compact from 'lodash/compact'
-
 import { reactConfig } from './react'
 
 const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {
     return []
   }
-  return Array.isArray(value) ? compact(value) : compact([value])
+  return (Array.isArray(value) ? value : [value]).filter((item) => !!item) as T[]
 }
 
 const config: ESLint.ConfigData = {

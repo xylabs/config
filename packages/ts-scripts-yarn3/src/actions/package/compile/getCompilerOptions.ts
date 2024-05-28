@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-internal-modules
 import merge from 'lodash/merge'
 import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
 

@@ -3,7 +3,7 @@ import { Linter } from 'eslint'
 //import deprecation from 'eslint-plugin-deprecation'
 
 export const rulesConfig: Linter.FlatConfig = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'build/**', 'node_modules/**'],
+  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   plugins: {},
   rules: {
     //...deprecation.configs.recommended.rules,

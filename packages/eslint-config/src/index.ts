@@ -1,5 +1,5 @@
 import { ESLint } from 'eslint'
-// eslint-disable-next-line import/no-internal-modules
+
 import compact from 'lodash/compact'
 
 import { importConfig } from './import'
@@ -74,7 +74,6 @@ const config: ESLint.ConfigData = {
 
 /* We use export default to make the type generation correct */
 
-// eslint-disable-next-line import/no-default-export
 export default config
 
 /* We use module.exports to make the plugin load work */

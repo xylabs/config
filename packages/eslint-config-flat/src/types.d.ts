@@ -8,9 +8,15 @@ declare module 'eslint-plugin-workspaces' {
 
 declare module 'eslint-plugin-unicorn' {
   const configs: {
-    recommended: any
     all: any
-    'flat/recommended': any
     'flat/all': any
+    'flat/recommended': any
+    recommended: any
   }
+}
+
+declare module 'markdown-eslint-parser' {}
+
+declare module 'eslint-plugin-md' {
+  const configs: Record<string, any>
 }
