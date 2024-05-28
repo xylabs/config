@@ -37,6 +37,7 @@
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
+    "@babel/core": "^7.24.6",
     "@types/node": "^20.12.12",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
@@ -64,6 +65,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.11.1",
+  "version": "3.11.2",
   "type": "commonjs"
 }
