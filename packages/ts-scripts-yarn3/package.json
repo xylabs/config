@@ -122,6 +122,11 @@
     "eslint": "^8",
     "typescript": "^5"
   },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
   "homepage": "https://xylabs.com",
   "keywords": [
     "xylabs",
@@ -168,6 +173,6 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.11.0",
+  "version": "3.11.1",
   "type": "commonjs"
 }

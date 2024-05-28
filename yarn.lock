@@ -3999,6 +3999,9 @@ __metadata:
   peerDependencies:
     eslint: ^8
     typescript: ^5
+  peerDependenciesMeta:
+    eslint:
+      optional: true
   bin:
     build: dist/bin/build.js
     clean: dist/bin/clean.js
