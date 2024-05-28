@@ -4,7 +4,9 @@
     "name": "XY Labs Development Team",
     "url": "https://xylabs.com"
   },
-  "workspaces": ["packages/**/*"],
+  "workspaces": [
+    "packages/**/*"
+  ],
   "bugs": {
     "email": "support@xylabs.com",
     "url": "https://github.com/xylabs/ts-scripts/issues"

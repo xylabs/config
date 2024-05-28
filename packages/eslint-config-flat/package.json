@@ -35,7 +35,7 @@
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "eslint": "^8"
+    "eslint": "^9"
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {

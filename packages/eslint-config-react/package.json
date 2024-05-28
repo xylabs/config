@@ -13,7 +13,6 @@
     "@babel/plugin-syntax-flow": "^7.24.6",
     "@babel/plugin-transform-react-jsx": "^7.24.6",
     "@xylabs/eslint-config": "workspace:~",
-    "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -23,7 +22,7 @@
     "eslint-plugin-md": "^1.0.19",
     "eslint-plugin-no-secrets": "^0.9.1",
     "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
@@ -41,11 +40,11 @@
     "@types/node": "^20.12.12",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
-    "eslint": "^9.3.0",
+    "eslint": "^8.57.0",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "eslint": "^8.23.0"
+    "eslint": "^8"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [
