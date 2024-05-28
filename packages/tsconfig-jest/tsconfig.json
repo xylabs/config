@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "types": [
-      "node",
-      "jest-extended",
-      "jest-sorted",
-      "jest",
-      "reflect-metadata"
-    ]
+    "types": ["node", "jest-extended", "jest-sorted", "jest", "reflect-metadata"]
   },
   "exclude": ["dist"],
   "extends": "@xylabs/tsconfig"

@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import { merge } from 'lodash'
 import { build, defineConfig, Options } from 'tsup'
 
@@ -40,6 +39,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   return 0
 }
 
+// eslint-disable-next-line complexity
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compile = config?.compile
   const publint = config?.publint ?? true

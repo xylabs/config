@@ -1,8 +1,9 @@
 {
   "exclude": ["dist", "docs", "node_modules"],
   "compilerOptions": {
-    "moduleResolution": "node16",
-    "module": "node16"
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ESNext"
   },
   "extends": "@xylabs/tsconfig"
 }

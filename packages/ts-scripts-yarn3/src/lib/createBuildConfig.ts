@@ -17,7 +17,6 @@ export const createBuildConfig = (
   module: 'ESNext' | 'CommonJS',
   target: 'ESNext' | 'ES6',
   outDirSuffix: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Record<string, any> | undefined => {
   const generalConfigObject = getGeneralTypescriptConfig(location)
   if (generalConfigObject === false) {

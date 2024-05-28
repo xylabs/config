@@ -3,7 +3,9 @@
 import chalk from 'chalk'
 import { packageCompile } from '../../actions'
 
-packageCompile({verbose: true, publint: false}).then((value) => process.exitCode = value).catch((reason) => {
-  console.error(chalk.red(reason))
-  process.exitCode = 1
-})
+packageCompile({ verbose: true, publint: false })
+  .then((value) => (process.exitCode = value))
+  .catch((reason) => {
+    console.error(chalk.red(reason))
+    process.exitCode = 1
+  })

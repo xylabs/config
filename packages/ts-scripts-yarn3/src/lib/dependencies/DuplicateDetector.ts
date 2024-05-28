@@ -1,7 +1,7 @@
 import { EOL } from 'node:os'
 
 import chalk from 'chalk'
-// eslint-disable-next-line import/no-internal-modules
+
 import uniq from 'lodash/uniq'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
