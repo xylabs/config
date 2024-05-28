@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import { merge } from 'lodash'
 import { build, defineConfig, Options } from 'tsup'
 

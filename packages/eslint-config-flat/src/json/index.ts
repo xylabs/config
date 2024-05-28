@@ -1,17 +1,12 @@
 import jsonc from 'eslint-plugin-jsonc'
-import jsoncParser from 'jsonc-eslint-parser'
+//import jsoncParser from 'jsonc-eslint-parser'
+import { Linter } from 'eslint'
 
-export const jsonConfig = [
+export const jsonConfig: Linter.FlatConfig = 
   {
     files: ['**/*.json', '**/*.jsonc', '**/*.json5'],
-    languageOptions: {
-      parser: jsoncParser,
-      parserOptions: {
-        extraFileExtensions: ['.json'],
-      },
-    },
     plugins: {
-      jsonc,
+      jsonc: jsonc as any,
     },
     rules: {
       ...jsonc.configs['all'].rules,
@@ -37,24 +32,4 @@ export const jsonConfig = [
       /// especially in arrays.
       'jsonc/sort-keys': 'off',
     },
-  },
-  {
-    files: ['**/*.json'],
-    languageOptions: {
-      parser: jsonc,
-      parserOptions: {
-        extraFileExtensions: ['.json'],
-      },
-    },
-    plugins: {
-      jsonc,
-    },
-    rules: {
-      /// Overrides the above configuration object.
-      /// No matter how much it would be cool to have comments in json files,
-      /// it's not supported by the json spec. We get errors tools like jq and
-      /// node.
-      'jsonc/no-comments': 'error',
-    },
-  },
-]
+  }

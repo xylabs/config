@@ -1,24 +1,23 @@
-/* eslint-disable import/no-internal-modules */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ESLint } from 'eslint'
+import { Linter } from 'eslint'
 
 // eslint-disable-next-line import/no-internal-modules
-import { importConfig } from './import/index.js'
-import { jsonConfig } from './json/index.js'
+//import { importConfig } from './import'
+//import { jsonConfig } from './json'
 //import { markdownConfig } from './markdown'
-import { prettierConfig } from './prettier/index.js'
-import { rulesConfig } from './rules/index.js'
-import { typescriptConfig } from './typescript/index.js'
-import { unicornConfig } from './unicorn/index.js'
-import { workspacesConfig } from './workspaces/index.js'
+//import { prettierConfig } from './prettier'
+import { rulesConfig } from './rules'
+import { typescriptConfig } from './typescript'
+import { unicornConfig } from './unicorn'
+import { workspacesConfig } from './workspaces'
 
-export const config = [
-  ...importConfig,
-  ...jsonConfig,
-  ...typescriptConfig,
-  //workspacesConfig,
-  //rulesConfig,
-  ...importConfig,
-  ...prettierConfig,
-  ...unicornConfig,
+export const config: Linter.FlatConfig[] = [
+  //importConfig,
+  typescriptConfig,
+  //jsonConfig,
+  unicornConfig,
+  workspacesConfig,
+  rulesConfig,
+  //...importConfig,
+  //...prettierConfig,
 ]

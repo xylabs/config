@@ -1,9 +1,11 @@
 import unicorn from 'eslint-plugin-unicorn'
+import { Linter } from 'eslint'
 
-export const unicornConfig = [
-  {
+export const unicornConfig: Linter.FlatConfig = {
+    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'build/**', 'node_modules/**'],
     plugins: { unicorn },
     rules: {
+      ...unicorn.configs['flat/recommended'].rules,
       'unicorn/catch-error-name': ['off'],
       'unicorn/consistent-function-scoping': ['off'],
       'unicorn/filename-case': ['off'],
@@ -17,5 +19,4 @@ export const unicornConfig = [
       'unicorn/prefer-top-level-await': ['off'],
       'unicorn/prevent-abbreviations': ['off'],
     },
-  },
-]
+  }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { runXyWithWarning } from "../lib"
+import { runXyWithWarning } from '../lib'
 
 runXyWithWarning('upyarn')
 

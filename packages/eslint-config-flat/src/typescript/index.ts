@@ -1,22 +1,33 @@
-import ts from '@typescript-eslint/eslint-plugin'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
+import importPlugin from 'eslint-plugin-import'
+import { Linter } from 'eslint'
 
-export const typescriptConfig: unknown[] = [
-  {
-    files: ['*.ts', '*.d.ts', '*.tsx', '*.d.tsx', '*.js', '*.d.js', '*.jsx', '*.d.jsx'],
+export const typescriptConfig: Linter.FlatConfig = { 
+    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'build/**', 'node_modules/**'],
+    files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.js', '**/*.d.js', '**/*.jsx', '**/*.d.jsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
         ecmaFeatures: { modules: true },
         ecmaVersion: 'latest',
-        project: './tsconfig.json',
+        project: './tsconfig-eslint.json',
       },
     },
     plugins: {
-      '@typescript-eslint': ts,
-      ts,
+      '@typescript-eslint': tsPlugin as any,
+      import: importPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig-eslint.json',
+        },
+      },
     },
     rules: {
+      ...tsPlugin.configs.recommended.rules,
+      ...importPlugin.configs.recommended.rules,
       '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/member-delimiter-style': [
@@ -115,6 +126,23 @@ export const typescriptConfig: unknown[] = [
         },
       ],
       '@typescript-eslint/semi': ['warn', 'never'],
+      'import/default': ['off'],
+      'import/named': ['off'],
+      'import/namespace': ['off'],
+      'import/no-absolute-path': ['warn'],
+      'import/no-cycle': [
+        'warn',
+        {
+          maxDepth: 2,
+        },
+      ],
+      'import/no-default-export': ['warn'],
+      'import/no-deprecated': ['warn'],
+      'import/no-internal-modules': ['warn'],
+      'import/no-named-as-default-member': ['off'],
+      'import/no-named-as-default': ['off'],
+      'import/no-restricted-paths': ['warn'],
+      'import/no-self-import': ['warn'],
+      'import/no-useless-path-segments': ['warn']
     },
-  },
-]
+  }
