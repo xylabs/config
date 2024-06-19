@@ -2,6 +2,7 @@ import { Linter } from 'eslint'
 import mdPlugin from 'eslint-plugin-md'
 
 export const markdownConfig: Linter.FlatConfig = {
+  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   files: ['*.md'],
   processor: 'md/markdown',
   plugins: { md: mdPlugin },

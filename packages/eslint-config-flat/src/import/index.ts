@@ -2,7 +2,7 @@ import importPlugin from 'eslint-plugin-import'
 import { Linter } from 'eslint'
 
 export const importConfig: Linter.FlatConfig = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'build/**', 'node_modules/**'],
+  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   plugins: { import: importPlugin },
   rules: {
     ...importPlugin.configs.recommended.rules,
