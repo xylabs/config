@@ -1,4 +1,4 @@
-// eslint.config.js
+// eslint.config.mjs
 
 import { config as xylabsConfig } from '@xylabs/eslint-config-flat'
 

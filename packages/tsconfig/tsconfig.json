@@ -11,6 +11,7 @@
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "outDir": "dist",
+    "removeComments": true,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
