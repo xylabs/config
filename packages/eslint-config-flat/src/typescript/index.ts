@@ -2,6 +2,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import importPlugin from 'eslint-plugin-import'
 import { Linter } from 'eslint'
+import deprecationPlugin from 'eslint-plugin-deprecation'
 
 export const typescriptConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -16,6 +17,7 @@ export const typescriptConfig: Linter.FlatConfig = {
   },
   plugins: {
     '@typescript-eslint': tsPlugin as any,
+    deprecation: deprecationPlugin as any,
     import: importPlugin,
   },
   settings: {

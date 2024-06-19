@@ -1,14 +1,9 @@
 import { Linter } from 'eslint'
-//import tsParser from '@typescript-eslint/parser'
-//import deprecation from 'eslint-plugin-deprecation'
 
 export const rulesConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  plugins: {},
   rules: {
-    //...deprecation.configs.recommended.rules,
     complexity: ['error', 18],
-    //'deprecation/deprecation': ['warn'],
     'max-depth': ['error', 6],
     'max-lines': [
       'error',
