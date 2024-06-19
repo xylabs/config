@@ -109,6 +109,6 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.11.2",
+  "version": "3.11.3",
   "type": "commonjs"
 }
