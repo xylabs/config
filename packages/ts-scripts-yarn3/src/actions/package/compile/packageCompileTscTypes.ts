@@ -26,6 +26,7 @@ export const packageCompileTscTypes = async (
       declaration: true,
       emitDeclarationOnly: true,
       outDir: 'dist',
+      removeComments: true,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
       sourceMap: true,
