@@ -17,3 +17,9 @@ export const config: Linter.FlatConfig[] = [
   rulesConfig,
   prettierConfig,
 ]
+
+export { prettierConfig } from './prettier/index.js'
+export { rulesConfig } from './rules/index.js'
+export { typescriptConfig } from './typescript/index.js'
+export { unicornConfig } from './unicorn/index.js'
+export { workspacesConfig } from './workspaces/index.js'
