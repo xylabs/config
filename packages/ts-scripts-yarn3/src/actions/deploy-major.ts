@@ -5,7 +5,6 @@ export const deployMajor = () => {
     ['yarn', 'workspaces foreach --all version major --deferred'],
     ['yarn', 'xy clean'],
     ['yarn', 'xy build'],
-    ['yarn', 'xy cycle'],
     ['yarn', 'version apply --all'],
     ['yarn', 'workspaces foreach --all --parallel npm publish'],
   ])

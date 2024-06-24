@@ -173,6 +173,6 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.11.7",
+  "version": "3.11.8",
   "type": "commonjs"
 }

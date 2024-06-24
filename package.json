@@ -59,8 +59,8 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "3.11.7",
-  "packageManager": "yarn@4.2.2",
+  "version": "3.11.8",
+  "packageManager": "yarn@4.3.1",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",
     "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
