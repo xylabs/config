@@ -1,8 +1,6 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import importPlugin from 'eslint-plugin-import'
 import { Linter } from 'eslint'
-import deprecationPlugin from 'eslint-plugin-deprecation'
 
 export const typescriptConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -17,19 +15,9 @@ export const typescriptConfig: Linter.FlatConfig = {
   },
   plugins: {
     '@typescript-eslint': tsPlugin as any,
-    deprecation: deprecationPlugin as any,
-    import: importPlugin,
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project: './tsconfig-eslint.json',
-      },
-    },
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
-    ...importPlugin.configs.recommended.rules,
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/member-delimiter-style': [
@@ -128,23 +116,5 @@ export const typescriptConfig: Linter.FlatConfig = {
       },
     ],
     '@typescript-eslint/semi': ['warn', 'never'],
-    'import/default': ['off'],
-    'import/named': ['off'],
-    'import/namespace': ['off'],
-    'import/no-absolute-path': ['warn'],
-    'import/no-cycle': [
-      'warn',
-      {
-        maxDepth: 2,
-      },
-    ],
-    'import/no-default-export': ['warn'],
-    'import/no-deprecated': ['warn'],
-    'import/no-internal-modules': ['warn'],
-    'import/no-named-as-default-member': ['off'],
-    'import/no-named-as-default': ['off'],
-    'import/no-restricted-paths': ['warn'],
-    'import/no-self-import': ['warn'],
-    'import/no-useless-path-segments': ['warn'],
   },
 }

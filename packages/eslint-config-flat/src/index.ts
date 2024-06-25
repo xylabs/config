@@ -7,6 +7,7 @@ import { rulesConfig } from './rules/index.js'
 import { typescriptConfig } from './typescript/index.js'
 import { unicornConfig } from './unicorn/index.js'
 import { workspacesConfig } from './workspaces/index.js'
+import { importConfig } from './import/index.js'
 
 export const config: Linter.FlatConfig[] = [
   //markdownConfig,
@@ -16,8 +17,10 @@ export const config: Linter.FlatConfig[] = [
   workspacesConfig,
   rulesConfig,
   prettierConfig,
+  importConfig,
 ]
 
+export { importConfig } from './import/index.js'
 export { prettierConfig } from './prettier/index.js'
 export { rulesConfig } from './rules/index.js'
 export { typescriptConfig } from './typescript/index.js'
