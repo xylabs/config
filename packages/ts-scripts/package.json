@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.6",
+    "@types/node": "^20.14.9",
     "@xylabs/eslint-config": "workspace:~",
     "chalk": "^4.1.2",
     "copyfiles": "^2.4.1",
@@ -69,11 +69,11 @@
     "npm-package-json-lint-config-default": "^7.0.1",
     "parse-git-config": "^3.0.0",
     "ts-jest": "^29.1.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
-    "@types/node": "^20.14.6",
+    "@types/node": "^20.14.9",
     "@types/parse-git-config": "^3.0.4",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",

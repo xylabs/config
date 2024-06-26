@@ -11,8 +11,8 @@
     "url": "https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^3.0.0",
@@ -32,21 +32,21 @@
     "prettier": "^3.3.2",
     "remark-lint-maximum-line-length": "^4.0.1",
     "remark-preset-lint-markdown-style-guide": "^6.0.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "peerDependencies": {
     "eslint": "^9"
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@swc/cli": "^0.3.12",
-    "@swc/core": "^1.6.3",
-    "@types/node": "^20.14.6",
+    "@swc/cli": "^0.3.14",
+    "@swc/core": "^1.6.5",
+    "@types/node": "^20.14.9",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
     "@xylabs/tsconfig": "workspace:~",
     "eslint": ">=9",
     "tslib": "^2.6.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [

@@ -18,10 +18,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.6",
+    "@types/node": "^20.14.9",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "peerDependencies": {
     "typescript": "^5"
