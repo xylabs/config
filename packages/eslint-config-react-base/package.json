@@ -10,7 +10,7 @@
     "url": "https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@xylabs/eslint-config-base": "workspace:~",
+    "@xylabs/eslint-config-base": "workspace:^",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -21,29 +21,34 @@
     "eslint-plugin-md": "^1.0.19",
     "eslint-plugin-no-secrets": "^1.0.2",
     "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-workspaces": "^0.10.1",
     "jsonc-eslint-parser": "^2.4.0",
     "lodash": "^4.17.21",
     "markdown-eslint-parser": "^1.2.1",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "remark-lint-maximum-line-length": "^4.0.1",
     "remark-preset-lint-markdown-style-guide": "^6.0.0",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
-    "@types/node": "^20.14.9",
-    "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "@xylabs/tsconfig": "workspace:~",
-    "eslint": "^8.57.0",
-    "typescript": "^5.5.2"
+    "@types/node": "^20.14.10",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/tsconfig": "workspace:^",
+    "eslint": "^9.7.0",
+    "typescript": "^5.5.3"
   },
   "peerDependencies": {
-    "eslint": "^8"
+    "eslint": "*"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [
@@ -63,6 +68,6 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.11.12",
+  "version": "3.11.13",
   "type": "commonjs"
 }

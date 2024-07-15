@@ -49,18 +49,18 @@
     "url": "https://github.com/xylabs/config/issues"
   },
   "dependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:~",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
     "chalk": "^4.1.2",
     "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/yargs": "^17.0.32",
-    "@xylabs/ts-scripts-yarn3": "workspace:~",
-    "@xylabs/tsconfig": "workspace:~",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/tsconfig": "workspace:^",
     "publint": "^0.2.8",
     "tsup": "^8.1.0",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -109,6 +109,6 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.11.12",
+  "version": "3.11.13",
   "type": "commonjs"
 }
