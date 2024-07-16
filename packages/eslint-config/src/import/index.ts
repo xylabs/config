@@ -16,7 +16,18 @@ export const importConfig: ESLint.ConfigData = {
     ],
     'import/no-default-export': ['warn'],
     'import/no-deprecated': ['warn'],
-    'import/no-internal-modules': ['warn'],
+    'import/no-internal-modules': [
+      'warn',
+      {
+        allow: [
+          // Allow imports to any index.js file
+          '**/index.js',
+          '**/index.ts',
+          '**/index.jsx',
+          '**/index.tsx',
+        ],
+      },
+    ],
     'import/no-named-as-default': ['warn'],
     'import/no-named-as-default-member': ['off'],
     'import/no-restricted-paths': ['warn'],
