@@ -3918,6 +3918,7 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:^26.0.1"
     "@rollup/plugin-json": "npm:^6.1.0"
     "@rollup/plugin-typescript": "npm:^11.1.6"
+    "@swc/core": "npm:^1.6.13"
     "@types/eslint": "npm:^8.56.10"
     "@types/license-checker": "npm:^25.0.6"
     "@types/lodash": "npm:^4.17.6"

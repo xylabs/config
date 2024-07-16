@@ -60,6 +60,7 @@
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@swc/core": "^1.6.13",
     "@types/node": "^20.14.10",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
@@ -173,6 +174,6 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "3.12.2",
+  "version": "3.12.3",
   "type": "commonjs"
 }
