@@ -58,8 +58,8 @@
     "@types/yargs": "^17.0.32",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "publint": "^0.2.8",
-    "tsup": "^8.1.0",
+    "publint": "^0.2.9",
+    "tsup": "^8.1.2",
     "typescript": "^5.5.3"
   },
   "peerDependencies": {
@@ -109,6 +109,6 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.12.3",
+  "version": "3.12.4",
   "type": "commonjs"
 }
