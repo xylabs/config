@@ -40,7 +40,7 @@ export const importConfig: Linter.FlatConfig = {
       },
     ],
     'import/no-default-export': ['warn'],
-    'import/no-deprecated': ['warn'],
+    'import/no-deprecated': ['off'],
     'import/no-named-as-default-member': ['off'],
     'import/no-named-as-default': ['off'],
     'import/no-restricted-paths': ['warn'],
