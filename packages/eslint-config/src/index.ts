@@ -1,5 +1,4 @@
 import { ESLint } from 'eslint'
-
 import compact from 'lodash/compact'
 
 import { importConfig } from './import'

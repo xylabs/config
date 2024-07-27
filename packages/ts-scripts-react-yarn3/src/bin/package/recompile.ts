@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
 import { packageRecompile } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 packageRecompile()
   .then((value) => (process.exitCode = value))

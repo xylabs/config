@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
+
 import { packageCompileTsup } from '../../actions'
 
 packageCompileTsup({ verbose: true })

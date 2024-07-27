@@ -45,9 +45,7 @@ export const lintPackage = async ({ pkg }: LintParams) => {
 
   dumpMessages(lintResults)
 
-  const errorCount = lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
-
-  return errorCount
+  return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
 
 export const lintAll = async () => {
@@ -57,9 +55,7 @@ export const lintAll = async () => {
 
   dumpMessages(lintResults)
 
-  const errorCount = lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
-
-  return errorCount
+  return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
 
 export const lint = async ({ pkg }: LintParams = {}) => {

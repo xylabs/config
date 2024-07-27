@@ -1,6 +1,7 @@
 import tsParser from '@typescript-eslint/parser'
-import importPlugin from 'eslint-plugin-import'
 import { ESLint, Linter } from 'eslint'
+import importPlugin from 'eslint-plugin-import'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export const importConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -15,6 +16,7 @@ export const importConfig: Linter.FlatConfig = {
   },
   plugins: {
     import: importPlugin as ESLint.Plugin,
+    'simple-import-sort': simpleImportSort,
   },
   settings: {
     'import/resolver': {
@@ -25,6 +27,8 @@ export const importConfig: Linter.FlatConfig = {
   },
   rules: {
     ...(importPlugin.configs.recommended as ESLint.ConfigData).rules,
+    'simple-import-sort/imports': ['warn'],
+    'simple-import-sort/exports': ['warn'],
     'import/default': ['off'],
     'import/named': ['off'],
     'import/namespace': ['off'],

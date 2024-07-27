@@ -16,6 +16,7 @@ import {
   updateYarnVersion,
   yarn3Only,
 } from '../actions'
+import { packagePositionalParam } from './param'
 
 export const xyCommonCommands = (args: Argv) => {
   return args
@@ -24,9 +25,7 @@ export const xyCommonCommands = (args: Argv) => {
       'license [package]',
       'License - Check licenses of dependencies',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       async (argv) => {
         if (argv.verbose) console.log(`License: ${argv.package ?? 'all'}`)
@@ -37,9 +36,7 @@ export const xyCommonCommands = (args: Argv) => {
       'dead [package]',
       'Dead - Check for dead code',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         if (argv.verbose) console.log('Dead')
@@ -50,9 +47,7 @@ export const xyCommonCommands = (args: Argv) => {
       'deps [package]',
       'Deps - Check for unused or missing dependencies',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         if (argv.verbose) console.log(`Checking Dependencies: ${argv.package ?? 'all'}`)
@@ -63,9 +58,7 @@ export const xyCommonCommands = (args: Argv) => {
       'gen-docs [package]',
       'GenDocs - Generate TypeDocs',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to generate docs for',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         if (argv.verbose) console.log(`Generating TypeDocs: ${argv.package ?? 'all'}`)

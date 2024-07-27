@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
+
 import { packageCopyAssets } from '../../actions'
 
 packageCopyAssets({ target: 'cjs' })

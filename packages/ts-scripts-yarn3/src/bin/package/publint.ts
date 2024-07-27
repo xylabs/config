@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk'
+
 import { packagePublint } from '../../actions'
 
 packagePublint()

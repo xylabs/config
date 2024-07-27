@@ -1,6 +1,5 @@
 import xylabsConfig from '@xylabs/eslint-config'
 import { ESLint } from 'eslint'
-
 import compact from 'lodash/compact'
 
 import { reactConfig } from './react'

@@ -1,7 +1,6 @@
 import { EOL } from 'node:os'
 
 import chalk from 'chalk'
-
 import uniq from 'lodash/uniq'
 
 import { multiLineToJSONArray } from '../jsonFormatters'
@@ -65,7 +64,8 @@ export class DuplicateDetector {
     const result = this.dependencyEntries.reduce(this.detectReducer, this.resultsFactory(this.dependency))
     if (result.duplicateVersions.length > 0) {
       console.log(chalk.yellow(`${EOL}Duplicates found for: ${this.dependency}`))
-      console.log(chalk.grey(`  ${result.duplicateVersions.toString().replaceAll(',', `${EOL}  `)}`, EOL))
+      const duplicateVersions = result.duplicateVersions.toString().replaceAll(',', `${EOL}  `)
+      console.log(chalk.grey(`  ${duplicateVersions}`, EOL))
       return 1
     } else {
       console.log(`${this.dependency} - OK`)

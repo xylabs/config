@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
 import { packagePublint } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 packagePublint()
   .then((value) => (process.exitCode = value))

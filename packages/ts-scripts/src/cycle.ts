@@ -9,7 +9,8 @@ safeExit(() => {
     'import/no-internal-modules': ['off'],
   }
 
-  const eslintCli = `yarn dlx -q eslint ${Object.entries(rules).map(([rule, value]) => ` --rule "${rule}: ${JSON.stringify(value)}"`)} .`
+  const rulesCli = Object.entries(rules).map(([rule, value]) => ` --rule "${rule}: ${JSON.stringify(value)}"`)
+  const eslintCli = `yarn dlx -q eslint ${rulesCli} .`
 
   execSync(eslintCli, {
     stdio: 'inherit',

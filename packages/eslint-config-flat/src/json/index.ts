@@ -1,6 +1,6 @@
+import { ESLint, Linter } from 'eslint'
 import jsonc from 'eslint-plugin-jsonc'
 import jsoncParser from 'jsonc-eslint-parser'
-import { ESLint, Linter } from 'eslint'
 
 export const jsonConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],

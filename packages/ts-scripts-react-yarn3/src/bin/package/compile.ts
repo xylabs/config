@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
 import { packageCompile } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 packageCompile({ verbose: false })
   .then((value) => {

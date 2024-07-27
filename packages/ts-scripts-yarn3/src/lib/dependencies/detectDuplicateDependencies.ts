@@ -26,7 +26,6 @@ export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], Defa
         if (output) {
           exitCode = new DuplicateDetector(output, dependency).detect()
           exitCode
-          continue
         } else {
           console.log(`${dependency} - N/A`)
           if (depsFromPackageJSON) {
@@ -34,7 +33,6 @@ export const detectDuplicateDependencies = (depsFromPackageJSON?: string[], Defa
             console.log(`🚨 Library ${dependency} was requested in package.json but not found`)
           }
           exitCode
-          continue
         }
       }
       return exitCode

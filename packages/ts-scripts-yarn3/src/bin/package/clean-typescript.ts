@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { packageCleanTypescript } from '../../actions'
-
 import { forget } from '@xylabs/forget'
+
+import { packageCleanTypescript } from '../../actions'
 
 forget(packageCleanTypescript())

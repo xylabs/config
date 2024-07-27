@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import { Argv } from 'yargs'
 
 import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../actions'
+import { packagePositionalParam } from './param'
 
 export const xyLintCommands = (args: Argv) => {
   return args
@@ -9,9 +10,7 @@ export const xyLintCommands = (args: Argv) => {
       'cycle [package]',
       'Cycle - Check for dependency cycles',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         const start = Date.now()
@@ -24,9 +23,7 @@ export const xyLintCommands = (args: Argv) => {
       'lint [package]',
       'Lint - Run Eslint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       async (argv) => {
         if (argv.verbose) console.log('Lint')
@@ -42,9 +39,7 @@ export const xyLintCommands = (args: Argv) => {
       'fix [package]',
       'Fix - Run Eslint w/fix',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to check',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         const start = Date.now()
@@ -57,9 +52,7 @@ export const xyLintCommands = (args: Argv) => {
       'relint [package]',
       'Relint - Clean & Lint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to relint',
-        })
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         if (argv.verbose) console.log('Relinting')
@@ -72,9 +65,7 @@ export const xyLintCommands = (args: Argv) => {
       'publint [package]',
       'Publint - Run Publint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to publint',
-        })
+        return packagePositionalParam(yargs)
       },
       async (argv) => {
         if (argv.verbose) console.log('Publint')
@@ -87,7 +78,7 @@ export const xyLintCommands = (args: Argv) => {
       'sonar',
       'Sonar - Run Sonar Check',
       (yargs) => {
-        return yargs
+        return packagePositionalParam(yargs)
       },
       (argv) => {
         const start = Date.now()

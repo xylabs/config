@@ -1,5 +1,5 @@
-import unicornPlugin from 'eslint-plugin-unicorn'
 import { ESLint, Linter } from 'eslint'
+import unicornPlugin from 'eslint-plugin-unicorn'
 
 export const unicornConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],

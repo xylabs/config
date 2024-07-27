@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
 import { packageCompileTsup } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 packageCompileTsup({ verbose: true })
   .then((value) => (process.exitCode = value))

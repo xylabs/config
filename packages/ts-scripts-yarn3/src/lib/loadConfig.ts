@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import { cosmiconfig } from 'cosmiconfig'
-
 import merge from 'lodash/merge'
 
 let config: Record<string, unknown>

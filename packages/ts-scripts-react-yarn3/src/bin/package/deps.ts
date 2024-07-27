@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
 import { packageDeps } from '@xylabs/ts-scripts-yarn3'
+import chalk from 'chalk'
 
 packageDeps()
   .then((value) => (process.exitCode = value))
