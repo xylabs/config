@@ -7,9 +7,9 @@ import { xyInstallCommands } from './xyInstallCommands'
 import { xyLintCommands } from './xyLintCommands'
 import { xyParseOptions } from './xyParseOptions'
 
-export const xy = () => {
+export const xy = async () => {
   const options = xyParseOptions()
-  return xyBuildCommands(xyCommonCommands(xyInstallCommands(xyDeployCommands(xyLintCommands(options)))))
+  return await xyBuildCommands(xyCommonCommands(xyInstallCommands(xyDeployCommands(xyLintCommands(options)))))
     .demandCommand(1)
     .command('*', '', () => {
       console.error(chalk.yellow(`Command not found [${chalk.magenta(process.argv[2])}]`))

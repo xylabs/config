@@ -1,6 +1,6 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import { Linter } from 'eslint'
+import { ESLint, Linter } from 'eslint'
 
 export const typescriptConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -14,7 +14,7 @@ export const typescriptConfig: Linter.FlatConfig = {
     },
   },
   plugins: {
-    '@typescript-eslint': tsPlugin as any,
+    '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,

@@ -17,7 +17,7 @@ export const createBuildConfig = (
   module: 'ESNext' | 'CommonJS',
   target: 'ESNext' | 'ES6',
   outDirSuffix: string,
-): Record<string, any> | undefined => {
+): Record<string, unknown> | undefined => {
   const generalConfigObject = getGeneralTypescriptConfig(location)
   if (generalConfigObject === false) {
     return undefined

@@ -5,8 +5,8 @@ import chalk from 'chalk'
 
 import { analyze, eject, sitemap, start } from '../actions'
 
-export const xyReact = () => {
-  return xyBuildCommands(xyInstallCommands(xyLintCommands(xyInstallCommands(xyCommonCommands(xyParseOptions())))))
+export const xyReact = async () => {
+  return await xyBuildCommands(xyInstallCommands(xyLintCommands(xyInstallCommands(xyCommonCommands(xyParseOptions())))))
     .command(
       'analyze',
       'Analyze - Analyze Bundles',

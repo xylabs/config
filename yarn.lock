@@ -3633,6 +3633,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xylabs/assert@npm:^3.6.5":
+  version: 3.6.5
+  resolution: "@xylabs/assert@npm:3.6.5"
+  checksum: 10/d2c93d984197ad70d08b284e008367edb3997c91729a7326b17bb6f579c510e545cc43912b27aae2070f5c89c1f403600ebd5cc30230f2cb3194de55a6069da0
+  languageName: node
+  linkType: hard
+
 "@xylabs/config@workspace:.":
   version: 0.0.0-use.local
   resolution: "@xylabs/config@workspace:."
@@ -3660,6 +3667,15 @@ __metadata:
     typescript: ^5
   languageName: unknown
   linkType: soft
+
+"@xylabs/delay@npm:^3.6.5":
+  version: 3.6.5
+  resolution: "@xylabs/delay@npm:3.6.5"
+  dependencies:
+    "@xylabs/timer": "npm:^3.6.5"
+  checksum: 10/530f003bd7e6c24a6a714752f192324c40dd8bfe1a44568a42c30398ea89d8c79dc9bc9d97d70a690b2bf91b7be38c9084f0d024d2585f8dae550cb7c282ba88
+  languageName: node
+  linkType: hard
 
 "@xylabs/eslint-config-base@workspace:^, @xylabs/eslint-config-base@workspace:packages/eslint-config-base":
   version: 0.0.0-use.local
@@ -3863,11 +3879,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@xylabs/forget@npm:^3.6.5":
+  version: 3.6.5
+  resolution: "@xylabs/forget@npm:3.6.5"
+  dependencies:
+    "@xylabs/delay": "npm:^3.6.5"
+  checksum: 10/7be8bb3aa2926cbf0d1bf5c96ee217cde9e30c0ccaac9fcb13a163134165bb953fb8cfacd24079644e6f808f34e54e8b296cf5b80a33dfc64fa1ac454a0b4c8c
+  languageName: node
+  linkType: hard
+
+"@xylabs/timer@npm:^3.6.5":
+  version: 3.6.5
+  resolution: "@xylabs/timer@npm:3.6.5"
+  dependencies:
+    "@xylabs/assert": "npm:^3.6.5"
+  checksum: 10/89fb63bd0200f29b0304f6522935c66c50a531ffd23093a0f04cce4404f2348f19851732c189027c8c88401cc4bea7a2d40ab7dec5b0732a4010e83d52c8dae0
+  languageName: node
+  linkType: hard
+
 "@xylabs/ts-scripts-react-yarn3@workspace:packages/ts-scripts-react-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-react-yarn3@workspace:packages/ts-scripts-react-yarn3"
   dependencies:
     "@types/yargs": "npm:^17.0.32"
+    "@xylabs/forget": "npm:^3.6.5"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     chalk: "npm:^4.1.2"
@@ -3935,6 +3970,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.16.1"
     "@typescript-eslint/parser": "npm:^7.16.1"
     "@xylabs/eslint-config": "workspace:^"
+    "@xylabs/forget": "npm:^3.6.5"
     "@xylabs/tsconfig": "workspace:^"
     "@xylabs/tsconfig-dom": "workspace:^"
     async-mutex: "npm:^0.5.0"

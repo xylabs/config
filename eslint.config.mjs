@@ -10,6 +10,8 @@ export default [
   {
     ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
     rules: {
+      'unicorn/no-process-exit': ['off'],
+      /*
       '@typescript-eslint/no-explicit-any': ['off'],
       'import/no-internal-modules': ['off'],
       '@typescript-eslint/no-floating-promises': ['off'],
@@ -47,7 +49,7 @@ export default [
             '../../../../../../..',
           ],
         },
-      ],
+      ],*/
     },
   },
 ]

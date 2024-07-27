@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import { ESLint, Linter } from 'eslint'
 import prettier from 'eslint-plugin-prettier'
 
 export const prettierConfig: Linter.FlatConfig = {
@@ -6,7 +6,7 @@ export const prettierConfig: Linter.FlatConfig = {
   files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.js', '**/*.d.js', '**/*.jsx', '**/*.d.jsx', '*.mjs', '*.d.mjs', '*.d.cjs'],
   plugins: { prettier },
   rules: {
-    ...(prettier.configs?.recommended as any).rules,
+    ...(prettier.configs?.recommended as ESLint.Plugin).rules,
     'prettier/prettier': [
       'warn',
       {

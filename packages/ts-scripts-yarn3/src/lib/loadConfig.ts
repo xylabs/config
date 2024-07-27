@@ -3,7 +3,7 @@ import { cosmiconfig } from 'cosmiconfig'
 
 import merge from 'lodash/merge'
 
-let config: Record<string, any>
+let config: Record<string, unknown>
 
 export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
   if (config) {

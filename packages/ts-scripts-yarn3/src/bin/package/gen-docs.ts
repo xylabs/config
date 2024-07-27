@@ -2,4 +2,6 @@
 
 import { packageGenDocs } from '../../actions'
 
-packageGenDocs()
+import { forget } from '@xylabs/forget'
+
+forget(packageGenDocs())

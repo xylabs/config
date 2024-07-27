@@ -2,4 +2,6 @@
 
 import { packageCleanOutputs } from '../../actions'
 
-packageCleanOutputs()
+import { forget } from '@xylabs/forget'
+
+forget(packageCleanOutputs())

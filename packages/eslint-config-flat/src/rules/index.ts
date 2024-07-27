@@ -17,21 +17,7 @@ export const rulesConfig: Linter.FlatConfig = {
     'no-restricted-imports': [
       'warn',
       {
-        paths: [
-          'lodash',
-          'react-player',
-          'filepond',
-          'aos',
-          'react-icons',
-          '.',
-          '..',
-          '../..',
-          '../../..',
-          '../../../..',
-          '../../../../..',
-          '../../../../../..',
-          '../../../../../../..',
-        ],
+        paths: ['.', '..', '../..', '../../..', '../../../..', '../../../../..', '../../../../../..', '../../../../../../..'],
       },
     ],
     //'no-secrets/no-secrets': ['off'],

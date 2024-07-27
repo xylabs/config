@@ -1,11 +1,11 @@
-import unicorn from 'eslint-plugin-unicorn'
-import { Linter } from 'eslint'
+import unicornPlugin from 'eslint-plugin-unicorn'
+import { ESLint, Linter } from 'eslint'
 
 export const unicornConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  plugins: { unicorn },
+  plugins: { unicorn: unicornPlugin as ESLint.Plugin },
   rules: {
-    ...unicorn.configs['flat/recommended'].rules,
+    ...(unicornPlugin.configs['flat/recommended'] as ESLint.ConfigData).rules,
     'unicorn/catch-error-name': ['off'],
     'unicorn/consistent-function-scoping': ['off'],
     'unicorn/filename-case': ['off'],

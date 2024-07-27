@@ -2,4 +2,6 @@
 
 import { packageCleanOutputs } from '@xylabs/ts-scripts-yarn3'
 
-packageCleanOutputs()
+import { forget } from '@xylabs/forget'
+
+forget(packageCleanOutputs())

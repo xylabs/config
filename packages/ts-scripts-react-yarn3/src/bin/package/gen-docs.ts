@@ -2,4 +2,6 @@
 
 import { packageGenDocs } from '@xylabs/ts-scripts-yarn3'
 
-packageGenDocs()
+import { forget } from '@xylabs/forget'
+
+forget(packageGenDocs())

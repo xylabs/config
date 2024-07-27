@@ -2,4 +2,6 @@
 
 import { packageCleanTypescript } from '../../actions'
 
-packageCleanTypescript()
+import { forget } from '@xylabs/forget'
+
+forget(packageCleanTypescript())

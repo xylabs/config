@@ -2,4 +2,6 @@
 
 import { xyReact } from '../lib'
 
-xyReact()
+import { forget } from '@xylabs/forget'
+
+forget(xyReact())
