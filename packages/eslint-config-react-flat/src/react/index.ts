@@ -1,17 +1,24 @@
 import { Linter } from 'eslint'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import globals from 'globals'
 
 export const reactConfig: Linter.FlatConfig = {
   plugins: {
-    ...reactPlugin.configs.flat.recommended.plugins,
+    react: reactPlugin,
     'react-hooks': reactHooksPlugin,
   },
-  files: ['*.tsx'],
+  files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+  languageOptions: {
+    ...reactPlugin.configs.flat.recommended.languageOptions,
+    globals: {
+      ...globals.serviceworker,
+      ...globals.browser,
+    },
+  },
   rules: {
     ...reactPlugin.configs.flat.recommended.rules,
     'react-hooks/rules-of-hooks': 'error',
-    'import/no-nodejs-modules': ['error'],
     'react-hooks/exhaustive-deps': [
       'warn',
       {
