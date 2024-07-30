@@ -12,7 +12,8 @@
   "dependencies": {
     "@xylabs/eslint-config-flat": "workspace:^",
     "eslint-plugin-react": "^7.34.4",
-    "eslint-plugin-react-hooks": "^4.6.2"
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "globals": "^15.8.0"
   },
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
