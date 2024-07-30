@@ -1,9 +1,9 @@
 declare module 'eslint-plugin-import' {
-  const configs: Record<string, unknown>
+  const configs: Linter.Plugin
 }
 
 declare module 'eslint-plugin-workspaces' {
-  const configs: Record<string, unknown>
+  const configs: Linter.Plugin
 }
 
 declare module 'eslint-plugin-unicorn' {
@@ -18,5 +18,5 @@ declare module 'eslint-plugin-unicorn' {
 declare module 'markdown-eslint-parser' {}
 
 declare module 'eslint-plugin-md' {
-  const configs: Record<string, unknown>
+  const configs: Linter.Plugin
 }
