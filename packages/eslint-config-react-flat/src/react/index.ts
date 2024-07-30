@@ -5,12 +5,12 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks'
 export const reactConfig: Linter.FlatConfig = {
   plugins: {
     ...reactPlugin.configs.flat.recommended.plugins,
-    ...reactHooksPlugin.configs.flat.recommended.plugins,
+    'react-hooks': reactHooksPlugin,
   },
   files: ['*.tsx'],
   rules: {
     ...reactPlugin.configs.flat.recommended.rules,
-    ...reactHooksPlugin.configs.flat.recommended.rules,
+    'react-hooks/rules-of-hooks': 'error',
     'import/no-nodejs-modules': ['error'],
     'react-hooks/exhaustive-deps': [
       'warn',
@@ -23,6 +23,5 @@ export const reactConfig: Linter.FlatConfig = {
   },
   settings: {
     ...reactPlugin.configs.flat.recommended.settings,
-    ...reactHooksPlugin.configs.flat.recommended.settings,
   },
 }
