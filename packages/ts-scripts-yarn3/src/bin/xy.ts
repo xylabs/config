@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 
-import { forget } from '@xylabs/forget'
-
 import { xy } from '../xy'
 
-forget(xy())
+xy()
+  .then(() => {
+    process.exit(0)
+  })
+  .catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })

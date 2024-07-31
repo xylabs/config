@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import { forget } from '@xylabs/forget'
 import { packageCleanTypescript } from '@xylabs/ts-scripts-yarn3'
 
-forget(packageCleanTypescript())
+packageCleanTypescript()
+  .then(() => {
+    process.exit(0)
+  })
+  .catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })

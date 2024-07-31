@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import { forget } from '@xylabs/forget'
 import { packageGenDocs } from '@xylabs/ts-scripts-yarn3'
 
-forget(packageGenDocs())
+packageGenDocs()
+  .then(() => {
+    process.exit(0)
+  })
+  .catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
