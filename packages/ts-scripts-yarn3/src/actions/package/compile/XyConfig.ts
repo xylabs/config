@@ -4,15 +4,13 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
 export type CompileMode = 'tsup' | 'tsc'
 
-export interface DynamicShareConfig {
+export interface FileShareConfig {
   exclude?: string[]
   include?: string[]
 }
+export interface DynamicShareConfig extends FileShareConfig {}
 
-export interface LiveShareConfig {
-  exclude?: string[]
-  include?: string[]
-}
+export interface LiveShareConfig extends FileShareConfig {}
 
 export interface CompileConfig {
   depth?: number
