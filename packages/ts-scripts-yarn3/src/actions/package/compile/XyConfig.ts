@@ -4,10 +4,29 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
 export type CompileMode = 'tsup' | 'tsc'
 
-export interface LiveShareConfig {
+/**
+ * Configuration for specifying which paths are targeted.
+ */
+export interface PathConfig {
+  /**
+   * Glob patterns to exclude (takes precedence over include).
+   */
   exclude?: string[]
+  /**
+   * Glob patterns to include.
+   */
   include?: string[]
 }
+
+/**
+ * Configuration for Dynamic Share.
+ */
+export interface DynamicShareConfig extends PathConfig {}
+
+/**
+ * Configuration for Live Share.
+ */
+export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {
   depth?: number
@@ -34,6 +53,7 @@ export type PackageCompileTscConfig = CompileConfig & {
 
 export interface XyConfigBase {
   compile?: CompileConfig
+  dynamicShare?: DynamicShareConfig
   liveShare?: LiveShareConfig
   publint?: boolean
   verbose?: boolean
