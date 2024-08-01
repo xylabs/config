@@ -4,7 +4,10 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
 export type CompileMode = 'tsup' | 'tsc'
 
-export interface DirectoryPathConfig {
+/**
+ * Configuration for specifying which paths are targeted.
+ */
+export interface PathConfig {
   /**
    * Glob patterns to exclude (takes precedence over include).
    */
@@ -18,12 +21,12 @@ export interface DirectoryPathConfig {
 /**
  * Configuration for Dynamic Share.
  */
-export interface DynamicShareConfig extends DirectoryPathConfig {}
+export interface DynamicShareConfig extends PathConfig {}
 
 /**
  * Configuration for Live Share.
  */
-export interface LiveShareConfig extends DirectoryPathConfig {}
+export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {
   depth?: number
