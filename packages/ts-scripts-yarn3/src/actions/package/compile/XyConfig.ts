@@ -5,7 +5,13 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 export type CompileMode = 'tsup' | 'tsc'
 
 export interface DirectoryPathConfig {
+  /**
+   * Glob patterns to exclude (takes precedence over include).
+   */
   exclude?: string[]
+  /**
+   * Glob patterns to include.
+   */
   include?: string[]
 }
 export interface DynamicShareConfig extends DirectoryPathConfig {}
