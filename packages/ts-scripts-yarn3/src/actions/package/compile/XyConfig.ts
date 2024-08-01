@@ -4,13 +4,13 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
 export type CompileMode = 'tsup' | 'tsc'
 
-export interface FileShareConfig {
+export interface DirectoryPathConfig {
   exclude?: string[]
   include?: string[]
 }
-export interface DynamicShareConfig extends FileShareConfig {}
+export interface DynamicShareConfig extends DirectoryPathConfig {}
 
-export interface LiveShareConfig extends FileShareConfig {}
+export interface LiveShareConfig extends DirectoryPathConfig {}
 
 export interface CompileConfig {
   depth?: number
