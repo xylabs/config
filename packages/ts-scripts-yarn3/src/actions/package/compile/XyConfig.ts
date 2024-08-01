@@ -14,8 +14,15 @@ export interface DirectoryPathConfig {
    */
   include?: string[]
 }
+
+/**
+ * Configuration for Dynamic Share.
+ */
 export interface DynamicShareConfig extends DirectoryPathConfig {}
 
+/**
+ * Configuration for Live Share.
+ */
 export interface LiveShareConfig extends DirectoryPathConfig {}
 
 export interface CompileConfig {
