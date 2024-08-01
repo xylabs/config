@@ -4,6 +4,11 @@ export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
 export type CompileMode = 'tsup' | 'tsc'
 
+export interface DynamicShareConfig {
+  exclude?: string[]
+  include?: string[]
+}
+
 export interface LiveShareConfig {
   exclude?: string[]
   include?: string[]
@@ -34,6 +39,7 @@ export type PackageCompileTscConfig = CompileConfig & {
 
 export interface XyConfigBase {
   compile?: CompileConfig
+  dynamicShare?: DynamicShareConfig
   liveShare?: LiveShareConfig
   publint?: boolean
   verbose?: boolean
