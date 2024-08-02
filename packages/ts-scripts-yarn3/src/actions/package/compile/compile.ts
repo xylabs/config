@@ -1,10 +1,10 @@
 import chalk from 'chalk'
 
-import { loadConfig } from '../../../lib'
-import { packagePublint } from '../publint'
-import { packageCompileTsc } from './packageCompileTsc'
-import { packageCompileTsup } from './packageCompileTsup'
-import { XyConfig, XyTscConfig, XyTsupConfig } from './XyConfig'
+import { loadConfig } from '../../../lib/index.ts'
+import { packagePublint } from '../publint.ts'
+import { packageCompileTsc } from './packageCompileTsc.ts'
+import { packageCompileTsup } from './packageCompileTsup.ts'
+import { XyConfig, XyTscConfig, XyTsupConfig } from './XyConfig.ts'
 
 export const packageCompile = async (inConfig: XyConfig = {}): Promise<number> => {
   const pkg = process.env.INIT_CWD

@@ -4,10 +4,10 @@ import chalk from 'chalk'
 import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
-import { buildEntries } from './buildEntries'
-import { copyTypeFiles } from './copyTypeFiles'
-import { getCompilerOptions } from './getCompilerOptions'
-import { XyConfig } from './XyConfig'
+import { buildEntries } from './buildEntries.ts'
+import { copyTypeFiles } from './copyTypeFiles.ts'
+import { getCompilerOptions } from './getCompilerOptions.ts'
+import { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTscTypes = async (
   folder: string = 'src',
@@ -22,7 +22,7 @@ export const packageCompileTscTypes = async (
   }
 
   const compilerOptions = {
-    ...getCompilerOptions({
+    ...(await getCompilerOptions({
       declaration: true,
       emitDeclarationOnly: true,
       outDir: 'dist',
@@ -30,7 +30,7 @@ export const packageCompileTscTypes = async (
       skipDefaultLibCheck: true,
       skipLibCheck: true,
       sourceMap: true,
-    }),
+    })),
     ...compilerOptionsParam,
   } as TsConfigCompilerOptions
 

@@ -30,6 +30,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "package-compile": "echo Compiled"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/xylabs/config.git"

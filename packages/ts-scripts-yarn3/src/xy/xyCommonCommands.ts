@@ -15,8 +15,8 @@ import {
   updateYarnPlugins,
   updateYarnVersion,
   yarn3Only,
-} from '../actions'
-import { packagePositionalParam } from './param'
+} from '../actions/index.ts'
+import { packagePositionalParam } from './param.ts'
 
 export const xyCommonCommands = (args: Argv) => {
   return args

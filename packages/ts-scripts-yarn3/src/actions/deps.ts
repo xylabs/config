@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { runSteps, ScriptStep } from '../lib'
+import { runSteps, ScriptStep } from '../lib/index.ts'
 
 export interface DepsParams {
   incremental?: boolean

@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import { packageCopyAssets } from '../../actions'
+import { packageCopyAssets } from '../../actions/index.ts'
 
 packageCopyAssets({ target: 'cjs' })
   .then((value) => (process.exitCode = value))

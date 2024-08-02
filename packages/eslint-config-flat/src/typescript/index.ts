@@ -4,7 +4,7 @@ import { ESLint, Linter } from 'eslint'
 
 export const typescriptConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.js', '**/*.d.js', '**/*.jsx', '**/*.d.jsx'],
+  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {

@@ -1,23 +1,29 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
     "importHelpers": true,
     "incremental": false,
-    "module": "ESNEXT",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "outDir": "dist",
+    "removeComments": true,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNEXT"
+    "target": "ESNext",
   },
-  "exclude": ["src/**/*.spec.*", "dist", "docs", "node_modules"],
+  "exclude": [".github", ".vscode", ".yarn", "dist", "node_modules", "storybook-static", "build"],
   "include": ["src"]
 }

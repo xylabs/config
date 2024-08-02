@@ -1,12 +1,12 @@
 import chalk from 'chalk'
-import { sync } from 'parse-git-config'
+import ParseGitConfig from 'parse-git-config'
 
 export const gitlint = () => {
   console.log(`\nGitlint Start [${process.cwd()}]\n`)
   let valid = 0
   let warnings = 0
   const errors = 0
-  const gitConfig = sync()
+  const gitConfig = ParseGitConfig.sync()
 
   const warn = (message: string) => {
     console.warn(chalk.yellow(`Warning: ${message}`))

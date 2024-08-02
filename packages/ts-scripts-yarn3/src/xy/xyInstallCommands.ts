@@ -1,6 +1,6 @@
 import { Argv } from 'yargs'
 
-import { clean, dupdeps, reinstall, statics, up, updo } from '../actions'
+import { clean, dupdeps, reinstall, statics, up, updo } from '../actions/index.ts'
 
 export const xyInstallCommands = (args: Argv) => {
   return args

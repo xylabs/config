@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import { packageCompile } from '../../actions'
+import { packageCompile } from '../../actions/index.ts'
 
 packageCompile({ verbose: false })
   .then((value) => {

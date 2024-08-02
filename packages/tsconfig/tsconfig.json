@@ -22,7 +22,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNext",
+    "target": "ESNext"
   },
   "exclude": [".github", ".vscode", ".yarn", "dist", "node_modules", "storybook-static", "build"]
 }

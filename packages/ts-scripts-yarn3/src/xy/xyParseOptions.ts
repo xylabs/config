@@ -1,4 +1,5 @@
 import yargs, { Argv } from 'yargs'
+// eslint-disable-next-line import/no-internal-modules
 import { hideBin } from 'yargs/helpers'
 
 export const xyParseOptions = (): Argv => {

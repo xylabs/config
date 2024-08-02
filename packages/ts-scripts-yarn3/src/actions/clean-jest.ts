@@ -1,4 +1,4 @@
-import { runSteps } from '../lib'
+import { runSteps } from '../lib/index.ts'
 
 export const cleanJest = (): number => {
   const pkgName = process.env.npm_package_name

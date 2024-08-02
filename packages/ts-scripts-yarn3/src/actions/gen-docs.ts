@@ -1,4 +1,4 @@
-import { runSteps, ScriptStep } from '../lib'
+import { runSteps, ScriptStep } from '../lib/index.ts'
 
 export interface GenDocsParams {
   incremental?: boolean

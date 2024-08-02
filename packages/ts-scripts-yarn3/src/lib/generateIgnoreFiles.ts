@@ -1,8 +1,8 @@
 import chalk from 'chalk'
 
-import { readNonEmptyLines, writeLines } from './file'
-import { union } from './string'
-import { INIT_CWD, yarnWorkspace, yarnWorkspaces } from './yarn'
+import { readNonEmptyLines, writeLines } from './file/index.ts'
+import { union } from './string/index.ts'
+import { INIT_CWD, yarnWorkspace, yarnWorkspaces } from './yarn/index.ts'
 
 const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
 

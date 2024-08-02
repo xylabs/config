@@ -1,9 +1,9 @@
 import { EOL } from 'node:os'
 
 import chalk from 'chalk'
-import uniq from 'lodash/uniq'
+import { uniq } from 'lodash-es'
 
-import { multiLineToJSONArray } from '../jsonFormatters'
+import { multiLineToJSONArray } from '../jsonFormatters.ts'
 
 interface ChildFields {
   descriptor: string

@@ -1,4 +1,4 @@
-import { runStepsAsync } from '../lib'
+import { runStepsAsync } from '../lib/index.ts'
 
 export interface CleanParams {
   pkg?: string

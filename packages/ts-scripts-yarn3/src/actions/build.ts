@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { runStepsAsync } from '../lib'
+import { runStepsAsync } from '../lib/index.ts'
 
 export interface BuildParams {
   incremental?: boolean

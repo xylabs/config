@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import { packageRecompile } from '../../actions'
+import { packageRecompile } from '../../actions/index.ts'
 
 packageRecompile()
   .then((value) => (process.exitCode = value))

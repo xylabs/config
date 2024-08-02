@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  bundle: false,
+  bundle: true,
   cjsInterop: true,
   clean: false,
   dts: {
@@ -9,9 +9,19 @@ export default defineConfig({
   },
   entry: ['src'],
   format: ['cjs', 'esm'],
+  outExtension({ format }) {
+    if (format === 'cjs') {
+      return {
+        js: '.cjs',
+      }
+    }
+    return {
+      js: '.mjs',
+    }
+  },
   outDir: 'dist',
   sourcemap: true,
   splitting: false,
-  target: 'node16',
+  target: 'esnext',
   tsconfig: 'tsconfig.build.json',
 })

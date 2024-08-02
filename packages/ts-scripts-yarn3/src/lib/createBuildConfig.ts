@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-import { defaultBuildConfig } from './defaultBuildConfig'
+import { defaultBuildConfig } from './defaultBuildConfig.ts'
 
 const getGeneralTypescriptConfig = (location: string) => {
   let generalConfig: string | undefined

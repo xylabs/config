@@ -15,11 +15,7 @@
     "@xylabs/tsconfig-dom": "workspace:^"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "typescript": "^5.5.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "@xylabs/ts-scripts-yarn3": "workspace:^"
   },
   "homepage": "https://github.com/xylabs/config.git",
   "keywords": [
@@ -31,6 +27,9 @@
   ],
   "license": "LGPL-3.0-or-later",
   "main": "./tsconfig.json",
+  "scripts": {
+    "package-compile": "echo Compiled"
+  },
   "publishConfig": {
     "access": "public"
   },

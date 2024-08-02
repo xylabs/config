@@ -1,14 +1,14 @@
 import { ESLint } from 'eslint'
-import compact from 'lodash/compact'
+import { compact } from 'lodash-es'
 
-import { importConfig } from './import'
+import { importConfig } from './import/index.ts'
 //import { jsonConfig } from './json'
 //import { markdownConfig } from './markdown'
-import { prettierConfig } from './prettier'
-import { rulesConfig } from './rules'
-import { typescriptConfig } from './typescript'
-import { unicornConfig } from './unicorn'
-import { workspacesConfig } from './workspaces'
+import { prettierConfig } from './prettier/index.ts'
+import { rulesConfig } from './rules/index.ts'
+import { typescriptConfig } from './typescript/index.ts'
+import { unicornConfig } from './unicorn/index.ts'
+import { workspacesConfig } from './workspaces/index.ts'
 
 const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {

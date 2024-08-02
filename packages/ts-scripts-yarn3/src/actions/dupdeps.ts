@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { detectDuplicateDependencies, parsedPackageJSON } from '../lib'
+import { detectDuplicateDependencies, parsedPackageJSON } from '../lib/index.ts'
 
 export const dupdeps = () => {
   console.log(chalk.green('Checking all Dependencies for Duplicates'))

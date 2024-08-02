@@ -1,6 +1,6 @@
 /** Catch child process a crash and returns the code */
 
-import { processEx } from './processEx'
+import { processEx } from './processEx.ts'
 
 const safeExit = (func: () => number, exitOnFail = true): number => {
   try {

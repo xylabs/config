@@ -1,7 +1,7 @@
 import { rmSync } from 'node:fs'
 
-import { yarnWorkspaces } from '../lib'
-import { lint } from './lint'
+import { yarnWorkspaces } from '../lib/index.ts'
+import { lint } from './lint.ts'
 
 export const lintClean = () => {
   console.log('Lint Clean [.eslintcache]')

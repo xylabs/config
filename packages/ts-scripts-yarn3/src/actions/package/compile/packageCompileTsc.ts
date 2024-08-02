@@ -12,9 +12,9 @@ import {
   LineAndCharacter,
 } from 'typescript'
 
-import { packagePublint } from '../publint'
-import { getCompilerOptions } from './getCompilerOptions'
-import { XyTscConfig } from './XyConfig'
+import { packagePublint } from '../publint.ts'
+import { getCompilerOptions } from './getCompilerOptions.ts'
+import { XyTscConfig } from './XyConfig.ts'
 
 export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()
@@ -33,11 +33,11 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   }
 
   const compilerOptions = {
-    ...getCompilerOptions({
+    ...(await getCompilerOptions({
       outDir: 'dist',
       removeComments: true,
       rootDir: 'src',
-    }),
+    })),
     ...compilerOptionsParam,
     ...(noEmit === undefined ? {} : { noEmit }),
   } as TsConfigCompilerOptions

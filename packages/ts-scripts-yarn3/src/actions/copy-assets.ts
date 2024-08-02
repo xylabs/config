@@ -3,7 +3,7 @@ import path from 'node:path/posix'
 import chalk from 'chalk'
 import cpy from 'cpy'
 
-import { yarnWorkspaces } from '../lib'
+import { yarnWorkspaces } from '../lib/index.ts'
 
 export interface CopyAssetsParams {
   pkg?: string

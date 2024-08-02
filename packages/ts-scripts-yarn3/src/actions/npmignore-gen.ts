@@ -1,4 +1,4 @@
-import { generateIgnoreFiles } from '../lib'
+import { generateIgnoreFiles } from '../lib/index.ts'
 
 const filename = '.npmignore'
 

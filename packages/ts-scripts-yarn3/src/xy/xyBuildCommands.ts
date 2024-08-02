@@ -1,6 +1,6 @@
 import { Argv } from 'yargs'
 
-import { build, compile, copyAssets, rebuild, recompile } from '../actions'
+import { build, compile, copyAssets, rebuild, recompile } from '../actions/index.ts'
 
 export const xyBuildCommands = (args: Argv) => {
   return args

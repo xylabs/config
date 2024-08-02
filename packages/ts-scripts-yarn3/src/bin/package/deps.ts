@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import { packageDeps } from '../../actions'
+import { packageDeps } from '../../actions/index.ts'
 
 packageDeps()
   .then((value) => (process.exitCode = value))

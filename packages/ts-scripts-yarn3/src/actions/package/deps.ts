@@ -3,9 +3,10 @@ import { existsSync, readFileSync } from 'node:fs'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
-import depcheck, { special } from 'depcheck'
+import depcheck from 'depcheck'
+const special = depcheck.special
 
-import { checkResult } from '../../lib'
+import { checkResult } from '../../lib/index.ts'
 
 const defaultIgnorePatterns = ['*.d.ts', 'dist', '.*', 'node_modules']
 const defaultIgnoreDevDeps = [

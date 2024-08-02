@@ -1,4 +1,4 @@
-import { runSteps } from '../lib'
+import { runSteps } from '../lib/index.ts'
 
 export const cycle = () => {
   const rules = ['"\'import/no-cycle\': [1, { maxDepth: 6 }]"', "\"'import/no-internal-modules': ['off']\""]

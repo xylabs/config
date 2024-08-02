@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import { packagePublint } from '../../actions'
+import { packagePublint } from '../../actions/index.ts'
 
 packagePublint()
   .then((value) => (process.exitCode = value))

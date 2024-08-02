@@ -5,7 +5,7 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export const importConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.js', '**/*.d.js', '**/*.jsx', '**/*.d.jsx'],
+  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {
@@ -41,6 +41,18 @@ export const importConfig: Linter.FlatConfig = {
     ],
     'import/no-default-export': ['warn'],
     'import/no-deprecated': ['off'],
+    'import/no-internal-modules': [
+      'warn',
+      {
+        allow: [
+          // Allow imports to any index.js file
+          '**/index.js',
+          '**/index.ts',
+          '**/index.jsx',
+          '**/index.tsx',
+        ],
+      },
+    ],
     'import/no-named-as-default-member': ['off'],
     'import/no-named-as-default': ['off'],
     'import/no-restricted-paths': ['warn'],

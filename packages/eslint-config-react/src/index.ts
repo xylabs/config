@@ -1,8 +1,8 @@
 import xylabsConfig from '@xylabs/eslint-config'
 import { ESLint } from 'eslint'
-import compact from 'lodash/compact'
+import { compact } from 'lodash-es'
 
-import { reactConfig } from './react'
+import { reactConfig } from './react/index.ts'
 
 const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {

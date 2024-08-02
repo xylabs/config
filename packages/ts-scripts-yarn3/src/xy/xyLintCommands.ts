@@ -1,8 +1,8 @@
 import chalk from 'chalk'
 import { Argv } from 'yargs'
 
-import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../actions'
-import { packagePositionalParam } from './param'
+import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../actions/index.ts'
+import { packagePositionalParam } from './param.ts'
 
 export const xyLintCommands = (args: Argv) => {
   return args

@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 
-import { withErrnoException } from './withErrnoException'
-import { withError } from './withError'
+import { withErrnoException } from './withErrnoException.ts'
+import { withError } from './withError.ts'
 
 export const processEx = (ex: unknown) => {
   const error = typeof ex === 'string' ? new Error(ex) : ex

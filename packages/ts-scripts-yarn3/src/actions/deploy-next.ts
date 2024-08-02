@@ -1,4 +1,4 @@
-import { runSteps } from '../lib'
+import { runSteps } from '../lib/index.ts'
 
 export const deployNext = () => {
   return runSteps('Deploy [Next]', [

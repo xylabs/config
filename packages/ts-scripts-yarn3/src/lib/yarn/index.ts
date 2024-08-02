@@ -1,3 +1,3 @@
-export * from './isYarnVersionOrGreater'
-export * from './workspace'
-export * from './yarnInitCwd'
+export * from './isYarnVersionOrGreater.ts'
+export * from './workspace/index.ts'
+export * from './yarnInitCwd.ts'

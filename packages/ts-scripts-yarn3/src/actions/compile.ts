@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { runSteps } from '../lib'
+import { runSteps } from '../lib/index.ts'
 
 export interface CompileParams {
   incremental?: boolean

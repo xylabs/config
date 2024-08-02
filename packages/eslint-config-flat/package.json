@@ -11,8 +11,8 @@
     "url": "https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsonc": "^2.16.0",
@@ -32,8 +32,8 @@
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "eslint": "^9.7.0",
-    "typescript": "^5.5.3"
+    "eslint": "^9.8.0",
+    "typescript": "^5.5.4"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [

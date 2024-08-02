@@ -59,8 +59,8 @@
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "publint": "^0.2.9",
-    "tsup": "^8.1.2",
-    "typescript": "^5.5.3"
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "typescript": "^5"

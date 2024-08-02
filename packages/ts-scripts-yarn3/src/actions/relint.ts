@@ -1,6 +1,6 @@
 import { rmSync } from 'node:fs'
 
-import { runSteps, yarnWorkspaces } from '../lib'
+import { runSteps, yarnWorkspaces } from '../lib/index.ts'
 
 export const relint = () => {
   console.log('Relint - Cleaning [.eslintcache]')

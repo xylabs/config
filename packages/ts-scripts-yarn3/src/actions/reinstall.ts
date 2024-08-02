@@ -1,6 +1,6 @@
 import { closeSync, openSync, rmSync } from 'node:fs'
 
-import { runSteps, yarnWorkspaces } from '../lib'
+import { runSteps, yarnWorkspaces } from '../lib/index.ts'
 
 export const reinstall = () => {
   console.log('Reinstall [Clear Lock File]')

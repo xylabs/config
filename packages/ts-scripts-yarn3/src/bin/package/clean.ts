@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { packageClean } from '../../actions'
+import { packageClean } from '../../actions/index.ts'
 
 packageClean()
   .then(() => {

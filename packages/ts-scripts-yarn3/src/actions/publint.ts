@@ -1,4 +1,4 @@
-import { runSteps, runStepsAsync } from '../lib'
+import { runSteps, runStepsAsync } from '../lib/index.ts'
 
 export interface PublintParams {
   pkg?: string

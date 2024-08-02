@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { packageCleanOutputs } from '../../actions'
+import { packageCleanOutputs } from '../../actions/index.ts'
 
 packageCleanOutputs()
   .then(() => {

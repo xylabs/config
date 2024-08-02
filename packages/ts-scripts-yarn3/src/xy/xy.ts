@@ -1,11 +1,11 @@
 import chalk from 'chalk'
 
-import { xyBuildCommands } from './xyBuildCommands'
-import { xyCommonCommands } from './xyCommonCommands'
-import { xyDeployCommands } from './xyDeployCommands'
-import { xyInstallCommands } from './xyInstallCommands'
-import { xyLintCommands } from './xyLintCommands'
-import { xyParseOptions } from './xyParseOptions'
+import { xyBuildCommands } from './xyBuildCommands.ts'
+import { xyCommonCommands } from './xyCommonCommands.ts'
+import { xyDeployCommands } from './xyDeployCommands.ts'
+import { xyInstallCommands } from './xyInstallCommands.ts'
+import { xyLintCommands } from './xyLintCommands.ts'
+import { xyParseOptions } from './xyParseOptions.ts'
 
 export const xy = async () => {
   const options = xyParseOptions()

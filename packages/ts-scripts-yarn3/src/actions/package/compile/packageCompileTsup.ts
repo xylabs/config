@@ -1,11 +1,11 @@
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 import { build, defineConfig, Options } from 'tsup'
 
-import { packagePublint } from '../publint'
-import { buildEntries } from './buildEntries'
-import { packageCompileTsc } from './packageCompileTsc'
-import { packageCompileTscTypes } from './packageCompileTscTypes'
-import { EntryMode, XyTsupConfig } from './XyConfig'
+import { packagePublint } from '../publint.ts'
+import { buildEntries } from './buildEntries.ts'
+import { packageCompileTsc } from './packageCompileTsc.ts'
+import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
+import { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
 const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
@@ -108,7 +108,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       ),
                       // minify: true,
                       outDir: 'dist/browser',
-                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.ts' } : { js: '.cjs' }),
                       platform: 'browser',
                       skipNodeModulesBundle: true,
                       sourcemap: true,
@@ -132,7 +132,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       ),
                       // minify: true,
                       outDir: 'dist/browser',
-                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.ts' } : { js: '.cjs' }),
                       platform: 'browser',
                       skipNodeModulesBundle: true,
                       sourcemap: true,
@@ -169,7 +169,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       ),
                       // minify: true,
                       outDir: 'dist/neutral',
-                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.ts' } : { js: '.cjs' }),
                       platform: 'neutral',
                       skipNodeModulesBundle: true,
                       sourcemap: true,
@@ -193,7 +193,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                       ),
                       // minify: true,
                       outDir: 'dist/neutral',
-                      outExtension: ({ format }) => (format === 'esm' ? { js: '.js' } : { js: '.cjs' }),
+                      outExtension: ({ format }) => (format === 'esm' ? { js: '.ts' } : { js: '.cjs' }),
                       platform: 'neutral',
                       skipNodeModulesBundle: true,
                       sourcemap: true,

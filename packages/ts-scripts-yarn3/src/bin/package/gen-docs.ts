@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { packageGenDocs } from '../../actions'
+import { packageGenDocs } from '../../actions/index.ts'
 
 packageGenDocs()
   .then(() => {

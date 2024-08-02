@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { packageCleanTypescript } from '../../actions'
+import { packageCleanTypescript } from '../../actions/index.ts'
 
 packageCleanTypescript()
   .then(() => {

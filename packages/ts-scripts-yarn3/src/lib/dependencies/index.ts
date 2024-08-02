@@ -1,2 +1,2 @@
-export * from './detectDuplicateDependencies'
-export * from './DuplicateDetector'
+export * from './detectDuplicateDependencies.ts'
+export * from './DuplicateDetector.ts'

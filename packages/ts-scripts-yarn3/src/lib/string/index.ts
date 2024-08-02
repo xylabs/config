@@ -1,2 +1,2 @@
-export * from './empty'
-export * from './union'
+export * from './empty.ts'
+export * from './union.ts'

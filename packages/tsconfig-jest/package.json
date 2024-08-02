@@ -18,13 +18,16 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.11",
+    "@types/node": "^20.14.14",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "scripts": {
+    "package-compile": "echo Compiled"
   },
   "homepage": "https://github.com/xylabs/config.git",
   "keywords": [

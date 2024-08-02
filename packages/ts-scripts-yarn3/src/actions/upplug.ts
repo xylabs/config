@@ -1,4 +1,4 @@
-import { runSteps } from '../lib'
+import { runSteps } from '../lib/index.ts'
 
 export const updateYarnPlugins = () => {
   return runSteps('Update Yarn Plugins', [

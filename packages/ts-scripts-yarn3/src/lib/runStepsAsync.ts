@@ -3,9 +3,9 @@ import { existsSync } from 'node:fs'
 
 import chalk from 'chalk'
 
-import { checkResult } from './checkResult'
-import { ScriptStep } from './runSteps'
-import { safeExitAsync } from './safeExit'
+import { checkResult } from './checkResult.ts'
+import { ScriptStep } from './runSteps.ts'
+import { safeExitAsync } from './safeExit.ts'
 
 export const runStepAsync = (name: string, step: ScriptStep, exitOnFail = true, message?: string) => {
   return new Promise<number>((resolve) => {

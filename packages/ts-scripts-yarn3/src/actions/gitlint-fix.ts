@@ -1,12 +1,12 @@
 import { execSync } from 'node:child_process'
 
 import chalk from 'chalk'
-import { sync } from 'parse-git-config'
+import ParseGitConfig from 'parse-git-config'
 
 export const gitlintFix = () => {
   console.log(`\nGitlint Fix Start [${process.cwd()}]\n`)
 
-  const gitConfig = sync()
+  const gitConfig = ParseGitConfig.sync()
 
   if (gitConfig.core.ignorecase) {
     execSync('git config core.ignorecase false', { stdio: 'inherit' })

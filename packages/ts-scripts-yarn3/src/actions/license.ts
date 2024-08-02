@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { init } from 'license-checker'
 
-import { yarnWorkspaces } from '../lib'
+import { yarnWorkspaces } from '../lib/index.ts'
 
 export const license = async (pkg?: string) => {
   const workspaces = yarnWorkspaces()

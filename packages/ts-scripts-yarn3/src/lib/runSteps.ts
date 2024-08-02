@@ -3,8 +3,8 @@ import { existsSync } from 'node:fs'
 
 import chalk from 'chalk'
 
-import { checkResult } from './checkResult'
-import { safeExit } from './safeExit'
+import { checkResult } from './checkResult.ts'
+import { safeExit } from './safeExit.ts'
 
 export type ScriptStep =
   | [/*command*/ 'yarn' | 'node' | 'ts-node-script' | 'tsc' | 'jest', /*arg*/ string | string[]]

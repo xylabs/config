@@ -10,8 +10,8 @@
     "url": "https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^3.0.0",
@@ -26,12 +26,12 @@
     "eslint-plugin-unicorn": "^54.0.0",
     "eslint-plugin-workspaces": "^0.10.1",
     "jsonc-eslint-parser": "^2.4.0",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "markdown-eslint-parser": "^1.2.1",
     "prettier": "^3.3.3",
     "remark-lint-maximum-line-length": "^4.0.1",
     "remark-preset-lint-markdown-style-guide": "^6.0.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "eslint": "*"
@@ -44,13 +44,14 @@
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
     "@swc/cli": "^0.4.0",
-    "@swc/core": "^1.7.0",
-    "@types/node": "^20.14.11",
+    "@swc/core": "^1.7.5",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.14.14",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "tslib": "^2.6.3",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "homepage": "https://github.com/xylabs/eslint-config.git",
   "keywords": [
@@ -63,18 +64,19 @@
   "exports": {
     "node": {
       "require": {
-        "types": "./dist/node/index.d.ts",
-        "default": "./dist/node/index.js"
+        "types": "./dist/node/index.d.cts",
+        "default": "./dist/node/index.cjs"
       },
       "import": {
-        "types": "./dist/node/index.d.mts",
-        "default": "./dist/node/index.mjs"
+        "types": "./dist/node/index.d.ts",
+        "default": "./dist/node/index.js"
       }
     },
     "types": "./dist/node/index.d.ts",
     "default": "./dist/node/index.js"
   },
-  "main": "./dist/node/index.js",
+  "main": "./dist/node/index.cjs",
+  "import": "./dist/node/index.js",
   "types": "./dist/node/index.d.ts",
   "name": "@xylabs/eslint-config",
   "publishConfig": {
@@ -89,5 +91,5 @@
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   },
-  "type": "commonjs"
+  "type": "module"
 }
