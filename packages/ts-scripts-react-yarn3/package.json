@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "yargs": "^17.7.2"
   },
   "description": "TypeScript project scripts",

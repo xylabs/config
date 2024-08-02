@@ -33,7 +33,7 @@ const dumpMessages = (lintResults: ESLint.LintResult[]) => {
 }
 
 export const lintPackage = async ({ pkg }: LintParams) => {
-  const workspace = yarnWorkspaces().find((workspace) => workspace.name === pkg)
+  const workspace = yarnWorkspaces().find(workspace => workspace.name === pkg)
   if (!workspace) {
     console.error(chalk.red(`Unable to locate package [${chalk.magenta(pkg)}]`))
     process.exit(1)

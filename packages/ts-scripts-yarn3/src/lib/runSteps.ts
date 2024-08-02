@@ -7,8 +7,8 @@ import { checkResult } from './checkResult.ts'
 import { safeExit } from './safeExit.ts'
 
 export type ScriptStep =
-  | [/*command*/ 'yarn' | 'node' | 'ts-node-script' | 'tsc' | 'jest', /*arg*/ string | string[]]
-  | [/*command*/ string, /*arg*/ string | string[], /*config*/ SpawnSyncOptionsWithBufferEncoding]
+  | [/* command */ 'yarn' | 'node' | 'ts-node-script' | 'tsc' | 'jest', /* arg */ string | string[]]
+  | [/* command */ string, /* arg */ string | string[], /* config */ SpawnSyncOptionsWithBufferEncoding]
 
 export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, messages?: string[]): number => {
   return safeExit(() => {
@@ -23,8 +23,8 @@ export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, m
       if (command === 'node' && !existsSync(argList[0])) {
         throw new Error(`File not found [${argList[0]}]`)
       }
-      const status =
-        spawnSync(command, Array.isArray(args) ? args : args.split(' '), {
+      const status
+        = spawnSync(command, Array.isArray(args) ? args : args.split(' '), {
           ...config,
           encoding: 'utf8',
           env: { FORCE_COLOR: '3', ...process.env },

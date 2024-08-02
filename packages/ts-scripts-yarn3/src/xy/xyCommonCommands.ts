@@ -68,7 +68,7 @@ export const xyCommonCommands = (args: Argv) => {
     .command(
       'clean-docs',
       'CleanDocs - Clean TypeDocs',
-      (yargs) => yargs,
+      yargs => yargs,
       (argv) => {
         if (argv.verbose) console.log('Cleaning TypeDocs: all')
         process.exitCode = cleanDocs()

@@ -9,7 +9,7 @@ export const packageCleanTypescript = async () => {
   console.log(chalk.green(`Cleaning Typescript [${pkgName}]`))
   const files: string[] = [path.join(pkg, '*.tsbuildinfo'), path.join(pkg, '.tsconfig.*'), path.join(pkg, '.eslintcache')]
 
-  await Promise.all(files.map((file) => rimraf(file)))
+  await Promise.all(files.map(file => rimraf(file)))
 
   return 0
 }

@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process'
 
 import { safeExit } from './safeExit'
 
-export type ScriptStep = [/*command*/ string, /*arg*/ string | string[]]
+export type ScriptStep = [/* command */ string, /* arg */ string | string[]]
 
 export const runSteps = (name: string, steps: ScriptStep[]) => {
   safeExit(() => {

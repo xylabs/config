@@ -4,7 +4,7 @@ export const rulesConfig: ESLint.ConfigData = {
   extends: ['plugin:deprecation/recommended'],
   plugins: ['sort-keys-fix', 'no-secrets'],
   rules: {
-    complexity: ['error', 18],
+    'complexity': ['error', 18],
     'deprecation/deprecation': ['warn'],
     'max-depth': ['error', 6],
     'max-lines': [
@@ -40,9 +40,9 @@ export const rulesConfig: ESLint.ConfigData = {
     'no-tabs': ['error'],
     'no-unused-vars': 'off',
     'no-useless-escape': 'off',
-    quotes: [2, 'single', 'avoid-escape'],
+    'quotes': [2, 'single', 'avoid-escape'],
     'require-await': 'error',
-    semi: ['warn', 'never'],
+    'semi': ['warn', 'never'],
     'sort-keys-fix/sort-keys-fix': 'warn',
   },
 }

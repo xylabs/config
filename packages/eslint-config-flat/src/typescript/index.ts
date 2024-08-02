@@ -1,3 +1,4 @@
+import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import { ESLint, Linter } from 'eslint'
@@ -15,12 +16,16 @@ export const typescriptConfig: Linter.FlatConfig = {
   },
   plugins: {
     '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
+    '@stylistic': esStylistic,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
+    ...esStylistic.configs['recommended-flat'].rules,
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/member-delimiter-style': [
+    '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
+    '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
+    '@stylistic/member-delimiter-style': [
       'error',
       {
         multiline: {
@@ -115,6 +120,6 @@ export const typescriptConfig: Linter.FlatConfig = {
         argsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/semi': ['warn', 'never'],
+    'semi': ['warn', 'never'],
   },
 }

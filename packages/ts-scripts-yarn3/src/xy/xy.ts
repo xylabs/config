@@ -13,7 +13,7 @@ export const xy = async () => {
     .demandCommand(1)
     .command('*', '', () => {
       console.error(chalk.yellow(`Command not found [${chalk.magenta(process.argv[2])}]`))
-      console.log(chalk.gray("Try 'yarn xy --help' for list of commands"))
+      console.log(chalk.gray('Try \'yarn xy --help\' for list of commands'))
     })
     .version()
     .help().argv

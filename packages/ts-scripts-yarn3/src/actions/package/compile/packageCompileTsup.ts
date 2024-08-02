@@ -35,7 +35,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     )
   ).flat()
 
-  await Promise.all(optionsList.map((options) => build(options)))
+  await Promise.all(optionsList.map(options => build(options)))
   await packageCompileTscTypes(folder, { verbose }, { outDir })
 
   return 0
@@ -55,46 +55,46 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compileForNeutral = compile?.neutral ?? { src: {} }
 
   return (
-    (await packageCompileTsc(true, { publint: false, verbose })) ||
-    (
+    (await packageCompileTsc(true, { publint: false, verbose }))
+    || (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
-          return folder ?
-              await compileFolder(
-                folder,
-                compile?.entryMode,
-                {
-                  bundle: true,
-                  format: ['cjs', 'esm'],
-                  loader: merge(
-                    {},
-                    { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
-                    inEsBuildOptions?.loader,
-                  ),
-                  // minify: true,
-                  outDir: 'dist/node',
-                  outExtension: ({ format }) => (format === 'esm' ? { js: '.mjs' } : { js: '.cjs' }),
-                  platform: 'node',
-                  skipNodeModulesBundle: true,
-                  sourcemap: true,
-                  target: 'node16',
-                  // terserOptions: { format: { comments: false } },
-                  ...compile?.tsup?.options,
-                  ...(typeof options === 'object' ? options : {}),
-                },
-                verbose,
-              )
+          return folder
+            ? await compileFolder(
+              folder,
+              compile?.entryMode,
+              {
+                bundle: true,
+                format: ['cjs', 'esm'],
+                loader: merge(
+                  {},
+                  { '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' },
+                  inEsBuildOptions?.loader,
+                ),
+                // minify: true,
+                outDir: 'dist/node',
+                outExtension: ({ format }) => (format === 'esm' ? { js: '.mjs' } : { js: '.cjs' }),
+                platform: 'node',
+                skipNodeModulesBundle: true,
+                sourcemap: true,
+                target: 'node16',
+                // terserOptions: { format: { comments: false } },
+                ...compile?.tsup?.options,
+                ...(typeof options === 'object' ? options : {}),
+              },
+              verbose,
+            )
             : 0
         }),
       )
-    ).reduce((prev, value) => prev + value, 0) ||
-    (
+    ).reduce((prev, value) => prev + value, 0)
+    || (
       await Promise.all(
         Object.entries(compileForBrowser).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
-          return folder ?
-              (
+          return folder
+            ? (
                 await Promise.all([
                   compileFolder(
                     folder,
@@ -149,13 +149,13 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             : 0
         }),
       )
-    ).reduce((prev, value) => prev + value, 0) ||
-    (
+    ).reduce((prev, value) => prev + value, 0)
+    || (
       await Promise.all(
         Object.entries(compileForNeutral).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.neutral?.esbuildOptions === 'object' ? compile?.neutral?.esbuildOptions : {}
-          return folder ?
-              (
+          return folder
+            ? (
                 await Promise.all([
                   compileFolder(
                     folder,
@@ -210,7 +210,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             : 0
         }),
       )
-    ).reduce((prev, value) => prev + value, 0) ||
-    (publint ? await packagePublint() : 0)
+    ).reduce((prev, value) => prev + value, 0)
+    || (publint ? await packagePublint() : 0)
   )
 }

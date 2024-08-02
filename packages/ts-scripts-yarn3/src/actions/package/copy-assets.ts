@@ -14,7 +14,7 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', name: string, location: s
       `../dist/${target}`,
       {
         cwd: path.join(location, 'src'),
-        parents: true,
+        flat: false,
       },
     )
     if (values.length > 0) {

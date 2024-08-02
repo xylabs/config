@@ -9,7 +9,7 @@ const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {
     return []
   }
-  return (Array.isArray(value) ? value : [value]).filter((item) => !!item) as T[]
+  return (Array.isArray(value) ? value : [value]).filter(item => !!item) as T[]
 }
 
 const config: ESLint.ConfigData = {

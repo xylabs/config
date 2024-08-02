@@ -10,8 +10,8 @@
     "url": "https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^3.0.0",
@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "eslint-plugin-unicorn": "^54.0.0",
+    "eslint-plugin-unicorn": "^55.0.0",
     "eslint-plugin-workspaces": "^0.10.1",
     "jsonc-eslint-parser": "^2.4.0",
     "lodash-es": "^4.17.21",
@@ -45,7 +45,7 @@
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.7.5",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.14.14",
+    "@types/node": "^22.1.0",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint": "^9.8.0",

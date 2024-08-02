@@ -8,10 +8,10 @@ declare module 'eslint-plugin-workspaces' {
 
 declare module 'eslint-plugin-unicorn' {
   const configs: {
-    all: unknown
+    'all': unknown
     'flat/all': unknown
     'flat/recommended': unknown
-    recommended: unknown
+    'recommended': unknown
   }
 }
 

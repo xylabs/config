@@ -15,7 +15,7 @@ export const importConfig: Linter.FlatConfig = {
     },
   },
   plugins: {
-    import: importPlugin as ESLint.Plugin,
+    'import': importPlugin as ESLint.Plugin,
     'simple-import-sort': simpleImportSort,
   },
   settings: {

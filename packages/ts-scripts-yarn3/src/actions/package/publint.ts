@@ -27,7 +27,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
 
   const validMessage = (_message: Message): boolean => {
     return true
-    /*try {
+    /* try {
       const value = getValueFromPath(pkg, message.path)
       switch (message.code) {
         case 'FILE_INVALID_FORMAT':
@@ -42,10 +42,10 @@ export const packagePublint = async (params?: PackagePublintParams) => {
       console.error(chalk.red(`validMessage Excepted: ${error.message}`))
       console.error(chalk.gray(JSON.stringify(error.stack)))
       return true
-    }*/
+    } */
   }
 
-  //we filter out invalid file formats for the esm folder since it is intentionally done
+  // we filter out invalid file formats for the esm folder since it is intentionally done
   const validMessages = messages.filter(validMessage)
   for (const message of validMessages) {
     switch (message.type) {
@@ -68,5 +68,5 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))
   }
 
-  return validMessages.filter((message) => message.type === 'error').length
+  return validMessages.filter(message => message.type === 'error').length
 }

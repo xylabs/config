@@ -21,11 +21,13 @@ export interface PathConfig {
 /**
  * Configuration for Dynamic Share.
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface DynamicShareConfig extends PathConfig {}
 
 /**
  * Configuration for Live Share.
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {

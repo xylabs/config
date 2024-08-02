@@ -3,7 +3,7 @@ import { ESLint } from 'eslint'
 export const rulesConfig: ESLint.ConfigData = {
   plugins: ['sort-keys-fix', 'no-secrets'],
   rules: {
-    complexity: ['error', 18],
+    'complexity': ['error', 18],
     'max-depth': ['error', 6],
     'max-lines': [
       'error',
@@ -38,9 +38,9 @@ export const rulesConfig: ESLint.ConfigData = {
     'no-tabs': ['error'],
     'no-unused-vars': 'off',
     'no-useless-escape': 'off',
-    quotes: [2, 'single', 'avoid-escape'],
+    'quotes': [2, 'single', 'avoid-escape'],
     'require-await': 'error',
-    semi: ['warn', 'never'],
+    'semi': ['warn', 'never'],
     'sort-keys-fix/sort-keys-fix': 'warn',
   },
 }

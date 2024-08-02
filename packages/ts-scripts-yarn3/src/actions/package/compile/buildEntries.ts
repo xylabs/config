@@ -9,7 +9,7 @@ export const buildEntries = (folder: string, entryMode?: EntryMode, verbose = fa
     }
     case 'all': {
       if (verbose) console.log('buildEntries [all]')
-      return getAllInputs2(folder).filter((entry) => !entry.includes('.spec.') && !entry.includes('.story.'))
+      return getAllInputs2(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.story.'))
     }
     default: {
       if (verbose) console.log('buildEntries [single]')

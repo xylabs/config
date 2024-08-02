@@ -22,6 +22,6 @@ export const generateIgnoreFiles = (filename: string, pkg?: string) => {
       return 1
     }
   })
-  const succeeded = results.every((result) => result === 0)
+  const succeeded = results.every(result => result === 0)
   return succeeded ? 0 : 1
 }

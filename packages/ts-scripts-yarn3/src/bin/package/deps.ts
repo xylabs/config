@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import { packageDeps } from '../../actions/index.ts'
 
 packageDeps()
-  .then((value) => (process.exitCode = value))
+  .then(value => (process.exitCode = value))
   .catch((ex: Error) => {
     console.error(`Deps Failed: ${chalk.red(ex)}`)
     process.exitCode = 0

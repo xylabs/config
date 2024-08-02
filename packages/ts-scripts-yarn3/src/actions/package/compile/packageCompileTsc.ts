@@ -23,7 +23,7 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   const verbose = config?.verbose ?? false
 
   const formatHost: FormatDiagnosticsHost = {
-    getCanonicalFileName: (fileName) => fileName,
+    getCanonicalFileName: fileName => fileName,
     getCurrentDirectory: () => pkg,
     getNewLine: () => '\n',
   }

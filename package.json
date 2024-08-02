@@ -21,9 +21,9 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^20.14.14",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@types/node": "^22.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
@@ -36,7 +36,7 @@
     "jest-extended": "^4.0.2",
     "jest-sorted": "^1.0.15",
     "prettier": "^3.3.3",
-    "rimraf": "^4.4.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   },
   "homepage": "https://xylabs.com",

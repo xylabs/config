@@ -34,7 +34,7 @@ export const packageCompileTscTypes = async (
     ...compilerOptionsParam,
   } as TsConfigCompilerOptions
 
-  //calling all here since the types do not get rolled up
+  // calling all here since the types do not get rolled up
   const files = buildEntries(folder, 'all')
 
   const result = createProgramFromConfig({

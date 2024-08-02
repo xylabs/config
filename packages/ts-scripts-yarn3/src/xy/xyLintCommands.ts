@@ -28,10 +28,12 @@ export const xyLintCommands = (args: Argv) => {
       async (argv) => {
         if (argv.verbose) console.log('Lint')
         const start = Date.now()
-        process.exitCode =
-          argv.fix ? fix()
-          : argv.profile ? lintProfile()
-          : await lint({ pkg: argv.package as string })
+        process.exitCode
+          = argv.fix
+            ? fix()
+            : argv.profile
+              ? lintProfile()
+              : await lint({ pkg: argv.package as string })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

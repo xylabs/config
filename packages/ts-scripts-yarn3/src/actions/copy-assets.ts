@@ -17,7 +17,7 @@ const copyPackageTargetAssets = async (target: 'esm' | 'cjs', name: string, loca
       `../dist/${target}`,
       {
         cwd: path.join(process.cwd(), location, 'src'),
-        parents: true,
+        flat: false,
       },
     )
     for (const value of values) {
@@ -35,7 +35,7 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', pkg?: string) => {
 
   console.log(chalk.green(`Copying Assets [${target.toUpperCase()}]`))
 
-  //finds the package or returns all if undefined
+  // finds the package or returns all if undefined
   const workspaceList = workspaces.filter(({ name }) => {
     return pkg === undefined || name === pkg
   })

@@ -69,8 +69,8 @@ export const packageDeps = async () => {
 
   const packageContent = existsSync(`${pkg}/package.json`) ? JSON.parse(readFileSync(`${pkg}/package.json`, { encoding: 'utf8' })) : undefined
 
-  const rawIgnore =
-    existsSync(`${pkg}/.depcheckrc`) ? readFileSync(`${pkg}/.depcheckrc`, { encoding: 'utf8' }).replace('ignores:', '"ignores":') : undefined
+  const rawIgnore
+    = existsSync(`${pkg}/.depcheckrc`) ? readFileSync(`${pkg}/.depcheckrc`, { encoding: 'utf8' }).replace('ignores:', '"ignores":') : undefined
   let ignoreMatches: string[] = []
   try {
     ignoreMatches = rawIgnore ? (JSON.parse(`{${rawIgnore}}`).ignores as string[]) : []
@@ -86,10 +86,10 @@ export const packageDeps = async () => {
   const declaredDevDeps = Object.keys(packageContent.devDependencies ?? {})
 
   const missingDeps = Object.keys(usedDeps).filter(
-    (key) => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/'),
+    key => !declaredDeps.includes(key) && !declaredPeerDeps.includes(key) && !key.startsWith('@types/'),
   )
 
-  const missingDevDeps = Object.keys(usedDevDeps).filter((key) => !declaredDevDeps.includes(key) && !declaredDeps.includes(key))
+  const missingDevDeps = Object.keys(usedDevDeps).filter(key => !declaredDevDeps.includes(key) && !declaredDeps.includes(key))
 
   const missingDepsObject: Record<string, string[]> = {}
   for (const key of missingDeps) {
@@ -136,6 +136,6 @@ export const packageDeps = async () => {
 
   checkResult(`Deps [${pkgName}]`, errorCount, 'warn', false)
 
-  //returning 0 here since we never want deps to be fatal
+  // returning 0 here since we never want deps to be fatal
   return 0
 }
