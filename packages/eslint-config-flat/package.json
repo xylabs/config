@@ -51,12 +51,12 @@
       },
       "import": {
         "types": "./dist/node/index.d.ts",
-        "default": "./dist/node/index.js"
+        "default": "./dist/node/index.mjs"
       }
     }
   },
   "main": "./dist/node/index.cjs",
-  "module": "./dist/node/index.js",
+  "module": "./dist/node/index.mjs",
   "types": "./dist/node/index.d.ts",
   "publishConfig": {
     "access": "public"
@@ -66,7 +66,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "3.15.0",
+  "version": "3.15.4",
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   },
