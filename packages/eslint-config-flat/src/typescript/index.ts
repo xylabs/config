@@ -21,6 +21,7 @@ export const typescriptConfig: Linter.FlatConfig = {
   rules: {
     ...tsPlugin.configs.recommended.rules,
     ...esStylistic.configs['recommended-flat'].rules,
+    '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
