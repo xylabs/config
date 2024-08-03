@@ -2985,16 +2985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4.17.12":
-  version: 4.17.12
-  resolution: "@types/lodash-es@npm:4.17.12"
-  dependencies:
-    "@types/lodash": "npm:*"
-  checksum: 10/56b9a433348b11c31051c6fa9028540a033a08fb80b400c589d740446c19444d73b217cf1471d4036448ef686a83e8cf2a35d1fadcb3f2105f26701f94aebb07
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
+"@types/lodash@npm:^4.17.7":
   version: 4.17.7
   resolution: "@types/lodash@npm:4.17.7"
   checksum: 10/b8177f19cf962414a66989837481b13f546afc2e98e8d465bec59e6ac03a59c584eb7053ce511cde3a09c5f3096d22a5ae22cfb56b23f3b0da75b0743b6b1a44
@@ -3522,7 +3513,7 @@ __metadata:
   dependencies:
     "@swc/cli": "npm:^0.4.0"
     "@swc/core": "npm:^1.7.5"
-    "@types/lodash-es": "npm:^4.17.12"
+    "@types/lodash": "npm:^4.17.7"
     "@types/node": "npm:^22.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
@@ -3542,7 +3533,7 @@ __metadata:
     eslint-plugin-unicorn: "npm:^55.0.0"
     eslint-plugin-workspaces: "npm:^0.10.1"
     jsonc-eslint-parser: "npm:^2.4.0"
-    lodash-es: "npm:^4.17.21"
+    lodash: "npm:^4.17.21"
     markdown-eslint-parser: "npm:^1.2.1"
     prettier: "npm:^3.3.3"
     remark-lint-maximum-line-length: "npm:^4.0.1"
@@ -3690,7 +3681,7 @@ __metadata:
     "@stylistic/eslint-plugin": "npm:^2.6.1"
     "@swc/cli": "npm:^0.4.0"
     "@swc/core": "npm:^1.7.5"
-    "@types/lodash-es": "npm:^4.17.12"
+    "@types/lodash": "npm:^4.17.7"
     "@types/node": "npm:^22.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
@@ -3711,7 +3702,7 @@ __metadata:
     eslint-plugin-unicorn: "npm:^55.0.0"
     eslint-plugin-workspaces: "npm:^0.10.1"
     jsonc-eslint-parser: "npm:^2.4.0"
-    lodash-es: "npm:^4.17.21"
+    lodash: "npm:^4.17.21"
     markdown-eslint-parser: "npm:^1.2.1"
     prettier: "npm:^3.3.3"
     remark-lint-maximum-line-length: "npm:^4.0.1"
@@ -3791,7 +3782,7 @@ __metadata:
     "@swc/core": "npm:^1.7.5"
     "@types/eslint": "npm:^9.6.0"
     "@types/license-checker": "npm:^25.0.6"
-    "@types/lodash-es": "npm:^4.17.12"
+    "@types/lodash": "npm:^4.17.7"
     "@types/node": "npm:^22.1.0"
     "@types/parse-git-config": "npm:^3.0.4"
     "@types/yargs": "npm:^17.0.32"
@@ -3817,7 +3808,7 @@ __metadata:
     jest-sorted: "npm:^1.0.15"
     jsonc-eslint-parser: "npm:^2.4.0"
     license-checker: "npm:^25.0.1"
-    lodash-es: "npm:^4.17.21"
+    lodash: "npm:^4.17.21"
     node-cmd: "npm:^5.0.0"
     npm-check-updates: "npm:^17.0.1"
     npm-package-json-lint: "npm:^8.0.0"
@@ -9217,13 +9208,6 @@ __metadata:
   dependencies:
     p-locate: "npm:^5.0.0"
   checksum: 10/72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
-  languageName: node
-  linkType: hard
-
-"lodash-es@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash-es@npm:4.17.21"
-  checksum: 10/03f39878ea1e42b3199bd3f478150ab723f93cc8730ad86fec1f2804f4a07c6e30deaac73cad53a88e9c3db33348bb8ceeb274552390e7a75d7849021c02df43
   languageName: node
   linkType: hard
 

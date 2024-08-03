@@ -1,4 +1,5 @@
-import { merge } from 'lodash-es'
+// eslint-disable-next-line import/no-internal-modules
+import merge from 'lodash/merge.js'
 import { build, defineConfig, Options } from 'tsup'
 
 import { packagePublint } from '../publint.ts'

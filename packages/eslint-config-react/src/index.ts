@@ -1,6 +1,7 @@
 import xylabsConfig from '@xylabs/eslint-config'
 import { ESLint } from 'eslint'
-import { compact } from 'lodash-es'
+// eslint-disable-next-line import/no-internal-modules
+import compact from 'lodash/compact.js'
 
 import { reactConfig } from './react/index.ts'
 
