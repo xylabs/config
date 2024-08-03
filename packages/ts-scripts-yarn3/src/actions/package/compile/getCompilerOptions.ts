@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module'
 
-import { merge } from 'lodash-es'
+// eslint-disable-next-line import/no-internal-modules
+import merge from 'lodash/merge.js'
 import { TsConfig } from 'tsc-prog'
 import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
 

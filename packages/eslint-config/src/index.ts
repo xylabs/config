@@ -1,5 +1,6 @@
 import { ESLint } from 'eslint'
-import { compact } from 'lodash-es'
+// eslint-disable-next-line import/no-internal-modules
+import compact from 'lodash/compact.js'
 
 import { importConfig } from './import/index.ts'
 // import { jsonConfig } from './json'

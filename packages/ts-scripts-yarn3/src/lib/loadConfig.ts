@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import { cosmiconfig } from 'cosmiconfig'
-import { merge } from 'lodash-es'
+// eslint-disable-next-line import/no-internal-modules
+import merge from 'lodash/merge.js'
 
 let config: Record<string, unknown>
 
