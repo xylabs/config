@@ -3,7 +3,7 @@ import { cwd } from 'node:process'
 import xylabsConfig from '@xylabs/eslint-config-base'
 import { ESLint } from 'eslint'
 
-import { reactConfig } from './react'
+import { reactConfig } from './react/index.ts'
 
 const toArray = <T>(value: T | (T | undefined)[] | undefined): T[] => {
   if (value === undefined) {
