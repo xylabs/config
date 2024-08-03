@@ -10,6 +10,7 @@ export default defineConfig({
   entry: ['src'],
   format: ['cjs', 'esm'],
   outDir: 'dist',
+  outExtension: ({ format }) => (format === 'esm' ? { js: '.mjs' } : { js: '.cjs' }),
   sourcemap: true,
   splitting: false,
   tsconfig: 'tsconfig.build.json',
