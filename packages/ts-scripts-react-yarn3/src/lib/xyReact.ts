@@ -3,7 +3,7 @@
 import { xyBuildCommands, xyCommonCommands, xyInstallCommands, xyLintCommands, xyParseOptions } from '@xylabs/ts-scripts-yarn3'
 import chalk from 'chalk'
 
-import { analyze, eject, sitemap, start } from '../actions'
+import { analyze, eject, sitemap, start } from '../actions/index.ts'
 
 export const xyReact = async () => {
   return await xyBuildCommands(xyInstallCommands(xyLintCommands(xyInstallCommands(xyCommonCommands(xyParseOptions())))))

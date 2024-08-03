@@ -1,2 +1,2 @@
-export * from './actions'
-export * from './lib'
+export * from './actions/index.ts'
+export * from './lib/index.ts'

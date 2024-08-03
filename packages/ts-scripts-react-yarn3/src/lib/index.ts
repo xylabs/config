@@ -1,1 +1,1 @@
-export * from './xyReact'
+export * from './xyReact.ts'

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { xyReact } from '../lib'
+import { xyReact } from '../lib/index.ts'
 
 xyReact()
   .then(() => {
