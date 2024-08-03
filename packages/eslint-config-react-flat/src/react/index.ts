@@ -1,9 +1,10 @@
+import tsParser from '@typescript-eslint/parser'
 import { Linter } from 'eslint'
 import reactPlugin from 'eslint-plugin-react'
 // import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 
-export const reactConfig: Linter.FlatConfig = {
+export const reactConfig: Linter.Config = {
   plugins: {
     react: reactPlugin,
     // 'react-hooks': reactHooksPlugin,
@@ -14,6 +15,12 @@ export const reactConfig: Linter.FlatConfig = {
     globals: {
       ...globals.serviceworker,
       ...globals.browser,
+    },
+    parser: tsParser,
+    parserOptions: {
+      ecmaFeatures: { modules: true },
+      ecmaVersion: 'latest',
+      project: './tsconfig-eslint.json',
     },
   },
   rules: {
