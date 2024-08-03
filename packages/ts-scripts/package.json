@@ -103,5 +103,5 @@
   },
   "sideEffects": false,
   "version": "3.15.5",
-  "type": "commonjs"
+  "type": "module"
 }
