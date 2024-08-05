@@ -30,12 +30,6 @@ export const reactConfig = {
   rules: {
     ...eslintReactPlugin.configs.recommended.rules,
     ...reactPlugin.configs.flat.recommended.rules,
-    'react-hooks/exhaustive-deps': [
-      'warn',
-      {
-        additionalHooks: '(useAsyncEffect|usePromise)',
-      },
-    ],
     'react/prop-types': ['off'],
   },
 } as unknown as Linter.Config
