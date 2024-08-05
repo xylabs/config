@@ -41,7 +41,7 @@
     "updo": "dist/bin/updo.mjs",
     "upplug": "dist/bin/upplug.mjs",
     "upyarn": "dist/bin/upyarn.mjs",
-    "xy": "dist/bin/xy",
+    "xy": "dist/bin/xy.mjs",
     "yarn3only": "dist/bin/yarn3only.mjs"
   },
   "bugs": {
