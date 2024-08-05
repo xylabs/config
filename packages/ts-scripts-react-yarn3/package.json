@@ -41,7 +41,7 @@
     "updo": "dist/bin/updo.mjs",
     "upplug": "dist/bin/upplug.mjs",
     "upyarn": "dist/bin/upyarn.mjs",
-    "xy": "dist/bin/xy.mjs",
+    "xy": "dist/bin/xy",
     "yarn3only": "dist/bin/yarn3only.mjs"
   },
   "bugs": {
@@ -103,6 +103,6 @@
     "package-recompile": "tsup && publint ."
   },
   "sideEffects": false,
-  "version": "3.15.13",
+  "version": "3.15.5",
   "type": "module"
 }

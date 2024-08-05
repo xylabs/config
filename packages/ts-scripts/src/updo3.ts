@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { runSteps } from './lib'
+import { runSteps } from './lib/index.ts'
 
 runSteps('Updo', [
   ['yarn', 'install'],
