@@ -3767,6 +3767,7 @@ __metadata:
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     eslint: "npm:^9.8.0"
+    eslint-plugin-react: "npm:^7.35.0"
     globals: "npm:^15.9.0"
     typescript: "npm:^5.5.4"
   peerDependencies:
