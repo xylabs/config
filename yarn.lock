@@ -3911,7 +3911,7 @@ __metadata:
     updo: dist/bin/updo.mjs
     upplug: dist/bin/upplug.mjs
     upyarn: dist/bin/upyarn.mjs
-    xy: dist/bin/xy.mjs
+    xy: dist/bin/xy
     yarn3only: dist/bin/yarn3only.mjs
   languageName: unknown
   linkType: soft
