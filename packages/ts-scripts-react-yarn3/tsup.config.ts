@@ -20,9 +20,6 @@ export default defineConfig({
     }
   },
   outDir: 'dist',
-  outExtension: ({ format }) => ({
-    js: format === 'cjs' ? `.cjs` : `.mjs`
-  }),
   sourcemap: true,
   splitting: false,
   target: 'esnext',
