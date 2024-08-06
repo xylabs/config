@@ -14,15 +14,13 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     bundle: true,
     cjsInterop: true,
     clean: true,
-    dts: false,
+    dts: true,
     entry,
     format: ['esm'],
-    // minify: true,
     outDir,
     silent: true,
     sourcemap: true,
     splitting: false,
-    // terserOptions: { format: { comments: false } },
     tsconfig: 'tsconfig.json',
     ...options,
   })
@@ -36,7 +34,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
-  packageCompileTscTypes(folder, { verbose }, { outDir })
+  // packageCompileTscTypes(folder, { verbose }, { outDir })
 
   return 0
 }

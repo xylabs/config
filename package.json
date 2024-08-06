@@ -50,7 +50,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "engines": {
-    "node": ">=14.16"
+    "node": ">=20.16"
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
