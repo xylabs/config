@@ -3,11 +3,9 @@ import { build, defineConfig, Options } from 'tsup'
 
 import { packagePublint } from '../publint.ts'
 import { buildEntries } from './buildEntries.ts'
-import { packageCompileTsc } from './packageCompileTsc.ts'
-import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
-const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
+const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
@@ -39,7 +37,6 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   return 0
 }
 
-// eslint-disable-next-line complexity
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compile = config?.compile
   const publint = config?.publint ?? true
@@ -64,8 +61,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
   }
 
   return (
-    (await packageCompileTsc(true, { publint: false, verbose }))
-    || (
+    (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
