@@ -11,7 +11,7 @@ export default defineConfig({
     js: format === 'cjs' ? '.cjs' : '.mjs',
   }),
   entry: ['src'],
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   outDir: 'dist',
   sourcemap: true,
   splitting: false,

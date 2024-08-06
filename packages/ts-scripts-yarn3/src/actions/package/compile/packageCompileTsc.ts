@@ -33,7 +33,7 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   }
 
   const compilerOptions = {
-    ...(await getCompilerOptions({
+    ...(getCompilerOptions({
       outDir: 'dist',
       removeComments: true,
       rootDir: 'src',

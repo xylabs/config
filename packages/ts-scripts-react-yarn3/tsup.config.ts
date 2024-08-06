@@ -8,7 +8,7 @@ export default defineConfig({
     entry: ['src/index.ts'],
   },
   entry: ['src'],
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   outExtension({ format }) {
     if (format === 'cjs') {
       return {

@@ -5,16 +5,14 @@ import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
 import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
 import { buildEntries } from './buildEntries.ts'
-import { copyTypeFiles } from './copyTypeFiles.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
 import { XyConfig } from './XyConfig.ts'
 
-export const packageCompileTscTypes = async (
+export const packageCompileTscTypes = (
   folder: string = 'src',
   { verbose }: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
-  generateMts = true,
-): Promise<number> => {
+): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
 
   if (verbose) {
@@ -22,7 +20,7 @@ export const packageCompileTscTypes = async (
   }
 
   const compilerOptions = {
-    ...(await getCompilerOptions({
+    ...(getCompilerOptions({
       declaration: true,
       emitDeclarationOnly: true,
       outDir: 'dist',
@@ -66,9 +64,6 @@ export const packageCompileTscTypes = async (
         break
       }
     }
-  }
-  if (generateMts) {
-    await copyTypeFiles(compilerOptions)
   }
   return diagResults
 }
