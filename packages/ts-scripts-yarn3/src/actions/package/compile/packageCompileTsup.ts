@@ -1,4 +1,5 @@
 import type { Loader } from 'esbuild'
+import svgrPlugin from 'esbuild-plugin-svgr'
 import { build, defineConfig, Options } from 'tsup'
 
 import { packagePublint } from '../publint.ts'
@@ -20,6 +21,9 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     sourcemap: true,
     splitting: false,
     tsconfig: 'tsconfig.json',
+    esbuildPlugins: [
+      svgrPlugin(),
+    ],
     ...options,
   })
   const optionsList = (
