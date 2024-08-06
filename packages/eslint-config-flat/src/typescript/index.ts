@@ -3,7 +3,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import { ESLint, Linter } from 'eslint'
 
-export const typescriptConfig: Linter.FlatConfig = {
+export const typescriptConfig: Linter.Config = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
   languageOptions: {
@@ -16,7 +16,7 @@ export const typescriptConfig: Linter.FlatConfig = {
   },
   plugins: {
     '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
-    '@stylistic': esStylistic,
+    '@stylistic': esStylistic as unknown as ESLint.Plugin,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
