@@ -60,11 +60,9 @@
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@rollup/plugin-url": "^8.0.2",
-    "@svgr/rollup": "^8.1.0",
     "@swc/core": "^1.7.6",
     "@types/node": "^22.1.0",
-    "@types/yargs": "^17.0.32",
+    "@types/yargs": "^17.0.33",
     "@xylabs/tsconfig": "workspace:^",
     "@xylabs/tsconfig-dom": "workspace:^",
     "async-mutex": "^0.5.0",
@@ -73,7 +71,6 @@
     "cosmiconfig-typescript-loader": "^5.0.0",
     "cpy": "^11.1.0",
     "depcheck": "^1.4.7",
-    "esbuild-plugin-svgr": "^2.1.0",
     "eslint": "^9.8.0",
     "glob": "^11.0.0",
     "jest": "^29.7.0",
@@ -84,7 +81,7 @@
     "license-checker": "^25.0.1",
     "lodash": "^4.17.21",
     "node-cmd": "^5.0.0",
-    "npm-check-updates": "^17.0.3",
+    "npm-check-updates": "^17.0.5",
     "npm-package-json-lint": "^8.0.0",
     "npm-package-json-lint-config-default": "^7.0.1",
     "parse-git-config": "^3.0.0",
@@ -154,7 +151,7 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.7",
+  "version": "4.0.0-rc.8",
   "type": "module",
   "stableVersion": "3.15.16"
 }
