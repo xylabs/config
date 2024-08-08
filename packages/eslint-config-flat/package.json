@@ -62,7 +62,7 @@
     "url": "https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.10",
+  "version": "4.0.0-rc.11",
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   },

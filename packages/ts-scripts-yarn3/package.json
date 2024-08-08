@@ -72,6 +72,7 @@
     "cpy": "^11.1.0",
     "depcheck": "^1.4.7",
     "eslint": "^9.8.0",
+    "eslint-plugin-import": "^2.29.1",
     "glob": "^11.0.0",
     "jest": "^29.7.0",
     "jest-extended": "^4.0.2",
@@ -151,7 +152,7 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.10",
+  "version": "4.0.0-rc.11",
   "type": "module",
   "stableVersion": "3.15.16"
 }

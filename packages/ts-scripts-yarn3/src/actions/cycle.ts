@@ -1,6 +1,23 @@
-import { runSteps } from '../lib/index.ts'
+import { cwd } from 'node:process'
 
-export const cycle = () => {
-  const rules = ['"\'import/no-cycle\': [1, { maxDepth: 6 }]"', "\"'import/no-internal-modules': ['off']\""]
-  return runSteps('Cycle', [['yarn', ['eslint', ...rules.flatMap(rule => ['--rule', rule]), '--cache', '.']]])
+import { ESLint } from 'eslint'
+import importPlugin from 'eslint-plugin-import'
+
+export const cycle = async () => {
+  const eslint = new ESLint({ fix: false, overrideConfig: {
+    plugins: { import: importPlugin },
+    rules: {
+      'import/no-cycle': ['error', { maxDepth: 10 }],
+    },
+  } })
+  const configFile = await eslint.findConfigFile()
+  console.log('Config file:', configFile)
+  const results = await eslint.lintFiles(['src/**/*.ts*', 'packages/**/src/**/*.ts*'])
+
+  const formatter = await eslint.loadFormatter('stylish')
+  const resultText = formatter.format(results, { cwd: cwd(), rulesMeta: {} })
+  console.log(resultText)
+
+  console.log('Lint Errors:', results.length)
+  return results.length
 }
