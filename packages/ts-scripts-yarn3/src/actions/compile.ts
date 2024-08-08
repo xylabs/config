@@ -18,8 +18,8 @@ interface CompilePackageParams {
   verbose?: boolean
 }
 
-export const compile = ({ verbose, target, pkg, incremental, publint }: CompileParams) => {
-  return pkg ? compilePackage({ pkg, publint, target, verbose }) : compileAll({ incremental, publint, target, verbose })
+export const compile = ({ verbose, target, pkg, incremental, publint, jobs }: CompileParams) => {
+  return pkg ? compilePackage({ pkg, publint, target, verbose }) : compileAll({ incremental, publint, target, verbose, jobs })
 }
 
 export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
