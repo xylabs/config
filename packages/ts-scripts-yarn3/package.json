@@ -151,7 +151,7 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.8",
+  "version": "4.0.0-rc.9",
   "type": "module",
   "stableVersion": "3.15.16"
 }

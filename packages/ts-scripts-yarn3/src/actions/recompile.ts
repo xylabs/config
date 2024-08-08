@@ -38,7 +38,8 @@ export const recompileAll = async ({ jobs, verbose, target, incremental }: Recom
   }
 
   const result = await runStepsAsync(`Recompile${incremental ? '-Incremental' : ''} [All]`, [
-    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]],
+    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-clean', ...targetOptions]],
+    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-compile', ...targetOptions]],
   ])
   console.log(`${chalk.gray('Recompiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
   return result
