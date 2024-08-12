@@ -1,8 +1,6 @@
 import { EOL } from 'node:os'
 
 import chalk from 'chalk'
-// eslint-disable-next-line import/no-internal-modules
-import uniq from 'lodash/uniq.js'
 
 import { multiLineToJSONArray } from '../jsonFormatters.ts'
 
@@ -88,7 +86,7 @@ export class DuplicateDetector {
         acc.duplicateVersions.push(acc.currentVersion)
       }
       acc.duplicateVersions.push(version)
-      acc.duplicateVersions = uniq(acc.duplicateVersions)
+      acc.duplicateVersions = [...new Set(acc.duplicateVersions)]
     }
     return acc
   }

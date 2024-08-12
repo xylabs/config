@@ -1,7 +1,5 @@
 import { createRequire } from 'node:module'
 
-// eslint-disable-next-line import/no-internal-modules
-import merge from 'lodash/merge.js'
 import { TsConfig } from 'tsc-prog'
 import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
 
@@ -24,5 +22,5 @@ export const getCompilerOptions = (options?: CompilerOptions, tsconfig: string =
   const configFileName = findConfigFile('./', sys.fileExists, tsconfig)
   const configFileCompilerOptions = configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined
 
-  return merge({}, configFileCompilerOptions, options)
+  return { ...configFileCompilerOptions, ...options }
 }

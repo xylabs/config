@@ -2,6 +2,7 @@ import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import { ESLint, Linter } from 'eslint'
+import dependPlugin from 'eslint-plugin-depend'
 
 export const typescriptConfig: Linter.Config = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -17,10 +18,12 @@ export const typescriptConfig: Linter.Config = {
   plugins: {
     '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
     '@stylistic': esStylistic as unknown as ESLint.Plugin,
+    'depend': dependPlugin,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
     ...esStylistic.configs['recommended-flat'].rules,
+    ...dependPlugin.configs['flat/recommended'].rules,
     '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
