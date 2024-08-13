@@ -5,7 +5,7 @@ import { ESLint } from 'eslint'
 export const cycle = async () => {
   const eslint = new ESLint({ fix: false, overrideConfig: {
     rules: {
-      'import/no-cycle': ['error', { maxDepth: 10 }],
+      'import-x/no-cycle': ['error', { maxDepth: 10 }],
     },
   } })
   const results = await eslint.lintFiles(['src/**/*.ts*', 'packages/**/src/**/*.ts*'])
