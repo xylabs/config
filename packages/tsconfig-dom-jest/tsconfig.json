@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "libs": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["jest-extended", "jest-sorted", "jest", "node", "reflect-metadata"]
   },
   "exclude": ["dist"],
