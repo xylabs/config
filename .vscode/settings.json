@@ -39,6 +39,7 @@
     "autocrlf",
     "buildci",
     "copyfiles",
+    "deepmerge",
     "depcheckrc",
     "Dupdeps",
     "gitlint",

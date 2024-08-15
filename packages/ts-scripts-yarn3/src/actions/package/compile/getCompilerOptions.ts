@@ -2,6 +2,7 @@ import { createRequire } from 'node:module'
 
 import { TsConfig } from 'tsc-prog'
 import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
+import deepmerge from 'deepmerge'
 
 const getNested = (config: TsConfig): CompilerOptions => {
   if (config.extends) {
@@ -18,9 +19,9 @@ export const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerO
   return getNested(config)
 }
 
-export const getCompilerOptions = (options?: CompilerOptions, tsconfig: string = 'tsconfig.json'): CompilerOptions => {
+export const getCompilerOptions = (options: CompilerOptions = {}, tsconfig: string = 'tsconfig.json'): CompilerOptions => {
   const configFileName = findConfigFile('./', sys.fileExists, tsconfig)
-  const configFileCompilerOptions = configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined
+  const configFileCompilerOptions = (configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined) ?? {}
 
-  return { ...configFileCompilerOptions, ...options }
+  return deepmerge(configFileCompilerOptions, options)
 }
