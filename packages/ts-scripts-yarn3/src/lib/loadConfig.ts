@@ -1,11 +1,12 @@
 import chalk from 'chalk'
 import { cosmiconfig } from 'cosmiconfig'
+import deepmerge from 'deepmerge'
 
 let config: Record<string, unknown>
 
 export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
   if (config) {
-    return { ...config, ...params } as T
+    return deepmerge(config, params ?? {}) as T
   }
 
   const cosmicConfigResult = await cosmiconfig('xy', { cache: true }).search()
@@ -14,5 +15,5 @@ export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
   if (configFilePath) {
     console.log(chalk.gray(`Loading config from ${configFilePath}`))
   }
-  return { ...config, ...params } as T
+  return deepmerge(config, params ?? {}) as T
 }

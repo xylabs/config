@@ -8,7 +8,7 @@ const getNested = (config: TsConfig): CompilerOptions => {
   if (config.extends) {
     const require = createRequire(import.meta.url)
     const opts = require(config.extends)
-    return { ...getNested(opts), ...config.compilerOptions } as CompilerOptions
+    return deepmerge(getNested(opts), config.compilerOptions ?? {}) as CompilerOptions
   }
 
   return config.compilerOptions as CompilerOptions
