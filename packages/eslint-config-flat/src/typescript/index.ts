@@ -4,9 +4,13 @@ import tsParser from '@typescript-eslint/parser'
 import { ESLint, Linter } from 'eslint'
 import dependPlugin from 'eslint-plugin-depend'
 
+export const ignores = [
+  '.yarn', 'node_modules', '**/node_modules', 'dist', '**/dist', '**/docs', 'public', 'storybook-static', '.storybook', '.eslintcache', '.github', '.vscode', '.husky', '.jest', '.next', '.storybook', '.vscode', 'coverage', 'cypress', 'dist', 'node_modules', 'public', 'storybook-static', 'tmp', 'yarn-error.log', 'yarn.lock',
+]
+
 export const typescriptConfig: Linter.Config = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
+  ignores,
+  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx', '**/*.js', '**/*.cjs', '**/*.mjs'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {
@@ -29,6 +33,7 @@ export const typescriptConfig: Linter.Config = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
     '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
+    '@typescript-eslint/consistent-type-imports': ['warn'],
     '@stylistic/member-delimiter-style': [
       'error',
       {

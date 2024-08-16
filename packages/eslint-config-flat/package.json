@@ -8,13 +8,13 @@
   },
   "bugs": {
     "email": "support@xylabs.com",
-    "url": "https://github.com/xylabs/eslint-config/issues"
+    "url": "git+https://github.com/xylabs/eslint-config/issues"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^2.6.2",
+    "@stylistic/eslint-plugin": "^2.6.4",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^9",
+    "eslint": "^9.9.0",
     "eslint-plugin-depend": "^0.10.0",
     "eslint-plugin-import-x": "^3.1.0",
     "eslint-plugin-jsonc": "^2.16.0",
@@ -55,10 +55,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xylabs/config.git"
+    "url": "git+https://github.com/xylabs/config.git"
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.19",
+  "version": "4.0.0-rc.20",
   "scripts": {
     "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   },
