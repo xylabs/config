@@ -1,7 +1,5 @@
 import type { PathLike } from 'node:fs'
-import {
-  existsSync, readFileSync,
-} from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 
 import type { ReadFileSyncOptions } from './ReadFileSyncOptions.ts'
 import { defaultReadFileSyncOptions } from './ReadFileSyncOptions.ts'

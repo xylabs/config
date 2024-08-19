@@ -1,8 +1,6 @@
 import chalk from 'chalk'
 
-import {
-  readNonEmptyLines, writeLines,
-} from './file/index.ts'
+import { readNonEmptyLines, writeLines } from './file/index.ts'
 import { union } from './string/index.ts'
 import {
   INIT_CWD, yarnWorkspace, yarnWorkspaces,
