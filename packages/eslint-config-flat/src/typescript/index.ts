@@ -70,6 +70,7 @@ export const typescriptConfig: Linter.Config = {
     '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
     '@typescript-eslint/consistent-type-imports': ['warn'],
     '@stylistic/object-property-newline': ['warn', { allowAllPropertiesOnSameLine: true }],
+    '@stylistic/function-call-argument-newline': ['warn', 'consistent'],
     '@stylistic/member-delimiter-style': [
       'error',
       {
