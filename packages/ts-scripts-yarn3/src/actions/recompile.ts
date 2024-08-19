@@ -25,7 +25,8 @@ export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParam
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
   return runStepsAsync(
-    `Recompile [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]]])
+    `Recompile [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]]],
+  )
 }
 
 export const recompileAll = async ({ jobs, verbose, target, incremental }: RecompileParams) => {
@@ -64,6 +65,7 @@ export const recompileAll = async ({ jobs, verbose, target, incremental }: Recom
         ...targetOptions]],
   ])
   console.log(
-    `${chalk.gray('Recompiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+    `${chalk.gray('Recompiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`,
+  )
   return result
 }
