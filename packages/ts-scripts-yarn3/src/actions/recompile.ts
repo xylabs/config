@@ -25,7 +25,8 @@ export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParam
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
   return runStepsAsync(
-    `Recompile [${pkg}]`, [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]]],
+    `Recompile [${pkg}]`,
+    [['yarn', ['workspace', pkg, ...verboseOptions, 'run', 'package-recompile', ...targetOptions]]],
   )
 }
 

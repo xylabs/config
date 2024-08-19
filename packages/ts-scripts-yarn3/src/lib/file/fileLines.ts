@@ -8,9 +8,7 @@ import { defaultReadFileSyncOptions } from './ReadFileSyncOptions.ts'
 
 export const readLines = (uri: PathLike, options: ReadFileSyncOptions = defaultReadFileSyncOptions): string[] =>
   existsSync(uri)
-    ? readFileSync(uri, options).replace(
-      WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE,
-    ).split(CROSS_PLATFORM_NEWLINE)
+    ? readFileSync(uri, options).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE)
     : []
 
 export const readNonEmptyLines = (uri: PathLike, options: ReadFileSyncOptions = defaultReadFileSyncOptions): string[] =>
