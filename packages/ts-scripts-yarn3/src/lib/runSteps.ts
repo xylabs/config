@@ -1,4 +1,5 @@
-import { spawnSync, SpawnSyncOptionsWithBufferEncoding } from 'node:child_process'
+import type { SpawnSyncOptionsWithBufferEncoding } from 'node:child_process'
+import { spawnSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 
 import chalk from 'chalk'

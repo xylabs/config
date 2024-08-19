@@ -1,4 +1,4 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 import { deploy, deployMajor, deployMinor, deployNext } from '../actions/index.ts'
 

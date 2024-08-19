@@ -1,4 +1,4 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 import { clean, dupdeps, reinstall, statics, up, updo } from '../actions/index.ts'
 

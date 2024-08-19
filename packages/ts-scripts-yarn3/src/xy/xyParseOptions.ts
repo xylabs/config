@@ -1,4 +1,5 @@
-import yargs, { Argv } from 'yargs'
+import type { Argv } from 'yargs'
+import yargs from 'yargs'
 // eslint-disable-next-line import-x/no-internal-modules
 import { hideBin } from 'yargs/helpers'
 

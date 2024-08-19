@@ -1,4 +1,4 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 import { build, compile, copyAssets, rebuild, recompile } from '../actions/index.ts'
 

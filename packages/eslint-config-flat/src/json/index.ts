@@ -1,4 +1,4 @@
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import jsonc from 'eslint-plugin-jsonc'
 import jsoncParser from 'jsonc-eslint-parser'
 

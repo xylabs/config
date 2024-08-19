@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 import { importConfig } from './import/index.ts'
 // import { jsonConfig } from './json/index.ts'

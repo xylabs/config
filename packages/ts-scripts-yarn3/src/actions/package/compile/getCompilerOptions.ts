@@ -1,8 +1,9 @@
 import { createRequire } from 'node:module'
 
-import { TsConfig } from 'tsc-prog'
-import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
 import deepmerge from 'deepmerge'
+import type { TsConfig } from 'tsc-prog'
+import type { CompilerOptions } from 'typescript'
+import { findConfigFile, readConfigFile, sys } from 'typescript'
 
 const getNested = (config: TsConfig): CompilerOptions => {
   if (config.extends) {

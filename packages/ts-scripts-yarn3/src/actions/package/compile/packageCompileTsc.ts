@@ -1,20 +1,22 @@
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
-import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
-import {
+import type { TsConfigCompilerOptions } from 'tsc-prog'
+import { createProgramFromConfig } from 'tsc-prog'
+import type {
   CompilerOptions,
-  DiagnosticCategory,
   FormatDiagnosticsHost,
+  LineAndCharacter } from 'typescript'
+import {
+  DiagnosticCategory,
   formatDiagnosticsWithColorAndContext,
   getLineAndCharacterOfPosition,
   getPreEmitDiagnostics,
-  LineAndCharacter,
 } from 'typescript'
 
 import { packagePublint } from '../publint.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import { XyTscConfig } from './XyConfig.ts'
+import type { XyTscConfig } from './XyConfig.ts'
 
 export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()

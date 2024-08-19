@@ -5,12 +5,47 @@ import type { ESLint, Linter } from 'eslint'
 import dependPlugin from 'eslint-plugin-depend'
 
 export const ignores = [
-  '.yarn', 'node_modules', '**/node_modules', 'dist', '**/dist', '**/docs', 'public', 'storybook-static', '.storybook', '.eslintcache', '.github', '.vscode', '.husky', '.jest', '.next', '.storybook', '.vscode', 'coverage', 'cypress', 'dist', 'node_modules', 'public', 'storybook-static', 'tmp', 'yarn-error.log', 'yarn.lock',
+  '.yarn',
+  'node_modules',
+  '**/node_modules',
+  'dist',
+  '**/dist',
+  '**/docs',
+  'public',
+  'storybook-static',
+  '.storybook',
+  '.eslintcache',
+  '.github',
+  '.vscode',
+  '.husky',
+  '.jest',
+  '.next',
+  '.storybook',
+  '.vscode',
+  'coverage',
+  'cypress',
+  'dist',
+  'node_modules',
+  'public',
+  'storybook-static',
+  'tmp',
+  'yarn-error.log',
+  'yarn.lock',
 ]
 
 export const typescriptConfig: Linter.Config = {
   ignores,
-  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx', '**/*.js', '**/*.cjs', '**/*.mjs'],
+  files: ['**/*.ts',
+    '**/*.d.ts',
+    '**/*.tsx',
+    '**/*.d.tsx',
+    '**/*.ts',
+    '**/*.d.ts',
+    '**/*.jsx',
+    '**/*.d.jsx',
+    '**/*.js',
+    '**/*.cjs',
+    '**/*.mjs'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {
@@ -34,6 +69,7 @@ export const typescriptConfig: Linter.Config = {
     '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
     '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
     '@typescript-eslint/consistent-type-imports': ['warn'],
+    '@stylistic/object-property-newline': ['warn', { allowAllPropertiesOnSameLine: true }],
     '@stylistic/member-delimiter-style': [
       'error',
       {
@@ -47,7 +83,7 @@ export const typescriptConfig: Linter.Config = {
         },
       },
     ],
-    '@stylistic/max-line-length': ['warn', { code: 128 }],
+    '@stylistic/max-len': ['warn', { code: 160 }],
     '@typescript-eslint/member-ordering': [
       'warn',
       {
