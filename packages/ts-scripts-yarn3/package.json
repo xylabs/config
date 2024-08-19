@@ -149,7 +149,7 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.26",
+  "version": "4.0.0-rc.27",
   "type": "module",
   "stableVersion": "3.15.16"
 }

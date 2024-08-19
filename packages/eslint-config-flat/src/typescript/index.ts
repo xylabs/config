@@ -88,7 +88,7 @@ export const typescriptConfig: Linter.Config = {
       },
     ],
     '@stylistic/object-curly-newline': ['warn', {
-      minProperties: 2, multiline: true,
+      minProperties: 1, multiline: true,
     }],
     '@stylistic/max-len': ['warn', { code: 160 }],
     '@typescript-eslint/member-ordering': [
