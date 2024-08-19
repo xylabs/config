@@ -1,8 +1,14 @@
-import type { PathLike, WriteFileOptions } from 'node:fs'
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import type {
+  PathLike, WriteFileOptions,
+} from 'node:fs'
+import {
+  existsSync, readFileSync, writeFileSync,
+} from 'node:fs'
 
 import { notEmpty } from '../string/index.ts'
-import { CROSS_PLATFORM_NEWLINE, WINDOWS_NEWLINE_REGEX } from './constants.ts'
+import {
+  CROSS_PLATFORM_NEWLINE, WINDOWS_NEWLINE_REGEX,
+} from './constants.ts'
 import type { ReadFileSyncOptions } from './ReadFileSyncOptions.ts'
 import { defaultReadFileSyncOptions } from './ReadFileSyncOptions.ts'
 

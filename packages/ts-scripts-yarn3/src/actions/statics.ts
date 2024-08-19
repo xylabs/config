@@ -1,6 +1,8 @@
 import chalk from 'chalk'
 
-import { detectDuplicateDependencies, parsedPackageJSON } from '../lib/index.ts'
+import {
+  detectDuplicateDependencies, parsedPackageJSON,
+} from '../lib/index.ts'
 
 const DefaultDependencies = ['axios', '@xylabs/pixel', 'react', 'graphql', 'react-router', '@mui/material', '@mui/system']
 

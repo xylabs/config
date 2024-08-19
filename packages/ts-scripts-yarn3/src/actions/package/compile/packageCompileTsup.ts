@@ -1,10 +1,14 @@
 import type { Loader } from 'esbuild'
 import type { Options } from 'tsup'
-import { build, defineConfig } from 'tsup'
+import {
+  build, defineConfig,
+} from 'tsup'
 
 import { packagePublint } from '../publint.ts'
 import { buildEntries } from './buildEntries.ts'
-import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
+import type {
+  EntryMode, XyTsupConfig,
+} from './XyConfig.ts'
 
 const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, _verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
@@ -51,7 +55,8 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compileForNeutral = compile?.neutral ?? { src: {} }
 
   const standardLoaders: Record<string, Loader> = {
-    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy' }
+    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy',
+  }
   const standardOptions: Options = {
     bundle: true,
     format: ['esm'],

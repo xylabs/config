@@ -1,5 +1,7 @@
 /* eslint-disable max-statements */
-import { existsSync, readFileSync } from 'node:fs'
+import {
+  existsSync, readFileSync,
+} from 'node:fs'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
@@ -57,10 +59,16 @@ const analyzeDeps = async (pkg: string, ignoreMatches: string[]) => {
   const unusedDevDeps = allUnused.devDependencies
   const usedDeps = srcUnused.using
   const usedDevDeps = allUnused.using
-  const missing = { ...srcUnused.missing, ...allUnused.missing }
-  const { invalidDirs, invalidFiles } = allUnused
+  const missing = {
+    ...srcUnused.missing, ...allUnused.missing,
+  }
+  const {
+    invalidDirs, invalidFiles,
+  } = allUnused
 
-  return { invalidDirs, invalidFiles, missing, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps }
+  return {
+    invalidDirs, invalidFiles, missing, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps,
+  }
 }
 
 export const packageDeps = async () => {
@@ -79,7 +87,9 @@ export const packageDeps = async () => {
     console.log(`${pkgName} [${error.message}] Failed to parse .depcheckrc [${rawIgnore}]`)
   }
 
-  const { invalidDirs, invalidFiles, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps, missing } = await analyzeDeps(pkg, ignoreMatches)
+  const {
+    invalidDirs, invalidFiles, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps, missing,
+  } = await analyzeDeps(pkg, ignoreMatches)
 
   const declaredDeps = Object.keys(packageContent.dependencies ?? {})
   const declaredPeerDeps = Object.keys(packageContent.peerDependencies ?? {})

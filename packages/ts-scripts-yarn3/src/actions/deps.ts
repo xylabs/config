@@ -10,11 +10,11 @@ export interface DepsParams {
   verbose?: boolean
 }
 
-export interface DepsPackageParams {
-  pkg: string
-}
+export interface DepsPackageParams { pkg: string }
 
-export const deps = ({ pkg, incremental }: DepsParams) => {
+export const deps = ({
+  pkg, incremental,
+}: DepsParams) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   pkg ? depsPackage({ pkg }) : depsAll({ incremental })
   // returning 0 here since we never wants deps to be fatal
@@ -27,7 +27,9 @@ export const depsPackage = ({ pkg }: DepsPackageParams) => {
   return runSteps(`Deps [${pkg}]`, [...steps])
 }
 
-export const depsAll = ({ incremental, jobs, verbose }: DepsParams) => {
+export const depsAll = ({
+  incremental, jobs, verbose,
+}: DepsParams) => {
   const start = Date.now()
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']

@@ -28,7 +28,9 @@ export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, m
         = spawnSync(command, Array.isArray(args) ? args : args.split(' '), {
           ...config,
           encoding: 'utf8',
-          env: { FORCE_COLOR: '3', ...process.env },
+          env: {
+            FORCE_COLOR: '3', ...process.env,
+          },
           shell: true,
           stdio: 'inherit',
         }).status ?? 0

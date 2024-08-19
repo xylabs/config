@@ -16,11 +16,21 @@ export interface RecompilePackageParams {
   verbose?: boolean
 }
 
-export const recompile = async ({ verbose, target, pkg, incremental }: RecompileParams) => {
-  return pkg ? await recompilePackage({ pkg, target, verbose }) : await recompileAll({ incremental, target, verbose })
+export const recompile = async ({
+  verbose, target, pkg, incremental,
+}: RecompileParams) => {
+  return pkg
+    ? await recompilePackage({
+      pkg, target, verbose,
+    })
+    : await recompileAll({
+      incremental, target, verbose,
+    })
 }
 
-export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParams) => {
+export const recompilePackage = ({
+  verbose, target, pkg,
+}: RecompilePackageParams) => {
   const targetOptions = target ? ['-t', target] : []
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
@@ -30,7 +40,9 @@ export const recompilePackage = ({ verbose, target, pkg }: RecompilePackageParam
   )
 }
 
-export const recompileAll = async ({ jobs, verbose, target, incremental }: RecompileParams) => {
+export const recompileAll = async ({
+  jobs, verbose, target, incremental,
+}: RecompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []

@@ -2,7 +2,9 @@ import path from 'node:path'
 
 import chalk from 'chalk'
 
-import { deleteGlob, yarnWorkspaces } from '../lib/index.ts'
+import {
+  deleteGlob, yarnWorkspaces,
+} from '../lib/index.ts'
 
 export const cleanDocs = () => {
   const pkgName = process.env.npm_package_name

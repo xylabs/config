@@ -10,8 +10,14 @@ export interface CleanPackageParams {
   verbose?: boolean
 }
 
-export const clean = async ({ verbose, pkg }: CleanParams) => {
-  return pkg ? await cleanPackage({ pkg, verbose }) : cleanAll({ verbose })
+export const clean = async ({
+  verbose, pkg,
+}: CleanParams) => {
+  return pkg
+    ? await cleanPackage({
+      pkg, verbose,
+    })
+    : cleanAll({ verbose })
 }
 
 export const cleanPackage = ({ pkg }: CleanPackageParams) => {

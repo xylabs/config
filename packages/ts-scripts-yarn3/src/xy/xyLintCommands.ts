@@ -1,7 +1,9 @@
 import chalk from 'chalk'
 import type { Argv } from 'yargs'
 
-import { cycle, fix, lint, lintProfile, publint, relint, sonar } from '../actions/index.ts'
+import {
+  cycle, fix, lint, lintProfile, publint, relint, sonar,
+} from '../actions/index.ts'
 import { packagePositionalParam } from './param.ts'
 
 export const xyLintCommands = (args: Argv) => {
@@ -72,7 +74,9 @@ export const xyLintCommands = (args: Argv) => {
       async (argv) => {
         if (argv.verbose) console.log('Publint')
         const start = Date.now()
-        process.exitCode = await publint({ pkg: argv.package as string, verbose: !!argv.verbose })
+        process.exitCode = await publint({
+          pkg: argv.package as string, verbose: !!argv.verbose,
+        })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

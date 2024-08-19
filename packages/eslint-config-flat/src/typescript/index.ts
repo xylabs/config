@@ -1,7 +1,9 @@
 import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import type { ESLint, Linter } from 'eslint'
+import type {
+  ESLint, Linter,
+} from 'eslint'
 import dependPlugin from 'eslint-plugin-depend'
 
 export const ignores = [
@@ -85,6 +87,9 @@ export const typescriptConfig: Linter.Config = {
         },
       },
     ],
+    '@stylistic/object-curly-newline': ['warn', {
+      minProperties: 2, multiline: true,
+    }],
     '@stylistic/max-len': ['warn', { code: 160 }],
     '@typescript-eslint/member-ordering': [
       'warn',
@@ -164,9 +169,7 @@ export const typescriptConfig: Linter.Config = {
     '@typescript-eslint/no-misused-promises': 'error',
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      {
-        argsIgnorePattern: '^_',
-      },
+      { argsIgnorePattern: '^_' },
     ],
     'semi': ['warn', 'never'],
   },

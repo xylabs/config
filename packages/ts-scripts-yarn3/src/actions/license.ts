@@ -33,9 +33,13 @@ export const license = async (pkg?: string) => {
   return (
     (
       await Promise.all(
-        workspaceList.map(({ location, name }) => {
+        workspaceList.map(({
+          location, name,
+        }) => {
           return new Promise<number>((resolve) => {
-            init({ production: true, start: location }, (error, packages) => {
+            init({
+              production: true, start: location,
+            }, (error, packages) => {
               if (error) {
                 console.error(chalk.red(`License Checker [${name}] Error`))
                 console.error(chalk.gray(error))

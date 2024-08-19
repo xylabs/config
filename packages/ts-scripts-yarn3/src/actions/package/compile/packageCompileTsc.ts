@@ -6,7 +6,8 @@ import { createProgramFromConfig } from 'tsc-prog'
 import type {
   CompilerOptions,
   FormatDiagnosticsHost,
-  LineAndCharacter } from 'typescript'
+  LineAndCharacter,
+} from 'typescript'
 import {
   DiagnosticCategory,
   formatDiagnosticsWithColorAndContext,
@@ -54,7 +55,11 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   const results = getPreEmitDiagnostics(program)
 
   for (const diag of results) {
-    const lineAndChar: LineAndCharacter = diag.file ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0) : { character: 0, line: 0 }
+    const lineAndChar: LineAndCharacter = diag.file
+      ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0)
+      : {
+          character: 0, line: 0,
+        }
     console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
   }

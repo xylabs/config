@@ -1,6 +1,10 @@
-import { closeSync, openSync, rmSync } from 'node:fs'
+import {
+  closeSync, openSync, rmSync,
+} from 'node:fs'
 
-import { runSteps, yarnWorkspaces } from '../lib/index.ts'
+import {
+  runSteps, yarnWorkspaces,
+} from '../lib/index.ts'
 
 export const reinstall = () => {
   console.log('Reinstall [Clear Lock File]')
@@ -9,10 +13,14 @@ export const reinstall = () => {
   console.log('Reinstall [Clear Node Modules]')
   const workspaces = yarnWorkspaces()
   const result = workspaces
-    .map(({ location, name }) => {
+    .map(({
+      location, name,
+    }) => {
       const dist = `${location}/node_modules`
       try {
-        rmSync(dist, { force: true, recursive: true })
+        rmSync(dist, {
+          force: true, recursive: true,
+        })
         return 0
       } catch (ex) {
         const error = ex as Error

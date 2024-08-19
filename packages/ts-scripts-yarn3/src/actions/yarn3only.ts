@@ -1,4 +1,6 @@
-import { isYarnVersionOrGreater, processEx } from '../lib/index.ts'
+import {
+  isYarnVersionOrGreater, processEx,
+} from '../lib/index.ts'
 
 export const yarn3Only = () => {
   const [valid, version] = isYarnVersionOrGreater(3)

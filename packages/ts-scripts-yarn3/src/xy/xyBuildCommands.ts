@@ -1,6 +1,8 @@
 import type { Argv } from 'yargs'
 
-import { build, compile, copyAssets, rebuild, recompile } from '../actions/index.ts'
+import {
+  build, compile, copyAssets, rebuild, recompile,
+} from '../actions/index.ts'
 
 export const xyBuildCommands = (args: Argv) => {
   return args
@@ -8,9 +10,7 @@ export const xyBuildCommands = (args: Argv) => {
       'build [package]',
       'Build - Compile & Lint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to build',
-        })
+        return yargs.positional('package', { describe: 'Specific package to build' })
       },
       async (argv) => {
         if (argv.verbose) {
@@ -30,9 +30,7 @@ export const xyBuildCommands = (args: Argv) => {
       'compile [package]',
       'Compile with Typescript & Copy Images',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to compile',
-        })
+        return yargs.positional('package', { describe: 'Specific package to compile' })
       },
       async (argv) => {
         if (argv.verbose) {
@@ -51,9 +49,7 @@ export const xyBuildCommands = (args: Argv) => {
       'compile-only [package]',
       'Compile with Typescript & Copy Images (No Publint)',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to compile',
-        })
+        return yargs.positional('package', { describe: 'Specific package to compile' })
       },
       async (argv) => {
         if (argv.verbose) {
@@ -73,9 +69,7 @@ export const xyBuildCommands = (args: Argv) => {
       'recompile [package]',
       'Re-compile with Typescript & Copy Images',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to re-compile',
-        })
+        return yargs.positional('package', { describe: 'Specific package to re-compile' })
       },
       async (argv) => {
         if (argv.verbose) {
@@ -94,9 +88,7 @@ export const xyBuildCommands = (args: Argv) => {
       'rebuild [package]',
       'Rebuild - Clean, Compile & Lint',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to rebuild',
-        })
+        return yargs.positional('package', { describe: 'Specific package to rebuild' })
       },
       (argv) => {
         if (argv.verbose) console.log(`Rebuilding: ${argv.package ?? 'all'}`)
@@ -107,9 +99,7 @@ export const xyBuildCommands = (args: Argv) => {
       'copy-assets [package]',
       'Copy Assets - Copy the assets from src to dist',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to copy assets',
-        })
+        return yargs.positional('package', { describe: 'Specific package to copy assets' })
       },
       async (argv) => {
         if (argv.verbose) console.log(`Copying Assets: ${argv.package ?? 'all'}`)

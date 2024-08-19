@@ -3,9 +3,7 @@ import { promises as fs } from 'node:fs'
 import chalk from 'chalk'
 import type { Message } from 'publint'
 
-export interface PackagePublintParams {
-  verbose?: boolean
-}
+export interface PackagePublintParams { verbose?: boolean }
 
 export const packagePublint = async (params?: PackagePublintParams) => {
   const pkgDir = process.env.INIT_CWD

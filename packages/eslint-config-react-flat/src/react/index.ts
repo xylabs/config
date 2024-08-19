@@ -13,21 +13,11 @@ export const reactConfig = {
     react: reactPlugin,
     ...eslintReactPlugin.configs.recommended.plugins,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
+  settings: { react: { version: 'detect' } },
   languageOptions: {
     parser: tsParser,
-    parserOptions: {
-      ecmaFeatures: {
-        jsx: true,
-      },
-    },
-    globals: {
-      ...globals.browser,
-    },
+    parserOptions: { ecmaFeatures: { jsx: true } },
+    globals: { ...globals.browser },
   },
   rules: {
     ...eslintReactPlugin.configs.recommended.rules,

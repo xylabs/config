@@ -25,6 +25,8 @@ export const config: Linter.Config[] = [
 export { importConfig } from './import/index.ts'
 export { rulesConfig } from './rules/index.ts'
 export { sonarConfig } from './sonar/index.ts'
-export { ignores, typescriptConfig } from './typescript/index.ts'
+export {
+  ignores, typescriptConfig,
+} from './typescript/index.ts'
 export { unicornConfig } from './unicorn/index.ts'
 export { workspacesConfig } from './workspaces/index.ts'

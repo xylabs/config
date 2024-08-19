@@ -1,4 +1,6 @@
-import { runSteps, runStepsAsync } from '../lib/index.ts'
+import {
+  runSteps, runStepsAsync,
+} from '../lib/index.ts'
 
 export interface PublintParams {
   pkg?: string
@@ -10,8 +12,14 @@ export interface PublintPackageParams {
   verbose?: boolean
 }
 
-export const publint = async ({ verbose, pkg }: PublintParams) => {
-  return pkg ? await publintPackage({ pkg, verbose }) : publintAll({ verbose })
+export const publint = async ({
+  verbose, pkg,
+}: PublintParams) => {
+  return pkg
+    ? await publintPackage({
+      pkg, verbose,
+    })
+    : publintAll({ verbose })
 }
 
 export const publintPackage = ({ pkg }: PublintPackageParams) => {

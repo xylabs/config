@@ -53,7 +53,7 @@
   },
   "sideEffects": false,
   "types": "dist/node/index.d.ts",
-  "version": "4.0.0-rc.25",
+  "version": "4.0.0-rc.26",
   "packageManager": "yarn@4.3.1",
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",

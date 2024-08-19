@@ -44,14 +44,10 @@ export type PackageCompileTsupConfig = CompileConfig & {
   mode?: 'tsup'
   neutral?: Record<string, Options | boolean>
   node?: Record<string, Options | boolean>
-  tsup?: {
-    options?: Options
-  }
+  tsup?: { options?: Options }
 }
 
-export type PackageCompileTscConfig = CompileConfig & {
-  mode: 'tsc'
-}
+export type PackageCompileTscConfig = CompileConfig & { mode: 'tsc' }
 
 export interface XyConfigBase {
   compile?: CompileConfig
@@ -61,12 +57,8 @@ export interface XyConfigBase {
   verbose?: boolean
 }
 
-export interface XyTsupConfig extends XyConfigBase {
-  compile?: PackageCompileTsupConfig
-}
+export interface XyTsupConfig extends XyConfigBase { compile?: PackageCompileTsupConfig }
 
-export interface XyTscConfig extends XyConfigBase {
-  compile?: PackageCompileTscConfig
-}
+export interface XyTscConfig extends XyConfigBase { compile?: PackageCompileTscConfig }
 
 export type XyConfig = XyTsupConfig | XyTscConfig

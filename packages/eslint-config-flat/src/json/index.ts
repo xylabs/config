@@ -1,16 +1,14 @@
-import type { ESLint, Linter } from 'eslint'
+import type {
+  ESLint, Linter,
+} from 'eslint'
 import jsonc from 'eslint-plugin-jsonc'
 import jsoncParser from 'jsonc-eslint-parser'
 
 export const jsonConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   files: ['**/*.json', '**/*.jsonc', '**/*.json5'],
-  plugins: {
-    jsonc: jsonc as unknown as ESLint.Plugin,
-  },
-  languageOptions: {
-    parser: jsoncParser,
-  },
+  plugins: { jsonc: jsonc as unknown as ESLint.Plugin },
+  languageOptions: { parser: jsoncParser },
   rules: {
     ...jsonc.configs['all'].rules,
 

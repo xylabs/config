@@ -4,12 +4,8 @@ export default defineConfig({
   bundle: true,
   cjsInterop: true,
   clean: false,
-  dts: {
-    entry: ['src/index.ts'],
-  },
-  outExtension: ({ format }) => ({
-    js: format === 'cjs' ? '.cjs' : '.mjs',
-  }),
+  dts: { entry: ['src/index.ts'] },
+  outExtension: ({ format }) => ({ js: format === 'cjs' ? '.cjs' : '.mjs' }),
   entry: ['src'],
   format: ['esm'],
   outDir: 'dist',

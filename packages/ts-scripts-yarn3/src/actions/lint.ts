@@ -1,7 +1,9 @@
 import chalk from 'chalk'
 import { ESLint } from 'eslint'
 
-import { runSteps, yarnWorkspaces } from '../lib/index.ts'
+import {
+  runSteps, yarnWorkspaces,
+} from '../lib/index.ts'
 
 export interface LintParams {
   pkg?: string

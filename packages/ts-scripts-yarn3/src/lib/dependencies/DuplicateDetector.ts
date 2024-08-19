@@ -32,7 +32,9 @@ const trimObjectDependencyVirtualMeta = (obj: Record<string, ChildFields>): Reco
 
 const trimDependencyVirtualMeta = (dependencies: DependencyEntries): DependencyEntries => {
   return dependencies.map((dependency) => {
-    return { children: trimObjectDependencyVirtualMeta(dependency.children), value: trimVirtualMeta(dependency.value) }
+    return {
+      children: trimObjectDependencyVirtualMeta(dependency.children), value: trimVirtualMeta(dependency.value),
+    }
   })
 }
 
@@ -91,5 +93,7 @@ export class DuplicateDetector {
     return acc
   }
 
-  private resultsFactory = (dependency: string): Results => ({ currentVersion: undefined, dependency, duplicateVersions: [] })
+  private resultsFactory = (dependency: string): Results => ({
+    currentVersion: undefined, dependency, duplicateVersions: [],
+  })
 }

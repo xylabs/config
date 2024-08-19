@@ -1,6 +1,8 @@
 import type { Argv } from 'yargs'
 
-import { deploy, deployMajor, deployMinor, deployNext } from '../actions/index.ts'
+import {
+  deploy, deployMajor, deployMinor, deployNext,
+} from '../actions/index.ts'
 
 export const xyDeployCommands = (args: Argv) => {
   return args

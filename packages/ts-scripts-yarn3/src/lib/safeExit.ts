@@ -26,4 +26,6 @@ const safeExitAsync = async (func: () => Promise<number>, exitOnFail = true): Pr
   }
 }
 
-export { safeExit, safeExitAsync }
+export {
+  safeExit, safeExitAsync,
+}

@@ -1,7 +1,3 @@
-const config = {
-  compile: {
-    browser: false,
-  },
-}
+const config = { compile: { browser: false } }
 
 export default config
