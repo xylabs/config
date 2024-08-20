@@ -2085,13 +2085,9 @@ __metadata:
     "@xylabs/tsconfig": "workspace:^"
     eslint: "npm:^9.9.0"
     eslint-plugin-react: "npm:^7.35.0"
+    eslint-plugin-react-refresh: "npm:^0.4.9"
     globals: "npm:^15.9.0"
     typescript: "npm:^5.5.4"
-  peerDependencies:
-    eslint: "*"
-  peerDependenciesMeta:
-    eslint:
-      optional: true
   languageName: unknown
   linkType: soft
 
@@ -4213,6 +4209,15 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/671347ca158db915acf6314e9ceecfcf61c7566cd03bd5bcbfa8994fea31a8d6bf2158935403d1702f215b8af901a8836229ccf1d4a726a84ec031ab7e4d7ca4
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-react-refresh@npm:^0.4.9":
+  version: 0.4.9
+  resolution: "eslint-plugin-react-refresh@npm:0.4.9"
+  peerDependencies:
+    eslint: ">=7"
+  checksum: 10/4a8fad22270ff2bba86bc34973228334194739b3b64dab0a13e35f1a55f8e0a66ab8861520c86f3acc3ecb3701c5bb68eca9f1f8f8a6144c17ef511ab07e02bc
   languageName: node
   linkType: hard
 
