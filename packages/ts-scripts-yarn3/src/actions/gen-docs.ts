@@ -8,9 +8,7 @@ export interface GenDocsParams {
 
 export interface GenDocsPackageParams { pkg: string }
 
-export const genDocs = ({
-  pkg, incremental,
-}: GenDocsParams) => {
+export const genDocs = ({ pkg, incremental }: GenDocsParams) => {
   return pkg ? genDocsPackage({ pkg }) : genDocsAll({ incremental })
 }
 

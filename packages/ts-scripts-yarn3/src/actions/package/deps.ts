@@ -1,7 +1,5 @@
 /* eslint-disable max-statements */
-import {
-  existsSync, readFileSync,
-} from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
@@ -59,12 +57,8 @@ const analyzeDeps = async (pkg: string, ignoreMatches: string[]) => {
   const unusedDevDeps = allUnused.devDependencies
   const usedDeps = srcUnused.using
   const usedDevDeps = allUnused.using
-  const missing = {
-    ...srcUnused.missing, ...allUnused.missing,
-  }
-  const {
-    invalidDirs, invalidFiles,
-  } = allUnused
+  const missing = { ...srcUnused.missing, ...allUnused.missing }
+  const { invalidDirs, invalidFiles } = allUnused
 
   return {
     invalidDirs, invalidFiles, missing, unusedDeps, unusedDevDeps, usedDeps, usedDevDeps,

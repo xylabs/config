@@ -61,7 +61,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@swc/core": "^1.7.14",
-    "@types/node": "^22.4.1",
+    "@types/node": "^22.5.0",
     "@types/yargs": "^17.0.33",
     "@xylabs/tsconfig": "workspace:^",
     "@xylabs/tsconfig-dom": "workspace:^",
@@ -81,7 +81,7 @@
     "jsonc-eslint-parser": "^2.4.0",
     "license-checker": "^25.0.1",
     "node-cmd": "^5.0.0",
-    "npm-check-updates": "^17.0.6",
+    "npm-check-updates": "^17.1.0",
     "npm-package-json-lint": "^8.0.0",
     "npm-package-json-lint-config-default": "^7.0.1",
     "parse-git-config": "^3.0.0",
@@ -149,7 +149,7 @@
     "package-clean": "echo Not cleaning..."
   },
   "sideEffects": false,
-  "version": "4.0.0-rc.29",
+  "version": "4.0.0-rc.30",
   "type": "module",
   "stableVersion": "3.15.16"
 }

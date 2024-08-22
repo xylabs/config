@@ -45,9 +45,7 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', pkg?: string) => {
   } else {
     const results = await Promise.all(
       workspaceList.map(async (workspace) => {
-        const {
-          location, name,
-        } = workspace
+        const { location, name } = workspace
         return await copyPackageTargetAssets(target, name, location)
       }),
     )
@@ -57,9 +55,7 @@ const copyTargetAssets = async (target: 'esm' | 'cjs', pkg?: string) => {
   return 0
 }
 
-export const copyAssets = async ({
-  target, pkg,
-}: CopyAssetsParams) => {
+export const copyAssets = async ({ target, pkg }: CopyAssetsParams) => {
   switch (target) {
     case 'esm': {
       return await copyTargetAssets('esm', pkg)

@@ -14,9 +14,7 @@ export const generateIgnoreFiles = (filename: string, pkg?: string) => {
   const workspaces = pkg ? [yarnWorkspace(pkg)] : yarnWorkspaces()
   const readEntries = (location: string): string[] => readNonEmptyLines(`${location}/${filename}`)
   const writeEntries = (location: string, entries: string[]) => writeLines(`${location}/${filename}`, entries)
-  const results = workspaces.map(({
-    location, name,
-  }) => {
+  const results = workspaces.map(({ location, name }) => {
     try {
       writeEntries(location, mergeEntries(readEntries(cwd), readEntries(location)))
       return 0

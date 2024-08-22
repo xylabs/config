@@ -7,14 +7,10 @@ export const lintClean = () => {
   console.log('Lint Clean [.eslintcache]')
   const workspaces = yarnWorkspaces()
   const result = workspaces
-    .map(({
-      location, name,
-    }) => {
+    .map(({ location, name }) => {
       const dist = `${location}/.eslintcache`
       try {
-        rmSync(dist, {
-          force: true, recursive: true,
-        })
+        rmSync(dist, { force: true, recursive: true })
         return 0
       } catch (ex) {
         const error = ex as Error

@@ -1,6 +1,4 @@
-import type {
-  ESLint, Linter,
-} from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import mdPlugin from 'eslint-plugin-md'
 
 export const markdownConfig: Linter.FlatConfig = {

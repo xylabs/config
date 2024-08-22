@@ -64,9 +64,7 @@ export const xyCommonCommands = (args: Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log(`Generating TypeDocs: ${argv.package ?? 'all'}`)
-        process.exitCode = genDocs({
-          incremental: !!argv.incremental, pkg: argv.package as string,
-        })
+        process.exitCode = genDocs({ incremental: !!argv.incremental, pkg: argv.package as string })
       },
     )
     .command(

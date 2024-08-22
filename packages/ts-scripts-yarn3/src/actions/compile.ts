@@ -30,9 +30,7 @@ export const compile = ({
     })
 }
 
-export const compilePackage = ({
-  target, pkg,
-}: CompilePackageParams) => {
+export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
   const targetOptions = target ? ['-t', target] : []
 
   return runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])

@@ -1,6 +1,4 @@
-import type {
-  ESLint, Linter,
-} from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import unicornPlugin from 'eslint-plugin-unicorn'
 
 export const unicornConfig: Linter.FlatConfig = {

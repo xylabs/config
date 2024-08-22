@@ -87,16 +87,16 @@ export const typescriptConfig: Linter.Config = {
     ],
     '@stylistic/object-curly-newline': ['warn', {
       ObjectExpression: {
-        multiline: true, minProperties: 2, consistent: true,
+        multiline: true, minProperties: 3, consistent: false,
       },
       ObjectPattern: {
-        multiline: true, minProperties: 2, consistent: true,
+        multiline: true, minProperties: 3, consistent: false,
       },
       ImportDeclaration: {
-        multiline: true, minProperties: 3, consistent: true,
+        multiline: true, minProperties: 3, consistent: false,
       },
       ExportDeclaration: {
-        multiline: true, minProperties: 3, consistent: true,
+        multiline: true, minProperties: 3, consistent: false,
       },
     }],
     '@stylistic/max-len': ['warn', { code: 160 }],

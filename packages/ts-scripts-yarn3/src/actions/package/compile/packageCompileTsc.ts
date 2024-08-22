@@ -57,9 +57,7 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   for (const diag of results) {
     const lineAndChar: LineAndCharacter = diag.file
       ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0)
-      : {
-          character: 0, line: 0,
-        }
+      : { character: 0, line: 0 }
     console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
   }

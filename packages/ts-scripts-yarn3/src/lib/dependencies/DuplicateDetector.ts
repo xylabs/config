@@ -32,9 +32,7 @@ const trimObjectDependencyVirtualMeta = (obj: Record<string, ChildFields>): Reco
 
 const trimDependencyVirtualMeta = (dependencies: DependencyEntries): DependencyEntries => {
   return dependencies.map((dependency) => {
-    return {
-      children: trimObjectDependencyVirtualMeta(dependency.children), value: trimVirtualMeta(dependency.value),
-    }
+    return { children: trimObjectDependencyVirtualMeta(dependency.children), value: trimVirtualMeta(dependency.value) }
   })
 }
 

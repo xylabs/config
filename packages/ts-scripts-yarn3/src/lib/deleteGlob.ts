@@ -8,8 +8,6 @@ export const deleteGlob = (globPath: string) => {
 
   // Remove each file or directory
   for (const file of files) {
-    fs.rmSync(file, {
-      recursive: true, force: true,
-    })
+    fs.rmSync(file, { recursive: true, force: true })
   }
 }

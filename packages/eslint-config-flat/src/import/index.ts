@@ -1,7 +1,5 @@
 import tsParser from '@typescript-eslint/parser'
-import type {
-  ESLint, Linter,
-} from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import-x'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 

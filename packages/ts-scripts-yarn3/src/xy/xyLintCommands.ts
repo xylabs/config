@@ -74,9 +74,7 @@ export const xyLintCommands = (args: Argv) => {
       async (argv) => {
         if (argv.verbose) console.log('Publint')
         const start = Date.now()
-        process.exitCode = await publint({
-          pkg: argv.package as string, verbose: !!argv.verbose,
-        })
+        process.exitCode = await publint({ pkg: argv.package as string, verbose: !!argv.verbose })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

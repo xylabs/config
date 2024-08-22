@@ -12,9 +12,7 @@ export interface DepsParams {
 
 export interface DepsPackageParams { pkg: string }
 
-export const deps = ({
-  pkg, incremental,
-}: DepsParams) => {
+export const deps = ({ pkg, incremental }: DepsParams) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   pkg ? depsPackage({ pkg }) : depsAll({ incremental })
   // returning 0 here since we never wants deps to be fatal

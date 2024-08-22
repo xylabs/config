@@ -16,9 +16,7 @@ export const getInputDirs = async (depth: number = 0) => {
   }
   return [
     '.',
-    ...(await readdir('src', {
-      recursive: true, withFileTypes: true,
-    }))
+    ...(await readdir('src', { recursive: true, withFileTypes: true }))
       .filter(file => file.isDirectory())
       .map((file) => {
         const pathParts = file.path?.split('/') ?? []
@@ -40,7 +38,5 @@ export const getAllInputs = async (depth = 100) => {
 
 export const getAllInputs2 = (folder: string) => {
   /* tsup wants posix paths */
-  return glob.sync(`${folder}/**/*.*`, {
-    ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'], posix: true,
-  })
+  return glob.sync(`${folder}/**/*.*`, { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'], posix: true })
 }
