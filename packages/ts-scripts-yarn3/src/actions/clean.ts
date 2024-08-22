@@ -11,7 +11,9 @@ export interface CleanPackageParams {
 }
 
 export const clean = async ({ verbose, pkg }: CleanParams) => {
-  return pkg ? await cleanPackage({ pkg, verbose }) : cleanAll({ verbose })
+  return pkg
+    ? await cleanPackage({ pkg, verbose })
+    : cleanAll({ verbose })
 }
 
 export const cleanPackage = ({ pkg }: CleanPackageParams) => {

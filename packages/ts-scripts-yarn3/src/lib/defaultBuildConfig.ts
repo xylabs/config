@@ -3,6 +3,16 @@ export const defaultBuildConfig = {
     rootDir: 'src',
     rootDirs: ['package.json'],
   },
-  exclude: ['**/build', '**/dist', '**/node_modules', '**/*.spec.*', '**/*.spec', '**/*.stories.*', '**/*.example.*', '**/spec/*', '**/stories/*'],
+  exclude: [
+    '**/build',
+    '**/dist',
+    '**/node_modules',
+    '**/*.spec.*',
+    '**/*.spec',
+    '**/*.stories.*',
+    '**/*.example.*',
+    '**/spec/*',
+    '**/stories/*',
+  ],
   include: ['src'],
 }

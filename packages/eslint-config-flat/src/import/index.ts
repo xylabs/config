@@ -1,9 +1,9 @@
 import tsParser from '@typescript-eslint/parser'
-import { ESLint, Linter } from 'eslint'
-import importPlugin from 'eslint-plugin-import'
+import type { ESLint, Linter } from 'eslint'
+import importPlugin from 'eslint-plugin-import-x'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
-export const importConfig: Linter.FlatConfig = {
+export const importConfig: Linter.Config = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
   languageOptions: {
@@ -15,33 +15,25 @@ export const importConfig: Linter.FlatConfig = {
     },
   },
   plugins: {
-    'import': importPlugin as ESLint.Plugin,
+    'import-x': importPlugin as unknown as ESLint.Plugin,
     'simple-import-sort': simpleImportSort,
   },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project: './tsconfig-eslint.json',
-      },
-    },
-  },
+  settings: { 'import-x/resolver': { typescript: { project: './tsconfig-eslint.json' } } },
   rules: {
     ...(importPlugin.configs.recommended as ESLint.ConfigData).rules,
     'simple-import-sort/imports': ['warn'],
     'simple-import-sort/exports': ['warn'],
-    'import/default': ['off'],
-    'import/named': ['off'],
-    'import/namespace': ['off'],
-    'import/no-absolute-path': ['warn'],
-    'import/no-cycle': [
+    'import-x/default': ['off'],
+    'import-x/named': ['off'],
+    'import-x/namespace': ['off'],
+    'import-x/no-absolute-path': ['warn'],
+    'import-x/no-cycle': [
       'warn',
-      {
-        maxDepth: 2,
-      },
+      { maxDepth: 2 },
     ],
-    'import/no-default-export': ['warn'],
-    'import/no-deprecated': ['off'],
-    'import/no-internal-modules': [
+    'import-x/no-default-export': ['warn'],
+    'import-x/no-deprecated': ['off'],
+    'import-x/no-internal-modules': [
       'warn',
       {
         allow: [
@@ -53,10 +45,10 @@ export const importConfig: Linter.FlatConfig = {
         ],
       },
     ],
-    'import/no-named-as-default-member': ['off'],
-    'import/no-named-as-default': ['off'],
-    'import/no-restricted-paths': ['warn'],
-    'import/no-self-import': ['warn'],
-    'import/no-useless-path-segments': ['warn'],
+    'import-x/no-named-as-default-member': ['off'],
+    'import-x/no-named-as-default': ['off'],
+    'import-x/no-restricted-paths': ['warn'],
+    'import-x/no-self-import': ['warn'],
+    'import-x/no-useless-path-segments': ['warn'],
   },
 }

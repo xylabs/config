@@ -18,8 +18,16 @@ interface CompilePackageParams {
   verbose?: boolean
 }
 
-export const compile = ({ verbose, target, pkg, incremental, publint }: CompileParams) => {
-  return pkg ? compilePackage({ pkg, publint, target, verbose }) : compileAll({ incremental, publint, target, verbose })
+export const compile = ({
+  verbose, target, pkg, incremental, publint, jobs,
+}: CompileParams) => {
+  return pkg
+    ? compilePackage({
+      pkg, publint, target, verbose,
+    })
+    : compileAll({
+      incremental, publint, target, verbose, jobs,
+    })
 }
 
 export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
@@ -28,7 +36,9 @@ export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
   return runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
 }
 
-export const compileAll = ({ jobs, verbose, target, incremental }: CompileParams) => {
+export const compileAll = ({
+  jobs, verbose, target, incremental,
+}: CompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   const targetOptions = target ? ['-t', target] : []

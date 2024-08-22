@@ -1,4 +1,4 @@
-import { Options } from 'tsup'
+import type { Options } from 'tsup'
 
 export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
@@ -21,13 +21,13 @@ export interface PathConfig {
 /**
  * Configuration for Dynamic Share.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+
 export interface DynamicShareConfig extends PathConfig {}
 
 /**
  * Configuration for Live Share.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+
 export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {
@@ -44,14 +44,10 @@ export type PackageCompileTsupConfig = CompileConfig & {
   mode?: 'tsup'
   neutral?: Record<string, Options | boolean>
   node?: Record<string, Options | boolean>
-  tsup?: {
-    options?: Options
-  }
+  tsup?: { options?: Options }
 }
 
-export type PackageCompileTscConfig = CompileConfig & {
-  mode: 'tsc'
-}
+export type PackageCompileTscConfig = CompileConfig & { mode: 'tsc' }
 
 export interface XyConfigBase {
   compile?: CompileConfig
@@ -61,12 +57,8 @@ export interface XyConfigBase {
   verbose?: boolean
 }
 
-export interface XyTsupConfig extends XyConfigBase {
-  compile?: PackageCompileTsupConfig
-}
+export interface XyTsupConfig extends XyConfigBase { compile?: PackageCompileTsupConfig }
 
-export interface XyTscConfig extends XyConfigBase {
-  compile?: PackageCompileTscConfig
-}
+export interface XyTscConfig extends XyConfigBase { compile?: PackageCompileTscConfig }
 
 export type XyConfig = XyTsupConfig | XyTscConfig

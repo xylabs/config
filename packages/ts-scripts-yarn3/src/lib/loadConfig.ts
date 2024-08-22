@@ -1,13 +1,12 @@
 import chalk from 'chalk'
 import { cosmiconfig } from 'cosmiconfig'
-// eslint-disable-next-line import/no-internal-modules
-import merge from 'lodash/merge.js'
+import deepmerge from 'deepmerge'
 
 let config: Record<string, unknown>
 
 export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
   if (config) {
-    return merge({}, config, params)
+    return deepmerge(config, params ?? {}) as T
   }
 
   const cosmicConfigResult = await cosmiconfig('xy', { cache: true }).search()
@@ -16,5 +15,5 @@ export const loadConfig = async <T extends object>(params?: T): Promise<T> => {
   if (configFilePath) {
     console.log(chalk.gray(`Loading config from ${configFilePath}`))
   }
-  return merge({}, config, params)
+  return deepmerge(config, params ?? {}) as T
 }

@@ -11,7 +11,9 @@ export interface PublintPackageParams {
 }
 
 export const publint = async ({ verbose, pkg }: PublintParams) => {
-  return pkg ? await publintPackage({ pkg, verbose }) : publintAll({ verbose })
+  return pkg
+    ? await publintPackage({ pkg, verbose })
+    : publintAll({ verbose })
 }
 
 export const publintPackage = ({ pkg }: PublintPackageParams) => {

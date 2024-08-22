@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 export const rulesConfig: Linter.FlatConfig = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
@@ -12,13 +12,12 @@ export const rulesConfig: Linter.FlatConfig = {
         skipBlankLines: true,
       },
     ],
+    'array-element-newline': ['warn', 'consistent'],
     'max-nested-callbacks': ['error', 6],
     'max-statements': ['error', 32],
     'no-restricted-imports': [
       'warn',
-      {
-        paths: ['.', '..', '../..', '../../..', '../../../..', '../../../../..', '../../../../../..', '../../../../../../..'],
-      },
+      { paths: ['.', '..', '../..', '../../..', '../../../..', '../../../../..', '../../../../../..', '../../../../../../..'] },
     ],
     // 'no-secrets/no-secrets': ['off'],
     'no-tabs': ['error'],

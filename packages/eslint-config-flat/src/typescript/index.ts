@@ -1,11 +1,51 @@
 import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
+import dependPlugin from 'eslint-plugin-depend'
 
-export const typescriptConfig: Linter.FlatConfig = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
+export const ignores = [
+  '.yarn',
+  'node_modules',
+  '**/node_modules',
+  'dist',
+  '**/dist',
+  '**/docs',
+  'public',
+  'storybook-static',
+  '.storybook',
+  '.eslintcache',
+  '.github',
+  '.vscode',
+  '.husky',
+  '.jest',
+  '.next',
+  '.storybook',
+  '.vscode',
+  'coverage',
+  'cypress',
+  'dist',
+  'node_modules',
+  'public',
+  'storybook-static',
+  'tmp',
+  'yarn-error.log',
+  'yarn.lock',
+]
+
+export const typescriptConfig: Linter.Config = {
+  ignores,
+  files: ['**/*.ts',
+    '**/*.d.ts',
+    '**/*.tsx',
+    '**/*.d.tsx',
+    '**/*.ts',
+    '**/*.d.ts',
+    '**/*.jsx',
+    '**/*.d.jsx',
+    '**/*.js',
+    '**/*.cjs',
+    '**/*.mjs'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {
@@ -16,16 +56,22 @@ export const typescriptConfig: Linter.FlatConfig = {
   },
   plugins: {
     '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
-    '@stylistic': esStylistic,
+    '@stylistic': esStylistic as unknown as ESLint.Plugin,
+    'depend': dependPlugin,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
     ...esStylistic.configs['recommended-flat'].rules,
+    ...dependPlugin.configs['flat/recommended'].rules,
     '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
     '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
+    '@typescript-eslint/consistent-type-imports': ['warn'],
+    '@stylistic/object-property-newline': ['warn', { allowAllPropertiesOnSameLine: true }],
+    '@stylistic/function-call-argument-newline': ['warn', 'consistent'],
+    '@stylistic/function-paren-newline': ['warn', 'multiline-arguments'],
     '@stylistic/member-delimiter-style': [
       'error',
       {
@@ -39,6 +85,21 @@ export const typescriptConfig: Linter.FlatConfig = {
         },
       },
     ],
+    '@stylistic/object-curly-newline': ['warn', {
+      ObjectExpression: {
+        multiline: true, minProperties: 3, consistent: false,
+      },
+      ObjectPattern: {
+        multiline: true, minProperties: 3, consistent: false,
+      },
+      ImportDeclaration: {
+        multiline: true, minProperties: 3, consistent: false,
+      },
+      ExportDeclaration: {
+        multiline: true, minProperties: 3, consistent: false,
+      },
+    }],
+    '@stylistic/max-len': ['warn', { code: 160 }],
     '@typescript-eslint/member-ordering': [
       'warn',
       {
@@ -117,9 +178,7 @@ export const typescriptConfig: Linter.FlatConfig = {
     '@typescript-eslint/no-misused-promises': 'error',
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      {
-        argsIgnorePattern: '^_',
-      },
+      { argsIgnorePattern: '^_' },
     ],
     'semi': ['warn', 'never'],
   },

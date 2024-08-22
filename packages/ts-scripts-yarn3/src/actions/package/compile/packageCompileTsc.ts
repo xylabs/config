@@ -1,20 +1,23 @@
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
-import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
-import {
+import type { TsConfigCompilerOptions } from 'tsc-prog'
+import { createProgramFromConfig } from 'tsc-prog'
+import type {
   CompilerOptions,
-  DiagnosticCategory,
   FormatDiagnosticsHost,
+  LineAndCharacter,
+} from 'typescript'
+import {
+  DiagnosticCategory,
   formatDiagnosticsWithColorAndContext,
   getLineAndCharacterOfPosition,
   getPreEmitDiagnostics,
-  LineAndCharacter,
 } from 'typescript'
 
 import { packagePublint } from '../publint.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import { XyTscConfig } from './XyConfig.ts'
+import type { XyTscConfig } from './XyConfig.ts'
 
 export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()
@@ -33,7 +36,7 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   }
 
   const compilerOptions = {
-    ...(await getCompilerOptions({
+    ...(getCompilerOptions({
       outDir: 'dist',
       removeComments: true,
       rootDir: 'src',
@@ -52,7 +55,9 @@ export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, 
   const results = getPreEmitDiagnostics(program)
 
   for (const diag of results) {
-    const lineAndChar: LineAndCharacter = diag.file ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0) : { character: 0, line: 0 }
+    const lineAndChar: LineAndCharacter = diag.file
+      ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0)
+      : { character: 0, line: 0 }
     console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
     console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
   }

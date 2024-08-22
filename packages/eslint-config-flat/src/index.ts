@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 import { importConfig } from './import/index.ts'
 // import { jsonConfig } from './json/index.ts'
@@ -23,9 +23,8 @@ export const config: Linter.Config[] = [
 ]
 
 export { importConfig } from './import/index.ts'
-export { prettierConfig } from './prettier/index.ts'
 export { rulesConfig } from './rules/index.ts'
 export { sonarConfig } from './sonar/index.ts'
-export { typescriptConfig } from './typescript/index.ts'
+export { ignores, typescriptConfig } from './typescript/index.ts'
 export { unicornConfig } from './unicorn/index.ts'
 export { workspacesConfig } from './workspaces/index.ts'

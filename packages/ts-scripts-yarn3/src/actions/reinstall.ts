@@ -1,4 +1,6 @@
-import { closeSync, openSync, rmSync } from 'node:fs'
+import {
+  closeSync, openSync, rmSync,
+} from 'node:fs'
 
 import { runSteps, yarnWorkspaces } from '../lib/index.ts'
 

@@ -4,7 +4,9 @@ import { existsSync } from 'node:fs'
 import path from 'node:path'
 
 import chalk from 'chalk'
-import { Application, ArgumentsReader, TSConfigReader, TypeDocReader } from 'typedoc'
+import {
+  Application, ArgumentsReader, TSConfigReader, TypeDocReader,
+} from 'typedoc'
 
 const ExitCodes = {
   CompileError: 3,

@@ -1,6 +1,7 @@
 export * from './checkResult.ts'
 export * from './createBuildConfig.ts'
 export * from './defaultBuildConfig.ts'
+export * from './deleteGlob.ts'
 export * from './dependencies/index.ts'
 export * from './file/index.ts'
 export * from './generateIgnoreFiles.ts'

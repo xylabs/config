@@ -1,11 +1,17 @@
-import { existsSync, PathLike, readFileSync, WriteFileOptions, writeFileSync } from 'node:fs'
+import type { PathLike, WriteFileOptions } from 'node:fs'
+import {
+  existsSync, readFileSync, writeFileSync,
+} from 'node:fs'
 
 import { notEmpty } from '../string/index.ts'
 import { CROSS_PLATFORM_NEWLINE, WINDOWS_NEWLINE_REGEX } from './constants.ts'
-import { defaultReadFileSyncOptions, ReadFileSyncOptions } from './ReadFileSyncOptions.ts'
+import type { ReadFileSyncOptions } from './ReadFileSyncOptions.ts'
+import { defaultReadFileSyncOptions } from './ReadFileSyncOptions.ts'
 
 export const readLines = (uri: PathLike, options: ReadFileSyncOptions = defaultReadFileSyncOptions): string[] =>
-  existsSync(uri) ? readFileSync(uri, options).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE) : []
+  existsSync(uri)
+    ? readFileSync(uri, options).replace(WINDOWS_NEWLINE_REGEX, CROSS_PLATFORM_NEWLINE).split(CROSS_PLATFORM_NEWLINE)
+    : []
 
 export const readNonEmptyLines = (uri: PathLike, options: ReadFileSyncOptions = defaultReadFileSyncOptions): string[] =>
   readLines(uri, options).filter(notEmpty)

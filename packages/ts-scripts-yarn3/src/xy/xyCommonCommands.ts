@@ -1,4 +1,4 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 import {
   cleanDocs,
@@ -51,7 +51,9 @@ export const xyCommonCommands = (args: Argv) => {
       },
       (argv) => {
         if (argv.verbose) console.log(`Checking Dependencies: ${argv.package ?? 'all'}`)
-        process.exitCode = deps({ incremental: !!argv.incremental, jobs: argv.jobs as number, pkg: argv.package as string })
+        process.exitCode = deps({
+          incremental: !!argv.incremental, jobs: argv.jobs as number, pkg: argv.package as string,
+        })
       },
     )
     .command(

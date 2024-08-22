@@ -1,7 +1,5 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 export const packagePositionalParam = (yargs: Argv<unknown>) => {
-  return yargs.positional('package', {
-    describe: 'Specific package to target',
-  })
+  return yargs.positional('package', { describe: 'Specific package to target' })
 }

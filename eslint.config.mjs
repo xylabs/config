@@ -4,11 +4,10 @@ import { config as xylabsConfig } from '@xylabs/eslint-config-flat'
 
 export default [
   {
-    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
+    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**', 'eslint.config.mjs'],
   },
   ...xylabsConfig,
   {
-    ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
     rules: {
       'unicorn/no-process-exit': ['off'],
     },

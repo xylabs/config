@@ -1,13 +1,12 @@
-import { runSteps, ScriptStep } from '../lib/index.ts'
+import type { ScriptStep } from '../lib/index.ts'
+import { runSteps } from '../lib/index.ts'
 
 export interface GenDocsParams {
   incremental?: boolean
   pkg?: string
 }
 
-export interface GenDocsPackageParams {
-  pkg: string
-}
+export interface GenDocsPackageParams { pkg: string }
 
 export const genDocs = ({ pkg, incremental }: GenDocsParams) => {
   return pkg ? genDocsPackage({ pkg }) : genDocsAll({ incremental })

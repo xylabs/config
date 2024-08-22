@@ -10,7 +10,9 @@ export interface BuildParams {
   verbose?: boolean
 }
 
-export const build = async ({ incremental, jobs, target, verbose, pkg }: BuildParams) => {
+export const build = async ({
+  incremental, jobs, target, verbose, pkg,
+}: BuildParams) => {
   const start = Date.now()
   const pkgOptions = pkg ? [pkg] : [] // must go first
   const incrementalOptions = incremental ? ['-i'] : []

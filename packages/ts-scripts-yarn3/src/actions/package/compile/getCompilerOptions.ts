@@ -1,15 +1,17 @@
 import { createRequire } from 'node:module'
 
-// eslint-disable-next-line import/no-internal-modules
-import merge from 'lodash/merge.js'
-import { TsConfig } from 'tsc-prog'
-import { CompilerOptions, findConfigFile, readConfigFile, sys } from 'typescript'
+import deepmerge from 'deepmerge'
+import type { TsConfig } from 'tsc-prog'
+import type { CompilerOptions } from 'typescript'
+import {
+  findConfigFile, readConfigFile, sys,
+} from 'typescript'
 
 const getNested = (config: TsConfig): CompilerOptions => {
   if (config.extends) {
     const require = createRequire(import.meta.url)
     const opts = require(config.extends)
-    return { ...getNested(opts), ...config.compilerOptions } as CompilerOptions
+    return deepmerge(getNested(opts), config.compilerOptions ?? {}) as CompilerOptions
   }
 
   return config.compilerOptions as CompilerOptions
@@ -20,9 +22,9 @@ export const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerO
   return getNested(config)
 }
 
-export const getCompilerOptions = (options?: CompilerOptions, tsconfig: string = 'tsconfig.json'): CompilerOptions => {
+export const getCompilerOptions = (options: CompilerOptions = {}, tsconfig: string = 'tsconfig.json'): CompilerOptions => {
   const configFileName = findConfigFile('./', sys.fileExists, tsconfig)
-  const configFileCompilerOptions = configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined
+  const configFileCompilerOptions = (configFileName ? getCompilerOptionsJSONFollowExtends(configFileName) : undefined) ?? {}
 
-  return merge({}, configFileCompilerOptions, options)
+  return deepmerge(configFileCompilerOptions, options)
 }

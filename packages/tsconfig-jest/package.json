@@ -1,35 +1,8 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/tsconfig-jest",
-  "author": {
-    "email": "support@xylabs.com",
-    "name": "XY Labs Development Team",
-    "url": "https://xylabs.com"
-  },
-  "bugs": {
-    "email": "support@xylabs.com",
-    "url": "https://github.com/xylabs/config/issues"
-  },
+  "version": "4.0.0-rc.30",
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript jest tests",
-  "dependencies": {
-    "@xylabs/tsconfig": "workspace:^",
-    "jest-extended": "^4.0.2",
-    "jest-sorted": "^1.0.15"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.1.0",
-    "@types/reflect-metadata": "^0.1.0",
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "typescript": "^5.5.4"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "scripts": {
-    "package-compile": "echo Compiled"
-  },
-  "homepage": "https://github.com/xylabs/config.git",
   "keywords": [
     "xylabs",
     "utility",
@@ -37,16 +10,44 @@
     "typescript",
     "tsconfig"
   ],
-  "license": "LGPL-3.0-or-later",
-  "main": "./tsconfig.json",
-  "publishConfig": {
-    "access": "public"
+  "homepage": "https://github.com/xylabs/config.git",
+  "bugs": {
+    "url": "git+https://github.com/xylabs/config/issues",
+    "email": "support@xylabs.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xylabs/config.git"
+    "url": "git+https://github.com/xylabs/config.git"
+  },
+  "license": "LGPL-3.0-or-later",
+  "author": {
+    "name": "XY Labs Development Team",
+    "email": "support@xylabs.com",
+    "url": "https://xylabs.com"
   },
   "sideEffects": false,
   "type": "module",
-  "version": "3.15.16"
+  "main": "./tsconfig.json",
+  "scripts": {
+    "package-compile": "echo Compiled"
+  },
+  "dependencies": {
+    "@xylabs/tsconfig": "workspace:^",
+    "jest-extended": "^4.0.2",
+    "jest-sorted": "^1.0.15"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.0",
+    "@types/reflect-metadata": "^0.1.0",
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "stableVersion": "3.15.16"
 }

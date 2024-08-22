@@ -3,9 +3,7 @@ import path from 'node:path/posix'
 import chalk from 'chalk'
 import cpy from 'cpy'
 
-export interface PackageCopyAssetsParams {
-  target?: 'esm' | 'cjs'
-}
+export interface PackageCopyAssetsParams { target?: 'esm' | 'cjs' }
 
 const copyTargetAssets = async (target: 'esm' | 'cjs', name: string, location: string) => {
   try {

@@ -1,4 +1,4 @@
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import mdPlugin from 'eslint-plugin-md'
 
 export const markdownConfig: Linter.FlatConfig = {
@@ -9,9 +9,7 @@ export const markdownConfig: Linter.FlatConfig = {
   rules: {
     'md/remark': [
       'warn',
-      {
-        plugins: ['preset-lint-markdown-style-guide', 'frontmatter', ['lint-list-item-indent', 'tab-size']],
-      },
+      { plugins: ['preset-lint-markdown-style-guide', 'frontmatter', ['lint-list-item-indent', 'tab-size']] },
     ],
     'prettier/prettier': [
       'off',

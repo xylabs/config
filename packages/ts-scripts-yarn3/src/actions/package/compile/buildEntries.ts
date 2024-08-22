@@ -1,5 +1,5 @@
 import { getAllInputs2 } from './inputs.ts'
-import { EntryMode } from './XyConfig.ts'
+import type { EntryMode } from './XyConfig.ts'
 
 export const buildEntries = (folder: string, entryMode?: EntryMode, verbose = false) => {
   switch (entryMode) {

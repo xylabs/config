@@ -1,6 +1,8 @@
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
-import { clean, dupdeps, reinstall, statics, up, updo } from '../actions/index.ts'
+import {
+  clean, dupdeps, reinstall, statics, up, updo,
+} from '../actions/index.ts'
 
 export const xyInstallCommands = (args: Argv) => {
   return args
@@ -8,9 +10,7 @@ export const xyInstallCommands = (args: Argv) => {
       'clean [package]',
       'Clean',
       (yargs) => {
-        return yargs.positional('package', {
-          describe: 'Specific package to clean',
-        })
+        return yargs.positional('package', { describe: 'Specific package to clean' })
       },
       async (argv) => {
         if (argv.verbose) {

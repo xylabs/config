@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 
-import { runSteps, ScriptStep } from '../lib/index.ts'
+import type { ScriptStep } from '../lib/index.ts'
+import { runSteps } from '../lib/index.ts'
 
 export interface DepsParams {
   incremental?: boolean
@@ -9,9 +10,7 @@ export interface DepsParams {
   verbose?: boolean
 }
 
-export interface DepsPackageParams {
-  pkg: string
-}
+export interface DepsPackageParams { pkg: string }
 
 export const deps = ({ pkg, incremental }: DepsParams) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -26,7 +25,9 @@ export const depsPackage = ({ pkg }: DepsPackageParams) => {
   return runSteps(`Deps [${pkg}]`, [...steps])
 }
 
-export const depsAll = ({ incremental, jobs, verbose }: DepsParams) => {
+export const depsAll = ({
+  incremental, jobs, verbose,
+}: DepsParams) => {
   const start = Date.now()
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
