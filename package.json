@@ -1,23 +1,48 @@
 {
+  "name": "@xylabs/config",
+  "version": "4.0.0-rc.30",
+  "description": "TypeScript project scripts",
+  "keywords": [
+    "xylabs",
+    "utility",
+    "typescript"
+  ],
+  "homepage": "https://xylabs.com",
+  "bugs": {
+    "url": "git+https://github.com/xylabs/ts-scripts/issues",
+    "email": "support@xylabs.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xylabs/config.git"
+  },
+  "license": "LGPL-3.0-only",
   "author": {
-    "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
+    "email": "support@xylabs.com",
     "url": "https://xylabs.com"
   },
+  "sideEffects": false,
+  "type": "module",
+  "types": "dist/node/index.d.ts",
   "workspaces": [
     "packages/**/*"
   ],
-  "bugs": {
-    "email": "support@xylabs.com",
-    "url": "git+https://github.com/xylabs/ts-scripts/issues"
+  "scripts": {
+    "build": "echo Building... && yarn clean && yarn compile",
+    "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
+    "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -At --exclude @xylabs/ts-scripts-yarn3 run package-compile",
+    "deploy": "yarn deploy-patch",
+    "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach --all --parallel npm publish",
+    "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
+    "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
+    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
+    "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
+    "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common"
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/json-schema": "^7.0.15",
@@ -33,40 +58,15 @@
     "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   },
-  "homepage": "https://xylabs.com",
-  "keywords": [
-    "xylabs",
-    "utility",
-    "typescript"
-  ],
-  "license": "LGPL-3.0-only",
-  "name": "@xylabs/config",
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "typescript": "^5"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xylabs/config.git"
-  },
+  "packageManager": "yarn@4.3.1",
   "engines": {
     "node": ">=20.16"
   },
-  "sideEffects": false,
-  "types": "dist/node/index.d.ts",
-  "version": "4.0.0-rc.30",
-  "packageManager": "yarn@4.3.1",
-  "scripts": {
-    "build": "echo Building... && yarn clean && yarn compile",
-    "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
-    "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -At --exclude @xylabs/ts-scripts-yarn3 run package-compile",
-    "deploy": "yarn deploy-patch",
-    "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
-    "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
-    "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common",
-    "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach --all --parallel npm publish",
-    "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
-    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next"
+  "publishConfig": {
+    "access": "public"
   },
-  "type": "module",
   "stableVersion": "3.15.16"
 }

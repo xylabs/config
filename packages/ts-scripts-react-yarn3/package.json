@@ -1,10 +1,40 @@
 {
   "name": "@xylabs/ts-scripts-react-yarn3",
+  "version": "4.0.0-rc.30",
+  "description": "TypeScript project scripts",
+  "keywords": [
+    "xylabs",
+    "utility",
+    "typescript"
+  ],
+  "homepage": "https://xylabs.com",
+  "bugs": {
+    "url": "git+https://github.com/xylabs/config/issues",
+    "email": "support@xylabs.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xylabs/config.git"
+  },
+  "license": "LGPL-3.0-only",
   "author": {
-    "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
+    "email": "support@xylabs.com",
     "url": "https://xylabs.com"
   },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "bin": {
     "analyze": "dist/bin/analyze.mjs",
     "build": "dist/bin/build.mjs",
@@ -44,16 +74,15 @@
     "xy": "dist/bin/xy.mjs",
     "yarn3only": "dist/bin/yarn3only.mjs"
   },
-  "bugs": {
-    "email": "support@xylabs.com",
-    "url": "git+https://github.com/xylabs/config/issues"
+  "scripts": {
+    "package-compile": "tsup && publint .",
+    "package-recompile": "tsup && publint ."
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "chalk": "^5.3.0",
     "yargs": "^17.7.2"
   },
-  "description": "TypeScript project scripts",
   "devDependencies": {
     "@types/yargs": "^17.0.33",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
@@ -65,40 +94,11 @@
   "peerDependencies": {
     "typescript": "^5"
   },
-  "homepage": "https://xylabs.com",
-  "keywords": [
-    "xylabs",
-    "utility",
-    "typescript"
-  ],
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
-      }
-    },
-    "./package.json": "./package.json"
-  },
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "license": "LGPL-3.0-only",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xylabs/config.git"
-  },
   "engines": {
     "node": ">=14.16"
   },
-  "scripts": {
-    "package-compile": "tsup && publint .",
-    "package-recompile": "tsup && publint ."
+  "publishConfig": {
+    "access": "public"
   },
-  "sideEffects": false,
-  "version": "4.0.0-rc.30",
-  "type": "module",
   "stableVersion": "3.15.16"
 }

@@ -2,11 +2,16 @@ import { promises as fs } from 'node:fs'
 
 import chalk from 'chalk'
 import type { Message } from 'publint'
+import sortPackageJson from 'sort-package-json'
 
 export interface PackagePublintParams { verbose?: boolean }
 
 export const packagePublint = async (params?: PackagePublintParams) => {
   const pkgDir = process.env.INIT_CWD
+
+  const sortedPkg = sortPackageJson(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))
+  await fs.writeFile(`${pkgDir}/package.json`, sortedPkg)
+
   const pkg = JSON.parse(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))
 
   console.log(chalk.green(`Publint: ${pkg.name}`))

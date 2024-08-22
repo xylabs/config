@@ -1,14 +1,43 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/eslint-config-flat",
+  "version": "4.0.0-rc.30",
+  "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
+  "keywords": [
+    "xylabs",
+    "utility",
+    "typescript",
+    "eslint"
+  ],
+  "homepage": "https://github.com/xylabs/eslint-config.git",
+  "bugs": {
+    "url": "git+https://github.com/xylabs/eslint-config/issues",
+    "email": "support@xylabs.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xylabs/config.git"
+  },
+  "license": "LGPL-3.0-only",
   "author": {
-    "email": "support@xylabs.com",
     "name": "XY Labs Development Team",
+    "email": "support@xylabs.com",
     "url": "https://xylabs.com"
   },
-  "bugs": {
-    "email": "support@xylabs.com",
-    "url": "git+https://github.com/xylabs/eslint-config/issues"
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "node": {
+      "import": {
+        "types": "./dist/node/index.d.ts",
+        "default": "./dist/node/index.mjs"
+      }
+    }
+  },
+  "module": "./dist/node/index.mjs",
+  "types": "./dist/node/index.d.ts",
+  "scripts": {
+    "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
   },
   "dependencies": {
     "@stylistic/eslint-plugin": "^2.6.4",
@@ -25,43 +54,14 @@
     "eslint-plugin-workspaces": "^0.10.1",
     "jsonc-eslint-parser": "^2.4.0"
   },
-  "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "eslint": "^9.9.0",
     "typescript": "^5.5.4"
   },
-  "homepage": "https://github.com/xylabs/eslint-config.git",
-  "keywords": [
-    "xylabs",
-    "utility",
-    "typescript",
-    "eslint"
-  ],
-  "license": "LGPL-3.0-only",
-  "exports": {
-    "node": {
-      "import": {
-        "types": "./dist/node/index.d.ts",
-        "default": "./dist/node/index.mjs"
-      }
-    }
-  },
-  "module": "./dist/node/index.mjs",
-  "types": "./dist/node/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xylabs/config.git"
-  },
-  "sideEffects": false,
-  "version": "4.0.0-rc.30",
-  "scripts": {
-    "package-compile2": "yarn tsc -p tsconfig.json --module es2022 --outDir dist --rootDir src"
-  },
-  "type": "module",
   "stableVersion": "3.15.16"
 }
