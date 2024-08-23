@@ -2227,6 +2227,7 @@ __metadata:
     lint-clean: dist/bin/lint-clean.mjs
     lint-fast: dist/bin/lint-fast.mjs
     lint-profile: dist/bin/lint-profile.mjs
+    package-build: dist/bin/package/build.mjs
     package-clean: dist/bin/package/clean.mjs
     package-compile: dist/bin/package/compile.mjs
     package-compile-only: dist/bin/package/compile-only.mjs

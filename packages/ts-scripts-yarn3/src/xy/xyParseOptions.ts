@@ -20,6 +20,7 @@ export const xyParseOptions = (): Argv => {
     })
     .option('target', {
       alias: 't',
+      default: 'esm',
       choices: ['esm', 'cjs'],
       description: 'Limit output to specific target',
       type: 'string',
@@ -47,5 +48,11 @@ export const xyParseOptions = (): Argv => {
       default: false,
       description: 'Profile action',
       type: 'boolean',
+    })
+    .option('types', {
+      default: 'tsup',
+      choices: ['tsc', 'tsup'],
+      description: 'Tool to generate Typescript types',
+      type: 'string',
     })
 }

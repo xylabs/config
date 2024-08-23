@@ -8,6 +8,7 @@ export interface CompileParams {
   pkg?: string
   publint?: boolean
   target?: 'esm' | 'cjs'
+  types?: 'tsc' | 'tsup'
   verbose?: boolean
 }
 
@@ -15,29 +16,35 @@ interface CompilePackageParams {
   pkg: string
   publint?: boolean
   target?: 'esm' | 'cjs'
+  types?: 'tsc' | 'tsup'
   verbose?: boolean
 }
 
 export const compile = ({
-  verbose, target, pkg, incremental, publint, jobs,
+  verbose, target, pkg, incremental, publint, jobs, types,
 }: CompileParams) => {
   return pkg
     ? compilePackage({
-      pkg, publint, target, verbose,
+      pkg, publint, target, verbose, types,
     })
     : compileAll({
-      incremental, publint, target, verbose, jobs,
+      incremental, publint, target, verbose, jobs, types,
     })
 }
 
-export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
+export const compilePackage = ({
+  target, pkg, types,
+}: CompilePackageParams) => {
   const targetOptions = target ? ['-t', target] : []
 
-  return runSteps(`Compile [${pkg}]`, [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]])
+  return runSteps(
+    `Compile [${pkg}]`,
+    [['yarn', ['workspace', pkg, 'run', types === 'tsup' ? 'package-compile' : 'package-build', ...targetOptions]]],
+  )
 }
 
 export const compileAll = ({
-  jobs, verbose, target, incremental,
+  jobs, verbose, target, incremental, types,
 }: CompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
@@ -49,7 +56,15 @@ export const compileAll = ({
   }
 
   const result = runSteps(`Compile${incremental ? '-Incremental' : ''} [All]`, [
-    ['yarn', ['workspaces', 'foreach', ...incrementalOptions, ...jobsOptions, ...verboseOptions, 'run', 'package-compile', ...targetOptions]],
+    ['yarn', ['workspaces',
+      'foreach',
+      ...incrementalOptions,
+      ...jobsOptions,
+      ...verboseOptions,
+      'run',
+      types === 'tsup' ? 'package-compile' : 'package-build',
+      ...targetOptions,
+    ]],
   ])
   console.log(`${chalk.gray('Compiled in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
   return result

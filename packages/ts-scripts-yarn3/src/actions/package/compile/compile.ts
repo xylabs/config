@@ -8,7 +8,7 @@ import type {
   XyConfig, XyTscConfig, XyTsupConfig,
 } from './XyConfig.ts'
 
-export const packageCompile = async (inConfig: XyConfig = {}): Promise<number> => {
+export const packageCompile = async (inConfig: XyConfig = {}, types?: 'tsc' | 'tsup'): Promise<number> => {
   const pkg = process.env.INIT_CWD
   console.log(chalk.green(`Compiling ${pkg}`))
   const config = await loadConfig(inConfig)
@@ -22,7 +22,7 @@ export const packageCompile = async (inConfig: XyConfig = {}): Promise<number> =
       break
     }
     case 'tsup': {
-      result += await packageCompileTsup(config as XyTsupConfig)
+      result += await packageCompileTsup(config as XyTsupConfig, types)
       break
     }
   }

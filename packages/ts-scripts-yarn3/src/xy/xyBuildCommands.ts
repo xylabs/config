@@ -32,15 +32,16 @@ export const xyBuildCommands = (args: Argv) => {
       (yargs) => {
         return yargs.positional('package', { describe: 'Specific package to compile' })
       },
-      async (argv) => {
+      (argv) => {
         if (argv.verbose) {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
         }
-        process.exitCode = await compile({
+        process.exitCode = compile({
           incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',
+          types: argv.types as 'tsc' | 'tsup',
           verbose: !!argv.verbose,
         })
       },
@@ -51,11 +52,11 @@ export const xyBuildCommands = (args: Argv) => {
       (yargs) => {
         return yargs.positional('package', { describe: 'Specific package to compile' })
       },
-      async (argv) => {
+      (argv) => {
         if (argv.verbose) {
           console.log(`Compiling: ${argv.package ?? 'all'}`)
         }
-        process.exitCode = await compile({
+        process.exitCode = compile({
           incremental: !!argv.incremental,
           jobs: argv.jobs as number,
           pkg: argv.package as string,

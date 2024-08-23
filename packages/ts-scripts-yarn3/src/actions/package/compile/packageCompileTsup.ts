@@ -7,7 +7,13 @@ import { buildEntries } from './buildEntries.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
-const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
+const compileFolder = async (
+  folder: string,
+  entryMode: EntryMode = 'single',
+  options?: Options,
+  types: 'tsc' | 'tsup' = 'tsup',
+  verbose?: boolean,
+): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
@@ -19,7 +25,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     format: ['esm'],
     outDir,
     silent: true,
-    sourcemap: false,
+    sourcemap: types === 'tsup',
     splitting: false,
     tsconfig: 'tsconfig.json',
     ...options,
@@ -34,10 +40,15 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
-  return packageCompileTscTypes(folder, { verbose }, { outDir })
+  if (types === 'tsc') {
+    return packageCompileTscTypes(folder, { verbose }, { outDir })
+  }
+  return 0
 }
 
-export const packageCompileTsup = async (config?: XyTsupConfig) => {
+// eslint-disable-next-line complexity
+export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsup') => {
+  console.warn('packageCompileTsup-types', types)
   const compile = config?.compile
   const publint = config?.publint ?? true
   const verbose = config?.verbose ?? false
@@ -82,6 +93,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 ...compile?.tsup?.options,
                 ...(typeof options === 'object' ? options : {}),
               },
+              types,
               verbose,
             )
             : 0
@@ -107,6 +119,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 ...compile?.tsup?.options,
                 ...(typeof options === 'object' ? options : {}),
               },
+              types,
               verbose,
             )
             : 0
@@ -132,6 +145,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 ...compile?.tsup?.options,
                 ...(typeof options === 'object' ? options : {}),
               },
+              types,
               verbose,
             )
             : 0
