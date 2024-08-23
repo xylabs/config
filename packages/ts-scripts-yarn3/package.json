@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -37,6 +37,7 @@
   "types": "dist/index.d.ts",
   "bin": {
     "build": "dist/bin/build.mjs",
+    "build-only": "dist/bin/build-only.mjs",
     "clean": "dist/bin/clean.mjs",
     "clean-docs": "dist/bin/clean-docs.mjs",
     "compile": "dist/bin/compile.mjs",

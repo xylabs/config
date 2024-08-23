@@ -2205,6 +2205,7 @@ __metadata:
     typescript: ^5
   bin:
     build: dist/bin/build.mjs
+    build-only: dist/bin/build-only.mjs
     clean: dist/bin/clean.mjs
     clean-docs: dist/bin/clean-docs.mjs
     compile: dist/bin/compile.mjs
