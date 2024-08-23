@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -37,7 +37,6 @@
   "types": "dist/index.d.ts",
   "bin": {
     "build": "dist/bin/build.mjs",
-    "build-only": "dist/bin/build-only.mjs",
     "clean": "dist/bin/clean.mjs",
     "clean-docs": "dist/bin/clean-docs.mjs",
     "compile": "dist/bin/compile.mjs",
@@ -61,6 +60,7 @@
     "lint-fast": "dist/bin/lint-fast.mjs",
     "lint-profile": "dist/bin/lint-profile.mjs",
     "package-build": "dist/bin/package/build.mjs",
+    "package-build-only": "dist/bin/package/build-only.mjs",
     "package-clean": "dist/bin/package/clean.mjs",
     "package-compile": "dist/bin/package/compile.mjs",
     "package-compile-only": "dist/bin/package/compile-only.mjs",

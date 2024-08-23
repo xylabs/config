@@ -2205,7 +2205,6 @@ __metadata:
     typescript: ^5
   bin:
     build: dist/bin/build.mjs
-    build-only: dist/bin/build-only.mjs
     clean: dist/bin/clean.mjs
     clean-docs: dist/bin/clean-docs.mjs
     compile: dist/bin/compile.mjs
@@ -2229,6 +2228,7 @@ __metadata:
     lint-fast: dist/bin/lint-fast.mjs
     lint-profile: dist/bin/lint-profile.mjs
     package-build: dist/bin/package/build.mjs
+    package-build-only: dist/bin/package/build-only.mjs
     package-clean: dist/bin/package/clean.mjs
     package-compile: dist/bin/package/compile.mjs
     package-compile-only: dist/bin/package/compile-only.mjs
