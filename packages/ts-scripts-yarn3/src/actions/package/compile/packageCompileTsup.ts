@@ -4,9 +4,10 @@ import { build, defineConfig } from 'tsup'
 
 import { packagePublint } from '../publint.ts'
 import { buildEntries } from './buildEntries.ts'
+import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
-const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, _verbose?: boolean) => {
+const compileFolder = async (folder: string, entryMode: EntryMode = 'single', options?: Options, verbose?: boolean) => {
   const outDir = options?.outDir ?? 'dist'
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
@@ -18,7 +19,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
     format: ['esm'],
     outDir,
     silent: true,
-    sourcemap: true,
+    sourcemap: false,
     splitting: false,
     tsconfig: 'tsconfig.json',
     ...options,
@@ -33,9 +34,7 @@ const compileFolder = async (folder: string, entryMode: EntryMode = 'single', op
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
-  // packageCompileTscTypes(folder, { verbose }, { outDir })
-
-  return 0
+  return packageCompileTscTypes(folder, { verbose }, { outDir })
 }
 
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
