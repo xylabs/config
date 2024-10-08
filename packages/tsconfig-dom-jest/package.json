@@ -32,8 +32,8 @@
     "package-compile": "echo Compiled"
   },
   "dependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.5",
     "@types/reflect-metadata": "^0.1.0",
     "@xylabs/tsconfig-dom": "workspace:^",
     "jest-extended": "^4.0.2",

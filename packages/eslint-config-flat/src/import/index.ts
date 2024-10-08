@@ -37,6 +37,7 @@ export const importConfig: Linter.Config = {
       'warn',
       {
         allow: [
+          '@*/**', // Allow imports from any @scoped package
           // Allow imports to any index.js file
           '**/index.js',
           '**/index.ts',
