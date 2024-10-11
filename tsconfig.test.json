@@ -3,6 +3,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "extends": "@xylabs/tsconfig-jest",
+  "extends": "@xylabs/tsconfig",
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

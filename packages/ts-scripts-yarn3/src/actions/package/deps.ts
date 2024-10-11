@@ -14,7 +14,6 @@ const defaultIgnoreDevDeps = [
   '@xylabs/tsconfig',
   '@xylabs/tsconfig-dom',
   '@xylabs/tsconfig-react',
-  '@xylabs/tsconfig-jest',
   'typescript',
 ]
 const defaultIgnoreDevPatterns = ['*.stories.*', '*.spec.*', 'spec', 'stories', 'tsconfig.json']
