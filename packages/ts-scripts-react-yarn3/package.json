@@ -87,7 +87,7 @@
     "@xylabs/tsconfig": "workspace:^",
     "publint": "^0.2.11",
     "tsup": "^8.3.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "typescript": "^5"
