@@ -26,6 +26,7 @@ export const packageCompileTscTypes = (
       declaration: true,
       emitDeclarationOnly: true,
       outDir: 'dist',
+      removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
       sourceMap: true,
