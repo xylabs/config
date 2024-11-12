@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/tsconfig",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "keywords": [
     "xylabs",
@@ -32,7 +32,8 @@
     "package-compile": "echo Compiled"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "tslib": "^2.8.1"
   },
   "publishConfig": {
     "access": "public"

@@ -17,7 +17,7 @@ const getNested = (config: TsConfig): CompilerOptions => {
   return config.compilerOptions as CompilerOptions
 }
 
-export const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerOptions => {
+const getCompilerOptionsJSONFollowExtends = (filename: string): CompilerOptions => {
   const config = readConfigFile(filename, sys.readFile).config
   return getNested(config)
 }

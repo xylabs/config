@@ -31,7 +31,6 @@ export const importConfig: Linter.Config = {
       'warn',
       { maxDepth: 2 },
     ],
-    'import-x/no-default-export': ['warn'],
     'import-x/no-deprecated': ['off'],
     'import-x/no-internal-modules': [
       'warn',
