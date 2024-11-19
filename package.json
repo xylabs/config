@@ -61,6 +61,9 @@
   "peerDependencies": {
     "typescript": "^5"
   },
+  "resolutions": {
+    "eslint": "9.14.0"
+  },
   "packageManager": "yarn@4.5.1",
   "engines": {
     "node": ">=20.16"
