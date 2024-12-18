@@ -25,11 +25,11 @@ export const compile = ({
 }: CompileParams) => {
   return pkg
     ? compilePackage({
-      pkg, publint, target, verbose, types,
-    })
+        pkg, publint, target, verbose, types,
+      })
     : compileAll({
-      incremental, publint, target, verbose, jobs, types,
-    })
+        incremental, publint, target, verbose, jobs, types,
+      })
 }
 
 export const compilePackage = ({

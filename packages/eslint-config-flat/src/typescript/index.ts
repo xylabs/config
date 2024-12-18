@@ -98,6 +98,13 @@ export const typescriptConfig: Linter.Config = {
       },
     }],
     '@stylistic/max-len': ['warn', { code: 160 }],
+    'no-restricted-syntax': [
+      'warn',
+      {
+        selector: 'TSEnumDeclaration',
+        message: 'Enums are disallowed. Consider using a union of string literals or a `const` object instead.',
+      },
+    ],
     '@typescript-eslint/member-ordering': [
       'warn',
       {
