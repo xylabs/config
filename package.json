@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -39,9 +39,6 @@
     "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
     "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common"
-  },
-  "resolutions": {
-    "eslint": "9.14.0"
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
