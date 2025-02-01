@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint'
 
-export const rulesConfig: Linter.FlatConfig = {
+export const rulesConfig: Linter.Config = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   rules: {
     'complexity': ['error', 18],

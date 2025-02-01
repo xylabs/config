@@ -1,7 +1,7 @@
 import type { ESLint, Linter } from 'eslint'
 import workspacesPlugin from 'eslint-plugin-workspaces'
 
-export const workspacesConfig: Linter.FlatConfig = {
+export const workspacesConfig: Linter.Config = {
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   plugins: { workspaces: workspacesPlugin as ESLint.Plugin },
   rules: {

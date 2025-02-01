@@ -49,11 +49,11 @@ export const license = async (pkg?: string) => {
                   for (let license of licenses) {
                     if (license) {
                       // remove surrounding parens on some string
-                      if (license[0] === '(' && license.at(-1) === ')') {
-                        license = license.slice(1, -2)
-                      }
+                      const processedLicense = (license[0] === '(' && license.at(-1) === ')')
+                        ? license.slice(1, -2)
+                        : license
                       // get list of OR licenses from string
-                      const orLicenses = license.split(' OR ')
+                      const orLicenses = processedLicense.split(' OR ')
                       let orLicenseFound = false
                       for (const orLicense of orLicenses) {
                         if (exclude.has(orLicense)) {

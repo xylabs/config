@@ -6,7 +6,9 @@ import {
   INIT_CWD, yarnWorkspace, yarnWorkspaces,
 } from './yarn/index.ts'
 
-const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort()
+const localeCompare = (a: string, b: string) => a.localeCompare(b)
+
+const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort(localeCompare)
 
 export const generateIgnoreFiles = (filename: string, pkg?: string) => {
   console.log(chalk.green(`Generate ${filename} Files`))

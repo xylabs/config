@@ -3,7 +3,7 @@ import { rmSync } from 'node:fs'
 import { yarnWorkspaces } from '../lib/index.ts'
 import { lint } from './lint.ts'
 
-export const lintClean = () => {
+export const lintClean = async () => {
   console.log('Lint Clean [.eslintcache]')
   const workspaces = yarnWorkspaces()
   const result = workspaces
@@ -20,5 +20,5 @@ export const lintClean = () => {
     })
     // eslint-disable-next-line unicorn/no-array-reduce
     .reduce((prev, result) => prev || result, 0)
-  return result || lint()
+  return result || await lint()
 }
