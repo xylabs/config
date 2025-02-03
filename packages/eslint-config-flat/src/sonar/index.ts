@@ -1,13 +1,11 @@
 import type { Linter } from 'eslint'
-import sonarjsPlugin from 'eslint-plugin-sonarjs'
-
-const { rules, ...recommended } = sonarjsPlugin.configs.recommended
+import sonarjs from 'eslint-plugin-sonarjs'
 
 export const sonarConfig: Linter.Config = {
+  plugins: { sonarjs },
   ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  ...recommended,
   rules: {
-    ...rules,
+    ...sonarjs.configs.recommended.rules,
     'sonarjs/no-small-switch': ['off'],
     'sonarjs/os-command': ['off'],
     'sonarjs/no-os-command-from-path': ['off'],
