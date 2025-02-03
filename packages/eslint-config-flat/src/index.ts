@@ -4,7 +4,6 @@ import { importConfig } from './import/index.ts'
 // import { markdownConfig } from './markdown/index.ts'
 // import { prettierConfig } from './prettier/index.ts'
 import { rulesConfig } from './rules/index.ts'
-import { sonarConfig } from './sonar/index.ts'
 // import { sonarConfig } from './sonar/index.ts'
 import { typescriptConfig } from './typescript/index.ts'
 import { unicornConfig } from './unicorn/index.ts'
@@ -18,7 +17,7 @@ export const config: Linter.Config[] = [
   rulesConfig,
   // prettierConfig,
   importConfig,
-  sonarConfig,
+  // sonarConfig,
 ]
 
 export { importConfig } from './import/index.ts'
