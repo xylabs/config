@@ -31,7 +31,10 @@ const compileFolder = async (
     ...options,
   })
   if (types === 'tsc') {
-    return packageCompileTscTypes(folder, { verbose }, { outDir })
+    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
+    if (errors) {
+      return errors
+    }
   }
   const optionsList = (
     await Promise.all(
