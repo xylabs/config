@@ -25,7 +25,7 @@ const compileFolder = async (
     format: ['esm'],
     outDir,
     silent: true,
-    sourcemap: types === 'tsup',
+    sourcemap: true,
     splitting: false,
     tsconfig: 'tsconfig.json',
     ...options,
