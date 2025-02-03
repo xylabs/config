@@ -25,11 +25,14 @@ const compileFolder = async (
     format: ['esm'],
     outDir,
     silent: true,
-    sourcemap: true,
+    sourcemap: types === 'tsup',
     splitting: false,
     tsconfig: 'tsconfig.json',
     ...options,
   })
+  if (types === 'tsc') {
+    return packageCompileTscTypes(folder, { verbose }, { outDir })
+  }
   const optionsList = (
     await Promise.all(
       (Array.isArray(optionsResult) ? optionsResult : [optionsResult]).flatMap<Promise<Options[]>>(async (options) => {
@@ -40,9 +43,6 @@ const compileFolder = async (
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
-  if (types === 'tsc') {
-    return packageCompileTscTypes(folder, { verbose }, { outDir })
-  }
   return 0
 }
 
