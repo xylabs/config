@@ -22,5 +22,12 @@ export const sonarConfig: Linter.Config = {
     'sonarjs/no-alphabetical-sort': ['warn'],
     'sonarjs/no-identical-functions': ['warn'],
     'sonarjs/no-empty-test-file': ['warn'],
+
+    // handled by typescript-eslint
+    'sonarjs/no-unused-vars': ['off'],
+
+    'sonarjs/no-dead-store': ['warn'],
+    'sonarjs/no-redundant-jump': ['warn'],
+    'sonarjs/void-use': ['off'],
   },
 }
