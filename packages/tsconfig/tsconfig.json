@@ -14,6 +14,7 @@
     "lib": ["ESNext"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "noEmit": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "outDir": "dist",
