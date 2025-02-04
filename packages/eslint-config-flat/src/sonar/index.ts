@@ -18,7 +18,7 @@ export const sonarConfig: Linter.Config = {
     'sonarjs/pseudo-random': ['warn'],
     'sonarjs/public-static-readonly': ['warn'],
     'sonarjs/post-message': ['warn'],
-    'sonarjs/different-types-comparison': ['warn'],
+    'sonarjs/different-types-comparison': ['off'],
     'sonarjs/no-alphabetical-sort': ['warn'],
     'sonarjs/no-identical-functions': ['warn'],
     'sonarjs/no-empty-test-file': ['warn'],
