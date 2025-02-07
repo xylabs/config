@@ -2,7 +2,6 @@ import type { Loader } from 'esbuild'
 import type { Options } from 'tsup'
 import { build, defineConfig } from 'tsup'
 
-import { packagePublint } from '../publint.ts'
 import { buildEntries } from './buildEntries.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
@@ -30,12 +29,6 @@ const compileFolder = async (
     tsconfig: 'tsconfig.json',
     ...options,
   })
-  if (types === 'tsc') {
-    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
-    if (errors) {
-      return errors
-    }
-  }
   const optionsList = (
     await Promise.all(
       (Array.isArray(optionsResult) ? optionsResult : [optionsResult]).flatMap<Promise<Options[]>>(async (options) => {
@@ -46,14 +39,18 @@ const compileFolder = async (
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
+  if (types === 'tsc') {
+    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
+    if (errors) {
+      return errors
+    }
+  }
   return 0
 }
 
-// eslint-disable-next-line complexity
 export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsup') => {
   console.warn('packageCompileTsup-types', types)
   const compile = config?.compile
-  const publint = config?.publint ?? true
   const verbose = config?.verbose ?? false
   if (verbose) {
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
@@ -155,6 +152,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | '
         }),
       )
     ).reduce((prev, value) => prev + value, 0)
-    || (publint ? await packagePublint() : 0)
+    || 0
   )
 }
