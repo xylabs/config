@@ -12,22 +12,23 @@ export const sonarConfig: Linter.Config = {
     'sonarjs/no-nested-conditional': ['off'],
     'sonarjs/todo-tag': ['warn'],
     'sonarjs/deprecation': ['warn'],
-    'sonarjs/cognitive-complexity': ['warn'],
     'sonarjs/no-nested-functions': ['off'],
     'sonarjs/function-return-type': ['off'],
-    'sonarjs/pseudo-random': ['warn'],
+    'sonarjs/pseudo-random': ['off'],
     'sonarjs/public-static-readonly': ['warn'],
-    'sonarjs/post-message': ['warn'],
+    'sonarjs/post-message': ['off'],
     'sonarjs/different-types-comparison': ['off'],
     'sonarjs/no-alphabetical-sort': ['warn'],
     'sonarjs/no-identical-functions': ['warn'],
-    'sonarjs/no-empty-test-file': ['warn'],
-
-    // handled by typescript-eslint
-    'sonarjs/no-unused-vars': ['off'],
-
+    'sonarjs/no-empty-test-file': ['off'],
     'sonarjs/no-dead-store': ['warn'],
     'sonarjs/no-redundant-jump': ['warn'],
     'sonarjs/void-use': ['off'],
+
+    // handled by eslint
+    'sonarjs/cognitive-complexity': ['off'],
+
+    // handled by typescript-eslint
+    'sonarjs/no-unused-vars': ['off'],
   },
 }
