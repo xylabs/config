@@ -16,8 +16,19 @@ export const rulesConfig: Linter.Config = {
     'max-nested-callbacks': ['error', 6],
     'max-statements': ['error', 32],
     'no-restricted-imports': [
-      'warn',
-      { paths: ['.', '..', '../..', '../../..', '../../../..', '../../../../..', '../../../../../..', '../../../../../../..'] },
+      'error',
+      {
+        paths: [
+          './index.ts',
+          '../index.ts',
+          '../../index.ts',
+          '../../../index.ts',
+          '../../../../index.ts',
+          '../../../../../index.ts',
+          '../../../../../../index.ts',
+          '../../../../../../../index.ts',
+        ],
+      },
     ],
     // 'no-secrets/no-secrets': ['off'],
     'no-tabs': ['error'],
