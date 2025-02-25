@@ -10,7 +10,7 @@ export const sonarConfig: Linter.Config = {
     'sonarjs/os-command': ['off'],
     'sonarjs/no-os-command-from-path': ['off'],
     'sonarjs/no-nested-conditional': ['off'],
-    'sonarjs/todo-tag': ['warn'],
+    'sonarjs/todo-tag': ['off'],
     'sonarjs/deprecation': ['warn'],
     'sonarjs/no-nested-functions': ['off'],
     'sonarjs/function-return-type': ['off'],
@@ -27,8 +27,11 @@ export const sonarConfig: Linter.Config = {
 
     // handled by eslint
     'sonarjs/cognitive-complexity': ['off'],
+    'sonarjs/unused-import': ['off'],
 
     // handled by typescript-eslint
     'sonarjs/no-unused-vars': ['off'],
+
+    'sonarjs/no-commented-code': ['off'],
   },
 }

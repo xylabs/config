@@ -10,7 +10,7 @@ const compileFolder = async (
   folder: string,
   entryMode: EntryMode = 'single',
   options?: Options,
-  types: 'tsc' | 'tsup' = 'tsup',
+  types: 'tsc' | 'tsup' = 'tsc',
   verbose?: boolean,
 ): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
@@ -48,7 +48,7 @@ const compileFolder = async (
   return 0
 }
 
-export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsup') => {
+export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsc') => {
   console.warn('packageCompileTsup-types', types)
   const compile = config?.compile
   const verbose = config?.verbose ?? false
