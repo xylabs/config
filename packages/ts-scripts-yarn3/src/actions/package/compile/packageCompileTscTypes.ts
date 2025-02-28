@@ -35,7 +35,7 @@ export const packageCompileTscTypes = (
   } as TsConfigCompilerOptions
 
   // calling all here since the types do not get rolled up
-  const files = buildEntries(folder, 'all')
+  const files = buildEntries(folder, 'all', true)
 
   const result = createProgramFromConfig({
     basePath: pkg ?? cwd(),
