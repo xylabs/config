@@ -1,19 +1,22 @@
 import { getAllInputs } from './inputs.ts'
 import { EntryMode } from './XyConfig.ts'
 
-export const buildEntries = (folder: string, entryMode?: EntryMode, verbose = false) => {
+export const buildEntries = (folder: string, entryMode: EntryMode = 'single', verbose = false) => {
+  let entries: string[] = []
   switch (entryMode) {
     case 'platform': {
-      if (verbose) console.log('buildEntries [platform]')
-      return [`${folder}/index-node.ts`, `${folder}/index-browser.ts`]
+      entries = [`${folder}/index-node.ts`, `${folder}/index-browser.ts`]
+      break
     }
     case 'all': {
-      if (verbose) console.log('buildEntries [all]')
-      return getAllInputs(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.story.'))
+      entries = getAllInputs(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.story.'))
+      break
     }
     default: {
-      if (verbose) console.log('buildEntries [single]')
-      return [`${folder}/index.ts`]
+      entries = [`${folder}/index.ts`]
+      break
     }
   }
+  if (verbose) console.log(`buildEntries [${entryMode}] ${entries}`)
+  return entries
 }
