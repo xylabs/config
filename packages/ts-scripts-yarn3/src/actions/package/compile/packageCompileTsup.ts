@@ -52,7 +52,7 @@ const compileFolder = async (
   return 0
 }
 
-export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsc') => {
+export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsup') => {
   console.warn('packageCompileTsup-types', types)
   const compile = config?.compile
   const verbose = config?.verbose ?? false
