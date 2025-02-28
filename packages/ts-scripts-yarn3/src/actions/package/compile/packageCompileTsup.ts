@@ -15,12 +15,20 @@ const compileFolder = async (
   verbose?: boolean,
 ): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
+
+  if (types === 'tsc') {
+    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
+    if (errors) {
+      return errors
+    }
+  }
+
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
     bundle: true,
     cjsInterop: true,
     clean: true,
-    dts: true,
+    dts: types === 'tsup',
     entry,
     format: ['esm'],
     outDir,
@@ -40,12 +48,6 @@ const compileFolder = async (
   ).flat()
 
   await Promise.all(optionsList.map(options => build(options)))
-  if (types === 'tsc') {
-    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
-    if (errors) {
-      return errors
-    }
-  }
   return 0
 }
 
