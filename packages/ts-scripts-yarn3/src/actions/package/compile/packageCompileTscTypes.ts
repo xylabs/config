@@ -30,6 +30,8 @@ export const packageCompileTscTypes = (
       sourceMap: false,
     })),
     ...compilerOptionsParam,
+    emitDeclarationOnly: true,
+    noEmit: false,
   } as TsConfigCompilerOptions
 
   // calling all here since the types do not get rolled up
