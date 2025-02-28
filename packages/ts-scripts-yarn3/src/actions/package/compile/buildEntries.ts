@@ -17,6 +17,6 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', ve
       break
     }
   }
-  if (verbose) console.log(`buildEntries [${entryMode}] ${entries}`)
+  if (verbose) console.log(`buildEntries [${entryMode}] ${entries.length}`)
   return entries
 }
