@@ -121,7 +121,7 @@
     "ts-prune": "^0.10.3",
     "tsc-prog": "^2.3.0",
     "tslib": "^2.8.1",
-    "tsup": "^8.4.0",
+    "tsup": "8.3.6",
     "typedoc": "^0.27.9",
     "types-package-json": "^2.0.39",
     "vitest": "^3.0.7",
