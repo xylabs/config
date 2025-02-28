@@ -1800,8 +1800,6 @@ __metadata:
     "tsconfig-gen:clean": dist/bin/tsconfig-gen-clean.mjs
     up: dist/bin/up.mjs
     updo: dist/bin/updo.mjs
-    upplug: dist/bin/upplug.mjs
-    upyarn: dist/bin/upyarn.mjs
     xy: dist/bin/xy.mjs
     yarn3only: dist/bin/yarn3only.mjs
   languageName: unknown
