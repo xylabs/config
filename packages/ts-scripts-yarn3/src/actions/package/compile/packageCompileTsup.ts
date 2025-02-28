@@ -16,6 +16,10 @@ const compileFolder = async (
 ): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
 
+  if (verbose) {
+    console.log(`compileFolder [${folder}]`)
+  }
+
   const entry = buildEntries(folder, entryMode)
   const optionsResult = defineConfig({
     bundle: true,
@@ -40,9 +44,20 @@ const compileFolder = async (
     )
   ).flat()
 
+  if (verbose) {
+    console.log(`TSUP:build:start [${folder}] ${types}`)
+  }
+
   await Promise.all(optionsList.map(options => build(options)))
 
+  if (verbose) {
+    console.log(`TSUP:build:stop [${folder}] ${types}`)
+  }
+
   if (types === 'tsc') {
+    if (verbose) {
+      console.log(`Calling packageCompileTscTypes [${folder}] ${types}`)
+    }
     const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
     if (errors) {
       return errors
