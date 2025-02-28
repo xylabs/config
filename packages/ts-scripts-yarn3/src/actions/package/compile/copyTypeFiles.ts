@@ -1,7 +1,7 @@
 import { copyFile, readdir } from 'node:fs/promises'
 
 import { Mutex } from 'async-mutex'
-import type { TsConfigCompilerOptions } from 'tsc-prog'
+import { TsConfigCompilerOptions } from 'tsc-prog'
 
 const copyFileMutex = new Mutex()
 

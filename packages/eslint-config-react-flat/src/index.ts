@@ -1,5 +1,5 @@
 import { config as xyConfig } from '@xylabs/eslint-config-flat'
-import type { Linter } from 'eslint'
+import { Linter } from 'eslint'
 
 import { reactConfig } from './react/index.ts'
 

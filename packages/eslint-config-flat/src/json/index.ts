@@ -1,5 +1,5 @@
 import json from '@eslint/json'
-import type { ESLint, Linter } from 'eslint'
+import { ESLint, Linter } from 'eslint'
 
 export const jsonConfig: Linter.Config = {
   files: ['**/*.json'],

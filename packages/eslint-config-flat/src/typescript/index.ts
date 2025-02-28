@@ -1,7 +1,7 @@
 import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import type { ESLint, Linter } from 'eslint'
+import { ESLint, Linter } from 'eslint'
 import dependPlugin from 'eslint-plugin-depend'
 
 export const ignores = [

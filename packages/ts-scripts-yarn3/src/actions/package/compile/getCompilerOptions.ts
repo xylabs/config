@@ -1,9 +1,9 @@
 import { createRequire } from 'node:module'
 
 import deepmerge from 'deepmerge'
-import type { TsConfig } from 'tsc-prog'
-import type { CompilerOptions } from 'typescript'
+import { TsConfig } from 'tsc-prog'
 import {
+  CompilerOptions,
   findConfigFile, readConfigFile, sys,
 } from 'typescript'
 

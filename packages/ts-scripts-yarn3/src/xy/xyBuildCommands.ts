@@ -1,4 +1,4 @@
-import type { Argv } from 'yargs'
+import { Argv } from 'yargs'
 
 import {
   build, compile, copyAssets, rebuild, recompile,

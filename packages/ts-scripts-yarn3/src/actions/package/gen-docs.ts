@@ -67,7 +67,7 @@ const runTypeDoc = async (app: Application) => {
   }
 
   if (app.options.getValue('watch')) {
-    app.convertAndWatch(async (project) => {
+    await app.convertAndWatch(async (project) => {
       const out = app.options.getValue('out')
       if (out) {
         await app.generateDocs(project, out)

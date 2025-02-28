@@ -1,14 +1,12 @@
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
-import type { TsConfigCompilerOptions } from 'tsc-prog'
-import { createProgramFromConfig } from 'tsc-prog'
-import type { CompilerOptions } from 'typescript'
-import { DiagnosticCategory } from 'typescript'
+import { createProgramFromConfig, TsConfigCompilerOptions } from 'tsc-prog'
+import { CompilerOptions, DiagnosticCategory } from 'typescript'
 
 import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import type { XyConfig } from './XyConfig.ts'
+import { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTscTypes = (
   folder: string = 'src',
@@ -29,7 +27,7 @@ export const packageCompileTscTypes = (
       removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
-      sourceMap: true,
+      sourceMap: false,
     })),
     ...compilerOptionsParam,
   } as TsConfigCompilerOptions
