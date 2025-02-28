@@ -11,7 +11,7 @@ const compileFolder = async (
   folder: string,
   entryMode: EntryMode = 'single',
   options?: Options,
-  types: 'tsc' | 'tsup' = 'tsc',
+  types: 'tsc' | 'tsup' = 'tsup',
   verbose?: boolean,
 ): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
