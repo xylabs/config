@@ -49,7 +49,7 @@ export const xyParseOptions = (): Argv => {
       type: 'boolean',
     })
     .option('types', {
-      default: 'tsup',
+      default: 'tsc',
       choices: ['tsc', 'tsup'],
       description: 'Tool to generate Typescript types',
       type: 'string',
