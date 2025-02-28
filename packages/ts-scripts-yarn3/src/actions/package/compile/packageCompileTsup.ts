@@ -1,10 +1,11 @@
-import type { Loader } from 'esbuild'
-import type { Options } from 'tsup'
-import { build, defineConfig } from 'tsup'
+import { Loader } from 'esbuild'
+import {
+  build, defineConfig, Options,
+} from 'tsup'
 
 import { buildEntries } from './buildEntries.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
-import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
+import { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
 const compileFolder = async (
   folder: string,
@@ -24,7 +25,7 @@ const compileFolder = async (
     format: ['esm'],
     outDir,
     silent: true,
-    sourcemap: types === 'tsup',
+    sourcemap: true,
     splitting: false,
     tsconfig: 'tsconfig.json',
     ...options,

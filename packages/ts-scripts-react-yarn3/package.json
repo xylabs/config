@@ -61,14 +61,9 @@
     "start": "dist/bin/start.mjs",
     "test": "dist/bin/test.mjs",
     "tsconfig-gen": "dist/bin/tsconfig-gen.mjs",
-    "tsconfig-gen:cjs": "dist/bin/tsconfig-gen-cjs.mjs",
     "tsconfig-gen:clean": "dist/bin/tsconfig-gen-clean.mjs",
-    "tsconfig-gen:esm": "dist/bin/tsconfig-gen-esm.mjs",
-    "tsconfig-gen:test": "dist/bin/tsconfig-gen-test.mjs",
     "up": "dist/bin/up.mjs",
     "updo": "dist/bin/updo.mjs",
-    "upplug": "dist/bin/upplug.mjs",
-    "upyarn": "dist/bin/upyarn.mjs",
     "xy": "dist/bin/xy.mjs",
     "yarn3only": "dist/bin/yarn3only.mjs"
   },
@@ -85,8 +80,8 @@
     "@types/yargs": "^17.0.33",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "publint": "^0.3.4",
-    "tsup": "^8.3.6",
+    "publint": "^0.3.6",
+    "tsup": "^8.4.0",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
