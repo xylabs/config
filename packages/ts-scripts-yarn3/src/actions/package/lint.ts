@@ -50,9 +50,11 @@ export const packageLint = async () => {
         const res = path.resolve(dir, dirent.name)
 
         // Exclude ignored paths
-        if (ignorePatterns.some(pattern => res.includes(pattern))) return []
+        if (ignorePatterns.some(pattern => dir.includes(pattern))) return []
 
-        return dirent.isDirectory() ? getFiles(res, ignorePatterns) : (res.endsWith('.ts') || res.endsWith('.tsx')) ? [res] : []
+        return dirent.isDirectory()
+          ? getFiles(res, ignorePatterns)
+          : (res.endsWith('.ts') || res.endsWith('.tsx') || res.endsWith('.js') || res.endsWith('.jsx')) ? [res] : []
       })
   }
 
