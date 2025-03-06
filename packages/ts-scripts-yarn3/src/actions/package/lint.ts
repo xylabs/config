@@ -37,7 +37,7 @@ async function getRootESLintConfig() {
   return pathToFileURL(configPath)
 }
 
-export const packageLint = async () => {
+export const packageLint = async (fix = false) => {
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
 
@@ -58,7 +58,7 @@ export const packageLint = async () => {
       })
   }
 
-  const engine = new ESLint({ baseConfig: [...eslintConfig] })
+  const engine = new ESLint({ baseConfig: [...eslintConfig], fix })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ignorePatterns = [...eslintConfig.find((cfg: any) => cfg.ignores)?.ignores ?? [], ...ignoreFolders]

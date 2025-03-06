@@ -61,7 +61,7 @@ export const lint = async ({
 }: LintParams = {}) => {
   return pkg
     ? await lintPackage({ pkg, fix })
-    : lintAll({
+    : lintAllPackages({
         verbose, incremental, fix,
       })
 }

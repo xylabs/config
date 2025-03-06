@@ -1712,6 +1712,7 @@ __metadata:
     package-copy-assets-cjs: dist/bin/package/copy-assets-cjs.mjs
     package-copy-assets-esm: dist/bin/package/copy-assets-esm.mjs
     package-deps: dist/bin/package/deps.mjs
+    package-fix: dist/bin/package/fix.mjs
     package-gen-docs: dist/bin/package/gen-docs.mjs
     package-lint: dist/bin/package/lint.mjs
     package-publint: dist/bin/package/publint.mjs
