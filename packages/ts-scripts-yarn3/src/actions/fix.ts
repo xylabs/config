@@ -1,5 +1,5 @@
-import { runSteps } from '../lib/index.ts'
+import { lint } from './lint.ts'
 
-export const fix = () => {
-  return runSteps('Fix', [['yarn', ['eslint', '.', '--fix', '--cache']]])
+export const fix = async () => {
+  return await lint({ fix: true })
 }

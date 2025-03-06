@@ -32,7 +32,7 @@ export const xyLintCommands = (args: Argv) => {
         const start = Date.now()
         process.exitCode
           = argv.fix
-            ? fix()
+            ? await fix()
             : argv.profile
               ? lintProfile()
               : await lint({ pkg: argv.package as string })
@@ -45,10 +45,10 @@ export const xyLintCommands = (args: Argv) => {
       (yargs) => {
         return packagePositionalParam(yargs)
       },
-      (argv) => {
+      async (argv) => {
         const start = Date.now()
         if (argv.verbose) console.log('Fix')
-        process.exitCode = fix()
+        process.exitCode = await fix()
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
