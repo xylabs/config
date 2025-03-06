@@ -4,6 +4,7 @@ import { ESLint } from 'eslint'
 import { runSteps, yarnWorkspaces } from '../lib/index.ts'
 
 export interface LintParams {
+  incremental?: boolean
   pkg?: string
   verbose?: boolean
 }
@@ -58,6 +59,27 @@ export const lintAll = async () => {
   return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
 
-export const lint = async ({ pkg }: LintParams = {}) => {
-  return pkg ? await lintPackage({ pkg }) : runSteps('Lint-Caching [All]', [['yarn', ['eslint', '.', '--cache']]])
+export const lint = async ({
+  pkg, verbose, incremental,
+}: LintParams = {}) => {
+  return pkg ? await lintPackage({ pkg }) : lintAllPackages({ verbose, incremental })
+}
+
+export const lintAllPackages = ({ verbose = true, incremental }: LintParams = {}) => {
+  console.log(chalk.gray('Linting [All-Packages]'))
+  const start = Date.now()
+  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
+  const incrementalOptions = incremental ? ['--since', '-Apt'] : ['--parallel', '-Apt']
+
+  const result = runSteps('Lint [All-Packages]', [
+    ['yarn', ['workspaces',
+      'foreach',
+      ...verboseOptions,
+      ...incrementalOptions,
+      'run',
+      'package-lint',
+    ]],
+  ])
+  console.log(`${chalk.gray('Linted in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+  return result
 }

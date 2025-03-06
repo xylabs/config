@@ -11,7 +11,7 @@ export const importConfig: Linter.Config = {
     parserOptions: {
       ecmaFeatures: { modules: true },
       ecmaVersion: 'latest',
-      project: './tsconfig-eslint.json',
+      project: './tsconfig.json',
     },
   },
   plugins: {

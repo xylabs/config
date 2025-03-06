@@ -59,7 +59,7 @@ export const typescriptConfig: Linter.Config = {
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
-    ...esStylistic.configs['recommended-flat'].rules,
+    ...esStylistic.configs['recommended'].rules,
     ...dependPlugin.configs['flat/recommended'].rules,
     '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
