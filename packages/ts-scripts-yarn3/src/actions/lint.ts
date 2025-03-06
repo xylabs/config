@@ -52,9 +52,8 @@ export const lintPackage = async ({ pkg, fix }: LintParams) => {
 
 export const lintAll = async ({ fix }: LintParams) => {
   const workspace = yarnWorkspaces()
-  for (const ws of workspace) {
-    await lintPackage({ pkg: ws.name, fix })
-  }
+  return (await Promise.all(workspace.map(ws =>
+    lintPackage({ pkg: ws.name, fix })))).reduce((prev, curr) => prev + curr, 0)
 }
 
 export const lint = async ({
@@ -62,7 +61,7 @@ export const lint = async ({
 }: LintParams = {}) => {
   return pkg
     ? await lintPackage({ pkg, fix })
-    : lintAllPackages({
+    : lintAll({
         verbose, incremental, fix,
       })
 }
