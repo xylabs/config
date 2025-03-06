@@ -81,7 +81,7 @@ export const lintAllPackages = ({
       ...verboseOptions,
       ...incrementalOptions,
       'run',
-      'package-lint',
+      fix ? 'package-fix' : 'package-lint',
       ...fixOptions,
     ]],
   ])
