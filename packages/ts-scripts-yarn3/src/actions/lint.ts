@@ -69,22 +69,20 @@ export const lint = async ({
 export const lintAllPackages = ({
   fix, verbose = true, incremental,
 }: LintParams = {}) => {
-  console.log(chalk.gray('Linting [All-Packages]'))
+  console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [All-Packages]`))
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  const fixOptions = fix ? ['--fix'] : ['']
   const incrementalOptions = incremental ? ['--since', '-Apt'] : ['--parallel', '-Apt']
 
-  const result = runSteps('Lint [All-Packages]', [
+  const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
     ['yarn', ['workspaces',
       'foreach',
       ...verboseOptions,
       ...incrementalOptions,
       'run',
       fix ? 'package-fix' : 'package-lint',
-      ...fixOptions,
     ]],
   ])
-  console.log(`${chalk.gray('Linted in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
+  console.log(chalk.gray(`${fix ? 'Fixed in' : 'Linted in'} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`))
   return result
 }
