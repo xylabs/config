@@ -66,7 +66,7 @@ export const typescriptConfig: Linter.Config = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@stylistic/brace-style': ['warn', '1tbs', { allowSingleLine: true }],
     '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
-    '@typescript-eslint/consistent-type-imports': ['warn', { fixStyle: 'inline-type-imports', prefer: 'no-type-imports' }],
+    '@typescript-eslint/consistent-type-imports': ['warn', { fixStyle: 'separate-type-imports', prefer: 'type-imports' }],
     '@stylistic/object-property-newline': ['warn', { allowAllPropertiesOnSameLine: true }],
     '@stylistic/function-call-argument-newline': ['warn', 'consistent'],
     '@stylistic/function-paren-newline': ['warn', 'multiline-arguments'],

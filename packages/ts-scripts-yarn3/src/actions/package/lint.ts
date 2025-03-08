@@ -40,10 +40,12 @@ async function getRootESLintConfig() {
 
 function getFiles(dir: string, ignoreFolders: string[]): string[] {
   const currentDirectory = cwd()
+  const subDirectory = dir.split(currentDirectory)[1]
+  if (ignoreFolders.includes(subDirectory)) return []
+  console.log('subDirectory:', subDirectory)
   return readdirSync(dir, { withFileTypes: true })
     .flatMap((dirent) => {
       const res = path.resolve(dir, dirent.name)
-      const subDirectory = dir.split(currentDirectory)[1]
       const relativePath = subDirectory ? `${subDirectory}/${dirent.name}` : dirent.name
 
       const ignoreMatchers = ignoreFolders.map(pattern => picomatch(pattern))
@@ -62,7 +64,7 @@ export const packageLint = async (fix = false) => {
   const { default: eslintConfig } = await import(configPath.href)
 
   // List of folders to ignore
-  const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build']
+  const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build', '.yarn', '.vscode', '.github']
 
   const engine = new ESLint({
     baseConfig: [...eslintConfig], fix, warnIgnored: false,
@@ -72,6 +74,10 @@ export const packageLint = async (fix = false) => {
   const lintResults = await engine.lintFiles(files)
 
   dumpMessages(lintResults)
+
+  if (fix) {
+    await ESLint.outputFixes(lintResults)
+  }
 
   return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
