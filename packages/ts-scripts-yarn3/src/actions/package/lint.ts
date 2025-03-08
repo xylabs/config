@@ -42,7 +42,7 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
   const currentDirectory = cwd()
   const subDirectory = dir.split(currentDirectory)[1]
   if (ignoreFolders.includes(subDirectory)) return []
-  console.log('subDirectory:', subDirectory)
+  console.log(subDirectory)
   return readdirSync(dir, { withFileTypes: true })
     .flatMap((dirent) => {
       const res = path.resolve(dir, dirent.name)
