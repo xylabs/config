@@ -1237,6 +1237,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/picomatch@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/picomatch@npm:3.0.2"
+  checksum: 10/da4e0e0f4437576dfd59b94f5868f89a2bd5ce4aaa57eb5dc601818885ac7bd03ccb3e8d3402a6820e5a3d63c86c7030031a5fdc67a0598d0675dea912b6512e
+  languageName: node
+  linkType: hard
+
 "@types/unist@npm:*":
   version: 3.0.3
   resolution: "@types/unist@npm:3.0.3"
@@ -1642,6 +1649,7 @@ __metadata:
     "@types/license-checker": "npm:^25.0.6"
     "@types/node": "npm:^22.13.5"
     "@types/parse-git-config": "npm:^3.0.4"
+    "@types/picomatch": "npm:^3.0.2"
     "@types/yargs": "npm:^17.0.33"
     "@xylabs/tsconfig": "workspace:^"
     "@xylabs/tsconfig-dom": "workspace:^"
@@ -1663,6 +1671,7 @@ __metadata:
     npm-package-json-lint: "npm:^8.0.0"
     npm-package-json-lint-config-default: "npm:^7.0.1"
     parse-git-config: "npm:^3.0.0"
+    picomatch: "npm:^4.0.2"
     publint: "npm:^0.3.7"
     reflect-metadata: "npm:^0.2.2"
     rimraf: "npm:^6.0.1"

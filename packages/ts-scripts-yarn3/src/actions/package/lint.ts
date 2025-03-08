@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 import chalk from 'chalk'
 import { ESLint } from 'eslint'
 import { findUp } from 'find-up'
+import picomatch from 'picomatch'
 
 const dumpMessages = (lintResults: ESLint.LintResult[]) => {
   const colors: ('white' | 'red' | 'yellow')[] = ['white', 'yellow', 'red']
@@ -37,33 +38,38 @@ async function getRootESLintConfig() {
   return pathToFileURL(configPath)
 }
 
+function getFiles(dir: string, ignoreFolders: string[]): string[] {
+  const currentDirectory = cwd()
+  return readdirSync(dir, { withFileTypes: true })
+    .flatMap((dirent) => {
+      const res = path.resolve(dir, dirent.name)
+      const subDirectory = dir.split(currentDirectory)[1]
+      const relativePath = subDirectory ? `${subDirectory}/${dirent.name}` : dirent.name
+
+      const ignoreMatchers = ignoreFolders.map(pattern => picomatch(pattern))
+
+      // Exclude ignored paths
+      if (ignoreMatchers.some(isMatch => isMatch(relativePath))) return []
+
+      return dirent.isDirectory()
+        ? getFiles(res, ignoreFolders)
+        : [res]
+    })
+}
+
 export const packageLint = async (fix = false) => {
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
 
   // List of folders to ignore
-  const ignoreFolders = new Set(['node_modules', 'dist', 'packages'])
+  const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build']
 
-  function getFiles(dir: string, ignorePatterns: string[]): string[] {
-    return readdirSync(dir, { withFileTypes: true })
-      .flatMap((dirent) => {
-        const res = path.resolve(dir, dirent.name)
+  const engine = new ESLint({
+    baseConfig: [...eslintConfig], fix, warnIgnored: false,
+  })
 
-        // Exclude ignored paths
-        if (ignorePatterns.some(pattern => dir.includes(pattern))) return []
-
-        return dirent.isDirectory()
-          ? getFiles(res, ignorePatterns)
-          : (res.endsWith('.ts') || res.endsWith('.tsx') || res.endsWith('.js') || res.endsWith('.jsx')) ? [res] : []
-      })
-  }
-
-  const engine = new ESLint({ baseConfig: [...eslintConfig], fix })
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ignorePatterns = [...eslintConfig.find((cfg: any) => cfg.ignores)?.ignores ?? [], ...ignoreFolders]
-
-  const lintResults = await engine.lintFiles(getFiles(cwd(), ignorePatterns))
+  const files = getFiles(cwd(), ignoreFolders)
+  const lintResults = await engine.lintFiles(files)
 
   dumpMessages(lintResults)
 
