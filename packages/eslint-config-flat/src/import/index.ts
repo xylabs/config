@@ -1,5 +1,5 @@
 import tsParser from '@typescript-eslint/parser'
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import-x'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
@@ -18,7 +18,7 @@ export const importConfig: Linter.Config = {
     'import-x': importPlugin as unknown as ESLint.Plugin,
     'simple-import-sort': simpleImportSort,
   },
-  settings: { 'import-x/resolver': { typescript: { project: './tsconfig-eslint.json' } } },
+  settings: { 'import-x/resolver': { typescript: { project: './tsconfig.json' } } },
   rules: {
     ...(importPlugin.configs.recommended as ESLint.ConfigData).rules,
     'simple-import-sort/imports': ['warn'],

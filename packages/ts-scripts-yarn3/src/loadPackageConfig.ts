@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
 
-import { PackageJson } from 'types-package-json'
+import type { PackageJson } from 'types-package-json'
 
 export type PackageJsonEx = PackageJson & { type: 'module' | 'commonjs' }
 

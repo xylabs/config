@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 import { importConfig } from './import/index.ts'
 // import { markdownConfig } from './markdown/index.ts'

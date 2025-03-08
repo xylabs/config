@@ -1,7 +1,7 @@
 import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import dependPlugin from 'eslint-plugin-depend'
 
 export const ignores = [
@@ -49,7 +49,7 @@ export const typescriptConfig: Linter.Config = {
     parserOptions: {
       ecmaFeatures: { modules: true },
       ecmaVersion: 'latest',
-      project: './tsconfig-eslint.json',
+      project: './tsconfig.json',
     },
   },
   plugins: {

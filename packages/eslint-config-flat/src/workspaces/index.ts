@@ -1,4 +1,4 @@
-import { ESLint, Linter } from 'eslint'
+import type { ESLint, Linter } from 'eslint'
 import workspacesPlugin from 'eslint-plugin-workspaces'
 
 export const workspacesConfig: Linter.Config = {

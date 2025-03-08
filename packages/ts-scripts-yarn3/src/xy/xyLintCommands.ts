@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { Argv } from 'yargs'
+import type { Argv } from 'yargs'
 
 import {
   cycle, fix, lint, lintProfile, publint, relint, sonar,

@@ -4,7 +4,7 @@ import { loadConfig } from '../../../lib/index.ts'
 import { packagePublint } from '../publint.ts'
 import { packageCompileTsc } from './packageCompileTsc.ts'
 import { packageCompileTsup } from './packageCompileTsup.ts'
-import {
+import type {
   XyConfig, XyTscConfig, XyTsupConfig,
 } from './XyConfig.ts'
 

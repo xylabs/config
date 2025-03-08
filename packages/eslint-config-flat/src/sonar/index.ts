@@ -1,4 +1,4 @@
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 import sonarjs from 'eslint-plugin-sonarjs'
 
 export const sonarConfig: Linter.Config = {

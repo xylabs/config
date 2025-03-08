@@ -1,5 +1,5 @@
 import { getAllInputs } from './inputs.ts'
-import { EntryMode } from './XyConfig.ts'
+import type { EntryMode } from './XyConfig.ts'
 
 export const buildEntries = (folder: string, entryMode: EntryMode = 'single', verbose = false) => {
   let entries: string[] = []

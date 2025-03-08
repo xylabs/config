@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs'
 
 import chalk from 'chalk'
-import { Message } from 'publint'
+import type { Message } from 'publint'
 import sortPackageJson from 'sort-package-json'
 
 export interface PackagePublintParams { verbose?: boolean }
