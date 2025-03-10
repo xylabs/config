@@ -58,7 +58,7 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
     })
 }
 
-export const packageLint = async (fix = false, verbose = false) => {
+export const packageLint = async (fix = false, verbose = false, cache = true) => {
   const pkg = process.env.INIT_CWD
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
@@ -67,7 +67,7 @@ export const packageLint = async (fix = false, verbose = false) => {
   const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build', '.yarn', '.vscode', '.github']
 
   const engine = new ESLint({
-    baseConfig: [...eslintConfig], fix, warnIgnored: false,
+    baseConfig: [...eslintConfig], fix, warnIgnored: false, cache,
   })
 
   const files = getFiles(cwd(), ignoreFolders)
