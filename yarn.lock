@@ -1784,38 +1784,10 @@ __metadata:
   peerDependencies:
     typescript: ^5
   bin:
-    analyze: dist/bin/analyze.mjs
-    build: dist/bin/build.mjs
-    build-ci: dist/bin/build-ci.mjs
-    clean: dist/bin/clean.mjs
-    cycle: dist/bin/cycle.mjs
-    dead: dist/bin/dead.mjs
-    deps: dist/bin/deps.mjs
-    eject: dist/bin/build.mjs
-    fix: dist/bin/fix.mjs
-    gitlint: dist/bin/gitlint.mjs
-    gitlint-fix: dist/bin/gitlint-fix.mjs
-    license: dist/bin/license.mjs
-    lint: dist/bin/lint.mjs
-    lint-clean: dist/bin/lint-clean.mjs
-    lint-fast: dist/bin/lint-fast.mjs
-    lint-profile: dist/bin/lint-profile.mjs
     package-clean: dist/bin/package/clean.mjs
     package-compile: dist/bin/package/compile.mjs
     package-deps: dist/bin/package/deps.mjs
-    rebuild: dist/bin/rebuild.mjs
-    reinstall: dist/bin/reinstall.mjs
-    relint: dist/bin/relint.mjs
-    sitemap: dist/bin/sitemap.mjs
-    sonar: dist/bin/sonar.mjs
-    start: dist/bin/start.mjs
-    test: dist/bin/test.mjs
-    tsconfig-gen: dist/bin/tsconfig-gen.mjs
-    "tsconfig-gen:clean": dist/bin/tsconfig-gen-clean.mjs
-    up: dist/bin/up.mjs
-    updo: dist/bin/updo.mjs
     xy: dist/bin/xy.mjs
-    yarn3only: dist/bin/yarn3only.mjs
   languageName: unknown
   linkType: soft
 
@@ -1875,31 +1847,12 @@ __metadata:
   peerDependencies:
     typescript: ^5
   bin:
-    build: dist/bin/build.mjs
-    clean: dist/bin/clean.mjs
-    compile: dist/bin/compile.mjs
-    compile-only: dist/bin/compile-only.mjs
-    cycle: dist/bin/cycle.mjs
-    dead: dist/bin/dead.mjs
-    deploy: dist/bin/deploy.mjs
-    deploy-major: dist/bin/deploy-major.mjs
-    deploy-minor: dist/bin/deploy-minor.mjs
-    deploy-next: dist/bin/deploy-next.mjs
-    deps: dist/bin/deps.mjs
-    fix: dist/bin/fix.mjs
-    gen-docs: dist/bin/gen-docs.mjs
-    gitlint: dist/bin/gitlint.mjs
-    gitlint-fix: dist/bin/gitlint-fix.mjs
-    license: dist/bin/license.mjs
-    lint: dist/bin/lint.mjs
-    lint-clean: dist/bin/lint-clean.mjs
-    lint-fast: dist/bin/lint-fast.mjs
-    lint-profile: dist/bin/lint-profile.mjs
     package-build: dist/bin/package/build.mjs
     package-build-only: dist/bin/package/build-only.mjs
     package-clean: dist/bin/package/clean.mjs
     package-compile: dist/bin/package/compile.mjs
     package-compile-only: dist/bin/package/compile-only.mjs
+    package-compile-types: dist/bin/package/compile-types.mjs
     package-copy-assets-cjs: dist/bin/package/copy-assets-cjs.mjs
     package-copy-assets-esm: dist/bin/package/copy-assets-esm.mjs
     package-deps: dist/bin/package/deps.mjs
@@ -1908,19 +1861,7 @@ __metadata:
     package-lint: dist/bin/package/lint.mjs
     package-publint: dist/bin/package/publint.mjs
     package-recompile: dist/bin/package/recompile.mjs
-    rebuild: dist/bin/rebuild.mjs
-    recompile: dist/bin/recompile.mjs
-    reinstall: dist/bin/reinstall.mjs
-    relint: dist/bin/relint.mjs
-    sonar: dist/bin/sonar.mjs
-    test: dist/bin/test.mjs
-    up: dist/bin/up.mjs
-    updo: dist/bin/updo.mjs
-    upplug: dist/bin/upplug.mjs
-    upyarn: dist/bin/upyarn.mjs
     xy: dist/bin/xy.mjs
-    xy-ts: src/bin/xy-ts.ts
-    yarn3only: dist/bin/yarn3only.mjs
   languageName: unknown
   linkType: soft
 
