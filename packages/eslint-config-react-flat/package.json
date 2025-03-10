@@ -33,10 +33,10 @@
   "module": "./dist/node/index.mjs",
   "types": "./dist/node/index.d.ts",
   "dependencies": {
-    "@eslint-react/eslint-plugin": "^1.28.0",
-    "@typescript-eslint/parser": "^8.25.0",
+    "@eslint-react/eslint-plugin": "^1.31.0",
+    "@typescript-eslint/parser": "^8.26.0",
     "@xylabs/eslint-config-flat": "workspace:^",
-    "eslint": "^9.21.0",
+    "eslint": "^9.22.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0"
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "publishConfig": {
     "access": "public"

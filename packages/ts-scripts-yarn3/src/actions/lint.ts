@@ -72,7 +72,7 @@ export const lintAllPackages = ({
   console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [All-Packages]`))
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  const incrementalOptions = incremental ? ['--since', '-Apt'] : ['--parallel', '-Apt']
+  const incrementalOptions = incremental ? ['--since', '-Ap'] : ['--parallel', '-Ap']
 
   const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
     ['yarn', ['workspaces',

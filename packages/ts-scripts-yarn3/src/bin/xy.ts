@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { xy } from '../xy'
+import { xy } from '../xy/index.ts'
 
 xy()
   .then(() => {

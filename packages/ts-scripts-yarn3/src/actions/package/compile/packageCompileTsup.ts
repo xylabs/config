@@ -1,8 +1,10 @@
+/* eslint-disable complexity */
 import type { Loader } from 'esbuild'
 import type { Options } from 'tsup'
 import { build, defineConfig } from 'tsup'
 
 import { buildEntries } from './buildEntries.ts'
+import { deepMergeObjects } from './deepMerge.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
@@ -53,17 +55,25 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}] ${types}`)
   }
 
-  if (types === 'tsc') {
-    if (verbose) {
-      console.log(`Calling packageCompileTscTypes [${folder}] ${types}`)
-    }
-    const errors = packageCompileTscTypes(folder, { verbose }, { outDir })
-    if (errors) {
-      return errors
-    }
+  return 0
+}
+
+export const tsupOptions = (options: Options[] = []): Options => {
+  const standardLoaders: Record<string, Loader> = {
+    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy',
   }
 
-  return 0
+  const standardOptions: Options = {
+    bundle: true,
+    format: ['esm'],
+    loader: standardLoaders,
+    outExtension: ({ format }) => (format === 'esm' ? { js: '.mjs' } : { js: '.cjs' }),
+    skipNodeModulesBundle: true,
+    sourcemap: true,
+    target: 'esnext',
+  }
+
+  return deepMergeObjects([standardOptions, ...options])
 }
 
 export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | 'tsup' = 'tsc') => {
@@ -78,17 +88,14 @@ export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | '
   const compileForBrowser = compile?.browser ?? { src: {} }
   const compileForNeutral = compile?.neutral ?? { src: {} }
 
-  const standardLoaders: Record<string, Loader> = {
-    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy',
-  }
-  const standardOptions: Options = {
-    bundle: true,
-    format: ['esm'],
-    loader: standardLoaders,
-    outExtension: ({ format }) => (format === 'esm' ? { js: '.mjs' } : { js: '.cjs' }),
-    skipNodeModulesBundle: true,
-    sourcemap: true,
-    target: 'esnext',
+  if (types === 'tsc') {
+    if (verbose) {
+      console.log(`Calling packageCompileTscTypes [${types}`)
+    }
+    const errors = packageCompileTscTypes('src', { verbose })
+    if (errors) {
+      return errors
+    }
   }
 
   return (
@@ -100,17 +107,10 @@ export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | '
             ? await compileFolder(
               folder,
               compile?.entryMode,
-              {
-                ...standardOptions,
-                loader: {
-                  ...standardOptions.loader,
-                  ...inEsBuildOptions?.loader,
-                },
-                outDir: 'dist/node',
-                platform: 'node',
-                ...compile?.tsup?.options,
-                ...(typeof options === 'object' ? options : {}),
-              },
+              tsupOptions([inEsBuildOptions,
+                compile?.tsup?.options ?? {},
+                (typeof options === 'object' ? options : {}),
+                { platform: 'node', outDir: 'dist/node' }]),
               types,
               verbose,
             )
@@ -126,17 +126,10 @@ export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | '
             ? await compileFolder(
               folder,
               compile?.entryMode,
-              {
-                ...standardOptions,
-                loader: {
-                  ...standardOptions.loader,
-                  ...inEsBuildOptions?.loader,
-                },
-                outDir: 'dist/browser',
-                platform: 'browser',
-                ...compile?.tsup?.options,
-                ...(typeof options === 'object' ? options : {}),
-              },
+              tsupOptions([inEsBuildOptions,
+                compile?.tsup?.options ?? {},
+                (typeof options === 'object' ? options : {}),
+                { platform: 'browser', outDir: 'dist/browser' }]),
               types,
               verbose,
             )
@@ -152,17 +145,10 @@ export const packageCompileTsup = async (config?: XyTsupConfig, types: 'tsc' | '
             ? await compileFolder(
               folder,
               compile?.entryMode,
-              {
-                ...standardOptions,
-                loader: {
-                  ...standardOptions.loader,
-                  ...inEsBuildOptions?.loader,
-                },
-                outDir: 'dist/neutral',
-                platform: 'neutral',
-                ...compile?.tsup?.options,
-                ...(typeof options === 'object' ? options : {}),
-              },
+              tsupOptions([inEsBuildOptions,
+                compile?.tsup?.options ?? {},
+                (typeof options === 'object' ? options : {}),
+                { platform: 'neutral', outDir: 'dist/neutral' }]),
               types,
               verbose,
             )

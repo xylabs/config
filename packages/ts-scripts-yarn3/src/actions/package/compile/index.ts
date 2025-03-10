@@ -1,4 +1,6 @@
 export * from './compile.ts'
+export * from './compileTypes.ts'
 export * from './packageCompileTsc.ts'
+export * from './packageCompileTscTypes.ts'
 export * from './packageCompileTsup.ts'
 export * from './XyConfig.ts'

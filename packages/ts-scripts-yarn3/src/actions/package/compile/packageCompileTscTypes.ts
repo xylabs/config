@@ -12,10 +12,11 @@ import type { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTscTypes = (
   folder: string = 'src',
-  { verbose }: XyConfig = {},
+  config: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
+  const verbose = config?.verbose ?? false
 
   if (verbose) {
     console.log(`Compiling types with TSC [${pkg}]`)
@@ -25,7 +26,7 @@ export const packageCompileTscTypes = (
     ...(getCompilerOptions({
       declaration: true,
       emitDeclarationOnly: true,
-      outDir: 'dist',
+      outDir: 'dist/types',
       removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
