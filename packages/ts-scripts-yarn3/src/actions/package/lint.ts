@@ -58,7 +58,7 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
     })
 }
 
-export const packageLint = async (fix = false) => {
+export const packageLint = async (fix = false, verbose = false) => {
   const pkg = process.env.INIT_CWD
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
@@ -71,7 +71,9 @@ export const packageLint = async (fix = false) => {
   })
 
   const files = getFiles(cwd(), ignoreFolders)
-  console.log(chalk.green(`Linting ${pkg} [${files.length}]`))
+  if (verbose) {
+    console.log(chalk.green(`Linting ${pkg} [files = ${files.length}]`))
+  }
   const lintResults = await engine.lintFiles(files)
 
   dumpMessages(lintResults)
