@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import type { Argv } from 'yargs'
 
 import {
-  cycle, fix, lint, lintProfile, publint, relint, sonar,
+  cycle, fix, lint, publint, relint, sonar,
 } from '../actions/index.ts'
 import { packagePositionalParam } from './param.ts'
 
@@ -27,15 +27,13 @@ export const xyLintCommands = (args: Argv) => {
       (yargs) => {
         return packagePositionalParam(yargs)
       },
-      async (argv) => {
+      (argv) => {
         if (argv.verbose) console.log('Lint')
         const start = Date.now()
         process.exitCode
           = argv.fix
-            ? await fix()
-            : argv.profile
-              ? lintProfile()
-              : await lint({ pkg: argv.package as string })
+            ? fix({ pkg: argv.package as string })
+            : lint({ pkg: argv.package as string })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
@@ -45,10 +43,10 @@ export const xyLintCommands = (args: Argv) => {
       (yargs) => {
         return packagePositionalParam(yargs)
       },
-      async (argv) => {
+      (argv) => {
         const start = Date.now()
         if (argv.verbose) console.log('Fix')
-        process.exitCode = await fix()
+        process.exitCode = fix()
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

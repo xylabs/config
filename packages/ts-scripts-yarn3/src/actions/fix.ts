@@ -1,5 +1,6 @@
+import type { LintParams } from './lint.ts'
 import { lint } from './lint.ts'
 
-export const fix = async () => {
-  return await lint({ fix: true })
+export const fix = (params?: LintParams) => {
+  return lint({ ...params, fix: true })
 }

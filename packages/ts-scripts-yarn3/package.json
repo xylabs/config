@@ -47,6 +47,7 @@
     "package-gen-docs": "dist/bin/package/gen-docs.mjs",
     "package-lint": "dist/bin/package/lint.mjs",
     "package-publint": "dist/bin/package/publint.mjs",
+    "package-relint": "dist/bin/package/relint.mjs",
     "package-recompile": "dist/bin/package/recompile.mjs",
     "xy": "dist/bin/xy.mjs"
   },
