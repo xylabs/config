@@ -33,15 +33,13 @@ const dumpMessages = (lintResults: ESLint.LintResult[]) => {
   }
 }
 
-export const relintPackage = ({ pkg, verbose }: RelintParams & Required<Pick<RelintParams, 'pkg'>>) => {
+export const relintPackage = ({ pkg }: RelintParams & Required<Pick<RelintParams, 'pkg'>>) => {
   console.log(chalk.gray(`${'Relint'} [All-Packages]`))
   const start = Date.now()
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
   const result = runSteps('Relint [All-Packages]', [
     ['yarn', ['workspace',
       pkg,
-      ...verboseOptions,
       'run',
       'package-relint',
     ]],

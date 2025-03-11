@@ -14,17 +14,13 @@ export interface LintPackageParams {
   verbose?: boolean
 }
 
-export const lintPackage = ({
-  pkg, fix, verbose,
-}: LintParams & Required<Pick<LintParams, 'pkg'>>) => {
+export const lintPackage = ({ pkg, fix }: LintParams & Required<Pick<LintParams, 'pkg'>>) => {
   console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [All-Packages]`))
   const start = Date.now()
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
 
   const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
     ['yarn', ['workspace',
       pkg,
-      ...verboseOptions,
       'run',
       fix ? 'package-fix' : 'package-lint',
     ]],
