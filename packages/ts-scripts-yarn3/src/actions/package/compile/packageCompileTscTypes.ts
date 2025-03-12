@@ -37,8 +37,10 @@ export const packageCompileTscTypes = (
     noEmit: false,
   } as TsConfigCompilerOptions
 
+  const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
+
   // calling all here since the types do not get rolled up
-  const files = buildEntries(folder, 'all', verbose)
+  const files = buildEntries(folder, 'all', verbose).filter(file => validTsExt.find(ext => file.endsWith(ext)))
 
   const program = createProgramFromConfig({
     basePath: pkg ?? cwd(),
