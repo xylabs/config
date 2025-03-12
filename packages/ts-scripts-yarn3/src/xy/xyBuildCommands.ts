@@ -41,7 +41,6 @@ export const xyBuildCommands = (args: Argv) => {
           jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',
-          types: argv.types as 'tsc' | 'tsup',
           verbose: !!argv.verbose,
         })
       },

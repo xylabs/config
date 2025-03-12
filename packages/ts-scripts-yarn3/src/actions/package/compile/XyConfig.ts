@@ -2,8 +2,6 @@ import type { Options } from 'tsup'
 
 export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
 
-export type CompileMode = 'tsup' | 'tsc'
-
 /**
  * Configuration for specifying which paths are targeted.
  */
@@ -36,12 +34,10 @@ export interface CompileConfig {
   entryMode?: EntryMode
   /** @param files Manually specify the files to be compiled */
   files?: string[]
-  mode?: CompileMode
 }
 
 export type PackageCompileTsupConfig = CompileConfig & {
   browser?: Record<string, Options | boolean>
-  mode?: 'tsup'
   neutral?: Record<string, Options | boolean>
   node?: Record<string, Options | boolean>
   tsup?: { options?: Options }

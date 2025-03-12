@@ -8,7 +8,6 @@ export interface CompileParams {
   pkg?: string
   publint?: boolean
   target?: 'esm' | 'cjs'
-  types?: 'tsc' | 'tsup'
   verbose?: boolean
 }
 
@@ -16,35 +15,32 @@ interface CompilePackageParams {
   pkg: string
   publint?: boolean
   target?: 'esm' | 'cjs'
-  types?: 'tsc' | 'tsup'
   verbose?: boolean
 }
 
 export const compile = ({
-  verbose, target, pkg, incremental, publint, jobs, types,
+  verbose, target, pkg, incremental, publint, jobs,
 }: CompileParams) => {
   return pkg
     ? compilePackage({
-        pkg, publint, target, verbose, types,
+        pkg, publint, target, verbose,
       })
     : compileAll({
-        incremental, publint, target, verbose, jobs, types,
+        incremental, publint, target, verbose, jobs,
       })
 }
 
-export const compilePackage = ({
-  target, pkg, types,
-}: CompilePackageParams) => {
+export const compilePackage = ({ target, pkg }: CompilePackageParams) => {
   const targetOptions = target ? ['-t', target] : []
 
   return runSteps(
     `Compile [${pkg}]`,
-    [['yarn', ['workspace', pkg, 'run', types === 'tsup' ? 'package-compile' : 'package-build', ...targetOptions]]],
+    [['yarn', ['workspace', pkg, 'run', 'package-compile', ...targetOptions]]],
   )
 }
 
 export const compileAll = ({
-  jobs, verbose, target, incremental, types,
+  jobs, verbose, target, incremental,
 }: CompileParams) => {
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
@@ -62,7 +58,7 @@ export const compileAll = ({
       ...jobsOptions,
       ...verboseOptions,
       'run',
-      types === 'tsup' ? 'package-compile' : 'package-build',
+      'package-compile',
       ...targetOptions,
     ]],
   ])

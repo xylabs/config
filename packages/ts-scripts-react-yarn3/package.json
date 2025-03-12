@@ -39,10 +39,6 @@
     "package-deps": "dist/bin/package/deps.mjs",
     "xy": "dist/bin/xy.mjs"
   },
-  "scripts": {
-    "package-compile": "tsup && publint .",
-    "package-recompile": "tsup && publint ."
-  },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "chalk": "^5.4.1",

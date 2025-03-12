@@ -46,7 +46,7 @@ export const compileTypesAll = ({
   }
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  const incrementalOptions = incremental ? ['--since', '-Ap'] : ['--parallel', '-Ap']
+  const incrementalOptions = incremental ? ['--since', '-Apt'] : ['--parallel', '-Apt']
   const jobsOptions = jobs ? ['-j', `${jobs}`] : []
   if (jobs) {
     console.log(chalk.blue(`Jobs set to [${jobs}]`))

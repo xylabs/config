@@ -20,7 +20,7 @@ export const packageCompileTscTypes = (
   const verbose = config?.verbose ?? false
 
   if (verbose) {
-    console.log(`Compiling types with TSC [${pkg}]`)
+    console.log(`Compiling types [${pkg}]`)
   }
 
   const compilerOptions = {

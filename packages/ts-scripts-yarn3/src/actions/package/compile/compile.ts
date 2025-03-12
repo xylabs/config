@@ -2,29 +2,27 @@ import chalk from 'chalk'
 
 import { loadConfig } from '../../../lib/index.ts'
 import { packagePublint } from '../publint.ts'
-import { packageCompileTsc } from './packageCompileTsc.ts'
+import { packageCompileTypes } from './compileTypes.ts'
 import { packageCompileTsup } from './packageCompileTsup.ts'
-import type {
-  XyConfig, XyTscConfig, XyTsupConfig,
-} from './XyConfig.ts'
+import type { XyConfig } from './XyConfig.ts'
 
-export const packageCompile = async (inConfig: XyConfig = {}, types?: 'tsc' | 'tsup'): Promise<number> => {
+export const packageCompile = async (inConfig: XyConfig = {}): Promise<number> => {
   const pkg = process.env.INIT_CWD
   console.log(chalk.green(`Compiling ${pkg}`))
   const config = await loadConfig(inConfig)
   const publint = config.publint
 
-  const mode = config.compile?.mode ?? 'tsup'
-  let result: number = 0
-  switch (mode) {
-    case 'tsc': {
-      result += await packageCompileTsc(undefined, config as XyTscConfig)
-      break
-    }
-    case 'tsup': {
-      result += await packageCompileTsup(config as XyTsupConfig, types)
-      break
-    }
+  const tscResults = await packageCompileTypes(config)
+
+  if (tscResults > 0) {
+    return tscResults
   }
-  return result + (publint ? await packagePublint(config) : 0)
+
+  const tsupResults = await packageCompileTsup(config)
+
+  if (tsupResults > 0) {
+    return tsupResults
+  }
+
+  return (publint ? await packagePublint(config) : 0)
 }

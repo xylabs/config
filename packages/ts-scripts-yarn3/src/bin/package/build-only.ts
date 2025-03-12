@@ -4,7 +4,7 @@ import chalk from 'chalk'
 
 import { packageCompile } from '../../actions/index.ts'
 
-packageCompile({ verbose: true, publint: false }, 'tsc')
+packageCompile({ verbose: true, publint: false })
   .then((value) => {
     if (value) {
       process.exit(value)
