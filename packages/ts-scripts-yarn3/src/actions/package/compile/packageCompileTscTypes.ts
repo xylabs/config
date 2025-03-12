@@ -1,10 +1,11 @@
 import { cwd } from 'node:process'
 
-import chalk from 'chalk'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
 import type { CompilerOptions } from 'typescript'
-import { DiagnosticCategory } from 'typescript'
+import {
+  DiagnosticCategory, formatDiagnosticsWithColorAndContext, getPreEmitDiagnostics, sys,
+} from 'typescript'
 
 import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
@@ -24,7 +25,6 @@ export const packageCompileTscTypes = (
 
   const compilerOptions = {
     ...(getCompilerOptions({
-      declaration: true,
       emitDeclarationOnly: true,
       outDir: 'dist/types',
       removeComments: false,
@@ -40,35 +40,27 @@ export const packageCompileTscTypes = (
   // calling all here since the types do not get rolled up
   const files = buildEntries(folder, 'all', verbose)
 
-  const result = createProgramFromConfig({
+  const program = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions,
     exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
     files,
-  }).emit()
+  })
 
-  const diagResults = result.diagnostics.length
-  for (const diag of result.diagnostics) {
-    switch (diag.category) {
-      case DiagnosticCategory.Error: {
-        console.error(chalk.red(diag.messageText))
-        console.error(chalk.grey(pkg))
-        console.error(chalk.blue(diag.file?.fileName))
-        break
-      }
-      case DiagnosticCategory.Warning: {
-        console.error(chalk.yellow(diag.messageText))
-        console.error(chalk.grey(pkg))
-        console.error(chalk.blue(diag.file?.fileName))
-        break
-      }
-      case DiagnosticCategory.Suggestion: {
-        console.error(chalk.white(diag.messageText))
-        console.error(chalk.grey(pkg))
-        console.error(chalk.blue(diag.file?.fileName))
-        break
-      }
-    }
+  const diagnostics = getPreEmitDiagnostics(program)
+
+  if (diagnostics.length > 0) {
+    const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
+      diagnostics,
+      {
+        getCanonicalFileName: fileName => fileName,
+        getCurrentDirectory: () => folder,
+        getNewLine: () => sys.newLine,
+      },
+    )
+    console.error(formattedDiagnostics)
   }
-  return diagResults
+
+  program.emit()
+  return diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
 }

@@ -29,7 +29,7 @@
     "packages/**/*"
   ],
   "scripts": {
-    "build": "echo Building... && yarn clean && yarn compile",
+    "build": "echo Building... && yarn clean && yarn compile && yarn xy compile-types",
     "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -At --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
