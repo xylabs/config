@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-react-yarn3",
-  "version": "6.0.8",
+  "version": "6.0.9",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -26,18 +26,18 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/neutral/index.mjs"
     },
     "./package.json": "./package.json"
   },
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "module": "dist/neutral/index.mjs",
+  "types": "dist/types/index.d.ts",
   "bin": {
-    "package-clean": "dist/bin/package/clean.mjs",
-    "package-compile": "dist/bin/package/compile.mjs",
-    "package-deps": "dist/bin/package/deps.mjs",
-    "xy": "dist/bin/xy.mjs"
+    "package-clean": "dist/neutral/bin/package/clean.mjs",
+    "package-compile": "dist/neutral/bin/package/compile.mjs",
+    "package-deps": "dist/neutral/bin/package/deps.mjs",
+    "xy": "dist/neutral/bin/xy.mjs"
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",

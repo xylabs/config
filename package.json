@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "6.0.8",
+  "version": "6.0.9",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "knip": "^5.45.0"
+    "knip": "^5.46.0"
   },
   "devDependencies": {
     "@eslint/json": "^0.10.0",
@@ -53,7 +53,7 @@
     "@xylabs/tsconfig": "workspace:^",
     "dotenv": "^16.4.7",
     "eslint": "^9.22.0",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^3.8.7",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.2",
     "vitest": "^3.0.8"
