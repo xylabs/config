@@ -2,34 +2,8 @@ import esStylistic from '@stylistic/eslint-plugin'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import type { ESLint, Linter } from 'eslint'
-import dependPlugin from 'eslint-plugin-depend'
 
-export const ignores = [
-  '.yarn',
-  'node_modules',
-  '**/node_modules',
-  'dist',
-  '**/dist',
-  '**/docs',
-  'public',
-  'storybook-static',
-  '.eslintcache',
-  '.github',
-  '.vscode',
-  '.husky',
-  '.jest',
-  '.next',
-  '.vscode',
-  'coverage',
-  'cypress',
-  'dist',
-  'node_modules',
-  'public',
-  'storybook-static',
-  'tmp',
-  'yarn-error.log',
-  'yarn.lock',
-]
+import { ignores } from '../ignores.ts'
 
 export const typescriptConfig: Linter.Config = {
   ignores,
@@ -55,12 +29,10 @@ export const typescriptConfig: Linter.Config = {
   plugins: {
     '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
     '@stylistic': esStylistic as unknown as ESLint.Plugin,
-    'depend': dependPlugin,
   },
   rules: {
     ...tsPlugin.configs.recommended.rules,
     ...esStylistic.configs['recommended'].rules,
-    ...dependPlugin.configs['flat/recommended'].rules,
     '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -28,6 +28,12 @@
   "sideEffects": false,
   "type": "module",
   "main": "./tsconfig.json",
+  "files": [
+    "dist",
+    "types",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "package-compile": "echo Compiled"
   },

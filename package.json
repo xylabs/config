@@ -24,7 +24,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "dist/types/index.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE"
+  ],
   "workspaces": [
     "packages/**/*"
   ],

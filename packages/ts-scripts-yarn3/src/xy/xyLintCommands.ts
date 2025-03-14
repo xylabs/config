@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import type { Argv } from 'yargs'
 
 import {
-  cycle, fix, lint, publint, relint, sonar,
+  cycle, fix, knip, lint, publint, relint, sonar,
 } from '../actions/index.ts'
 import { packagePositionalParam } from './param.ts'
 
@@ -74,6 +74,19 @@ export const xyLintCommands = (args: Argv) => {
         const start = Date.now()
         process.exitCode = await publint({ pkg: argv.package as string, verbose: !!argv.verbose })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
+      },
+    )
+    .command(
+      'knip',
+      'Knip - Run Knip',
+      (yargs) => {
+        return packagePositionalParam(yargs)
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Knip')
+        const start = Date.now()
+        process.exitCode = knip()
+        console.log(chalk.blue(`Knip finished in ${Date.now() - start}ms`))
       },
     )
     .command(

@@ -2,7 +2,6 @@ import type { ESLint, Linter } from 'eslint'
 import unicornPlugin from 'eslint-plugin-unicorn'
 
 export const unicornConfig: Linter.Config = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
   plugins: { unicorn: unicornPlugin as ESLint.Plugin },
   rules: {
     ...(unicornPlugin.configs['flat/recommended'] as ESLint.ConfigData).rules,

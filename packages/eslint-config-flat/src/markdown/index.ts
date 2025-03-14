@@ -1,22 +1,11 @@
-import type { ESLint, Linter } from 'eslint'
-import mdPlugin from 'eslint-plugin-md'
+import type { Linter } from 'eslint'
+import markdown from 'eslint-plugin-markdown'
+
+import { ignores } from '../ignores.ts'
 
 export const markdownConfig: Linter.Config = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
-  files: ['*.md'],
-  processor: 'md/markdown',
-  plugins: { md: mdPlugin as ESLint.Plugin },
-  rules: {
-    'md/remark': [
-      'warn',
-      { plugins: ['preset-lint-markdown-style-guide', 'frontmatter', ['lint-list-item-indent', 'tab-size']] },
-    ],
-    'prettier/prettier': [
-      'off',
-      // Important to force prettier to use "markdown" parser - otherwise it wouldn't be able to parse *.md files.
-      // You also can configure other options supported by prettier here - "prose-wrap" is
-      // particularly useful for *.md files
-      { parser: 'markdown' },
-    ],
-  },
+  ignores,
+  plugins: { markdown },
+  files: ['**/*.md'],
+  processor: 'markdown/markdown',
 }

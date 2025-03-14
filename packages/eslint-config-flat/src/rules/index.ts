@@ -1,7 +1,9 @@
 import type { Linter } from 'eslint'
 
+import { ignores } from '../ignores.ts'
+
 export const rulesConfig: Linter.Config = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
+  ignores,
   rules: {
     'complexity': ['error', 18],
     'max-depth': ['error', 6],

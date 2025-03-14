@@ -1,7 +1,10 @@
 import json from '@eslint/json'
 import type { ESLint, Linter } from 'eslint'
 
+import { ignores } from '../ignores.ts'
+
 export const jsonConfig: Linter.Config = {
+  ignores,
   files: ['**/*.json'],
   plugins: { json: json as unknown as ESLint.Plugin },
   language: 'json/json',
@@ -9,6 +12,7 @@ export const jsonConfig: Linter.Config = {
 }
 
 export const jsoncConfig: Linter.Config = {
+  ignores,
   files: ['**/*.jsonc'],
   plugins: { json: json as unknown as ESLint.Plugin },
   language: 'json/jsonc',
@@ -16,6 +20,7 @@ export const jsoncConfig: Linter.Config = {
 }
 
 export const json5Config: Linter.Config = {
+  ignores,
   files: ['**/*.json5'],
   plugins: { json: json as unknown as ESLint.Plugin },
   language: 'json/json5',

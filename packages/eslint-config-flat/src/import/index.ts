@@ -3,8 +3,10 @@ import type { ESLint, Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import-x'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
+import { ignores } from '../ignores.ts'
+
 export const importConfig: Linter.Config = {
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
+  ignores,
   files: ['**/*.ts', '**/*.d.ts', '**/*.tsx', '**/*.d.tsx', '**/*.ts', '**/*.d.ts', '**/*.jsx', '**/*.d.jsx'],
   languageOptions: {
     parser: tsParser,

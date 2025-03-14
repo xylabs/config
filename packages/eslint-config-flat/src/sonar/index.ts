@@ -1,9 +1,11 @@
 import type { Linter } from 'eslint'
 import sonarjs from 'eslint-plugin-sonarjs'
 
+import { ignores } from '../ignores.ts'
+
 export const sonarConfig: Linter.Config = {
   plugins: { sonarjs },
-  ignores: ['.yarn/**', 'jest.config.cjs', '**/dist/**', 'dist', 'build/**', 'node_modules/**'],
+  ignores,
   rules: {
     ...sonarjs.configs.recommended.rules,
     'sonarjs/no-small-switch': ['off'],

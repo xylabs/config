@@ -39,6 +39,11 @@
     "package-deps": "dist/neutral/bin/package/deps.mjs",
     "xy": "dist/neutral/bin/xy.mjs"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "chalk": "^5.4.1",

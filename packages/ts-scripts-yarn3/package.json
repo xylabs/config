@@ -51,6 +51,11 @@
     "package-relint": "dist/bin/package/relint.mjs",
     "xy": "dist/bin/xy.mjs"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "package-clean": "echo Not cleaning...",
     "package-compile": "tsup && publint",
@@ -77,6 +82,7 @@
     "find-up": "^7.0.0",
     "glob": "^11.0.1",
     "jsonc-eslint-parser": "^2.4.0",
+    "knip": "^5.46.0",
     "license-checker": "^25.0.1",
     "node-cmd": "^5.0.0",
     "npm-check-updates": "^17.1.15",
