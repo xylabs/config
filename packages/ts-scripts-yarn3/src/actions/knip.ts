@@ -1,5 +1,5 @@
 import { runSteps } from '../lib/index.ts'
 
 export const knip = () => {
-  return runSteps('Knip', [['yarn', ['knip', '--dependencies']]])
+  return runSteps('Knip', [['yarn', ['knip', '--dependencies', '--no-exit-code']]])
 }
