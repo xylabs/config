@@ -59,10 +59,11 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
 }
 
 export const packageLint = async (fix = false, verbose = false, cache = true) => {
-  const start = Date.now()
   const pkg = process.env.INIT_CWD
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
+
+  const start = Date.now()
 
   // List of folders to ignore
   const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build', '.yarn', '.vscode', '.github']
@@ -82,6 +83,9 @@ export const packageLint = async (fix = false, verbose = false, cache = true) =>
   if (fix) {
     await ESLint.outputFixes(lintResults)
   }
-  console.log(chalk.green(`Linted ${files.length} files in ${Date.now() - start}ms`))
+  const filesCountColor = files.length < 100 ? 'green' : files.length < 1000 ? 'yellow' : 'red'
+  const lintTime = Date.now() - start
+  const lintTimeColor = lintTime < 1000 ? 'green' : lintTime < 3000 ? 'yellow' : 'red'
+  console.log(chalk.white(`Linted ${chalk[filesCountColor](files.length)} files in ${chalk[lintTimeColor](lintTime)}ms`))
   return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
