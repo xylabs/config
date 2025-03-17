@@ -59,6 +59,7 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
 }
 
 export const packageLint = async (fix = false, verbose = false, cache = true) => {
+  const start = Date.now()
   const pkg = process.env.INIT_CWD
   const configPath = await getRootESLintConfig()
   const { default: eslintConfig } = await import(configPath.href)
@@ -81,6 +82,6 @@ export const packageLint = async (fix = false, verbose = false, cache = true) =>
   if (fix) {
     await ESLint.outputFixes(lintResults)
   }
-
+  console.log(chalk.green(`Linted ${files.length} files in ${Date.now() - start}ms`))
   return lintResults.reduce((prev, lintResult) => prev + lintResult.errorCount, 0)
 }
