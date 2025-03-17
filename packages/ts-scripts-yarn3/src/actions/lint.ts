@@ -15,10 +15,10 @@ export interface LintPackageParams {
 }
 
 export const lintPackage = ({ pkg, fix }: LintParams & Required<Pick<LintParams, 'pkg'>>) => {
-  console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [All-Packages]`))
+  console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [${pkg}]`))
   const start = Date.now()
 
-  const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
+  const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [${pkg}]`, [
     ['yarn', ['workspace',
       pkg,
       'run',
