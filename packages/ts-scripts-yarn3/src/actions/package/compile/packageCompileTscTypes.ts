@@ -43,27 +43,30 @@ export const packageCompileTscTypes = (
 
   console.log(chalk.green(`Compiling Types ${pkg}: ${files.length}`))
 
-  const program = createProgramFromConfig({
-    basePath: pkg ?? cwd(),
-    compilerOptions,
-    exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
-    files,
-  })
+  if (files.length > 0) {
+    const program = createProgramFromConfig({
+      basePath: pkg ?? cwd(),
+      compilerOptions,
+      exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
+      files,
+    })
 
-  const diagnostics = getPreEmitDiagnostics(program)
+    const diagnostics = getPreEmitDiagnostics(program)
 
-  if (diagnostics.length > 0) {
-    const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
-      diagnostics,
-      {
-        getCanonicalFileName: fileName => fileName,
-        getCurrentDirectory: () => folder,
-        getNewLine: () => sys.newLine,
-      },
-    )
-    console.error(formattedDiagnostics)
+    if (diagnostics.length > 0) {
+      const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
+        diagnostics,
+        {
+          getCanonicalFileName: fileName => fileName,
+          getCurrentDirectory: () => folder,
+          getNewLine: () => sys.newLine,
+        },
+      )
+      console.error(formattedDiagnostics)
+    }
+
+    program.emit()
+    return diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
   }
-
-  program.emit()
-  return diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
+  return 0
 }
