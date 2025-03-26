@@ -1,5 +1,6 @@
 import { cwd } from 'node:process'
 
+import chalk from 'chalk'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
 import type { CompilerOptions } from 'typescript'
@@ -19,10 +20,6 @@ export const packageCompileTscTypes = (
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
 
-  if (verbose) {
-    console.log(`Compiling types [${pkg}]`)
-  }
-
   const compilerOptions = {
     ...(getCompilerOptions({
       emitDeclarationOnly: true,
@@ -41,6 +38,8 @@ export const packageCompileTscTypes = (
 
   // calling all here since the types do not get rolled up
   const files = buildEntries(folder, 'all', verbose).filter(file => validTsExt.find(ext => file.endsWith(ext)))
+
+  console.log(chalk.green(`Compiling Types ${pkg}: ${files.length}`))
 
   const program = createProgramFromConfig({
     basePath: pkg ?? cwd(),

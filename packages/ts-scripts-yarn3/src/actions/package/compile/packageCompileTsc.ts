@@ -20,8 +20,6 @@ export const packageCompileTsc = (
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
 
-  console.log(chalk.green(`Compiling Files ${pkg}`))
-
   const compilerOptions = {
     ...(getCompilerOptions({
       outDir: 'dist/types',
@@ -39,6 +37,8 @@ export const packageCompileTsc = (
 
   // calling all here since the types do not get rolled up
   const files = buildEntries(folder, 'all', verbose).filter(file => validTsExt.find(ext => file.endsWith(ext)))
+
+  console.log(chalk.green(`Compiling Files ${pkg}: ${files.length}`))
 
   const program = createProgramFromConfig({
     basePath: pkg ?? cwd(),

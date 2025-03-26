@@ -1,7 +1,7 @@
 import { getAllInputs } from './inputs.ts'
 import type { EntryMode } from './XyConfig.ts'
 
-export const buildEntries = (folder: string, entryMode: EntryMode = 'single', verbose = false) => {
+export const buildEntries = (folder: string, entryMode: EntryMode = 'single', excludeSpecAndStory = true, verbose = false) => {
   let entries: string[] = []
   switch (entryMode) {
     case 'platform': {
@@ -9,7 +9,7 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', ve
       break
     }
     case 'all': {
-      entries = getAllInputs(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.story.'))
+      entries = excludeSpecAndStory ? getAllInputs(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.stories.')) : getAllInputs(folder, [])
       break
     }
     default: {

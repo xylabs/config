@@ -1,6 +1,6 @@
 import { glob } from 'glob'
 
-export const getAllInputs = (folder: string) => {
+export const getAllInputs = (folder: string, ignore = ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*']) => {
   /* tsup wants posix paths */
-  return glob.sync(`${folder}/**/*.*`, { ignore: ['**/*.spec.*', '**/*.stories.*', '**/spec/**/*'], posix: true })
+  return glob.sync(`${folder}/**/*.*`, { ignore, posix: true })
 }
