@@ -5,6 +5,7 @@ import { build, defineConfig } from 'tsup'
 import { buildEntries } from './buildEntries.ts'
 import { packageCompileTypes } from './compileTypes.ts'
 import { deepMergeObjects } from './deepMerge.ts'
+import { packageCompileTsc } from './packageCompileTsc.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
 const compileFolder = async (
@@ -75,7 +76,6 @@ export const tsupOptions = (options: Options[] = []): Options => {
 }
 
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
-  console.log('packageCompileTsup-types')
   const compile = config?.compile
   const verbose = config?.verbose ?? false
   if (verbose) {
@@ -89,7 +89,9 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
   if (verbose) {
     console.log('Calling packageCompileTscTypes')
   }
-  const errors = await packageCompileTypes(config)
+
+  let errors = await packageCompileTypes(config)
+  errors = errors + packageCompileTsc(undefined, config)
   if (errors > 0) {
     return errors
   }

@@ -3,65 +3,64 @@ import { cwd } from 'node:process'
 import chalk from 'chalk'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
-import type {
-  CompilerOptions,
-  FormatDiagnosticsHost,
-  LineAndCharacter,
-} from 'typescript'
+import type { CompilerOptions } from 'typescript'
 import {
-  DiagnosticCategory,
-  formatDiagnosticsWithColorAndContext,
-  getLineAndCharacterOfPosition,
-  getPreEmitDiagnostics,
+  DiagnosticCategory, formatDiagnosticsWithColorAndContext, getPreEmitDiagnostics, sys,
 } from 'typescript'
 
-import { packagePublint } from '../publint.ts'
+import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import type { XyTscConfig } from './XyConfig.ts'
+import type { XyConfig } from './XyConfig.ts'
 
-export const packageCompileTsc = async (noEmit?: boolean, config?: XyTscConfig, compilerOptionsParam?: CompilerOptions): Promise<number> => {
+export const packageCompileTsc = (
+  folder: string = 'src',
+  config: XyConfig = {},
+  compilerOptionsParam?: CompilerOptions,
+): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
-
-  const publint = config?.publint ?? true
   const verbose = config?.verbose ?? false
 
-  const formatHost: FormatDiagnosticsHost = {
-    getCanonicalFileName: fileName => fileName,
-    getCurrentDirectory: () => pkg,
-    getNewLine: () => '\n',
-  }
-
-  if (verbose) {
-    console.log(`Compiling with NoEmit TSC [${pkg}]`)
-  }
+  console.log(chalk.green(`Compiling Files ${pkg}`))
 
   const compilerOptions = {
     ...(getCompilerOptions({
-      outDir: 'dist',
-      removeComments: true,
-      rootDir: 'src',
+      outDir: 'dist/types',
+      removeComments: false,
+      skipDefaultLibCheck: true,
+      skipLibCheck: true,
+      sourceMap: false,
     })),
     ...compilerOptionsParam,
-    ...(noEmit === undefined ? {} : { noEmit }),
+    emitDeclarationOnly: false,
+    noEmit: true,
   } as TsConfigCompilerOptions
+
+  const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
+
+  // calling all here since the types do not get rolled up
+  const files = buildEntries(folder, 'all', verbose).filter(file => validTsExt.find(ext => file.endsWith(ext)))
 
   const program = createProgramFromConfig({
     basePath: pkg ?? cwd(),
     compilerOptions,
-    exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
-    include: ['src'],
+    exclude: ['dist', 'docs'],
+    files,
   })
 
-  const results = getPreEmitDiagnostics(program)
+  const diagnostics = getPreEmitDiagnostics(program)
 
-  for (const diag of results) {
-    const lineAndChar: LineAndCharacter = diag.file
-      ? getLineAndCharacterOfPosition(diag.file, diag.start ?? 0)
-      : { character: 0, line: 0 }
-    console.log(chalk.cyan(`${diag.file?.fileName}:${lineAndChar.line + 1}:${lineAndChar.character + 1}`))
-    console.log(formatDiagnosticsWithColorAndContext([diag], formatHost))
+  if (diagnostics.length > 0) {
+    const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
+      diagnostics,
+      {
+        getCanonicalFileName: fileName => fileName,
+        getCurrentDirectory: () => folder,
+        getNewLine: () => sys.newLine,
+      },
+    )
+    console.error(formattedDiagnostics)
   }
 
-  // eslint-disable-next-line unicorn/no-array-reduce
-  return results.reduce((prev, diag) => (prev + diag.category === DiagnosticCategory.Error ? 1 : 0), 0) || (publint ? await packagePublint() : 0)
+  program.emit()
+  return diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
 }

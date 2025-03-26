@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "6.1.5",
+  "version": "6.1.6",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -32,7 +32,7 @@
     "packages/**/*"
   ],
   "scripts": {
-    "build": "echo Building... && yarn clean && yarn compile && yarn xy compile-types",
+    "build": "echo Building... && yarn clean && yarn compile",
     "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -Apt --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
@@ -45,18 +45,18 @@
   },
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "knip": "^5.46.0"
+    "knip": "^5.46.2"
   },
   "devDependencies": {
     "@eslint/json": "^0.11.0",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.13.13",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "dotenv": "^16.4.7",
-    "eslint": "^9.22.0",
-    "eslint-import-resolver-typescript": "^4.2.2",
+    "eslint": "^9.23.0",
+    "eslint-import-resolver-typescript": "^4.2.5",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.2",
     "vitest": "^3.0.9"
