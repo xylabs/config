@@ -70,7 +70,6 @@ export const packageLint = async (fix = false, verbose = false, cache = true) =>
   const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build', '.yarn', '.vscode', '.github']
 
   const engine = new ESLint({
-    cwd: process.env.INIT_CWD,
     baseConfig: [...eslintConfig],
     fix,
     warnIgnored: false,
