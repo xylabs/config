@@ -3,6 +3,7 @@ import path from 'node:path'
 import { cwd } from 'node:process'
 import { pathToFileURL } from 'node:url'
 
+import tsParser from '@typescript-eslint/parser'
 import chalk from 'chalk'
 import { ESLint } from 'eslint'
 import { findUp } from 'find-up'
@@ -69,7 +70,21 @@ export const packageLint = async (fix = false, verbose = false, cache = true) =>
   const ignoreFolders = ['node_modules', 'dist', 'packages', '.git', 'build', '.yarn', '.vscode', '.github']
 
   const engine = new ESLint({
-    baseConfig: [...eslintConfig], fix, warnIgnored: false, cache,
+    cwd: process.env.INIT_CWD,
+    baseConfig: [...eslintConfig],
+    fix,
+    warnIgnored: false,
+    cache,
+    overrideConfig: {
+      languageOptions: {
+        parser: tsParser,
+        parserOptions: {
+          ecmaFeatures: { modules: true },
+          ecmaVersion: 'latest',
+          project: './tsconfig.json',
+        },
+      },
+    },
   })
 
   const files = getFiles(cwd(), ignoreFolders)
