@@ -40,7 +40,6 @@
     "buildci",
     "copyfiles",
     "deepmerge",
-    "depcheckrc",
     "Dupdeps",
     "gitlint",
     "ignorecase",

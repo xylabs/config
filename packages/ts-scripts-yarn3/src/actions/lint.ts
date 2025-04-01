@@ -39,22 +39,14 @@ export const lint = ({
       })
 }
 
-export const lintAllPackages = ({
-  fix, verbose = true, incremental,
-}: LintParams = {}) => {
+export const lintAllPackages = ({ fix = false }: LintParams = {}) => {
   console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [All-Packages]`))
   const start = Date.now()
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  const incrementalOptions = incremental ? ['--since', '-Ap'] : ['--parallel', '-Ap']
+  // const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
+  // const incrementalOptions = incremental ? ['--since', '-Ap'] : ['--parallel', '-Ap']
 
   const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
-    ['yarn', ['workspaces',
-      'foreach',
-      ...verboseOptions,
-      ...incrementalOptions,
-      'run',
-      fix ? 'package-fix' : 'package-lint',
-    ]],
+    ['yarn', ['eslint']],
   ])
   console.log(chalk.gray(`${fix ? 'Fixed in' : 'Linted in'} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`))
   return result

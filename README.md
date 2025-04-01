@@ -18,7 +18,6 @@
 
 -   [ESLint](https://eslint.org)
 -   [TypeScript](https://www.typescriptlang.org)
--   [Depcheck](https://www.npmjs.com/package/depcheck)
 -   [TS-Prune](https://www.npmjs.com/package/ts-prune)
 -   [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 
@@ -45,9 +44,6 @@
 
 ### dead
 > Uses TS-Prune to display all unused exports
-
-### deps
-> Displays all dependencies that have a new version available on npmjs
 
 ### deploy
 > Deploy the package to NPMJS

@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "6.1.16",
+  "version": "6.2.0",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -42,7 +42,6 @@
     "package-compile-types": "dist/bin/package/compile-types.mjs",
     "package-copy-assets-cjs": "dist/bin/package/copy-assets-cjs.mjs",
     "package-copy-assets-esm": "dist/bin/package/copy-assets-esm.mjs",
-    "package-deps": "dist/bin/package/deps.mjs",
     "package-fix": "dist/bin/package/fix.mjs",
     "package-gen-docs": "dist/bin/package/gen-docs.mjs",
     "package-lint": "dist/bin/package/lint.mjs",
@@ -76,7 +75,6 @@
     "cosmiconfig-typescript-loader": "^6.1.0",
     "cpy": "^11.1.0",
     "deepmerge": "^4.3.1",
-    "depcheck": "^1.4.7",
     "esbuild": "0.25.2",
     "eslint": "^9.23.0",
     "find-up": "^7.0.0",
@@ -86,8 +84,6 @@
     "license-checker": "^25.0.1",
     "node-cmd": "^5.0.0",
     "npm-check-updates": "^17.1.16",
-    "npm-package-json-lint": "^8.0.0",
-    "npm-package-json-lint-config-default": "^7.0.1",
     "parse-git-config": "^3.0.0",
     "picomatch": "^4.0.2",
     "publint": "^0.3.9",

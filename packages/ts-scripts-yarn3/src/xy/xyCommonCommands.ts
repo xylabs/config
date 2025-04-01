@@ -3,7 +3,6 @@ import type { Argv } from 'yargs'
 import {
   cleanDocs,
   dead,
-  deps,
   genDocs,
   gitignoreGen,
   gitlint,
@@ -41,19 +40,6 @@ export const xyCommonCommands = (args: Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Dead')
         process.exitCode = dead()
-      },
-    )
-    .command(
-      'deps [package]',
-      'Deps - Check for unused or missing dependencies',
-      (yargs) => {
-        return packagePositionalParam(yargs)
-      },
-      (argv) => {
-        if (argv.verbose) console.log(`Checking Dependencies: ${argv.package ?? 'all'}`)
-        process.exitCode = deps({
-          incremental: !!argv.incremental, jobs: argv.jobs as number, pkg: argv.package as string,
-        })
       },
     )
     .command(
