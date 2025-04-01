@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-react-yarn3",
-  "version": "6.1.15",
+  "version": "6.1.16",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -51,7 +51,7 @@
   ],
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "chalk": "^4",
+    "chalk": "^5.4.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

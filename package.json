@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "6.1.15",
+  "version": "6.1.16",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -46,9 +46,6 @@
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "knip": "^5.46.4"
-  },
-  "resolutions": {
-    "chalk": "^5"
   },
   "devDependencies": {
     "@eslint/json": "^0.11.0",
