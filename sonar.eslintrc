@@ -1,8 +1,0 @@
-{
-  "root": true,
-  "ignorePatterns": ["node_modules/", "build/", "dist/"],
-  "extends": [
-    "plugin:sonarjs/recommended"
-  ],
-  "plugins": ["sonarjs"]
-}
