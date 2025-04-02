@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "echo Building... && yarn clean && yarn compile",
-    "clean": "echo Cleaning... && yarn xy clean && yarn workspace @xylabs/ts-scripts-yarn3 rimraf ./dist",
+    "clean": "echo Cleaning... && yarn rimraf 'dist' && yarn rimraf 'packages/*/dist'",
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -Apt --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
     "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach --all --parallel npm publish",
