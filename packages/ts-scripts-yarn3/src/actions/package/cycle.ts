@@ -9,7 +9,7 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
     ruleSet: {
       forbidden: [
         {
-          name: 'no-cycles',
+          name: 'no-circular',
           severity: 'error',
           comment: 'This dependency creates a circular reference',
           from: {},
@@ -17,6 +17,7 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
         },
       ],
     },
+    validate: true,
     doNotFollow: { path: 'node_modules' },
     tsPreCompilationDeps: false,
     combinedDependencies: true,
@@ -24,6 +25,8 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
   }
 
   const target = `${pkg}/src`
+
+  console.log(`Checking for circular dependencies in ${target}...`)
 
   const result = await cruise([target], cruiseOptions)
   if (result.output) {
