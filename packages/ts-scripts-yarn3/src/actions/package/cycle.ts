@@ -18,7 +18,7 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
       ],
     },
     validate: true,
-    doNotFollow: { path: 'node_modules' },
+    doNotFollow: ['node_modules', 'packages'],
     tsPreCompilationDeps: false,
     combinedDependencies: true,
     outputType: verbose ? 'text' : 'err',
