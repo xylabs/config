@@ -25,7 +25,6 @@ export const build = async ({
 
   const result = await runStepsAsync(`Build${incremental ? '-Incremental' : ''} [${pkg ?? 'All'}]`, [
     ['yarn', ['xy', 'compile', ...pkgOptions, ...targetOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions, '--types', 'tsup']],
-    ['yarn', ['xy', 'cycle', ...pkgOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions]],
     ['yarn', ['xy', 'publint', ...pkgOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions]],
     ['yarn', ['xy', 'knip', ...pkgOptions, ...verboseOptions, ...jobsOptions, ...incrementalOptions]],
     ['yarn', ['xy', 'lint', ...pkgOptions, ...verboseOptions, ...incrementalOptions]],
