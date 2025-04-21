@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "6.3.3",
+  "version": "6.3.4",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -78,14 +78,14 @@
     "deepmerge": "^4.3.1",
     "dependency-cruiser": "^16.10.1",
     "esbuild": "0.25.2",
-    "eslint": "^9.24.0",
+    "eslint": "^9.25.0",
     "find-up": "^7.0.0",
     "glob": "^11.0.1",
     "jsonc-eslint-parser": "^2.4.0",
     "knip": "^5.50.5",
     "license-checker": "^25.0.1",
     "node-cmd": "^5.0.0",
-    "npm-check-updates": "^17.1.18",
+    "npm-check-updates": "^18.0.0",
     "parse-git-config": "^3.0.0",
     "picomatch": "^4.0.2",
     "publint": "^0.3.12",
@@ -100,9 +100,9 @@
     "tsc-prog": "^2.3.0",
     "tslib": "^2.8.1",
     "tsup": "8.4.0",
-    "typedoc": "^0.28.2",
+    "typedoc": "^0.28.3",
     "types-package-json": "^2.0.39",
-    "vitest": "^3.1.1",
+    "vitest": "^3.1.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

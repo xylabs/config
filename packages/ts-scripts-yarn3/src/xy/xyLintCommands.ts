@@ -14,10 +14,10 @@ export const xyLintCommands = (args: Argv) => {
       (yargs) => {
         return packagePositionalParam(yargs)
       },
-      (argv) => {
+      async (argv) => {
         const start = Date.now()
         if (argv.verbose) console.log('Cycle')
-        process.exitCode = cycle({ pkg: argv.package as string })
+        process.exitCode = await cycle({ pkg: argv.package as string })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+import { cruise, type ICruiseOptions } from 'dependency-cruiser'
 
 import { runSteps } from '../lib/index.ts'
 
@@ -14,14 +14,10 @@ interface CyclePackageParams {
   verbose?: boolean
 }
 
-export const cycle = ({
-  verbose, pkg, incremental, jobs,
-}: CycleParams = {}) => {
+export const cycle = async ({ verbose, pkg }: CycleParams = {}) => {
   return pkg
     ? cyclePackage({ pkg, verbose })
-    : cycleAll({
-        incremental, verbose, jobs,
-      })
+    : await cycleAll({ verbose })
 }
 
 export const cyclePackage = ({ pkg, verbose }: CyclePackageParams) => {
@@ -32,28 +28,42 @@ export const cyclePackage = ({ pkg, verbose }: CyclePackageParams) => {
   )
 }
 
-export const cycleAll = ({
-  jobs, verbose, incremental,
-}: CycleParams) => {
-  const start = Date.now()
-  const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
-  const incrementalOptions = incremental ? ['--since', '-Ap', '--topological-dev'] : ['--parallel', '-Ap']
-  const jobsOptions = jobs ? ['-j', `${jobs}`] : []
-  if (jobs) {
-    console.log(chalk.blue(`Jobs set to [${jobs}]`))
+export const cycleAll = async ({ verbose = false }: { verbose?: boolean }) => {
+  const pkgName = process.env.npm_package_name
+
+  const cruiseOptions: ICruiseOptions = {
+    ruleSet: {
+      forbidden: [
+        {
+          name: 'no-circular',
+          severity: 'error',
+          comment: 'This dependency creates a circular reference',
+          from: {},
+          to: { circular: true },
+        },
+      ],
+    },
+    exclude: 'node_modules|packages/.*/packages',
+    validate: true,
+    doNotFollow: { path: 'node_modules|packages/.*/packages' },
+    tsPreCompilationDeps: false,
+    combinedDependencies: true,
+    outputType: verbose ? 'text' : 'err',
   }
 
-  const result = runSteps(`Cycle${incremental ? '-Incremental' : ''} [All]`, [
-    ['yarn', ['workspaces',
-      'foreach',
-      ...incrementalOptions,
-      ...jobsOptions,
-      ...verboseOptions,
-      'run',
-      'package-cycle',
-      ...verboseOptions,
-    ]],
-  ])
-  console.log(`${chalk.gray('Cycles Checked in')} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`)
-  return result
+  const target = '**/src'
+
+  console.log(`Checking for circular dependencies in ${target}...`)
+
+  const result = await cruise([target], cruiseOptions)
+  if (result.output) {
+    console.log(result.output)
+  }
+
+  if (result.exitCode === 0) {
+    console.log(`${pkgName} ✅ No dependency violations`)
+  } else {
+    console.error(`${pkgName} ❌ Dependency violations found`)
+  }
+  return result.exitCode
 }
