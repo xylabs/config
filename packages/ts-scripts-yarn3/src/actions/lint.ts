@@ -44,9 +44,10 @@ export const lintAllPackages = ({ fix = false }: LintParams = {}) => {
   const start = Date.now()
   // const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']
   // const incrementalOptions = incremental ? ['--since', '-Ap'] : ['--parallel', '-Ap']
+  const fixOptions = fix ? ['--fix'] : []
 
   const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
-    ['yarn', ['eslint']],
+    ['yarn', ['eslint', ...fixOptions]],
   ])
   console.log(chalk.gray(`${fix ? 'Fixed in' : 'Linted in'} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`))
   return result

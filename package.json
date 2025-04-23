@@ -55,7 +55,7 @@
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "dotenv": "^16.5.0",
-    "eslint": "^9.25.0",
+    "eslint": "^9.25.1",
     "eslint-import-resolver-typescript": "^4.3.4",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
