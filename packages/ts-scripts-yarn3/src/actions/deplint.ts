@@ -99,7 +99,7 @@ function findFilesByGlob(cwd: string, pattern: string) {
 }
 
 function findFiles(path: string) {
-  const allSourceInclude = ['./src/**/*.{ts,tsx}']
+  const allSourceInclude = ['./src/**/*.{ts,tsx}', './dist/**/*.d.ts']
   const prodExcludeEndswith = ['.spec.ts', '.stories.tsx']
   const prodExcludeIncludes = ['/spec/', '/stories/', '/scripts/']
   const allSourceFiles = allSourceInclude.flatMap(pattern => findFilesByGlob(path, pattern))
