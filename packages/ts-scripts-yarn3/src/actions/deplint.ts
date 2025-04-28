@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable max-statements */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -38,7 +39,7 @@ function getBasePackageName(importName: string) {
   return importName.split('/')[0]
 }
 
-function getImportsFromFile(filePath: string, importPaths: Record<string, string[]>) {
+function getImportsFromFile(filePath: string, importPaths: Record<string, string[]>, typeImportPaths: Record<string, string[]>) {
   const sourceCode = fs.readFileSync(filePath, 'utf8')
 
   const sourceFile = ts.createSourceFile(
@@ -49,12 +50,24 @@ function getImportsFromFile(filePath: string, importPaths: Record<string, string
   )
 
   const imports: string[] = []
+  const typeImports: string[] = []
 
   function visit(node: ts.Node) {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleSpecifier = (node.moduleSpecifier)?.getFullText()
+      const isTypeImport = ts.isImportDeclaration(node) ? (node.importClause?.isTypeOnly ?? false) : false
       if (moduleSpecifier) {
         const trimmed = moduleSpecifier.split("'").at(1) ?? moduleSpecifier
+        if (isTypeImport) {
+          typeImports.push(trimmed)
+        } else {
+          imports.push(trimmed)
+        }
+      }
+    } else if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword) {
+      const [arg] = node.arguments
+      if (ts.isStringLiteral(arg)) {
+        const trimmed = arg.text
         imports.push(trimmed)
       }
     }
@@ -63,16 +76,22 @@ function getImportsFromFile(filePath: string, importPaths: Record<string, string
 
   visit(sourceFile)
 
-  const importsStartsWithExcludes = ['.', '#', 'node:', '@types/']
+  const importsStartsWithExcludes = ['.', '#', 'node:']
 
   const cleanedImports = imports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
+  const cleanedTypeImports = typeImports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
 
   for (const imp of cleanedImports) {
     importPaths[imp] = importPaths[imp] || []
     importPaths[imp].push(filePath)
   }
 
-  return cleanedImports
+  for (const imp of cleanedTypeImports) {
+    typeImportPaths[imp] = typeImportPaths[imp] || []
+    typeImportPaths[imp].push(filePath)
+  }
+
+  return [cleanedImports, cleanedTypeImports]
 }
 
 function findFilesByGlob(cwd: string, pattern: string) {
@@ -96,13 +115,22 @@ function findFiles(path: string) {
 
 function getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles }: { devSourceFiles: string[]; prodSourceFiles: string[] }) {
   const prodImportPaths: Record<string, string[]> = {}
-  const prodImports = prodSourceFiles.flatMap(path => getImportsFromFile(path, prodImportPaths))
+  const prodTypeImportPaths: Record<string, string[]> = {}
+  const prodImportPairs = prodSourceFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
+  const prodImports = prodImportPairs.flatMap(pair => pair[0])
+  const prodTypeImports = prodImportPairs.flatMap(pair => pair[1])
+
   const devImportPaths: Record<string, string[]> = {}
-  const devImports = devSourceFiles.flatMap(path => getImportsFromFile(path, devImportPaths))
+  const devTypeImportPaths: Record<string, string[]> = {}
+  const devImportPairs = devSourceFiles.map(path => getImportsFromFile(path, devImportPaths, devTypeImportPaths))
+  const devImports = devImportPairs.flatMap(pair => pair[0])
+  const devTypeImports = devImportPairs.flatMap(pair => pair[1])
+
   const externalProdImports = prodImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
+  const externalProdTypeImports = prodTypeImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
   const externalDevImports = devImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
   return {
-    prodImports, devImports, prodImportPaths, devImportPaths, externalProdImports, externalDevImports,
+    prodImports, devImports, prodImportPaths, devImportPaths, externalProdImports, externalDevImports, prodTypeImports, devTypeImports, externalProdTypeImports,
   }
 }
 
@@ -111,7 +139,7 @@ function check({
 }: { devDeps?: boolean; location: string; name: string; peerDeps?: boolean }) {
   const { prodSourceFiles, devSourceFiles } = findFiles(location)
   const {
-    prodImportPaths, devImportPaths, externalProdImports, externalDevImports,
+    prodImportPaths, externalProdTypeImports, devImportPaths, externalProdImports, externalDevImports,
   } = getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles })
 
   const {
@@ -121,6 +149,16 @@ function check({
   let unlistedDependencies = 0
   let unlistedDevDependencies = 0
   let unusedDependencies = 0
+  let typesInDependencies = 0
+
+  for (const imp of externalProdTypeImports) {
+    if (!dependencies.includes(imp) && !peerDependencies.includes(imp) && !devDependencies.includes(imp) && !devDependencies.includes(`@types/${imp}`)) {
+      unlistedDependencies++
+      console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
+      console.log(`  ${prodImportPaths[imp].join('\n')}`)
+      console.log('')
+    }
+  }
 
   for (const imp of externalProdImports) {
     if (!dependencies.includes(imp) && !peerDependencies.includes(imp)) {
@@ -132,6 +170,12 @@ function check({
   }
 
   for (const dep of dependencies) {
+    if (dep.startsWith('@types/')) {
+      typesInDependencies++
+      console.log(`[${chalk.blue(name)}] @types in dependencies in package.json: ${chalk.red(dep)}`)
+      console.log(`  ${location}/package.json\n`)
+      console.log('')
+    }
     if (!externalProdImports.includes(dep)) {
       unusedDependencies++
       console.log(`[${chalk.blue(name)}] Unused dependency in package.json: ${chalk.red(dep)}`)
@@ -161,7 +205,7 @@ function check({
     }
   }
 
-  const totalErrors = unlistedDependencies + unlistedDevDependencies + unusedDependencies
+  const totalErrors = unlistedDependencies + unlistedDevDependencies + unusedDependencies + typesInDependencies
 
   return totalErrors
 }
