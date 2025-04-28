@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -104,8 +105,8 @@ function getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles }: { devS
 }
 
 function check({
-  name, location, devDeps = false,
-}: { devDeps?: boolean; location: string; name: string }) {
+  name, location, devDeps = false, peerDeps = false,
+}: { devDeps?: boolean; location: string; name: string; peerDeps?: boolean }) {
   const { prodSourceFiles, devSourceFiles } = findFiles(location)
   const {
     prodImportPaths, devImportPaths, externalProdImports, externalDevImports,
@@ -117,6 +118,7 @@ function check({
 
   let unlistedDependencies = 0
   let unlistedDevDependencies = 0
+  let unusedDependencies = 0
 
   for (const imp of externalProdImports) {
     if (!dependencies.includes(imp) && !peerDependencies.includes(imp)) {
@@ -129,19 +131,21 @@ function check({
 
   for (const dep of dependencies) {
     if (!externalProdImports.includes(dep)) {
-      unlistedDependencies++
+      unusedDependencies++
       console.log(`[${chalk.blue(name)}] Unused dependency in package.json: ${chalk.red(dep)}`)
       console.log(`  ${location}/package.json\n`)
       console.log('')
     }
   }
 
-  for (const dep of peerDependencies) {
-    if (!externalProdImports.includes(dep)) {
-      unlistedDependencies++
-      console.log(`[${chalk.blue(name)}] Unused peerDependency in package.json: ${chalk.red(dep)}`)
-      console.log(`  ${location}/package.json\n`)
-      console.log('')
+  if (peerDeps) {
+    for (const dep of peerDependencies) {
+      if (!externalProdImports.includes(dep)) {
+        unusedDependencies++
+        console.log(`[${chalk.blue(name)}] Unused peerDependency in package.json: ${chalk.red(dep)}`)
+        console.log(`  ${location}/package.json\n`)
+        console.log('')
+      }
     }
   }
 
@@ -155,7 +159,7 @@ function check({
     }
   }
 
-  const totalErrors = unlistedDependencies + unlistedDevDependencies
+  const totalErrors = unlistedDependencies + unlistedDevDependencies + unusedDependencies
 
   return totalErrors
 }
