@@ -50,8 +50,7 @@
   ],
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "chalk": "^5.4.1",
-    "yargs": "^17.7.2"
+    "chalk": "^5.4.1"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.33",
@@ -60,9 +59,6 @@
     "publint": "^0.3.12",
     "tsup": "8.4.0",
     "typescript": "^5.8.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   },
   "engines": {
     "node": ">=14.16"

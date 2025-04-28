@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import type { Argv } from 'yargs'
 
 import {
-  cycle, fix, knip, lint, publint, relint, sonar,
+  cycle, deplint, fix, knip, lint, publint, relint, sonar,
 } from '../actions/index.ts'
 import { packagePositionalParam } from './param.ts'
 
@@ -34,6 +34,19 @@ export const xyLintCommands = (args: Argv) => {
           = argv.fix
             ? fix({ pkg: argv.package as string })
             : lint({ pkg: argv.package as string })
+        console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
+      },
+    )
+    .command(
+      'deplint [package]',
+      'Deplint - Run Deplint',
+      (yargs) => {
+        return packagePositionalParam(yargs)
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Deplint')
+        const start = Date.now()
+        process.exitCode = deplint({ pkg: argv.package as string })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

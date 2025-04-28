@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/xylabs/config.git"
   },
-  "license": "LGPL-3.0-or-later",
+  "license": "LGPL-3.0-only",
   "author": {
     "name": "XY Labs Development Team",
     "email": "support@xylabs.com",
