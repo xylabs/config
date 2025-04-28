@@ -63,7 +63,9 @@ function getImportsFromFile(filePath: string, importPaths: Record<string, string
 
   visit(sourceFile)
 
-  const cleanedImports = imports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:')).map(getBasePackageName)
+  const importsStartsWithExcludes = ['.', '#', 'node:', '@types/']
+
+  const cleanedImports = imports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
 
   for (const imp of cleanedImports) {
     importPaths[imp] = importPaths[imp] || []
