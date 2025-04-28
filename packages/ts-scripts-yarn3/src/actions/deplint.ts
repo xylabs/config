@@ -130,7 +130,16 @@ function getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles }: { devS
   const externalProdTypeImports = prodTypeImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
   const externalDevImports = devImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
   return {
-    prodImports, devImports, prodImportPaths, devImportPaths, externalProdImports, externalDevImports, prodTypeImports, devTypeImports, externalProdTypeImports,
+    prodImports,
+    devImports,
+    prodImportPaths,
+    prodTypeImportPaths,
+    devImportPaths,
+    externalProdImports,
+    externalDevImports,
+    prodTypeImports,
+    devTypeImports,
+    externalProdTypeImports,
   }
 }
 
@@ -139,7 +148,7 @@ function check({
 }: { devDeps?: boolean; location: string; name: string; peerDeps?: boolean }) {
   const { prodSourceFiles, devSourceFiles } = findFiles(location)
   const {
-    prodImportPaths, externalProdTypeImports, devImportPaths, externalProdImports, externalDevImports,
+    prodTypeImportPaths, prodImportPaths, externalProdTypeImports, devImportPaths, externalProdImports, externalDevImports,
   } = getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles })
 
   const {
@@ -155,7 +164,7 @@ function check({
     if (!dependencies.includes(imp) && !peerDependencies.includes(imp) && !devDependencies.includes(imp) && !devDependencies.includes(`@types/${imp}`)) {
       unlistedDependencies++
       console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
-      console.log(`  ${prodImportPaths[imp].join('\n')}`)
+      console.log(`  ${prodTypeImportPaths[imp].join('\n')}`)
       console.log('')
     }
   }
