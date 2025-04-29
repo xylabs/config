@@ -52,13 +52,16 @@ function getImportsFromFile(filePath: string, importPaths: Record<string, string
   const imports: string[] = []
   const typeImports: string[] = []
 
+  const isDeclarationFile = filePath.endsWith('.d.ts')
+
   function visit(node: ts.Node) {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleSpecifier = (node.moduleSpecifier)?.getFullText()
       const isTypeImport = ts.isImportDeclaration(node) ? (node.importClause?.isTypeOnly ?? false) : false
       if (moduleSpecifier) {
         const trimmed = moduleSpecifier.split("'").at(1) ?? moduleSpecifier
-        if (isTypeImport) {
+        // we are determining if the type import is being imported in an exported d.ts file
+        if (isTypeImport && !isDeclarationFile) {
           typeImports.push(trimmed)
         } else {
           imports.push(trimmed)
