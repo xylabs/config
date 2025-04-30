@@ -26,14 +26,26 @@ export const xyLintCommands = (args: Argv) => {
       'Lint - Run Eslint',
       (yargs) => {
         return packagePositionalParam(yargs)
+          .option('fix', {
+            alias: 'f',
+            default: false,
+            description: 'Fix fixable issues',
+            type: 'boolean',
+          })
+          .option('cache', {
+            alias: 'c',
+            default: false,
+            description: 'Use caching for performance',
+            type: 'boolean',
+          })
       },
       (argv) => {
         if (argv.verbose) console.log('Lint')
         const start = Date.now()
         process.exitCode
           = argv.fix
-            ? fix({ pkg: argv.package as string })
-            : lint({ pkg: argv.package as string })
+            ? fix({ pkg: argv.package, cache: argv.cache })
+            : lint({ pkg: argv.package, cache: argv.cache })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )
@@ -42,11 +54,31 @@ export const xyLintCommands = (args: Argv) => {
       'Deplint - Run Deplint',
       (yargs) => {
         return packagePositionalParam(yargs)
+          .option('deps', {
+            alias: 'd',
+            default: false,
+            description: 'Check dependencies',
+            type: 'boolean',
+          })
+          .option('devDeps', {
+            alias: 'v',
+            default: false,
+            description: 'Check devDependencies',
+            type: 'boolean',
+          })
+          .option('peerDeps', {
+            alias: 'p',
+            default: false,
+            description: 'Check peerDependencies',
+            type: 'boolean',
+          })
       },
       (argv) => {
         if (argv.verbose) console.log('Deplint')
         const start = Date.now()
-        process.exitCode = deplint({ pkg: argv.package as string })
+        process.exitCode = deplint({
+          pkg: argv.package as string, deps: !!argv.deps, devDeps: !!argv.devDeps, peerDeps: !!argv.peerDeps,
+        })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

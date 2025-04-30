@@ -15,18 +15,21 @@ export interface CheckPackageOptions extends Workspace {
 }
 
 export function checkPackage({
-  name, location, deps = true, devDeps = false, peerDeps = false,
+  name, location, deps = false, devDeps = false, peerDeps = false,
 }: CheckPackageOptions) {
   const { prodSourceFiles, devSourceFiles } = findFiles(location)
+  const checkDeps = deps || !(deps || devDeps || peerDeps)
+  const checkDevDeps = devDeps || !(deps || devDeps || peerDeps)
+  const checkPeerDeps = peerDeps || !(deps || devDeps || peerDeps)
   const sourceParams = getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles })
 
   const packageParams = getDependenciesFromPackageJson(`${location}/package.json`)
 
-  const unlistedDependencies = deps ? getUnlistedDependencies({ name, location }, packageParams, sourceParams) : 0
-  const unlistedDevDependencies = devDeps ? getUnlistedDevDependencies({ name, location }, packageParams, sourceParams) : 0
-  const unusedDependencies = deps ? getUnusedDependencies({ name, location }, packageParams, sourceParams) : 0
-  const typesInDependencies = deps ? getTypesInDependencies({ name, location }, packageParams, sourceParams) : 0
-  const unusedPeerDependencies = peerDeps ? getUnusedPeerDependencies({ name, location }, packageParams, sourceParams) : 0
+  const unlistedDependencies = checkDeps ? getUnlistedDependencies({ name, location }, packageParams, sourceParams) : 0
+  const unusedDependencies = checkDeps ? getUnusedDependencies({ name, location }, packageParams, sourceParams) : 0
+  const typesInDependencies = checkDeps ? getTypesInDependencies({ name, location }, packageParams, sourceParams) : 0
+  const unlistedDevDependencies = checkDevDeps ? getUnlistedDevDependencies({ name, location }, packageParams, sourceParams) : 0
+  const unusedPeerDependencies = checkPeerDeps ? getUnusedPeerDependencies({ name, location }, packageParams, sourceParams) : 0
 
   const totalErrors = unlistedDependencies + unlistedDevDependencies + unusedDependencies + typesInDependencies + unusedPeerDependencies
 

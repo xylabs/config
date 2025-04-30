@@ -18,29 +18,10 @@ export const xyParseOptions = (): Argv => {
       description: 'Run with verbose logging',
       type: 'boolean',
     })
-    .option('target', {
-      alias: 't',
-      default: 'esm',
-      choices: ['esm', 'cjs'],
-      description: 'Limit output to specific target',
-      type: 'string',
-    })
     .option('incremental', {
       alias: 'i',
       default: false,
       description: 'Attempt to perform the action only on changed packages',
-      type: 'boolean',
-    })
-    .option('fix', {
-      alias: 'f',
-      default: false,
-      description: 'Try to fix errors',
-      type: 'boolean',
-    })
-    .option('cache', {
-      alias: 'c',
-      default: false,
-      description: 'Use caching for performance',
       type: 'boolean',
     })
     .option('profile', {
@@ -48,11 +29,5 @@ export const xyParseOptions = (): Argv => {
       default: false,
       description: 'Profile action',
       type: 'boolean',
-    })
-    .option('types', {
-      default: 'tsc',
-      choices: ['tsc', 'tsup'],
-      description: 'Tool to generate Typescript types',
-      type: 'string',
     })
 }

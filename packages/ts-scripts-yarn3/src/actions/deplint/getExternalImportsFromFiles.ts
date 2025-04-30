@@ -1,5 +1,11 @@
 import { getImportsFromFile } from './getImportsFromFile.ts'
 
+const internalImportPrefixes = ['.', '#', 'node:']
+
+const removeInternalImports = (imports: string[]) => {
+  return imports.filter(imp => !internalImportPrefixes.some(prefix => imp.startsWith(prefix)))
+}
+
 export function getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles }: { devSourceFiles: string[]; prodSourceFiles: string[] }) {
   const prodImportPaths: Record<string, string[]> = {}
   const prodTypeImportPaths: Record<string, string[]> = {}
@@ -13,9 +19,9 @@ export function getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles }:
   const devImports = devImportPairs.flatMap(pair => pair[0])
   const devTypeImports = devImportPairs.flatMap(pair => pair[1])
 
-  const externalProdImports = prodImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
-  const externalProdTypeImports = prodTypeImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
-  const externalDevImports = devImports.filter(imp => !imp.startsWith('.') && !imp.startsWith('#') && !imp.startsWith('node:'))
+  const externalProdImports = removeInternalImports(prodImports)
+  const externalProdTypeImports = removeInternalImports(prodTypeImports)
+  const externalDevImports = removeInternalImports(devImports)
   return {
     prodImports,
     devImports,

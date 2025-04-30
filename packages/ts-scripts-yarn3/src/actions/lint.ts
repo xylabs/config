@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import { runSteps } from '../lib/index.ts'
 
 export interface LintParams {
+  cache?: boolean
   fix?: boolean
   incremental?: boolean
   pkg?: string
