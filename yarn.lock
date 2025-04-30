@@ -1294,7 +1294,7 @@ __metadata:
     dotenv: "npm:^16.5.0"
     eslint: "npm:^9.25.1"
     eslint-import-resolver-typescript: "npm:^4.3.4"
-    knip: "npm:^5.51.0"
+    knip: "npm:^5.51.1"
     rimraf: "npm:^6.0.1"
     typescript: "npm:^5.8.3"
     vitest: "npm:^3.1.2"
@@ -1384,7 +1384,7 @@ __metadata:
     eslint: "npm:^9.25.1"
     find-up: "npm:^7.0.0"
     glob: "npm:^11.0.2"
-    knip: "npm:^5.51.0"
+    knip: "npm:^5.51.1"
     license-checker: "npm:^25.0.1"
     parse-git-config: "npm:^3.0.0"
     picomatch: "npm:^4.0.2"
@@ -4347,9 +4347,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^5.51.0":
-  version: 5.51.0
-  resolution: "knip@npm:5.51.0"
+"knip@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "knip@npm:5.51.1"
   dependencies:
     "@nodelib/fs.walk": "npm:^1.2.3"
     easy-table: "npm:1.2.0"
@@ -4371,7 +4371,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10/00034e028e4381ba5b541a9768839963f9745364a01504e4d5dbd8d45d1d0137fbb60423b4efea7caeba35bffcb8c93ed4f6989aaebf01f2085c861b044583ce
+  checksum: 10/4fda58ff67b6c3f579b91f5273c70215cb13f6d437627cb11dfc9528cb8b82f99e25fb69fa00ec88841bc7c2e5c0ceb76e3de8e624cc0e886ca43ffc38b60ac2
   languageName: node
   linkType: hard
 
