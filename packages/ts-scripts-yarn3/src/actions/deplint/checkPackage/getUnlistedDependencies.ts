@@ -9,8 +9,11 @@ export function getUnlistedDependencies({ name }: Workspace, {
   externalProdTypeImports, prodTypeImportPaths, externalProdImports, prodImportPaths,
 }: CheckSourceParams) {
   let unlistedDependencies = 0
+
+  // check production type imports
   for (const imp of externalProdTypeImports) {
-    if (!dependencies.includes(imp) && !peerDependencies.includes(imp) && !devDependencies.includes(imp) && !devDependencies.includes(`@types/${imp}`)) {
+    if (!dependencies.includes(imp) && !peerDependencies.includes(imp) && !dependencies.includes(`@types/${imp}`)
+      && !peerDependencies.includes(`@types/${imp}`)) {
       unlistedDependencies++
       console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
       console.log(`  ${prodTypeImportPaths[imp].join('\n')}`)
@@ -18,6 +21,7 @@ export function getUnlistedDependencies({ name }: Workspace, {
     }
   }
 
+  // check production imports
   for (const imp of externalProdImports) {
     if (!dependencies.includes(imp) && !peerDependencies.includes(imp)) {
       unlistedDependencies++

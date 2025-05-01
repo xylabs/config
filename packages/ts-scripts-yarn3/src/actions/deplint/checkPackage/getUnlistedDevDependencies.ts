@@ -5,12 +5,14 @@ import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.
 
 export function getUnlistedDevDependencies(
   { name }: Workspace,
-  { devDependencies }: CheckPackageParams,
+  {
+    devDependencies, dependencies, peerDependencies,
+  }: CheckPackageParams,
   { devImportPaths, externalDevImports }: CheckSourceParams,
 ) {
   let unlistedDevDependencies = 0
   for (const imp of externalDevImports) {
-    if (!devDependencies.includes(imp)) {
+    if (!devDependencies.includes(imp) && !dependencies.includes(imp) && !peerDependencies.includes(imp)) {
       unlistedDevDependencies++
       console.log(`[${chalk.blue(name)}] Missing devDependency in package.json: ${chalk.red(imp)}`)
       console.log(`  Found in: ${devImportPaths[imp].join(', ')}`)
