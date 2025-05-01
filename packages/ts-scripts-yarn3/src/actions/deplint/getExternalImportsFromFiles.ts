@@ -12,9 +12,9 @@ export function getExternalImportsFromFiles({
   const prodImportPaths: Record<string, string[]> = {}
   const prodTypeImportPaths: Record<string, string[]> = {}
   const prodImportPairs = prodSourceFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
-  const prodTypeImportPairs = prodDistFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
+  const prodDistImportPairs = prodDistFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
   const prodImports = prodImportPairs.flatMap(pair => pair[0])
-  const prodTypeImports = prodTypeImportPairs.flatMap(pair => pair[1])
+  const prodDistImports = prodDistImportPairs.flatMap(pair => pair[1])
 
   const devImportPaths: Record<string, string[]> = {}
   const devTypeImportPaths: Record<string, string[]> = {}
@@ -23,7 +23,7 @@ export function getExternalImportsFromFiles({
   const devTypeImports = devImportPairs.flatMap(pair => pair[1])
 
   const externalProdImports = removeInternalImports(prodImports)
-  const externalProdTypeImports = removeInternalImports(prodTypeImports)
+  const externalProdTypeImports = removeInternalImports(prodDistImports)
   const externalDevImports = removeInternalImports(devImports)
   return {
     prodImports,
@@ -33,7 +33,7 @@ export function getExternalImportsFromFiles({
     devImportPaths,
     externalProdImports,
     externalDevImports,
-    prodTypeImports,
+    prodDistImports,
     devTypeImports,
     externalProdTypeImports,
   }

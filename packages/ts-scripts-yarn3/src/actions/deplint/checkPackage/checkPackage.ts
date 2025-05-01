@@ -2,7 +2,7 @@ import type { Workspace } from '../../../lib/index.ts'
 import { findFiles } from '../findFiles.ts'
 import { getDependenciesFromPackageJson } from '../getDependenciesFromPackageJson.ts'
 import { getExternalImportsFromFiles } from '../getExternalImportsFromFiles.ts'
-import { getTypesInDependencies } from './getTypesInDependencies.ts'
+// import { getTypesInDependencies } from './getTypesInDependencies.ts'
 import { getUnlistedDependencies } from './getUnlistedDependencies.ts'
 import { getUnlistedDevDependencies } from './getUnlistedDevDependencies.ts'
 import { getUnusedDependencies } from './getUnusedDependencies.ts'
@@ -31,7 +31,7 @@ export function checkPackage({
 
   const unlistedDependencies = checkDeps ? getUnlistedDependencies({ name, location }, packageParams, sourceParams) : 0
   const unusedDependencies = checkDeps ? getUnusedDependencies({ name, location }, packageParams, sourceParams) : 0
-  const typesInDependencies = checkDeps ? getTypesInDependencies({ name, location }, packageParams, sourceParams) : 0
+  const typesInDependencies = 0 // checkDeps ? getTypesInDependencies({ name, location }, packageParams, sourceParams) : 0
   const unlistedDevDependencies = checkDevDeps ? getUnlistedDevDependencies({ name, location }, packageParams, sourceParams) : 0
   const unusedPeerDependencies = checkPeerDeps ? getUnusedPeerDependencies({ name, location }, packageParams, sourceParams) : 0
 

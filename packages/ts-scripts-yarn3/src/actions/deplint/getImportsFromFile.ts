@@ -27,7 +27,7 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
       if (moduleSpecifier) {
         const trimmed = moduleSpecifier.split("'").at(1) ?? moduleSpecifier
         // we are determining if the type import is being imported in an exported d.ts file
-        if (isTypeImport && !isDeclarationFile) {
+        if (isTypeImport || isDeclarationFile) {
           typeImports.push(trimmed)
         } else {
           imports.push(trimmed)
