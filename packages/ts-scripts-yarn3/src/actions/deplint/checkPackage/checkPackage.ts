@@ -22,7 +22,7 @@ export function checkPackage({
   } = findFiles(location)
   const checkDeps = deps || !(deps || devDeps || peerDeps)
   const checkDevDeps = devDeps || !(deps || devDeps || peerDeps)
-  const checkPeerDeps = peerDeps || !(deps || devDeps || peerDeps)
+  const checkPeerDeps = peerDeps // || !(deps || devDeps || peerDeps)
   const sourceParams = getExternalImportsFromFiles({
     prodSourceFiles, devSourceFiles, prodDistFiles,
   })
