@@ -3,9 +3,7 @@ import chalk from 'chalk'
 import type { Workspace } from '../../../lib/index.ts'
 import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.ts'
 
-export function getUnlistedDependencies({ name }: Workspace, {
-  dependencies, devDependencies, peerDependencies,
-}: CheckPackageParams, {
+export function getUnlistedDependencies({ name }: Workspace, { dependencies, peerDependencies }: CheckPackageParams, {
   externalProdTypeImports, prodTypeImportPaths, externalProdImports, prodImportPaths,
 }: CheckSourceParams) {
   let unlistedDependencies = 0

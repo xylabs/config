@@ -17,11 +17,15 @@ export interface CheckPackageOptions extends Workspace {
 export function checkPackage({
   name, location, deps = false, devDeps = false, peerDeps = false,
 }: CheckPackageOptions) {
-  const { prodSourceFiles, devSourceFiles } = findFiles(location)
+  const {
+    prodSourceFiles, devSourceFiles, prodDistFiles,
+  } = findFiles(location)
   const checkDeps = deps || !(deps || devDeps || peerDeps)
   const checkDevDeps = devDeps || !(deps || devDeps || peerDeps)
   const checkPeerDeps = peerDeps || !(deps || devDeps || peerDeps)
-  const sourceParams = getExternalImportsFromFiles({ prodSourceFiles, devSourceFiles })
+  const sourceParams = getExternalImportsFromFiles({
+    prodSourceFiles, devSourceFiles, prodDistFiles,
+  })
 
   const packageParams = getDependenciesFromPackageJson(`${location}/package.json`)
 
