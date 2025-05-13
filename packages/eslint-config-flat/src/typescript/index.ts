@@ -153,10 +153,22 @@ export const typescriptConfig: Linter.Config = {
     ],
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-misused-promises': 'error',
+    'semi': ['warn', 'never'],
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      { argsIgnorePattern: '^_' },
+      {
+        argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true,
+      },
     ],
-    'semi': ['warn', 'never'],
+    '@typescript-eslint/strict-boolean-expressions': ['warn', {
+      allowAny: true,
+      allowNullableBoolean: true,
+      allowNullableEnum: false,
+      allowNullableNumber: false,
+      allowNullableObject: true,
+      allowNullableString: false,
+      allowNumber: false,
+      allowString: false,
+    }],
   },
 }
