@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "6.5.6",
+  "version": "6.5.7",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -77,10 +77,10 @@
     "picomatch": "^4.0.2",
     "publint": "^0.3.12",
     "sort-package-json": "^3.2.1",
-    "types-package-json": "^2.0.39",
     "tsc-prog": "^2.3.0",
     "tsup": "8.4.0",
     "typedoc": "^0.28.4",
+    "types-package-json": "^2.0.39",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
