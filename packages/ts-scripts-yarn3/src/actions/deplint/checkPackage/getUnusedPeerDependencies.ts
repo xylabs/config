@@ -5,17 +5,23 @@ import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.
 
 export function getUnusedPeerDependencies(
   { name, location }: Workspace,
-  { peerDependencies }: CheckPackageParams,
-  { externalProdImports, externalProdTypeImports }: CheckSourceParams,
+  { peerDependencies, dependencies }: CheckPackageParams,
+  { externalDistImports }: CheckSourceParams,
 ) {
   let unusedDependencies = 0
   for (const dep of peerDependencies) {
-    if (!externalProdImports.includes(dep) && !externalProdTypeImports.includes(dep)) {
+    if (!externalDistImports.includes(dep)) {
       unusedDependencies++
-      console.log(`[${chalk.blue(name)}] Unused peerDependency in package.json: ${chalk.red(dep)}`)
-      console.log(`  ${location}/package.json\n`)
-      console.log('')
+      if (dependencies.includes(dep)) {
+        console.log(`[${chalk.blue(name)}] Unused peerDependency [already a dependency] in package.json: ${chalk.red(dep)}`)
+      } else {
+        console.log(`[${chalk.blue(name)}] Unused peerDependency in package.json: ${chalk.red(dep)}`)
+      }
     }
+  }
+  if (unusedDependencies > 0) {
+    const packageLocation = `${location}/package.json`
+    console.log(`  ${chalk.yellow(packageLocation)}\n`)
   }
   return unusedDependencies
 }

@@ -8,11 +8,14 @@ import { getBasePackageName } from './getBasePackageName.ts'
 export function getImportsFromFile(filePath: string, importPaths: Record<string, string[]>, typeImportPaths: Record<string, string[]>) {
   const sourceCode = fs.readFileSync(filePath, 'utf8')
 
+  const isMjsFile = filePath.endsWith('.mjs')
+
   const sourceFile = ts.createSourceFile(
     path.basename(filePath),
     sourceCode,
     ts.ScriptTarget.Latest,
     true,
+    isMjsFile ? ts.ScriptKind.JS : undefined,
   )
 
   const imports: string[] = []
@@ -24,8 +27,8 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleSpecifier = (node.moduleSpecifier)?.getFullText()
       const isTypeImport = ts.isImportDeclaration(node) ? (node.importClause?.isTypeOnly ?? false) : false
-      if (moduleSpecifier) {
-        const trimmed = moduleSpecifier.split("'").at(1) ?? moduleSpecifier
+      if (typeof moduleSpecifier === 'string') {
+        const trimmed = moduleSpecifier.replaceAll("'", '').replaceAll('"', '').trim()
         // we are determining if the type import is being imported in an exported d.ts file
         if (isTypeImport || isDeclarationFile) {
           typeImports.push(trimmed)
@@ -51,12 +54,12 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
   const cleanedTypeImports = typeImports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
 
   for (const imp of cleanedImports) {
-    importPaths[imp] = importPaths[imp] || []
+    importPaths[imp] = importPaths[imp] ?? []
     importPaths[imp].push(filePath)
   }
 
   for (const imp of cleanedTypeImports) {
-    typeImportPaths[imp] = typeImportPaths[imp] || []
+    typeImportPaths[imp] = typeImportPaths[imp] ?? []
     typeImportPaths[imp].push(filePath)
   }
 

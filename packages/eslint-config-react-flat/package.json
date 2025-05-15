@@ -50,6 +50,9 @@
     "@xylabs/tsconfig": "workspace:^",
     "typescript": "^5.8.3"
   },
+  "peerDependencies": {
+    "eslint": "^8"
+  },
   "publishConfig": {
     "access": "public"
   }

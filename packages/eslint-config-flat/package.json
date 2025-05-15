@@ -58,6 +58,11 @@
     "@xylabs/tsconfig": "workspace:^",
     "typescript": "^5.8.3"
   },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^8.0.0"
+  },
   "publishConfig": {
     "access": "public"
   }

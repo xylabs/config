@@ -7,18 +7,24 @@ export function getUnusedDependencies(
   { name, location }: Workspace,
   { dependencies }: CheckPackageParams,
   {
-    externalProdImports,
-    externalProdTypeImports,
+    externalDistImports,
+    externalSrcImports,
   }: CheckSourceParams,
 ) {
   let unusedDependencies = 0
   for (const dep of dependencies) {
-    if (!externalProdImports.includes(dep) && !externalProdTypeImports.includes(dep)) {
+    if (!externalDistImports.includes(dep)) {
       unusedDependencies++
-      console.log(`[${chalk.blue(name)}] Unused dependency in package.json: ${chalk.red(dep)}`)
-      console.log(`  ${location}/package.json\n`)
-      console.log('')
+      if (externalSrcImports.includes(dep)) {
+        console.log(`[${chalk.blue(name)}] dependency should be devDependency in package.json: ${chalk.red(dep)}`)
+      } else {
+        console.log(`[${chalk.blue(name)}] Unused dependency in package.json: ${chalk.red(dep)}`)
+      }
     }
+  }
+  if (unusedDependencies > 0) {
+    const packageLocation = `${location}/package.json`
+    console.log(`  ${chalk.yellow(packageLocation)}\n`)
   }
   return unusedDependencies
 }

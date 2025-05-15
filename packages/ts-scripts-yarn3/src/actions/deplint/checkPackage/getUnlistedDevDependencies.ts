@@ -4,19 +4,25 @@ import type { Workspace } from '../../../lib/index.ts'
 import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.ts'
 
 export function getUnlistedDevDependencies(
-  { name }: Workspace,
+  { name, location }: Workspace,
   {
     devDependencies, dependencies, peerDependencies,
   }: CheckPackageParams,
-  { devImportPaths, externalDevImports }: CheckSourceParams,
+  {
+    srcImportPaths, externalSrcImports, distImports,
+  }: CheckSourceParams,
 ) {
   let unlistedDevDependencies = 0
-  for (const imp of externalDevImports) {
-    if (!devDependencies.includes(imp) && !dependencies.includes(imp) && !peerDependencies.includes(imp)) {
+  for (const imp of externalSrcImports) {
+    if (!distImports.includes(imp) && !dependencies.includes(imp) && !peerDependencies.includes(imp) && !devDependencies.includes(imp)) {
       unlistedDevDependencies++
       console.log(`[${chalk.blue(name)}] Missing devDependency in package.json: ${chalk.red(imp)}`)
-      console.log(`  Found in: ${devImportPaths[imp].join(', ')}`)
+      console.log(`  ${srcImportPaths[imp].join('\n ')}`)
     }
+  }
+  if (unlistedDevDependencies > 0) {
+    const packageLocation = `${location}/package.json`
+    console.log(`  ${chalk.yellow(packageLocation)}\n`)
   }
   return unlistedDevDependencies
 }

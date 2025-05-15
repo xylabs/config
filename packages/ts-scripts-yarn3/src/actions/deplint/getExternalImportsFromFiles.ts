@@ -1,3 +1,4 @@
+import type { CheckSourceParams } from './checkPackage/index.ts'
 import { getImportsFromFile } from './getImportsFromFile.ts'
 
 const internalImportPrefixes = ['.', '#', 'node:']
@@ -6,35 +7,23 @@ const removeInternalImports = (imports: string[]) => {
   return imports.filter(imp => !internalImportPrefixes.some(prefix => imp.startsWith(prefix)))
 }
 
-export function getExternalImportsFromFiles({
-  prodSourceFiles, devSourceFiles, prodDistFiles,
-}: { devSourceFiles: string[]; prodDistFiles: string []; prodSourceFiles: string[] }) {
-  const prodImportPaths: Record<string, string[]> = {}
-  const prodTypeImportPaths: Record<string, string[]> = {}
-  const prodImportPairs = prodSourceFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
-  const prodDistImportPairs = prodDistFiles.map(path => getImportsFromFile(path, prodImportPaths, prodTypeImportPaths))
-  const prodImports = prodImportPairs.flatMap(pair => pair[0])
-  const prodDistImports = prodDistImportPairs.flatMap(pair => pair[1])
+export function getExternalImportsFromFiles({ srcFiles, distFiles }: { distFiles: string []; srcFiles: string[] }): CheckSourceParams {
+  const srcImportPaths: Record<string, string[]> = {}
+  const distImportPaths: Record<string, string[]> = {}
+  for (const path of srcFiles) getImportsFromFile(path, srcImportPaths, srcImportPaths).flat()
+  for (const path of distFiles) getImportsFromFile(path, distImportPaths, distImportPaths).flat()
+  const srcImports = Object.keys(srcImportPaths)
+  const distImports = Object.keys(distImportPaths)
 
-  const devImportPaths: Record<string, string[]> = {}
-  const devTypeImportPaths: Record<string, string[]> = {}
-  const devImportPairs = devSourceFiles.map(path => getImportsFromFile(path, devImportPaths, devTypeImportPaths))
-  const devImports = devImportPairs.flatMap(pair => pair[0])
-  const devTypeImports = devImportPairs.flatMap(pair => pair[1])
+  const externalSrcImports = removeInternalImports(srcImports)
+  const externalDistImports = removeInternalImports(distImports)
 
-  const externalProdImports = removeInternalImports(prodImports)
-  const externalProdTypeImports = removeInternalImports(prodDistImports)
-  const externalDevImports = removeInternalImports(devImports)
   return {
-    prodImports,
-    devImports,
-    prodImportPaths,
-    prodTypeImportPaths,
-    devImportPaths,
-    externalProdImports,
-    externalDevImports,
-    prodDistImports,
-    devTypeImports,
-    externalProdTypeImports,
+    srcImports,
+    srcImportPaths,
+    externalSrcImports,
+    distImports,
+    distImportPaths,
+    externalDistImports,
   }
 }
