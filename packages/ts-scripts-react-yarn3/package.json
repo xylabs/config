@@ -57,7 +57,7 @@
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "publint": "^0.3.12",
-    "tsup": "8.4.0",
+    "tsup": "8.5.0",
     "typescript": "^5.8.3"
   },
   "engines": {
