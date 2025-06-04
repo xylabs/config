@@ -101,56 +101,56 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
-          return folder
+          return typeof folder === 'string'
             ? await compileFolder(
-              folder,
-              compile?.entryMode,
-              tsupOptions([inEsBuildOptions,
-                compile?.tsup?.options ?? {},
-                (typeof options === 'object' ? options : {}),
-                { platform: 'node', outDir: 'dist/node' }]),
-              verbose,
-            )
+                folder,
+                compile?.entryMode,
+                tsupOptions([inEsBuildOptions,
+                  compile?.tsup?.options ?? {},
+                  (typeof options === 'object' ? options : {}),
+                  { platform: 'node', outDir: 'dist/node' }]),
+                verbose,
+              )
             : 0
         }),
       )
     ).reduce((prev, value) => prev + value, 0)
-    || (
+    + (
       await Promise.all(
         Object.entries(compileForBrowser).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
-          return folder
+          return typeof folder === 'string'
             ? await compileFolder(
-              folder,
-              compile?.entryMode,
-              tsupOptions([inEsBuildOptions,
-                compile?.tsup?.options ?? {},
-                (typeof options === 'object' ? options : {}),
-                { platform: 'browser', outDir: 'dist/browser' }]),
-              verbose,
-            )
+                folder,
+                compile?.entryMode,
+                tsupOptions([inEsBuildOptions,
+                  compile?.tsup?.options ?? {},
+                  (typeof options === 'object' ? options : {}),
+                  { platform: 'browser', outDir: 'dist/browser' }]),
+                verbose,
+              )
             : 0
         }),
       )
     ).reduce((prev, value) => prev + value, 0)
-    || (
+    + (
       await Promise.all(
         Object.entries(compileForNeutral).map(async ([folder, options]) => {
           const inEsBuildOptions = typeof compile?.neutral?.esbuildOptions === 'object' ? compile?.neutral?.esbuildOptions : {}
-          return folder
+          return typeof folder === 'string'
             ? await compileFolder(
-              folder,
-              compile?.entryMode,
-              tsupOptions([inEsBuildOptions,
-                compile?.tsup?.options ?? {},
-                (typeof options === 'object' ? options : {}),
-                { platform: 'neutral', outDir: 'dist/neutral' }]),
-              verbose,
-            )
+                folder,
+                compile?.entryMode,
+                tsupOptions([inEsBuildOptions,
+                  compile?.tsup?.options ?? {},
+                  (typeof options === 'object' ? options : {}),
+                  { platform: 'neutral', outDir: 'dist/neutral' }]),
+                verbose,
+              )
             : 0
         }),
       )
     ).reduce((prev, value) => prev + value, 0)
-    || 0
+    + 0
   )
 }

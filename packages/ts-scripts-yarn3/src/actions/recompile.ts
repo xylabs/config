@@ -21,11 +21,11 @@ export const recompile = async ({
 }: RecompileParams) => {
   return pkg
     ? await recompilePackage({
-      pkg, target, verbose,
-    })
+        pkg, target, verbose,
+      })
     : await recompileAll({
-      incremental, target, verbose,
-    })
+        incremental, target, verbose,
+      })
 }
 
 export const recompilePackage = ({ target, pkg }: RecompilePackageParams) => {
