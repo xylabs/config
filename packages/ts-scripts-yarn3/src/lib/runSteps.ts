@@ -7,9 +7,9 @@ import chalk from 'chalk'
 import { checkResult } from './checkResult.ts'
 import { safeExit } from './safeExit.ts'
 
-export type ScriptStep =
-  | [/* command */ 'yarn' | 'node' | 'ts-node-script' | 'tsc' | 'jest', /* arg */ string | string[]]
-  | [/* command */ string, /* arg */ string | string[], /* config */ SpawnSyncOptionsWithBufferEncoding]
+export type ScriptStep
+  = | [/* command */ 'yarn' | 'node' | 'ts-node-script' | 'tsc' | 'jest', /* arg */ string | string[]]
+    | [/* command */ string, /* arg */ string | string[], /* config */ SpawnSyncOptionsWithBufferEncoding]
 
 export const runSteps = (name: string, steps: ScriptStep[], exitOnFail = true, messages?: string[]): number => {
   return safeExit(() => {
