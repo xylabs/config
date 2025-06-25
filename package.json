@@ -46,19 +46,19 @@
   "devDependencies": {
     "@eslint/json": "^0.12.0",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^22.15.29",
+    "@types/node": "^24.0.4",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "dotenv": "^16.5.0",
-    "eslint": "^9.28.0",
-    "eslint-import-resolver-typescript": "^4.4.2",
-    "knip": "^5.60.0",
+    "eslint": "^9.29.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "knip": "^5.61.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.1"
+    "vitest": "^3.2.4"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "engines": {
     "node": ">=20.16"
   },
