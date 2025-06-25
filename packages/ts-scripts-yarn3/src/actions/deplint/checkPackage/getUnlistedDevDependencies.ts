@@ -1,3 +1,5 @@
+import { builtinModules } from 'node:module'
+
 import chalk from 'chalk'
 
 import type { Workspace } from '../../../lib/index.ts'
@@ -14,7 +16,12 @@ export function getUnlistedDevDependencies(
 ) {
   let unlistedDevDependencies = 0
   for (const imp of externalSrcImports) {
-    if (!distImports.includes(imp) && !dependencies.includes(imp) && !peerDependencies.includes(imp) && !devDependencies.includes(imp)) {
+    if (!distImports.includes(imp)
+      && !dependencies.includes(imp)
+      && !peerDependencies.includes(imp)
+      && !devDependencies.includes(imp)
+      && !builtinModules.includes(imp)
+    ) {
       unlistedDevDependencies++
       console.log(`[${chalk.blue(name)}] Missing devDependency in package.json: ${chalk.red(imp)}`)
       console.log(`  ${srcImportPaths[imp].join('\n ')}`)
