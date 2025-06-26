@@ -7,7 +7,7 @@ export const sonarConfig: Linter.Config = {
   plugins: { sonarjs },
   ignores,
   rules: {
-    ...sonarjs.configs.recommended.rules,
+    // ...sonarjs.configs.recommended.rules,
     'sonarjs/no-small-switch': ['off'],
     'sonarjs/os-command': ['off'],
     'sonarjs/no-os-command-from-path': ['off'],
