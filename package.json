@@ -50,7 +50,7 @@
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.0.0",
     "eslint": "^9.29.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "knip": "^5.61.2",
