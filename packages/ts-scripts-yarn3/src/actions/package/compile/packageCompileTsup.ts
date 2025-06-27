@@ -100,6 +100,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
     (
       await Promise.all(
         Object.entries(compileForNode).map(async ([folder, options]) => {
+          const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
           return typeof folder === 'string'
             ? await compileFolder(
@@ -108,7 +109,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'node', outDir: 'dist/node' }]),
+                  { platform: 'node', outDir: optionsObject.outDir ?? 'dist/node' }]),
                 verbose,
               )
             : 0
@@ -118,6 +119,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
     + (
       await Promise.all(
         Object.entries(compileForBrowser).map(async ([folder, options]) => {
+          const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
           return typeof folder === 'string'
             ? await compileFolder(
@@ -126,7 +128,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'browser', outDir: 'dist/browser' }]),
+                  { platform: 'browser', outDir: optionsObject.outDir ?? 'dist/browser' }]),
                 verbose,
               )
             : 0
@@ -136,6 +138,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
     + (
       await Promise.all(
         Object.entries(compileForNeutral).map(async ([folder, options]) => {
+          const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.neutral?.esbuildOptions === 'object' ? compile?.neutral?.esbuildOptions : {}
           return typeof folder === 'string'
             ? await compileFolder(
@@ -144,7 +147,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'neutral', outDir: 'dist/neutral' }]),
+                  { platform: 'neutral', outDir: optionsObject.outDir ?? 'dist/neutral' }]),
                 verbose,
               )
             : 0
