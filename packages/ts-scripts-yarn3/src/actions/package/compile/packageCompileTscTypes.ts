@@ -10,7 +10,7 @@ import {
 
 import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import type { XyConfig } from './XyConfig.ts'
+import type { XyConfig, XyTsupConfig } from './XyConfig.ts'
 
 export const packageCompileTscTypes = (
   folder: string = 'src',
@@ -23,7 +23,7 @@ export const packageCompileTscTypes = (
   const compilerOptions = {
     ...(getCompilerOptions({
       emitDeclarationOnly: true,
-      outDir: 'dist/types',
+      outDir: (config as XyTsupConfig).compile?.tsup?.options?.outDir ?? 'dist/types',
       removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
@@ -47,7 +47,7 @@ export const packageCompileTscTypes = (
     const program = createProgramFromConfig({
       basePath: pkg ?? cwd(),
       compilerOptions,
-      exclude: ['dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
+      exclude: ['build', 'dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
       files,
     })
 
