@@ -8,7 +8,9 @@ import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.
 export function getUnlistedDependencies(
   { name, location }: Workspace,
   { dependencies, peerDependencies }: CheckPackageParams,
-  { externalDistImports, distImportPaths }: CheckSourceParams,
+  {
+    externalDistImports, externalDistTypeImports, distImportPaths,
+  }: CheckSourceParams,
 ) {
   let unlistedDependencies = 0
 
@@ -24,6 +26,20 @@ export function getUnlistedDependencies(
       console.log(`  ${distImportPaths[imp].join('\n ')}`)
     }
   }
+
+  for (const imp of externalDistTypeImports) {
+    if (!dependencies.includes(imp)
+      && dependencies.includes(`@types/${imp}`)
+      && !peerDependencies.includes(imp)
+      && peerDependencies.includes(`@types/${imp}`)
+      && !builtinModules.includes(imp)
+      && builtinModules.includes(`@types/${imp}`)) {
+      unlistedDependencies++
+      console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
+      console.log(`  ${distImportPaths[imp].join('\n ')}`)
+    }
+  }
+
   if (unlistedDependencies > 0) {
     const packageLocation = `${location}/package.json`
     console.log(`  ${chalk.yellow(packageLocation)}\n`)

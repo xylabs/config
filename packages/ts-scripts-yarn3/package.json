@@ -81,7 +81,6 @@
     "tsc-prog": "^2.3.0",
     "tsup": "8.5.0",
     "typedoc": "^0.28.7",
-    "types-package-json": "^2.0.39",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
@@ -95,6 +94,7 @@
     "esbuild": "0.25.6",
     "knip": "^5.61.3",
     "rimraf": "^6.0.1",
+    "types-package-json": "^2.0.39",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
