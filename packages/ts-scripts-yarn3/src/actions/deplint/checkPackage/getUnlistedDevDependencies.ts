@@ -18,8 +18,11 @@ export function getUnlistedDevDependencies(
   for (const imp of externalSrcImports) {
     if (!distImports.includes(imp)
       && !dependencies.includes(imp)
+      && !dependencies.includes(`@types/${imp}`)
       && !peerDependencies.includes(imp)
+      && !peerDependencies.includes(`@types/${imp}`)
       && !devDependencies.includes(imp)
+      && !devDependencies.includes(`@types/${imp}`)
       && !builtinModules.includes(imp)
     ) {
       unlistedDevDependencies++
