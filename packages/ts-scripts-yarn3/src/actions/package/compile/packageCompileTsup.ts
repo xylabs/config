@@ -3,9 +3,8 @@ import type { Options } from 'tsup'
 import { build, defineConfig } from 'tsup'
 
 import { buildEntries } from './buildEntries.ts'
-import { packageCompileTypes } from './compileTypes.ts'
 import { deepMergeObjects } from './deepMerge.ts'
-import { packageCompileTsc } from './packageCompileTsc.ts'
+import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 
 const compileFolder = async (
@@ -54,6 +53,8 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}]`)
   }
 
+  packageCompileTscTypes(entry, outDir)
+
   return 0
 }
 
@@ -88,12 +89,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
 
   if (verbose) {
     console.log('Calling packageCompileTscTypes')
-  }
-
-  let errors = await packageCompileTypes(config)
-  errors = errors + packageCompileTsc(undefined, config)
-  if (errors > 0) {
-    return errors
   }
 
   return (

@@ -39,7 +39,6 @@
     "package-clean": "dist/bin/package/clean.mjs",
     "package-compile": "dist/bin/package/compile.mjs",
     "package-compile-only": "dist/bin/package/compile-only.mjs",
-    "package-compile-types": "dist/bin/package/compile-types.mjs",
     "package-copy-assets-cjs": "dist/bin/package/copy-assets-cjs.mjs",
     "package-copy-assets-esm": "dist/bin/package/copy-assets-esm.mjs",
     "package-cycle": "dist/bin/package/cycle.mjs",
@@ -62,6 +61,7 @@
     "package-recompile": "tsup && publint"
   },
   "dependencies": {
+    "@microsoft/api-extractor": "^7.52.8",
     "async-mutex": "^0.5.0",
     "chalk": "^5.4.1",
     "cosmiconfig": "^9.0.0",

@@ -1,5 +1,9 @@
+/* eslint-disable max-statements */
+import { rm, writeFileSync } from 'node:fs'
+import path from 'node:path'
 import { cwd } from 'node:process'
 
+import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
 import chalk from 'chalk'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
@@ -10,20 +14,30 @@ import {
 
 import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import type { XyConfig, XyTsupConfig } from './XyConfig.ts'
+import type { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTscTypes = (
+  entries: string[],
+  outDir: string,
   folder: string = 'src',
   config: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
+  const tempDir = `${pkg}/.xylabs/ts-scripts-yarn3/compile/tsc/types/${Date.now()}`
+
+  rm(tempDir, { force: true, recursive: true }, (err) => {
+    if (err) {
+      console.error(chalk.red(`Error removing temporary directory: ${tempDir}`), err)
+      return 1
+    }
+  })
 
   const compilerOptions = {
     ...(getCompilerOptions({
       emitDeclarationOnly: true,
-      outDir: (config as XyTsupConfig).compile?.tsup?.options?.outDir ?? 'dist/types',
+      outDir: tempDir,
       removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
@@ -66,7 +80,62 @@ export const packageCompileTscTypes = (
     }
 
     program.emit()
-    return diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
+    const tscErrorCount = diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
+    if (tscErrorCount > 0) {
+      return tscErrorCount
+    }
+
+    // api-extractor
+
+    const entryNameToTypeName = (entry: string): string => {
+      const splitEntryName = entry.split('.')
+      const newEntryExtension = 'd.' + splitEntryName.at(-1)
+      return [...splitEntryName.slice(0, -1), newEntryExtension].join('.')
+    }
+
+    const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
+
+    for (const entry of entryNames) {
+      const entryTypeName = entryNameToTypeName(entry)
+
+      const configObject = {
+        projectFolder: '.',
+        mainEntryPointFilePath: path.resolve([tempDir, entryTypeName].join('/')),
+        bundledPackages: [],
+        compiler: { tsconfigFilePath: path.resolve(`${pkg}/tsconfig.json`) },
+        dtsRollup: {
+          enabled: true,
+          untrimmedFilePath: path.resolve(`${outDir}/${entryTypeName}`),
+        },
+        apiReport: { enabled: false },
+        docModel: { enabled: false },
+        tsdocMetadata: { enabled: false },
+      }
+
+      writeFileSync(`${tempDir}/api-extractor.json`, JSON.stringify(configObject, null, 2))
+
+      const extractorConfig = ExtractorConfig.prepare({
+        configObject,
+        configObjectFullPath: path.resolve(`${tempDir}/api-extractor.json`), // just a virtual label, doesn't have to exist
+        packageJsonFullPath: path.resolve('package.json'),
+      })
+
+      const extractorResult = Extractor.invoke(extractorConfig, {
+        localBuild: true,
+        showVerboseMessages: true,
+      })
+
+      if (extractorResult.succeeded) {
+        console.log('API Extractor completed successfully')
+        process.exitCode = 0
+      } else {
+        console.error(
+          `API Extractor completed with ${extractorResult.errorCount} errors`
+          + ` and ${extractorResult.warningCount} warnings`,
+        )
+        process.exitCode = 1
+      }
+    }
   }
   return 0
 }
