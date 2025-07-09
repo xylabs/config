@@ -1,6 +1,6 @@
 import type { Options } from 'tsup'
 
-export type EntryMode = 'all' | 'single' | 'auto' | 'platform'
+export type EntryMode = 'all' | 'single' | 'auto' | 'platform' | 'custom'
 
 /**
  * Configuration for specifying which paths are targeted.

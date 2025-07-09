@@ -12,6 +12,10 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', ex
       entries = excludeSpecAndStories ? getAllInputs(folder).filter(entry => !entry.includes('.spec.') && !entry.includes('.stories.')) : getAllInputs(folder)
       break
     }
+    case 'custom': {
+      entries = []
+      break
+    }
     default: {
       entries = [`${folder}/index.ts`]
       break
