@@ -25,117 +25,128 @@ export const packageCompileTscTypes = (
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
-  const tempDir = `${pkg}/.xylabs/ts-scripts-yarn3/compile/tsc/types/${Date.now()}`
+  const tempDir = `${pkg}/.xylabs/ts-scripts-yarn3/compile/tsc/types}`
 
-  rm(tempDir, { force: true, recursive: true }, (err) => {
-    if (err) {
-      console.error(chalk.red(`Error removing temporary directory: ${tempDir}`), err)
-      return 1
-    }
-  })
-
-  const compilerOptions = {
-    ...(getCompilerOptions({
-      emitDeclarationOnly: true,
-      outDir: tempDir,
-      removeComments: false,
-      skipDefaultLibCheck: true,
-      skipLibCheck: true,
-      sourceMap: false,
-    })),
-    ...compilerOptionsParam,
-    emitDeclarationOnly: true,
-    noEmit: false,
-  } as TsConfigCompilerOptions
-
-  const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
-  const excludes = ['.stories.', '.spec.', '/stories/', '/spec/']
-
-  // calling all here since the types do not get rolled up
-  const files = buildEntries(folder, 'all', verbose)
-    .filter(file => validTsExt.find(ext => file.endsWith(ext)) && !(excludes.some(exclude => file.includes(exclude))))
-
-  console.log(chalk.green(`Compiling Types ${pkg}: ${files.length}`))
-
-  if (files.length > 0) {
-    const program = createProgramFromConfig({
-      basePath: pkg ?? cwd(),
-      compilerOptions,
-      exclude: ['build', 'dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
-      files,
+  try {
+    rm(tempDir, { force: true, recursive: true }, (err) => {
+      if (err) {
+        console.error(chalk.red(`Error removing temporary directory: ${tempDir}`), err)
+        return 1
+      }
     })
+  } catch {}
 
-    const diagnostics = getPreEmitDiagnostics(program)
+  try {
+    const compilerOptions = {
+      ...(getCompilerOptions({
+        emitDeclarationOnly: true,
+        outDir: tempDir,
+        removeComments: false,
+        skipDefaultLibCheck: true,
+        skipLibCheck: true,
+        sourceMap: false,
+      })),
+      ...compilerOptionsParam,
+      emitDeclarationOnly: true,
+      noEmit: false,
+    } as TsConfigCompilerOptions
 
-    if (diagnostics.length > 0) {
-      const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
-        diagnostics,
-        {
-          getCanonicalFileName: fileName => fileName,
-          getCurrentDirectory: () => folder,
-          getNewLine: () => sys.newLine,
-        },
-      )
-      console.error(formattedDiagnostics)
-    }
+    const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
+    const excludes = ['.stories.', '.spec.', '/stories/', '/spec/']
 
-    program.emit()
-    const tscErrorCount = diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
-    if (tscErrorCount > 0) {
-      return tscErrorCount
-    }
+    // calling all here since the types do not get rolled up
+    const files = buildEntries(folder, 'all', verbose)
+      .filter(file => validTsExt.find(ext => file.endsWith(ext)) && !(excludes.some(exclude => file.includes(exclude))))
 
-    // api-extractor
+    console.log(chalk.green(`Compiling Types ${pkg}: ${files.length}`))
 
-    const entryNameToTypeName = (entry: string): string => {
-      const splitEntryName = entry.split('.')
-      const newEntryExtension = 'd.' + splitEntryName.at(-1)
-      return [...splitEntryName.slice(0, -1), newEntryExtension].join('.')
-    }
-
-    const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
-
-    for (const entry of entryNames) {
-      const entryTypeName = entryNameToTypeName(entry)
-
-      const configObject = {
-        projectFolder: '.',
-        mainEntryPointFilePath: path.resolve([tempDir, entryTypeName].join('/')),
-        bundledPackages: [],
-        compiler: { tsconfigFilePath: path.resolve(`${pkg}/tsconfig.json`) },
-        dtsRollup: {
-          enabled: true,
-          untrimmedFilePath: path.resolve(`${outDir}/${entryTypeName}`),
-        },
-        apiReport: { enabled: false },
-        docModel: { enabled: false },
-        tsdocMetadata: { enabled: false },
-      }
-
-      writeFileSync(`${tempDir}/api-extractor.json`, JSON.stringify(configObject, null, 2))
-
-      const extractorConfig = ExtractorConfig.prepare({
-        configObject,
-        configObjectFullPath: path.resolve(`${tempDir}/api-extractor.json`), // just a virtual label, doesn't have to exist
-        packageJsonFullPath: path.resolve('package.json'),
+    if (files.length > 0) {
+      const program = createProgramFromConfig({
+        basePath: pkg ?? cwd(),
+        compilerOptions,
+        exclude: ['build', 'dist', 'docs', '**/*.spec.*', '**/*.stories.*', 'src/**/spec/**/*'],
+        files,
       })
 
-      const extractorResult = Extractor.invoke(extractorConfig, {
-        localBuild: true,
-        showVerboseMessages: true,
-      })
+      const diagnostics = getPreEmitDiagnostics(program)
 
-      if (extractorResult.succeeded) {
-        console.log('API Extractor completed successfully')
-        process.exitCode = 0
-      } else {
-        console.error(
-          `API Extractor completed with ${extractorResult.errorCount} errors`
-          + ` and ${extractorResult.warningCount} warnings`,
+      if (diagnostics.length > 0) {
+        const formattedDiagnostics = formatDiagnosticsWithColorAndContext(
+          diagnostics,
+          {
+            getCanonicalFileName: fileName => fileName,
+            getCurrentDirectory: () => folder,
+            getNewLine: () => sys.newLine,
+          },
         )
-        process.exitCode = 1
+        console.error(formattedDiagnostics)
+      }
+
+      program.emit()
+      const tscErrorCount = diagnostics.reduce((acc, diag) => acc + (diag.category === DiagnosticCategory.Error ? 1 : 0), 0)
+      if (tscErrorCount > 0) {
+        return tscErrorCount
+      }
+
+      // api-extractor
+
+      const entryNameToTypeName = (entry: string): string => {
+        const splitEntryName = entry.split('.')
+        const newEntryExtension = 'd.' + splitEntryName.at(-1)
+        return [...splitEntryName.slice(0, -1), newEntryExtension].join('.')
+      }
+
+      const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
+
+      for (const entry of entryNames) {
+        const entryTypeName = entryNameToTypeName(entry)
+
+        const configObject = {
+          projectFolder: '.',
+          mainEntryPointFilePath: path.resolve([tempDir, entryTypeName].join('/')),
+          bundledPackages: [],
+          compiler: { tsconfigFilePath: path.resolve(`${pkg}/tsconfig.json`) },
+          dtsRollup: {
+            enabled: true,
+            untrimmedFilePath: path.resolve(`${outDir}/${entryTypeName}`),
+          },
+          apiReport: { enabled: false },
+          docModel: { enabled: false },
+          tsdocMetadata: { enabled: false },
+        }
+
+        writeFileSync(`${tempDir}/api-extractor.json`, JSON.stringify(configObject, null, 2))
+
+        const extractorConfig = ExtractorConfig.prepare({
+          configObject,
+          configObjectFullPath: path.resolve(`${tempDir}/api-extractor.json`), // just a virtual label, doesn't have to exist
+          packageJsonFullPath: path.resolve('package.json'),
+        })
+
+        const extractorResult = Extractor.invoke(extractorConfig, {
+          localBuild: true,
+          showVerboseMessages: true,
+        })
+
+        if (extractorResult.succeeded) {
+          console.log('API Extractor completed successfully')
+          process.exitCode = 0
+        } else {
+          console.error(
+            `API Extractor completed with ${extractorResult.errorCount} errors`
+            + ` and ${extractorResult.warningCount} warnings`,
+          )
+          process.exitCode = 1
+        }
       }
     }
+    return 0
+  } finally {
+    rm(tempDir, { force: true, recursive: true }, (err) => {
+      if (err) {
+        console.error(chalk.red(`Error removing temporary directory (finally): ${tempDir}`), err)
+        return 1
+      }
+    })
   }
-  return 0
 }
