@@ -35,7 +35,7 @@ export const packageCompileTscTypes = (
   } as TsConfigCompilerOptions
 
   const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
-  const excludes = ['.stories.', '.spec.']
+  const excludes = ['.stories.', '.spec.', '/stories/', '/spec/']
 
   // calling all here since the types do not get rolled up
   const files = buildEntries(folder, 'all', verbose)

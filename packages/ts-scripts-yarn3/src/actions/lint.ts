@@ -33,11 +33,11 @@ export const lintPackage = ({ pkg, fix }: LintParams & Required<Pick<LintParams,
 export const lint = ({
   pkg, verbose, incremental, fix,
 }: LintParams = {}) => {
-  return pkg
-    ? lintPackage({ pkg, fix })
-    : lintAllPackages({
+  return pkg === undefined
+    ? lintAllPackages({
         verbose, incremental, fix,
       })
+    : lintPackage({ pkg, fix })
 }
 
 export const lintAllPackages = ({ fix = false }: LintParams = {}) => {

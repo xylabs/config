@@ -31,7 +31,7 @@ async function getRootESLintConfig() {
   // Locate the root eslint.config.mjs
   const configPath = await findUp('eslint.config.mjs')
 
-  if (!configPath) {
+  if (configPath === undefined) {
     throw new Error('eslint.config.mjs not found in the monorepo')
   }
 
@@ -45,7 +45,7 @@ function getFiles(dir: string, ignoreFolders: string[]): string[] {
   return readdirSync(dir, { withFileTypes: true })
     .flatMap((dirent) => {
       const res = path.resolve(dir, dirent.name)
-      const relativePath = subDirectory ? `${subDirectory}/${dirent.name}` : dirent.name
+      const relativePath = (subDirectory === undefined) ? dirent.name : `${subDirectory}/${dirent.name}`
 
       const ignoreMatchers = ignoreFolders.map(pattern => picomatch(pattern))
 
