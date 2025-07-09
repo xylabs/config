@@ -15,7 +15,12 @@ export function getUnlistedDependencies(
   let unlistedDependencies = 0
 
   for (const imp of externalDistImports) {
-    if (!dependencies.includes(imp) && !peerDependencies.includes(imp) && !builtinModules.includes(imp)) {
+    if (!dependencies.includes(imp)
+      && !dependencies.includes(`@types/${imp}`)
+      && !peerDependencies.includes(imp)
+      && !peerDependencies.includes(`@types/${imp}`)
+      && !builtinModules.includes(imp)
+      && !builtinModules.includes(`@types/${imp}`)) {
       unlistedDependencies++
       console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
       console.log(`  ${distImportPaths[imp].join('\n ')}`)
