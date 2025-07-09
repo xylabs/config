@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "6.5.14",
+  "version": "7.0.0-rc.1",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -64,5 +64,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "stableVersion": "6.5.14"
 }
