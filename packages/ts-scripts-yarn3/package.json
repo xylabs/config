@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "7.0.0-rc.3",
+  "version": "7.0.0-rc.4",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -76,6 +76,7 @@
     "parse-git-config": "^3.0.0",
     "picomatch": "^4.0.2",
     "publint": "^0.3.12",
+    "rimraf": "^6.0.1",
     "sort-package-json": "^3.4.0",
     "tsc-prog": "^2.3.0",
     "tsup": "8.5.0",
@@ -86,7 +87,7 @@
   "devDependencies": {
     "@types/eslint": "^9.6.1",
     "@types/license-checker": "^25.0.6",
-    "@types/node": "^24.0.11",
+    "@types/node": "^24.0.12",
     "@types/parse-git-config": "^3.0.4",
     "@types/picomatch": "^4.0.0",
     "@types/yargs": "^17.0.33",

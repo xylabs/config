@@ -1,10 +1,11 @@
 /* eslint-disable max-statements */
-import { rm, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { cwd } from 'node:process'
 
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
 import chalk from 'chalk'
+import { rimrafSync } from 'rimraf'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
 import type { CompilerOptions } from 'typescript'
@@ -25,16 +26,15 @@ export const packageCompileTscTypes = (
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
-  const tempDir = `${pkg}/.xylabs/ts-scripts-yarn3/compile/tsc/types}`
+  const tempRoot = `${pkg}/.xylabs`
+  const tempDir = `${tempRoot}/ts-scripts-yarn3/compile/tsc/types`
 
   try {
-    rm(tempDir, { force: true, recursive: true }, (err) => {
-      if (err) {
-        console.error(chalk.red(`Error removing temporary directory: ${tempDir}`), err)
-        return 1
-      }
-    })
-  } catch {}
+    rimrafSync(tempRoot, { preserveRoot: false })
+  } catch (ex) {
+    console.error(chalk.red(`Error removing temporary directory (pre): ${tempRoot}`), ex)
+    return 1
+  }
 
   try {
     const compilerOptions = {
@@ -142,11 +142,11 @@ export const packageCompileTscTypes = (
     }
     return 0
   } finally {
-    rm(tempDir, { force: true, recursive: true }, (err) => {
-      if (err) {
-        console.error(chalk.red(`Error removing temporary directory (finally): ${tempDir}`), err)
-        return 1
-      }
-    })
+    try {
+      rimrafSync(tempRoot, { preserveRoot: false })
+    } catch (ex) {
+      console.error(chalk.red(`Error removing temporary directory (finally): ${tempRoot}`), ex)
+      return 1
+    }
   }
 }
