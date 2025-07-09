@@ -10,7 +10,7 @@ export function getUnusedPeerDependencies(
 ) {
   let unusedDependencies = 0
   for (const dep of peerDependencies) {
-    if (!externalDistImports.includes(dep)) {
+    if (!externalDistImports.includes(dep) && !externalDistImports.includes(dep.replace(/^@types\//, ''))) {
       unusedDependencies++
       if (dependencies.includes(dep)) {
         console.log(`[${chalk.blue(name)}] Unused peerDependency [already a dependency] in package.json: ${chalk.red(dep)}`)

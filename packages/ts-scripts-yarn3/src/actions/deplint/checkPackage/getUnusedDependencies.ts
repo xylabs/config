@@ -13,7 +13,7 @@ export function getUnusedDependencies(
 ) {
   let unusedDependencies = 0
   for (const dep of dependencies) {
-    if (!externalDistImports.includes(dep) && !externalDistImports.includes(`@types/${dep}`)) {
+    if (!externalDistImports.includes(dep) && !externalDistImports.includes(dep.replace(/^@types\//, ''))) {
       unusedDependencies++
       if (externalSrcImports.includes(dep)) {
         console.log(`[${chalk.blue(name)}] dependency should be devDependency in package.json: ${chalk.red(dep)}`)
