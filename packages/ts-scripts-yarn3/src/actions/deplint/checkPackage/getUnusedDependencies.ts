@@ -8,12 +8,16 @@ export function getUnusedDependencies(
   { dependencies }: CheckPackageParams,
   {
     externalDistImports,
+    externalDistTypeImports,
     externalSrcImports,
   }: CheckSourceParams,
 ) {
   let unusedDependencies = 0
   for (const dep of dependencies) {
-    if (!externalDistImports.includes(dep) && !externalDistImports.includes(dep.replace(/^@types\//, ''))) {
+    if (!externalDistImports.includes(dep)
+      && !externalDistImports.includes(dep.replace(/^@types\//, ''))
+      && !externalDistTypeImports.includes(dep)
+      && !externalDistTypeImports.includes(dep.replace(/^@types\//, ''))) {
       unusedDependencies++
       if (externalSrcImports.includes(dep)) {
         console.log(`[${chalk.blue(name)}] dependency should be devDependency in package.json: ${chalk.red(dep)}`)

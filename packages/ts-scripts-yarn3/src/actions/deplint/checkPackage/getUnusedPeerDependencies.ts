@@ -6,11 +6,12 @@ import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.
 export function getUnusedPeerDependencies(
   { name, location }: Workspace,
   { peerDependencies, dependencies }: CheckPackageParams,
-  { externalDistImports }: CheckSourceParams,
+  { externalDistImports, externalDistTypeImports }: CheckSourceParams,
 ) {
   let unusedDependencies = 0
   for (const dep of peerDependencies) {
-    if (!externalDistImports.includes(dep) && !externalDistImports.includes(dep.replace(/^@types\//, ''))) {
+    if (!externalDistImports.includes(dep) && !externalDistImports.includes(dep.replace(/^@types\//, ''))
+      && !externalDistTypeImports.includes(dep) && !externalDistTypeImports.includes(dep.replace(/^@types\//, ''))) {
       unusedDependencies++
       if (dependencies.includes(dep)) {
         console.log(`[${chalk.blue(name)}] Unused peerDependency [already a dependency] in package.json: ${chalk.red(dep)}`)
