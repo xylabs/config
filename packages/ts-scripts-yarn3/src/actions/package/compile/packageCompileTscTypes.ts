@@ -1,10 +1,11 @@
 /* eslint-disable max-statements */
-import { rm, writeFileSync } from 'node:fs'
+import { readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { cwd } from 'node:process'
 
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
 import chalk from 'chalk'
+import { rimrafSync } from 'rimraf'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
 import type { CompilerOptions } from 'typescript'
@@ -16,6 +17,31 @@ import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
 import type { XyConfig } from './XyConfig.ts'
 
+function deleteAndCleanEmptyParents(targetDir: string, stopAt: string) {
+  rimrafSync(targetDir)
+
+  let current = path.resolve(targetDir)
+  const resolvedStopAt = path.resolve(stopAt)
+
+  while (current !== resolvedStopAt) {
+    if (!current.startsWith(resolvedStopAt)) {
+      throw new Error(`Invalid cleanup path: ${current} does not start with ${resolvedStopAt}`)
+    }
+
+    const parent = path.dirname(current)
+
+    try {
+      const entries = readdirSync(parent)
+      if (entries.length > 0) break
+
+      rimrafSync(parent)
+      current = parent
+    } catch {
+      break // directory doesn't exist or can't be removed
+    }
+  }
+}
+
 export const packageCompileTscTypes = (
   entries: string[],
   outDir: string,
@@ -25,16 +51,15 @@ export const packageCompileTscTypes = (
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
   const verbose = config?.verbose ?? false
-  const tempDir = `${pkg}/.xylabs/ts-scripts-yarn3/compile/tsc/types}`
+  const tempRoot = path.resolve(`${pkg}/node_modules/.xylabs-temp`)
+  const tempDir = path.resolve(`${tempRoot}/ts-scripts-yarn3/compile/tsc/types`)
 
   try {
-    rm(tempDir, { force: true, recursive: true }, (err) => {
-      if (err) {
-        console.error(chalk.red(`Error removing temporary directory: ${tempDir}`), err)
-        return 1
-      }
-    })
-  } catch {}
+    deleteAndCleanEmptyParents(tempDir, tempRoot)
+  } catch (ex) {
+    console.error(chalk.red(`Error removing temporary directory (pre): ${tempDir}`), ex)
+    return 1
+  }
 
   try {
     const compilerOptions = {
@@ -142,11 +167,11 @@ export const packageCompileTscTypes = (
     }
     return 0
   } finally {
-    rm(tempDir, { force: true, recursive: true }, (err) => {
-      if (err) {
-        console.error(chalk.red(`Error removing temporary directory (finally): ${tempDir}`), err)
-        return 1
-      }
-    })
+    try {
+      deleteAndCleanEmptyParents(tempDir, tempRoot)
+    } catch (ex) {
+      console.error(chalk.red(`Error removing temporary directory (finally): ${tempDir}`), ex)
+      return 1
+    }
   }
 }
