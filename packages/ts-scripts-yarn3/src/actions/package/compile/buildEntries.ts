@@ -1,7 +1,9 @@
+import type { Options } from 'tsup'
+
 import { getAllInputs } from './inputs.ts'
 import type { EntryMode } from './XyConfig.ts'
 
-export const buildEntries = (folder: string, entryMode: EntryMode = 'single', excludeSpecAndStories = true, verbose = false) => {
+export const buildEntries = (folder: string, entryMode: EntryMode = 'single', options?: Options | boolean, excludeSpecAndStories = true, verbose = false) => {
   let entries: string[] = []
   switch (entryMode) {
     case 'platform': {
@@ -21,6 +23,11 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', ex
       break
     }
   }
+
+  if (typeof options !== 'boolean' && Array.isArray(options?.entry)) {
+    entries.push(...options.entry)
+  }
+
   if (verbose) console.log(`buildEntries [${entryMode}] ${entries.length}`)
   return entries
 }

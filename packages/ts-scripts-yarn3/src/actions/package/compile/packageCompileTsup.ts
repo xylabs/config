@@ -10,6 +10,7 @@ import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
 const compileFolder = async (
   folder: string,
   entryMode: EntryMode = 'single',
+  entries?: string[],
   options?: Options,
   verbose?: boolean,
 ): Promise<number> => {
@@ -101,6 +102,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
+                buildEntries(folder, compile?.entryMode, options),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
@@ -120,6 +122,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
+                buildEntries(folder, compile?.entryMode, options),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
@@ -139,6 +142,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
+                buildEntries(folder, compile?.entryMode, options),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
