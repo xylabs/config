@@ -22,7 +22,6 @@ export const packageCompileTsc = (
 
   const compilerOptions = {
     ...(getCompilerOptions({
-      outDir: 'dist/types',
       removeComments: false,
       skipDefaultLibCheck: true,
       skipLibCheck: true,
