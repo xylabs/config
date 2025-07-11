@@ -1,14 +1,19 @@
 import { cwd } from 'node:process'
 
 import { rollup } from 'rollup'
+import type { Options } from 'rollup-plugin-dts'
 import dts from 'rollup-plugin-dts'
 import nodeExternals from 'rollup-plugin-node-externals'
+import type { TsConfigCompilerOptions } from 'tsc-prog'
+import type ts from 'typescript'
 
-export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral') {
+import { getCompilerOptions } from './getCompilerOptions.ts'
+
+export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options) {
   const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
   const bundle = await rollup({
     input: inputPath,
-    plugins: [dts(), ...nodePlugIns],
+    plugins: [dts(options), ...nodePlugIns],
     onwarn(warning, warn) {
       // Ignore certain warnings if needed
       if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
@@ -39,10 +44,19 @@ export const packageCompileTscTypes = async (
     return [...splitEntryName.slice(0, -1), newEntryExtension].join('.')
   }
 
+  const compilerOptions = {
+    removeComments: false,
+    skipDefaultLibCheck: true,
+    skipLibCheck: true,
+    sourceMap: false,
+    emitDeclarationOnly: false,
+    noEmit: true,
+  } as ts.CompilerOptions
+
   const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
 
   await Promise.all(entryNames.map(async (entryName) => {
-    await bundleDts(`${srcRoot}/${entryName}`, outDir + '/' + entryNameToTypeName(entryName), platform)
+    await bundleDts(`${srcRoot}/${entryName}`, outDir + '/' + entryNameToTypeName(entryName), platform, { compilerOptions, tsconfig: 'tsconfig.json' })
   }))
   return 0
 }
