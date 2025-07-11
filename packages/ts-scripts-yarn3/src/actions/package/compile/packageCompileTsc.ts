@@ -8,11 +8,11 @@ import {
   DiagnosticCategory, formatDiagnosticsWithColorAndContext, getPreEmitDiagnostics, sys,
 } from 'typescript'
 
-import { buildEntries } from './buildEntries.ts'
 import { getCompilerOptions } from './getCompilerOptions.ts'
 import type { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTsc = (
+  entries: string[],
   folder: string = 'src',
   config: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
@@ -33,21 +33,18 @@ export const packageCompileTsc = (
     noEmit: true,
   } as TsConfigCompilerOptions
 
-  const validTsExt = ['.ts', '.tsx', '.d.ts', '.cts', '.d.cts', '.mts', '.d.mts']
-  const includes = ['.stories.', '.spec.', '.d.ts', '.d.cts', '.d.mts']
+  console.log(chalk.green(`Validating Files: ${entries.length}`))
+  if (verbose) {
+    for (const entry of entries) {
+      console.log(chalk.grey(`Validating: ${entry}`))
+    }
+  }
 
-  // calling all here since the types do not get rolled up
-  const files = buildEntries(folder, 'all', {}, true, verbose)
-    .filter(file => validTsExt.find(ext => file.endsWith(ext)) && (includes.find(include => file.includes(include))))
-
-  console.log(chalk.green(`Compiling Files ${pkg}: ${files.length}`))
-
-  if (files.length > 0) {
+  if (entries.length > 0) {
     const program = createProgramFromConfig({
       basePath: pkg ?? cwd(),
       compilerOptions,
-      exclude: ['dist', 'docs'],
-      files,
+      files: entries,
     })
 
     const diagnostics = getPreEmitDiagnostics(program)

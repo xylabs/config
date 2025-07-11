@@ -4,6 +4,7 @@ import { build, defineConfig } from 'tsup'
 
 import { buildEntries } from './buildEntries.ts'
 import { deepMergeObjects } from './deepMerge.ts'
+import { packageCompileTsc } from './packageCompileTsc.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
 import type { XyTsupConfig } from './XyConfig.ts'
 
@@ -33,6 +34,13 @@ const compileFolder = async (
     tsconfig: 'tsconfig.json',
     ...options,
   })
+
+  const validationResult = packageCompileTsc(entries)
+  if (validationResult !== 0) {
+    console.error(`Compile:Validation had ${validationResult} errors`)
+    return validationResult
+  }
+
   const optionsList = (
     await Promise.all(
       (Array.isArray(optionsResult) ? optionsResult : [optionsResult]).flatMap<Promise<Options[]>>(async (options) => {
@@ -85,10 +93,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compileForNode = compile?.node ?? { src: {} }
   const compileForBrowser = compile?.browser ?? { src: {} }
   const compileForNeutral = compile?.neutral ?? { src: {} }
-
-  if (verbose) {
-    console.log('Calling packageCompileTscTypes')
-  }
 
   return (
     (
