@@ -1756,6 +1756,7 @@ __metadata:
     rimraf: "npm:^6.0.1"
     rollup: "npm:^4.44.2"
     rollup-plugin-dts: "npm:^6.2.1"
+    rollup-plugin-node-externals: "npm:^8.0.1"
     sort-package-json: "npm:^3.4.0"
     tsc-prog: "npm:^2.3.0"
     tsup: "npm:8.5.0"
@@ -6087,6 +6088,15 @@ __metadata:
     "@babel/code-frame":
       optional: true
   checksum: 10/bf101998eb26e6594ccada88545a83af992d3843737a805206f3d448b86c795b04958cfb43fb006b083f78c66e55da1b3780029cceebde3c48c7ff53be4ee7d9
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-node-externals@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "rollup-plugin-node-externals@npm:8.0.1"
+  peerDependencies:
+    rollup: ^4.0.0
+  checksum: 10/576fa3cd16a3cbbeffe6ea84833c820117d76b62e5625ed5c94ebb769dea1c763093c7f3ec62b49f77a2487f9b5988283d97e54ecd6750915ab754dfe0ae0e25
   languageName: node
   linkType: hard
 

@@ -2,11 +2,13 @@ import { cwd } from 'node:process'
 
 import { rollup } from 'rollup'
 import dts from 'rollup-plugin-dts'
+import nodeExternals from 'rollup-plugin-node-externals'
 
-export async function bundleDts(inputPath: string, outputPath: string) {
+export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral') {
+  const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
   const bundle = await rollup({
     input: inputPath,
-    plugins: [dts()],
+    plugins: [dts(), ...nodePlugIns],
     onwarn(warning, warn) {
       // Ignore certain warnings if needed
       if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
@@ -25,6 +27,7 @@ export async function bundleDts(inputPath: string, outputPath: string) {
 export const packageCompileTscTypes = async (
   entries: string[],
   outDir: string,
+  platform: 'node' | 'browser' | 'neutral',
   folder: string = 'src',
 ): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()
@@ -39,7 +42,7 @@ export const packageCompileTscTypes = async (
   const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
 
   await Promise.all(entryNames.map(async (entryName) => {
-    await bundleDts(`${srcRoot}/${entryName}`, outDir + '/' + entryNameToTypeName(entryName))
+    await bundleDts(`${srcRoot}/${entryName}`, outDir + '/' + entryNameToTypeName(entryName), platform)
   }))
   return 0
 }

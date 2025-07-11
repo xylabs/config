@@ -5,12 +5,11 @@ import { build, defineConfig } from 'tsup'
 import { buildEntries } from './buildEntries.ts'
 import { deepMergeObjects } from './deepMerge.ts'
 import { packageCompileTscTypes } from './packageCompileTscTypes.ts'
-import type { EntryMode, XyTsupConfig } from './XyConfig.ts'
+import type { XyTsupConfig } from './XyConfig.ts'
 
 const compileFolder = async (
   folder: string,
-  entryMode: EntryMode = 'single',
-  entries?: string[],
+  entries: string[],
   options?: Options,
   verbose?: boolean,
 ): Promise<number> => {
@@ -20,13 +19,12 @@ const compileFolder = async (
     console.log(`compileFolder [${folder}]`)
   }
 
-  const entry = buildEntries(folder, entryMode, options, true, verbose)
   const optionsResult = defineConfig({
     bundle: true,
     cjsInterop: true,
     clean: true,
     dts: false,
-    entry,
+    entry: entries,
     format: ['esm'],
     outDir,
     silent: true,
@@ -54,7 +52,7 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}]`)
   }
 
-  await packageCompileTscTypes(entry, outDir)
+  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', folder)
 
   return 0
 }
@@ -101,7 +99,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                compile?.entryMode,
                 buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
@@ -121,7 +118,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                compile?.entryMode,
                 buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
@@ -141,7 +137,6 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                compile?.entryMode,
                 buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
