@@ -61,7 +61,6 @@
     "package-recompile": "tsup && publint"
   },
   "dependencies": {
-    "@microsoft/api-extractor": "^7.52.8",
     "async-mutex": "^0.5.0",
     "chalk": "^5.4.1",
     "cosmiconfig": "^9.0.0",
@@ -76,7 +75,8 @@
     "parse-git-config": "^3.0.0",
     "picomatch": "^4.0.2",
     "publint": "^0.3.12",
-    "rimraf": "^6.0.1",
+    "rollup": "^4.44.2",
+    "rollup-plugin-dts": "^6.2.1",
     "sort-package-json": "^3.4.0",
     "tsc-prog": "^2.3.0",
     "tsup": "8.5.0",

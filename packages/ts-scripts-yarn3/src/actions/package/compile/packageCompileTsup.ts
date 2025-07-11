@@ -20,7 +20,7 @@ const compileFolder = async (
     console.log(`compileFolder [${folder}]`)
   }
 
-  const entry = buildEntries(folder, entryMode)
+  const entry = buildEntries(folder, entryMode, options, true, verbose)
   const optionsResult = defineConfig({
     bundle: true,
     cjsInterop: true,
@@ -54,7 +54,7 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}]`)
   }
 
-  packageCompileTscTypes(entry, outDir)
+  await packageCompileTscTypes(entry, outDir)
 
   return 0
 }
@@ -102,7 +102,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
-                buildEntries(folder, compile?.entryMode, options),
+                buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
@@ -122,7 +122,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
-                buildEntries(folder, compile?.entryMode, options),
+                buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
@@ -142,7 +142,7 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
             ? await compileFolder(
                 folder,
                 compile?.entryMode,
-                buildEntries(folder, compile?.entryMode, options),
+                buildEntries(folder, compile?.entryMode, options, true, verbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),

@@ -37,7 +37,7 @@ export const packageCompileTsc = (
   const includes = ['.stories.', '.spec.', '.d.ts', '.d.cts', '.d.mts']
 
   // calling all here since the types do not get rolled up
-  const files = buildEntries(folder, 'all', verbose)
+  const files = buildEntries(folder, 'all', {}, true, verbose)
     .filter(file => validTsExt.find(ext => file.endsWith(ext)) && (includes.find(include => file.includes(include))))
 
   console.log(chalk.green(`Compiling Files ${pkg}: ${files.length}`))

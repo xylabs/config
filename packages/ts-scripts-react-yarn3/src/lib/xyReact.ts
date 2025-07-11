@@ -9,6 +9,7 @@ import {
   analyze, eject, sitemap, start,
 } from '../actions/index.ts'
 
+/** @public */
 export const xyReact = async () => {
   return await xyBuildCommands(xyInstallCommands(xyLintCommands(xyInstallCommands(xyCommonCommands(xyParseOptions())))))
     .command(
