@@ -1,8 +1,13 @@
+import chalk from 'chalk'
 import { glob } from 'glob'
 
-export const getAllInputs = (folder: string) => {
+export const getAllInputs = (srcDir: string, verbose = false) => {
   /* tsup wants posix paths */
-  return glob.sync(`${folder}/**/*.*`, { posix: true }).map((file) => {
-    return file.slice(Math.max(0, folder.length + 1)) // Remove the folder prefix
+  return glob.sync(`${srcDir}/**/*.*`, { posix: true }).map((file) => {
+    const result = file.slice(Math.max(0, srcDir.length + 1)) // Remove the folder prefix
+    if (verbose) {
+      console.log(chalk.gray(`getAllInputs: ${JSON.stringify(result, null, 2)}`))
+    }
+    return result
   })
 }

@@ -1,7 +1,7 @@
 import type { ICruiseOptions } from 'dependency-cruiser'
 import { cruise } from 'dependency-cruiser'
 
-export const packageCycle = async ({ verbose = false }: { verbose: boolean }) => {
+export const packageCycle = async () => {
   const pkg = process.env.INIT_CWD
   const pkgName = process.env.npm_package_name
 
@@ -22,7 +22,7 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
     doNotFollow: { path: 'node_modules|packages/.*/packages' },
     tsPreCompilationDeps: false,
     combinedDependencies: true,
-    outputType: verbose ? 'text' : 'err',
+    outputType: 'err',
   }
 
   const target = `${pkg}/src`
@@ -30,9 +30,7 @@ export const packageCycle = async ({ verbose = false }: { verbose: boolean }) =>
   console.log(`Checking for circular dependencies in ${target}...`)
 
   const result = await cruise([target], cruiseOptions)
-  if (result.output) {
-    console.log(result.output)
-  }
+  console.log(result.output)
 
   if (result.exitCode === 0) {
     console.log(`${pkgName} ✅ No dependency violations`)

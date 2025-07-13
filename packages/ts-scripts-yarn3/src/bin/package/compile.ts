@@ -4,9 +4,9 @@ import chalk from 'chalk'
 
 import { packageCompile } from '../../actions/index.ts'
 
-packageCompile({ verbose: false })
+packageCompile()
   .then((value) => {
-    if (value) {
+    if (value > 0) {
       process.exit(value)
     }
   })

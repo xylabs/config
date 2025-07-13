@@ -3,9 +3,9 @@
 import { packageCompile } from '@xylabs/ts-scripts-yarn3'
 import chalk from 'chalk'
 
-packageCompile({ verbose: false, publint: true })
+packageCompile({ publint: true })
   .then((value) => {
-    if (value) {
+    if (value > 0) {
       process.exit(value)
     }
   })

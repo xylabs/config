@@ -1,5 +1,6 @@
 import { cwd } from 'node:process'
 
+import chalk from 'chalk'
 import { rollup } from 'rollup'
 import type { Options } from 'rollup-plugin-dts'
 import dts from 'rollup-plugin-dts'
@@ -31,14 +32,14 @@ export const packageCompileTscTypes = async (
   entries: string[],
   outDir: string,
   platform: 'node' | 'browser' | 'neutral',
-  folder: string = 'build',
+  srcDir: string = 'build',
   verbose = false,
 ): Promise<number> => {
   if (verbose) {
-    console.log(`Compiling Types START: ${entries.length} files to ${outDir} from ${folder}`)
+    console.log(chalk.cyan(`Compiling Types START: ${entries.length} files to ${outDir} from ${srcDir}`))
   }
   const pkg = process.env.INIT_CWD ?? cwd()
-  const srcRoot = `${pkg}/${folder}`
+  const srcRoot = `${pkg}/${srcDir}`
 
   const entryNameToTypeName = (entry: string): string => {
     const splitEntryName = entry.split('.')
@@ -55,7 +56,7 @@ export const packageCompileTscTypes = async (
     noEmit: true,
   } as ts.CompilerOptions
 
-  const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
+  const entryNames = entries.map(entry => entry.split(`${srcDir}/`).at(-1) ?? entry)
 
   await Promise.all(entryNames.map(async (entryName) => {
     const entryTypeName = entryNameToTypeName(entryName)
@@ -64,7 +65,7 @@ export const packageCompileTscTypes = async (
   }))
 
   if (verbose) {
-    console.log(`Compiling Types FINISH: ${entries.length} files to ${outDir} from ${folder}`)
+    console.log(chalk.cyan(`Compiling Types FINISH: ${entries.length} files to ${outDir} from ${srcDir}`))
   }
 
   return 0

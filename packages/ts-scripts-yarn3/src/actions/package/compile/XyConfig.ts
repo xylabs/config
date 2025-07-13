@@ -29,11 +29,8 @@ export interface DynamicShareConfig extends PathConfig {}
 export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {
-  depth?: number
-  /** @param entryMode all, single, platform, or auto */
+  /** @param entryMode all, single, custom, platform, or auto */
   entryMode?: EntryMode
-  /** @param files Manually specify the files to be compiled */
-  files?: string[]
 }
 
 export type PackageCompileTsupConfig = CompileConfig & {

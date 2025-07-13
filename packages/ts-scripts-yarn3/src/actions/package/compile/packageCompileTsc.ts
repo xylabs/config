@@ -9,21 +9,18 @@ import {
 } from 'typescript'
 
 import { getCompilerOptions } from './getCompilerOptions.ts'
-import type { XyConfig } from './XyConfig.ts'
 
 export const packageCompileTsc = (
   entries: string[],
-  folder: string = 'src',
+  srcDir: string = 'src',
   outDir: string = 'build',
-  config: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
   verbose: boolean = false,
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
-  const resolvedVerbose = verbose ?? config?.verbose ?? false
 
-  if (resolvedVerbose) {
-    console.log(`Verifying code START: ${entries.length} files to ${outDir} from ${folder}`)
+  if (verbose) {
+    console.log(chalk.cyan(`Validating code START: ${entries.length} files to ${outDir} from ${srcDir}`))
   }
 
   const compilerOptions = {
@@ -39,8 +36,8 @@ export const packageCompileTsc = (
     noEmit: false,
   } as TsConfigCompilerOptions
 
-  console.log(chalk.green(`Validating Files: ${entries.length}`))
-  if (resolvedVerbose) {
+  console.log(chalk.cyan(`Validating Files: ${entries.length}`))
+  if (verbose) {
     for (const entry of entries) {
       console.log(chalk.grey(`Validating: ${entry}`))
     }
@@ -51,7 +48,7 @@ export const packageCompileTsc = (
       const program = createProgramFromConfig({
         basePath: pkg ?? cwd(),
         compilerOptions,
-        files: entries.map(entry => `${folder}/${entry}`),
+        files: entries.map(entry => `${srcDir}/${entry}`),
       })
 
       const diagnostics = getPreEmitDiagnostics(program)
@@ -61,7 +58,7 @@ export const packageCompileTsc = (
           diagnostics,
           {
             getCanonicalFileName: fileName => fileName,
-            getCurrentDirectory: () => folder,
+            getCurrentDirectory: () => srcDir,
             getNewLine: () => sys.newLine,
           },
         )
@@ -73,8 +70,8 @@ export const packageCompileTsc = (
     }
     return 0
   } finally {
-    if (resolvedVerbose) {
-      console.log(`Verifying code FINISH: ${entries.length} files to ${outDir} from ${folder}`)
+    if (verbose) {
+      console.log(chalk.cyan(`Verifying code FINISH: ${entries.length} files to ${outDir} from ${srcDir}`))
     }
   }
 }
