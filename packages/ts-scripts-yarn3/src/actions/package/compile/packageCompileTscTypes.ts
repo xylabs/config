@@ -4,12 +4,9 @@ import { rollup } from 'rollup'
 import type { Options } from 'rollup-plugin-dts'
 import dts from 'rollup-plugin-dts'
 import nodeExternals from 'rollup-plugin-node-externals'
-import type { TsConfigCompilerOptions } from 'tsc-prog'
 import type ts from 'typescript'
 
-import { getCompilerOptions } from './getCompilerOptions.ts'
-
-export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options) {
+export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options, verbose = false) {
   const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
   const bundle = await rollup({
     input: inputPath,
@@ -25,8 +22,9 @@ export async function bundleDts(inputPath: string, outputPath: string, platform:
     file: outputPath,
     format: 'es',
   })
-
-  console.log(`Bundled declarations written to ${outputPath}`)
+  if (verbose) {
+    console.log(`Bundled declarations written to ${outputPath}`)
+  }
 }
 
 export const packageCompileTscTypes = async (
@@ -34,7 +32,11 @@ export const packageCompileTscTypes = async (
   outDir: string,
   platform: 'node' | 'browser' | 'neutral',
   folder: string = 'build',
+  verbose = false,
 ): Promise<number> => {
+  if (verbose) {
+    console.log(`Compiling Types START: ${entries.length} files to ${outDir} from ${folder}`)
+  }
   const pkg = process.env.INIT_CWD ?? cwd()
   const srcRoot = `${pkg}/${folder}`
 
@@ -58,7 +60,12 @@ export const packageCompileTscTypes = async (
   await Promise.all(entryNames.map(async (entryName) => {
     const entryTypeName = entryNameToTypeName(entryName)
     console.log(`Compiling Types: ${srcRoot}/${entryTypeName} to ${outDir}/${entryTypeName}`)
-    await bundleDts(`${srcRoot}/${entryTypeName}`, outDir + '/' + entryTypeName, platform, { compilerOptions, tsconfig: 'tsconfig.json' })
+    await bundleDts(`${srcRoot}/${entryTypeName}`, outDir + '/' + entryTypeName, platform, { compilerOptions, tsconfig: 'tsconfig.json' }, verbose)
   }))
+
+  if (verbose) {
+    console.log(`Compiling Types FINISH: ${entries.length} files to ${outDir} from ${folder}`)
+  }
+
   return 0
 }

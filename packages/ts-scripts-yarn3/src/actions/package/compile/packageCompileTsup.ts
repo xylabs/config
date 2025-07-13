@@ -35,7 +35,7 @@ const compileFolder = async (
     ...options,
   })
 
-  const validationResult = packageCompileTsc(entries, folder, undefined, undefined, verbose)
+  const validationResult = packageCompileTsc(entries, folder, undefined, undefined, undefined, verbose)
   if (validationResult !== 0) {
     console.error(`Compile:Validation had ${validationResult} errors`)
     return validationResult
@@ -60,7 +60,7 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}]`)
   }
 
-  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', 'build')
+  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', 'build', verbose)
 
   return 0
 }
@@ -85,8 +85,8 @@ export const tsupOptions = (options: Options[] = []): Options => {
 
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compile = config?.compile
-  const verbose = config?.verbose ?? false
-  if (verbose) {
+  const resolvedVerbose = config?.verbose ?? false
+  if (resolvedVerbose) {
     console.log(`Compiling with TSUP [Depth: ${compile?.depth}]`)
   }
 
@@ -103,12 +103,12 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                buildEntries(folder, compile?.entryMode, options, true, verbose),
+                buildEntries(folder, compile?.entryMode, options, true, resolvedVerbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
                   { platform: 'node', outDir: optionsObject.outDir ?? 'dist/node' }]),
-                verbose,
+                resolvedVerbose,
               )
             : 0
         }),
@@ -122,12 +122,12 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                buildEntries(folder, compile?.entryMode, options, true, verbose),
+                buildEntries(folder, compile?.entryMode, options, true, resolvedVerbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
                   { platform: 'browser', outDir: optionsObject.outDir ?? 'dist/browser' }]),
-                verbose,
+                resolvedVerbose,
               )
             : 0
         }),
@@ -141,12 +141,12 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           return typeof folder === 'string'
             ? await compileFolder(
                 folder,
-                buildEntries(folder, compile?.entryMode, options, true, verbose),
+                buildEntries(folder, compile?.entryMode, options, true, resolvedVerbose),
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
                   { platform: 'neutral', outDir: optionsObject.outDir ?? 'dist/neutral' }]),
-                verbose,
+                resolvedVerbose,
               )
             : 0
         }),
