@@ -35,7 +35,7 @@ const compileFolder = async (
     ...options,
   })
 
-  const validationResult = packageCompileTsc(entries)
+  const validationResult = packageCompileTsc(entries, folder, undefined, undefined, verbose)
   if (validationResult !== 0) {
     console.error(`Compile:Validation had ${validationResult} errors`)
     return validationResult

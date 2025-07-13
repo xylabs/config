@@ -16,9 +16,10 @@ export const packageCompileTsc = (
   folder: string = 'src',
   config: XyConfig = {},
   compilerOptionsParam?: CompilerOptions,
+  verbose: boolean = false,
 ): number => {
   const pkg = process.env.INIT_CWD ?? cwd()
-  const verbose = config?.verbose ?? false
+  const resolvedVerbose = verbose ?? config?.verbose ?? false
 
   const compilerOptions = {
     ...(getCompilerOptions({
@@ -34,7 +35,7 @@ export const packageCompileTsc = (
   } as TsConfigCompilerOptions
 
   console.log(chalk.green(`Validating Files: ${entries.length}`))
-  if (verbose) {
+  if (resolvedVerbose) {
     for (const entry of entries) {
       console.log(chalk.grey(`Validating: ${entry}`))
     }
