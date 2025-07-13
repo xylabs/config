@@ -25,7 +25,14 @@ const compileFolder = async (
     console.warn(chalk.yellow(`No entries found in ${srcDir} to compile`))
     return 0
   }
-  const validationResult = packageCompileTsc(entries, srcDir, undefined, undefined, verbose)
+
+  const tscOutDir = ['build', ...srcDir.split('/').slice(1)].join('/')
+
+  if (verbose) {
+    console.log(chalk.gray(`tscOutDir [${tscOutDir}]`))
+  }
+
+  const validationResult = packageCompileTsc(entries, srcDir, 'build', undefined, verbose)
   if (validationResult !== 0) {
     console.error(chalk.red(`Compile:Validation had ${validationResult} errors`))
     return validationResult
@@ -68,7 +75,7 @@ const compileFolder = async (
     console.log(chalk.cyan(`TSUP:build:stop [${srcDir}]`))
   }
 
-  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', 'build', verbose)
+  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', tscOutDir, verbose)
 
   return 0
 }

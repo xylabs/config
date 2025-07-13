@@ -1,3 +1,4 @@
+import { rmSync } from 'node:fs'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'

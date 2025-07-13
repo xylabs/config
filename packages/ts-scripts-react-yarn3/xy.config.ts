@@ -3,8 +3,9 @@ const config: XyTsupConfig = {
   compile: {
     browser: { src: true },
     entryMode: 'all',
-    node: { src: true },
+    node: { 'src/node': true },
   },
+  verbose: true,
 }
 
 // custom - for testing only
