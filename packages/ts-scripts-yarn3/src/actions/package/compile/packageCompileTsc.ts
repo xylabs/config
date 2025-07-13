@@ -28,8 +28,9 @@ export const packageCompileTsc = (
       sourceMap: false,
     })),
     ...compilerOptionsParam,
-    emitDeclarationOnly: false,
-    noEmit: true,
+    outDir: 'build',
+    emitDeclarationOnly: true,
+    noEmit: false,
   } as TsConfigCompilerOptions
 
   console.log(chalk.green(`Validating Files: ${entries.length}`))
@@ -43,7 +44,7 @@ export const packageCompileTsc = (
     const program = createProgramFromConfig({
       basePath: pkg ?? cwd(),
       compilerOptions,
-      files: entries,
+      files: entries.map(entry => `${folder}/${entry}`),
     })
 
     const diagnostics = getPreEmitDiagnostics(program)

@@ -7,7 +7,7 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', op
   let entries: string[] = []
   switch (entryMode) {
     case 'platform': {
-      entries = [`${folder}/index-node.ts`, `${folder}/index-browser.ts`]
+      entries = ['index-node.ts', 'index-browser.ts']
       break
     }
     case 'all': {
@@ -19,7 +19,7 @@ export const buildEntries = (folder: string, entryMode: EntryMode = 'single', op
       break
     }
     default: {
-      entries = [`${folder}/index.ts`]
+      entries = ['index.ts']
       break
     }
   }

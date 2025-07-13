@@ -6,7 +6,7 @@
 .eslintcache
 docs
 node_modules
-
+build
 .pnp.*
 .yarn/*
 !.yarn/patches

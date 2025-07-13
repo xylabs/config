@@ -13,3 +13,4 @@
 .yarn/*
 docs
 node_modules
+build

@@ -33,7 +33,7 @@ export const packageCompileTscTypes = async (
   entries: string[],
   outDir: string,
   platform: 'node' | 'browser' | 'neutral',
-  folder: string = 'src',
+  folder: string = 'build',
 ): Promise<number> => {
   const pkg = process.env.INIT_CWD ?? cwd()
   const srcRoot = `${pkg}/${folder}`
@@ -56,7 +56,9 @@ export const packageCompileTscTypes = async (
   const entryNames = entries.map(entry => entry.split(`${folder}/`).at(-1) ?? entry)
 
   await Promise.all(entryNames.map(async (entryName) => {
-    await bundleDts(`${srcRoot}/${entryName}`, outDir + '/' + entryNameToTypeName(entryName), platform, { compilerOptions, tsconfig: 'tsconfig.json' })
+    const entryTypeName = entryNameToTypeName(entryName)
+    console.log(`Compiling Types: ${srcRoot}/${entryTypeName} to ${outDir}/${entryTypeName}`)
+    await bundleDts(`${srcRoot}/${entryTypeName}`, outDir + '/' + entryTypeName, platform, { compilerOptions, tsconfig: 'tsconfig.json' })
   }))
   return 0
 }

@@ -25,7 +25,7 @@ const compileFolder = async (
     cjsInterop: true,
     clean: true,
     dts: false,
-    entry: entries,
+    entry: entries.map(entry => `${folder}/${entry}`),
     format: ['esm'],
     outDir,
     silent: true,
@@ -60,7 +60,7 @@ const compileFolder = async (
     console.log(`TSUP:build:stop [${folder}]`)
   }
 
-  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', folder)
+  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', 'build')
 
   return 0
 }
