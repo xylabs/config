@@ -1,0 +1,9 @@
+releases:
+  "@xylabs/config": major
+  "@xylabs/eslint-config-flat": major
+  "@xylabs/eslint-config-react-flat": major
+  "@xylabs/ts-scripts-react-yarn3": major
+  "@xylabs/ts-scripts-yarn3": major
+  "@xylabs/tsconfig": major
+  "@xylabs/tsconfig-dom": major
+  "@xylabs/tsconfig-react": major
