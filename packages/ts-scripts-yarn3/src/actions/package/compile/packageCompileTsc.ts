@@ -12,6 +12,7 @@ import {
 import { getCompilerOptions } from './getCompilerOptions.ts'
 
 export const packageCompileTsc = (
+  platform: 'browser' | 'neutral' | 'node',
   entries: string[],
   srcDir: string = 'src',
   outDir: string = 'build',
@@ -32,7 +33,7 @@ export const packageCompileTsc = (
       sourceMap: false,
     })),
     ...compilerOptionsParam,
-    outDir,
+    outDir: `${outDir}/${platform}`,
     emitDeclarationOnly: true,
     noEmit: false,
   } as TsConfigCompilerOptions

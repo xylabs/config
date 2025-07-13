@@ -26,13 +26,13 @@ const compileFolder = async (
     return 0
   }
 
-  const tscOutDir = ['build', ...srcDir.split('/').slice(1)].join('/')
+  const tscOutDir = 'build'
 
   if (verbose) {
     console.log(chalk.gray(`tscOutDir [${tscOutDir}]`))
   }
 
-  const validationResult = packageCompileTsc(entries, srcDir, 'build', undefined, verbose)
+  const validationResult = packageCompileTsc(options?.platform ?? 'neutral', entries, srcDir, tscOutDir, undefined, verbose)
   if (validationResult !== 0) {
     console.error(chalk.red(`Compile:Validation had ${validationResult} errors`))
     return validationResult

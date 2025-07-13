@@ -36,10 +36,11 @@ export const packageCompileTscTypes = async (
   verbose = false,
 ): Promise<number> => {
   if (verbose) {
-    console.log(chalk.cyan(`Compiling Types START: ${entries.length} files to ${outDir} from ${srcDir}`))
+    console.log(chalk.cyan(`Compiling Types START [${platform}]: ${entries.length} files to ${outDir} from ${srcDir}`))
+    console.log(`Entries: ${entries.join(', ')}`)
   }
   const pkg = process.env.INIT_CWD ?? cwd()
-  const srcRoot = `${pkg}/${srcDir}`
+  const srcRoot = `${pkg}/${srcDir}/${platform}`
 
   const entryNameToTypeName = (entry: string): string => {
     const splitEntryName = entry.split('.')
