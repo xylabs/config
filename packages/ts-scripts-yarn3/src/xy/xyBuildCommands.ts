@@ -1,7 +1,7 @@
 import type { Argv } from 'yargs'
 
 import {
-  build, compile, compileTypes, copyAssets, rebuild, recompile,
+  build, compile, copyAssets, rebuild, recompile,
 } from '../actions/index.ts'
 
 export const xyBuildCommands = (args: Argv) => {
@@ -41,24 +41,6 @@ export const xyBuildCommands = (args: Argv) => {
           jobs: argv.jobs as number,
           pkg: argv.package as string,
           target: argv.target as 'esm' | 'cjs',
-          verbose: !!argv.verbose,
-        })
-      },
-    )
-    .command(
-      'compile-types [package]',
-      'Compile types with Typescript',
-      (yargs) => {
-        return yargs.positional('package', { describe: 'Specific package to compile' })
-      },
-      (argv) => {
-        if (argv.verbose) {
-          console.log(`Compiling: ${argv.package ?? 'all'}`)
-        }
-        process.exitCode = compileTypes({
-          incremental: !!argv.incremental,
-          jobs: argv.jobs as number,
-          pkg: argv.package as string,
           verbose: !!argv.verbose,
         })
       },

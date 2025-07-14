@@ -17,6 +17,7 @@ export function getUnlistedDevDependencies(
   let unlistedDevDependencies = 0
   for (const imp of externalSrcImports) {
     if (!distImports.includes(imp)
+      && imp !== name
       && !dependencies.includes(imp)
       && !dependencies.includes(`@types/${imp}`)
       && !peerDependencies.includes(imp)

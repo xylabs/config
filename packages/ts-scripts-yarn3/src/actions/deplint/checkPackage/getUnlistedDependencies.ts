@@ -16,6 +16,7 @@ export function getUnlistedDependencies(
 
   for (const imp of externalDistImports) {
     if (!dependencies.includes(imp)
+      && imp !== name
       && !dependencies.includes(`@types/${imp}`)
       && !peerDependencies.includes(imp)
       && !peerDependencies.includes(`@types/${imp}`)
@@ -29,6 +30,7 @@ export function getUnlistedDependencies(
 
   for (const imp of externalDistTypeImports) {
     if (!dependencies.includes(imp)
+      && imp !== name
       && dependencies.includes(`@types/${imp}`)
       && !peerDependencies.includes(imp)
       && peerDependencies.includes(`@types/${imp}`)
