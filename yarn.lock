@@ -792,6 +792,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/pluginutils@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "@rollup/pluginutils@npm:4.2.1"
+  dependencies:
+    estree-walker: "npm:^2.0.1"
+    picomatch: "npm:^2.2.2"
+  checksum: 10/503a6f0a449e11a2873ac66cfdfb9a3a0b77ffa84c5cad631f5e4bc1063c850710e8d5cd5dab52477c0d66cda2ec719865726dbe753318cd640bab3fff7ca476
+  languageName: node
+  linkType: hard
+
 "@rollup/rollup-android-arm-eabi@npm:4.41.1":
   version: 4.41.1
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.41.1"
@@ -1767,6 +1777,7 @@ __metadata:
     rimraf: "npm:^6.0.1"
     rollup: "npm:^4.44.2"
     rollup-plugin-dts: "npm:^6.2.1"
+    rollup-plugin-inline-svg: "npm:^3.0.3"
     rollup-plugin-node-externals: "npm:^8.0.1"
     sort-package-json: "npm:^3.4.0"
     tsc-prog: "npm:^2.3.0"
@@ -3519,6 +3530,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"estree-walker@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "estree-walker@npm:2.0.2"
+  checksum: 10/b02109c5d46bc2ed47de4990eef770f7457b1159a229f0999a09224d2b85ffeed2d7679cffcff90aeb4448e94b0168feb5265b209cdec29aad50a3d6e93d21e2
+  languageName: node
+  linkType: hard
+
 "estree-walker@npm:^3.0.3":
   version: 3.0.3
   resolution: "estree-walker@npm:3.0.3"
@@ -4081,6 +4099,13 @@ __metadata:
   version: 2.8.9
   resolution: "hosted-git-info@npm:2.8.9"
   checksum: 10/96da7d412303704af41c3819207a09ea2cab2de97951db4cf336bb8bce8d8e36b9a6821036ad2e55e67d3be0af8f967a7b57981203fbfb88bc05cd803407b8c3
+  languageName: node
+  linkType: hard
+
+"html-to-ast@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "html-to-ast@npm:0.0.6"
+  checksum: 10/299cf1f0585ecfadf1f9e3620342fa6541b079f542b1588ec3cf6a5df04afbaa2e015bfc1144ede0f4bf084c53f8f1483ace9366eee6bcfb2e74c5a4911e5113
   languageName: node
   linkType: hard
 
@@ -5686,7 +5711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.3.1":
+"picomatch@npm:^2.2.2, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 10/60c2595003b05e4535394d1da94850f5372c9427ca4413b71210f437f7b2ca091dbd611c45e8b37d10036fa8eade25c1b8951654f9d3973bfa66a2ff4d3b08bc
@@ -6099,6 +6124,18 @@ __metadata:
     "@babel/code-frame":
       optional: true
   checksum: 10/bf101998eb26e6594ccada88545a83af992d3843737a805206f3d448b86c795b04958cfb43fb006b083f78c66e55da1b3780029cceebde3c48c7ff53be4ee7d9
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-inline-svg@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "rollup-plugin-inline-svg@npm:3.0.3"
+  dependencies:
+    "@rollup/pluginutils": "npm:^4.2.1"
+    html-to-ast: "npm:^0.0.6"
+  peerDependencies:
+    rollup: "*"
+  checksum: 10/0c5c37dd58a5863cdd2550ace48a196c0b0be6a37af8b058abaac0da639f03b92911272077d84b1e1c868607b948501a4611656d8d1d2a8c239aea19ad35272f
   languageName: node
   linkType: hard
 

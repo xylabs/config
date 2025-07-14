@@ -4,6 +4,7 @@ import chalk from 'chalk'
 import { rollup } from 'rollup'
 import type { Options } from 'rollup-plugin-dts'
 import dts from 'rollup-plugin-dts'
+import inlineSvg from 'rollup-plugin-inline-svg'
 import nodeExternals from 'rollup-plugin-node-externals'
 import type ts from 'typescript'
 
@@ -11,7 +12,8 @@ export async function bundleDts(inputPath: string, outputPath: string, platform:
   const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
   const bundle = await rollup({
     input: inputPath,
-    plugins: [dts(options), ...nodePlugIns],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    plugins: [dts(options), (inlineSvg as any)(), ...nodePlugIns],
     onwarn(warning, warn) {
       // Ignore certain warnings if needed
       if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
