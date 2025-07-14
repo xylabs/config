@@ -11,7 +11,9 @@ export const buildEntries = (srcDir: string, entryMode: EntryMode = 'single', op
       break
     }
     case 'all': {
-      entries = excludeSpecAndStories ? getAllInputs(srcDir).filter(entry => !entry.includes('.spec.') && !entry.includes('.stories.')) : getAllInputs(srcDir)
+      entries = (excludeSpecAndStories
+        ? getAllInputs(srcDir).filter(entry => !entry.includes('.spec.') && !entry.includes('.stories.'))
+        : getAllInputs(srcDir)).filter(entry => !entry.endsWith('.d.ts'))
       break
     }
     case 'custom': {

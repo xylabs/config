@@ -42,6 +42,7 @@ export const typescriptConfig: Linter.Config = {
     '@stylistic/object-property-newline': ['warn', { allowAllPropertiesOnSameLine: true }],
     '@stylistic/function-call-argument-newline': ['warn', 'consistent'],
     '@stylistic/function-paren-newline': ['warn', 'multiline-arguments'],
+    '@typescript-eslint/triple-slash-reference': ['off'],
     '@stylistic/member-delimiter-style': [
       'error',
       {
