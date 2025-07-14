@@ -1,11 +1,11 @@
-import { rmSync } from 'node:fs'
+import path from 'node:path'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
 import type { TsConfigCompilerOptions } from 'tsc-prog'
 import { createProgramFromConfig } from 'tsc-prog'
 import type { CompilerOptions } from 'typescript'
-import {
+import ts, {
   DiagnosticCategory, formatDiagnosticsWithColorAndContext, getPreEmitDiagnostics, sys,
 } from 'typescript'
 
@@ -15,7 +15,7 @@ export const packageCompileTsc = (
   platform: 'browser' | 'neutral' | 'node',
   entries: string[],
   srcDir: string = 'src',
-  outDir: string = 'build',
+  outDir: string = 'dist',
   compilerOptionsParam?: CompilerOptions,
   verbose: boolean = false,
 ): number => {
@@ -23,6 +23,16 @@ export const packageCompileTsc = (
 
   if (verbose) {
     console.log(chalk.cyan(`Validating code START: ${entries.length} files to ${outDir} from ${srcDir}`))
+  }
+
+  const configFilePath = ts.findConfigFile(
+    './', // search path
+    ts.sys.fileExists,
+    'tsconfig.json',
+  )
+
+  if (configFilePath === undefined) {
+    throw new Error('Could not find tsconfig.json')
   }
 
   const compilerOptions = {
@@ -48,9 +58,11 @@ export const packageCompileTsc = (
   try {
     if (entries.length > 0) {
       const program = createProgramFromConfig({
+        configFilePath,
         basePath: pkg ?? cwd(),
         compilerOptions,
         files: entries.map(entry => `${srcDir}/${entry}`),
+        include: [`${srcDir}/**/*.*`],
       })
 
       const diagnostics = getPreEmitDiagnostics(program)
@@ -73,7 +85,7 @@ export const packageCompileTsc = (
     return 0
   } finally {
     if (verbose) {
-      console.log(chalk.cyan(`Verifying code FINISH: ${entries.length} files to ${outDir} from ${srcDir}`))
+      console.log(chalk.cyan(`Validating code FINISH: ${entries.length} files to ${outDir} from ${srcDir}`))
     }
   }
 }

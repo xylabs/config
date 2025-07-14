@@ -1,5 +1,3 @@
-/// <reference path="../types/test.d.ts" />
-
 export * from '../actions/index.ts'
 export * from '../lib/index.ts'
 

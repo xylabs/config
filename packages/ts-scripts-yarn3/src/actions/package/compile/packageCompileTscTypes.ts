@@ -1,30 +1,42 @@
+import path from 'node:path'
 import { cwd } from 'node:process'
 
 import chalk from 'chalk'
 import { rollup } from 'rollup'
 import type { Options } from 'rollup-plugin-dts'
 import dts from 'rollup-plugin-dts'
-import inlineSvg from 'rollup-plugin-inline-svg'
 import nodeExternals from 'rollup-plugin-node-externals'
-import type ts from 'typescript'
+
+import { getCompilerOptions } from './getCompilerOptions.ts'
 
 export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options, verbose = false) {
-  const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
-  const bundle = await rollup({
-    input: inputPath,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    plugins: [dts(options), (inlineSvg as any)(), ...nodePlugIns],
-    onwarn(warning, warn) {
-      // Ignore certain warnings if needed
-      if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
-      warn(warning)
-    },
-  })
+  // Find the tsconfig.json path
+  const pkg = process.env.INIT_CWD ?? cwd()
+  const tsconfigPath = path.resolve(pkg, 'tsconfig.json')
 
-  await bundle.write({
-    file: outputPath,
-    format: 'es',
-  })
+  const nodePlugIns = platform === 'node' ? [nodeExternals()] : []
+  try {
+    const bundle = await rollup({
+      input: inputPath,
+
+      plugins: [dts({
+        ...options, tsconfig: tsconfigPath, compilerOptions: { emitDeclarationOnly: true, noEmit: false },
+
+      }), ...nodePlugIns],
+      onwarn(warning, warn) {
+      // Ignore certain warnings if needed
+        if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
+        warn(warning)
+      },
+    })
+    await bundle.write({
+      file: outputPath,
+      format: 'es',
+    })
+  } catch (ex) {
+    console.error(ex)
+  }
+
   if (verbose) {
     console.log(`Bundled declarations written to ${outputPath}`)
   }
@@ -50,21 +62,20 @@ export const packageCompileTscTypes = async (
     return [...splitEntryName.slice(0, -1), newEntryExtension].join('.')
   }
 
-  const compilerOptions = {
+  const compilerOptions = getCompilerOptions({
     removeComments: false,
     skipDefaultLibCheck: true,
     skipLibCheck: true,
     sourceMap: false,
     emitDeclarationOnly: false,
     noEmit: true,
-  } as ts.CompilerOptions
+  })
 
   const entryNames = entries.map(entry => entry.split(`${srcDir}/`).at(-1) ?? entry)
 
   await Promise.all(entryNames.map(async (entryName) => {
     const entryTypeName = entryNameToTypeName(entryName)
-    console.log(`Compiling Types: ${srcRoot}/${entryTypeName} to ${outDir}/${entryTypeName}`)
-    await bundleDts(`${srcRoot}/${entryTypeName}`, `${outDir}/${entryTypeName}`, platform, { compilerOptions, tsconfig: 'tsconfig.json' }, verbose)
+    await bundleDts(`${srcRoot}/${entryTypeName}`, `${outDir}/${entryTypeName}`, platform, { compilerOptions }, verbose)
   }))
 
   if (verbose) {

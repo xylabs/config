@@ -5,7 +5,6 @@ const config: XyTsupConfig = {
     browser: { src: true },
     entryMode: 'all',
   },
-  verbose: true,
 }
 
 // custom - for testing only

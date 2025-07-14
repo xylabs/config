@@ -26,7 +26,7 @@ const compileFolder = async (
     return 0
   }
 
-  const tscOutDir = 'build'
+  const tscOutDir = 'dist'
 
   if (verbose) {
     console.log(chalk.gray(`tscOutDir [${tscOutDir}]`))
@@ -38,10 +38,10 @@ const compileFolder = async (
     return validationResult
   }
 
-  const optionsParams: Options = {
+  const optionsParams: Options = tsupOptions([{
     bundle: true,
     cjsInterop: true,
-    clean: true,
+    clean: false,
     dts: false,
     format: ['esm'],
     outDir,
@@ -51,7 +51,7 @@ const compileFolder = async (
     tsconfig: 'tsconfig.json',
     ...options,
     entry: entries.map(entry => `${srcDir}/${entry}`),
-  }
+  }])
 
   const optionsResult = defineConfig(optionsParams)
 
@@ -82,7 +82,7 @@ const compileFolder = async (
 
 export const tsupOptions = (options: Options[] = []): Options => {
   const standardLoaders: Record<string, Loader> = {
-    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'copy', '.webp': 'copy',
+    '.gif': 'copy', '.html': 'copy', '.jpg': 'copy', '.json': 'json', '.png': 'copy', '.svg': 'text', '.webp': 'copy',
   }
 
   const standardOptions: Options = {
