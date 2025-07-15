@@ -9,7 +9,7 @@ import nodeExternals from 'rollup-plugin-node-externals'
 
 import { getCompilerOptions } from './getCompilerOptions.ts'
 
-const ignoredWarningCodes = new Set(['EMPTY_BUNDLE'])
+const ignoredWarningCodes = new Set(['EMPTY_BUNDLE', 'UNRESOLVED_IMPORT'])
 
 export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options, verbose = false) {
   // Find the tsconfig.json path
