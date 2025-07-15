@@ -9,6 +9,8 @@ import nodeExternals from 'rollup-plugin-node-externals'
 
 import { getCompilerOptions } from './getCompilerOptions.ts'
 
+const ignoredWarningCodes = new Set(['EMPTY_BUNDLE'])
+
 export async function bundleDts(inputPath: string, outputPath: string, platform: 'node' | 'browser' | 'neutral', options?: Options, verbose = false) {
   // Find the tsconfig.json path
   const pkg = process.env.INIT_CWD ?? cwd()
@@ -24,8 +26,11 @@ export async function bundleDts(inputPath: string, outputPath: string, platform:
 
       }), ...nodePlugIns],
       onwarn(warning, warn) {
-      // Ignore certain warnings if needed
-        if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
+        if (ignoredWarningCodes.has(warning.code ?? '')) {
+          return
+        }
+        console.warn(chalk.yellow(`[${warning.code}] ${warning.message}`))
+        console.warn(chalk.gray(inputPath))
         warn(warning)
       },
     })
@@ -34,7 +39,9 @@ export async function bundleDts(inputPath: string, outputPath: string, platform:
       format: 'es',
     })
   } catch (ex) {
-    console.error(ex)
+    const error = ex as Error
+    console.warn(chalk.red(error))
+    console.warn(chalk.gray(inputPath))
   }
 
   if (verbose) {

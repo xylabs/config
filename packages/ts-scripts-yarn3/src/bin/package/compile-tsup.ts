@@ -4,7 +4,7 @@ import chalk from 'chalk'
 
 import { packageCompileTsup } from '../../actions/index.ts'
 
-packageCompileTsup({ verbose: true })
+packageCompileTsup()
   .then(value => (process.exitCode = value))
   .catch((reason) => {
     console.error(chalk.red(reason))

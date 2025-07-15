@@ -36,7 +36,7 @@ export const relint = ({
     : relintAllPackages({ verbose, incremental })
 }
 
-export const relintAllPackages = ({ verbose = true, incremental }: RelintParams = {}) => {
+export const relintAllPackages = ({ verbose = false, incremental }: RelintParams = {}) => {
   console.log(chalk.gray(`${'Relint'} [All-Packages]`))
   const start = Date.now()
   const verboseOptions = verbose ? ['--verbose'] : ['--no-verbose']

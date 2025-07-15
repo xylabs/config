@@ -3,7 +3,7 @@
 import { packageCompileTsup } from '@xylabs/ts-scripts-yarn3'
 import chalk from 'chalk'
 
-packageCompileTsup({ verbose: true })
+packageCompileTsup({ verbose: false })
   .then(value => (process.exitCode = value))
   .catch((reason) => {
     console.error(chalk.red(reason))
