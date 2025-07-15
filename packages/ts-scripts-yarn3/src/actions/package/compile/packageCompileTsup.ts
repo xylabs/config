@@ -12,7 +12,9 @@ import type { XyTsupConfig } from './XyConfig.ts'
 const compileFolder = async (
   srcDir: string,
   entries: string[],
+  buildDir: string,
   options?: Options,
+  bundleTypes = false,
   verbose?: boolean,
 ): Promise<number> => {
   const outDir = options?.outDir ?? 'dist'
@@ -26,13 +28,11 @@ const compileFolder = async (
     return 0
   }
 
-  const tscOutDir = 'dist'
-
   if (verbose) {
-    console.log(chalk.gray(`tscOutDir [${tscOutDir}]`))
+    console.log(chalk.gray(`buildDir [${buildDir}]`))
   }
 
-  const validationResult = packageCompileTsc(options?.platform ?? 'neutral', entries, srcDir, tscOutDir, undefined, verbose)
+  const validationResult = packageCompileTsc(options?.platform ?? 'neutral', entries, srcDir, buildDir, undefined, verbose)
   if (validationResult !== 0) {
     console.error(chalk.red(`Compile:Validation had ${validationResult} errors`))
     return validationResult
@@ -74,8 +74,9 @@ const compileFolder = async (
   if (verbose) {
     console.log(chalk.cyan(`TSUP:build:stop [${srcDir}]`))
   }
-
-  await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', tscOutDir, verbose)
+  if (bundleTypes) {
+    await packageCompileTscTypes(entries, outDir, options?.platform ?? 'neutral', buildDir, verbose)
+  }
 
   return 0
 }
@@ -101,6 +102,8 @@ export const tsupOptions = (options: Options[] = []): Options => {
 export const packageCompileTsup = async (config?: XyTsupConfig) => {
   const compile = config?.compile
   const verbose = config?.verbose ?? false
+  const outDirAsBuildDir = compile?.outDirAsBuildDir ?? true
+  const bundleTypes = compile?.bundleTypes ?? false
   if (verbose) {
     console.log('Compiling with TSUP')
   }
@@ -116,14 +119,19 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.node?.esbuildOptions === 'object' ? compile?.node?.esbuildOptions : {}
           const entry = buildEntries(srcDir, compile?.entryMode, options, true, verbose)
+          const platform = 'node'
+          const rootOutDir = (optionsObject.outDir ?? 'dist')
+          const outDir = rootOutDir + '/' + platform
           return typeof srcDir === 'string'
             ? await compileFolder(
                 srcDir,
                 entry,
+                outDirAsBuildDir ? rootOutDir : 'build',
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'node', outDir: optionsObject.outDir ?? 'dist/node' }]),
+                  { platform: 'node', outDir }]),
+                bundleTypes,
                 verbose,
               )
             : 0
@@ -136,14 +144,19 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.browser?.esbuildOptions === 'object' ? compile?.browser?.esbuildOptions : {}
           const entry = buildEntries(srcDir, compile?.entryMode, options, true, verbose)
+          const platform = 'browser'
+          const rootOutDir = (optionsObject.outDir ?? 'dist')
+          const outDir = rootOutDir + '/' + platform
           return typeof srcDir === 'string'
             ? await compileFolder(
                 srcDir,
                 entry,
+                outDirAsBuildDir ? rootOutDir : 'build',
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'browser', outDir: optionsObject.outDir ?? 'dist/browser' }]),
+                  { platform: 'browser', outDir }]),
+                bundleTypes,
                 verbose,
               )
             : 0
@@ -156,14 +169,19 @@ export const packageCompileTsup = async (config?: XyTsupConfig) => {
           const optionsObject: Options = typeof options === 'object' ? options : {}
           const inEsBuildOptions = typeof compile?.neutral?.esbuildOptions === 'object' ? compile?.neutral?.esbuildOptions : {}
           const entry = buildEntries(srcDir, compile?.entryMode, options, true, verbose)
+          const platform = 'neutral'
+          const rootOutDir = (optionsObject.outDir ?? 'dist')
+          const outDir = rootOutDir + '/' + platform
           return typeof srcDir === 'string'
             ? await compileFolder(
                 srcDir,
                 entry,
+                outDirAsBuildDir ? rootOutDir : 'build',
                 tsupOptions([inEsBuildOptions,
                   compile?.tsup?.options ?? {},
                   (typeof options === 'object' ? options : {}),
-                  { platform: 'neutral', outDir: optionsObject.outDir ?? 'dist/neutral' }]),
+                  { platform: 'neutral', outDir }]),
+                bundleTypes,
                 verbose,
               )
             : 0

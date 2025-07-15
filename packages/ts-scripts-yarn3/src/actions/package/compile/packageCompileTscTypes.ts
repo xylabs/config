@@ -22,7 +22,11 @@ export async function bundleDts(inputPath: string, outputPath: string, platform:
       input: inputPath,
 
       plugins: [dts({
-        ...options, tsconfig: tsconfigPath, compilerOptions: { emitDeclarationOnly: true, noEmit: false },
+        ...options,
+        tsconfig: tsconfigPath,
+        compilerOptions: {
+          emitDeclarationOnly: true, noEmit: false, declarationMap: true,
+        },
 
       }), ...nodePlugIns],
       onwarn(warning, warn) {
@@ -73,8 +77,8 @@ export const packageCompileTscTypes = async (
     removeComments: false,
     skipDefaultLibCheck: true,
     skipLibCheck: true,
-    sourceMap: false,
-    emitDeclarationOnly: false,
+    declarationMap: true,
+    emitDeclarationOnly: true,
     noEmit: true,
   })
 

@@ -29,8 +29,10 @@ export interface DynamicShareConfig extends PathConfig {}
 export interface LiveShareConfig extends PathConfig {}
 
 export interface CompileConfig {
+  bundleTypes?: boolean
   /** @param entryMode all, single, custom, platform, or auto */
   entryMode?: EntryMode
+  outDirAsBuildDir?: boolean
 }
 
 export type PackageCompileTsupConfig = CompileConfig & {
