@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "7.0.0-rc.27",
+  "version": "7.0.0",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@eslint/json": "^0.13.0",
     "@types/json-schema": "^7.0.15",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.0.14",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
@@ -64,6 +64,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "stableVersion": "6.5.14"
+  }
 }
