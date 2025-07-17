@@ -4,9 +4,9 @@ import chalk from 'chalk'
 import type { Message } from 'publint'
 import sortPackageJson from 'sort-package-json'
 
-export interface PackagePublintParams { verbose?: boolean }
+export interface PackagePublintParams { strict?: boolean; verbose?: boolean }
 
-export const packagePublint = async (params?: PackagePublintParams) => {
+export const packagePublint = async ({ strict = true, verbose = false }: PackagePublintParams = {}) => {
   const pkgDir = process.env.INIT_CWD
 
   const sortedPkg = sortPackageJson(await fs.readFile(`${pkgDir}/package.json`, 'utf8'))
@@ -22,7 +22,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
   const { messages } = await publint({
     level: 'suggestion',
     pkgDir,
-    strict: true,
+    strict,
   })
 
   // eslint-disable-next-line import-x/no-internal-modules
@@ -67,7 +67,7 @@ export const packagePublint = async (params?: PackagePublintParams) => {
     }
   }
 
-  if (params?.verbose) {
+  if (verbose) {
     console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))
   }
 
