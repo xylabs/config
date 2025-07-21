@@ -32,6 +32,7 @@ export interface CompileConfig {
   bundleTypes?: boolean
   /** @param entryMode all, single, custom, platform, or auto */
   entryMode?: EntryMode
+  /** @param when building types with tsc, should it use the outDir to write to? */
   outDirAsBuildDir?: boolean
 }
 
@@ -40,6 +41,7 @@ export type PackageCompileTsupConfig = CompileConfig & {
   neutral?: Record<string, Options | boolean>
   node?: Record<string, Options | boolean>
   tsup?: { options?: Options }
+  verbose?: boolean
 }
 
 export type PackageCompileTscConfig = CompileConfig & { mode: 'tsc' }
@@ -48,7 +50,10 @@ export interface XyConfigBase {
   compile?: CompileConfig
   dynamicShare?: DynamicShareConfig
   liveShare?: LiveShareConfig
+
+  /** @deprecated */
   publint?: boolean
+
   verbose?: boolean
 }
 
@@ -56,4 +61,25 @@ export interface XyTsupConfig extends XyConfigBase { compile?: PackageCompileTsu
 
 export interface XyTscConfig extends XyConfigBase { compile?: PackageCompileTscConfig }
 
-export type XyConfig = XyTsupConfig | XyTscConfig
+export type XyConfigLegacy = XyTsupConfig | XyTscConfig
+
+export type XyConfig = XyConfigLegacy & {
+  dev?: {
+    build?: {
+      clean?: boolean /* default: true */
+      compile?: boolean /* default: true */
+      deplint?: boolean /* default: true */
+      gendocs?: boolean /* default: false */
+      gitlint?: boolean /* default: true */
+      knip?: boolean /* default: true */
+      license?: boolean /* default: true */
+      lint?: boolean /* default: true */
+      publint?: boolean /* default: true */
+      statics?: boolean /* default: true */
+      verbose?: boolean
+    }
+    compile?: PackageCompileTsupConfig
+    verbose?: boolean
+  }
+  verbose?: boolean
+}

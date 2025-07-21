@@ -21,7 +21,7 @@ const ExitCodes = {
 export const packageGenDocs = async () => {
   const pkg = process.env.INIT_CWD
 
-  if (pkg && !existsSync(path.join(pkg, 'typedoc.json'))) {
+  if (pkg !== undefined && !existsSync(path.join(pkg, 'typedoc.json'))) {
     return
   }
 

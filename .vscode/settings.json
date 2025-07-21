@@ -51,6 +51,7 @@
     "deepmerge",
     "deplint",
     "Dupdeps",
+    "gendocs",
     "gitlint",
     "ignorecase",
     "Malloced",
