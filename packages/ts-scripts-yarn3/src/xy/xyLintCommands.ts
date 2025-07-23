@@ -77,7 +77,7 @@ export const xyLintCommands = (args: Argv) => {
         if (argv.verbose) console.log('Deplint')
         const start = Date.now()
         process.exitCode = deplint({
-          pkg: argv.package as string, deps: !!argv.deps, devDeps: !!argv.devDeps, peerDeps: !!argv.peerDeps,
+          pkg: argv.package as string, deps: !!argv.deps, devDeps: !!argv.devDeps, peerDeps: !!argv.peerDeps, verbose: !!argv.verbose,
         })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },

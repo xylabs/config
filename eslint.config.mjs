@@ -9,7 +9,8 @@ export default [
     rules:
     {
       'unicorn/no-process-exit': ['off'],
-      '@typescript-eslint/triple-slash-reference': ['off']
+      '@typescript-eslint/triple-slash-reference': ['off'],
+      '@typescript-eslint/strict-boolean-expressions': ['off'],
     }
   },
 ]
