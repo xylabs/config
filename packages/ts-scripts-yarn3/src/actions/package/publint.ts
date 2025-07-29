@@ -1,10 +1,28 @@
 import { promises as fs } from 'node:fs'
 
 import chalk from 'chalk'
-import type { Message } from 'publint'
 import sortPackageJson from 'sort-package-json'
 
 export interface PackagePublintParams { strict?: boolean; verbose?: boolean }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const customPubLint = (pkg: any): [number, number] => {
+  let errorCount = 0
+  let warningCount = 0
+  if (pkg.files === undefined) {
+    console.error(chalk.yellow('Publint [custom]: "files" field is missing'))
+    warningCount++
+  }
+  if (pkg.main !== undefined) {
+    console.error(chalk.yellow('Publint [custom]: "main" field is deprecated, use "exports" instead'))
+    warningCount++
+  }
+  if (pkg.sideEffects !== false) {
+    console.error(chalk.yellow('Publint [custom]: "sideEffects" field should be set to false'))
+    warningCount++
+  }
+  return [errorCount, warningCount]
+}
 
 export const packagePublint = async ({ strict = true, verbose = false }: PackagePublintParams = {}) => {
   const pkgDir = process.env.INIT_CWD
@@ -28,29 +46,7 @@ export const packagePublint = async ({ strict = true, verbose = false }: Package
   // eslint-disable-next-line import-x/no-internal-modules
   const { formatMessage } = await import('publint/utils')
 
-  const validMessage = (_message: Message): boolean => {
-    return true
-    /* try {
-      const value = getValueFromPath(pkg, message.path)
-      switch (message.code) {
-        case 'FILE_INVALID_FORMAT':
-          return !message.args?.actualFilePath?.includes('dist/browser') && !value?.includes('dist/browser')
-        case 'EXPORT_TYPES_INVALID_FORMAT':
-          return !`${value}`.includes('dist/browser')
-        default:
-          return true
-      }
-    } catch (ex) {
-      const error = ex as Error
-      console.error(chalk.red(`validMessage Excepted: ${error.message}`))
-      console.error(chalk.gray(JSON.stringify(error.stack)))
-      return true
-    } */
-  }
-
-  // we filter out invalid file formats for the esm folder since it is intentionally done
-  const validMessages = messages.filter(validMessage)
-  for (const message of validMessages) {
+  for (const message of messages) {
     switch (message.type) {
       case 'error': {
         console.error(chalk.red(`[${message.code}] ${formatMessage(message, pkg)}`))
@@ -67,9 +63,11 @@ export const packagePublint = async ({ strict = true, verbose = false }: Package
     }
   }
 
+  const [errorCount, warningCount] = customPubLint(pkg)
+
   if (verbose) {
-    console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${validMessages.length}]`))
+    console.log(chalk.gray(`Publint [Finish]: ${pkgDir} [${messages.length + errorCount + warningCount} messages]`))
   }
 
-  return validMessages.filter(message => message.type === 'error').length
+  return messages.filter(message => message.type === 'error').length + errorCount
 }

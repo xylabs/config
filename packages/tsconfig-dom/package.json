@@ -27,6 +27,7 @@
   },
   "sideEffects": false,
   "type": "module",
+  "module": "./tsconfig.json",
   "main": "./tsconfig.json",
   "files": [
     "README.md",

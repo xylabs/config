@@ -28,6 +28,7 @@
   "sideEffects": false,
   "type": "module",
   "main": "./tsconfig.json",
+  "module": "./tsconfig.json",
   "files": [
     "dist",
     "types",
