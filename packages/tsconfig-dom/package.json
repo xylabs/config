@@ -27,8 +27,8 @@
   },
   "sideEffects": false,
   "type": "module",
-  "module": "./tsconfig.json",
   "main": "./tsconfig.json",
+  "module": "./tsconfig.json",
   "files": [
     "README.md",
     "LICENSE"

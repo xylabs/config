@@ -10,15 +10,20 @@ const customPubLint = (pkg: any): [number, number] => {
   let errorCount = 0
   let warningCount = 0
   if (pkg.files === undefined) {
-    console.error(chalk.yellow('Publint [custom]: "files" field is missing'))
+    console.warn(chalk.yellow('Publint [custom]: "files" field is missing'))
     warningCount++
   }
   if (pkg.main !== undefined) {
-    console.error(chalk.yellow('Publint [custom]: "main" field is deprecated, use "exports" instead'))
+    console.warn(chalk.yellow('Publint [custom]: "main" field is deprecated, use "exports" instead'))
     warningCount++
   }
   if (pkg.sideEffects !== false) {
-    console.error(chalk.yellow('Publint [custom]: "sideEffects" field should be set to false'))
+    console.warn(chalk.yellow('Publint [custom]: "sideEffects" field should be set to false'))
+    warningCount++
+  }
+  if (pkg.resolutions !== undefined) {
+    console.warn(chalk.yellow('Publint [custom]: "resolutions" in use'))
+    console.warn(chalk.gray(JSON.stringify(pkg.resolutions, null, 2)))
     warningCount++
   }
   return [errorCount, warningCount]

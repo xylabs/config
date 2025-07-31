@@ -75,7 +75,7 @@
     "parse-git-config": "^3.0.0",
     "picomatch": "^4.0.3",
     "publint": "^0.3.12",
-    "rollup": "^4.46.1",
+    "rollup": "^4.46.2",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-node-externals": "^8.0.1",
     "sort-package-json": "^3.4.0",
@@ -96,7 +96,7 @@
     "knip": "^5.62.0",
     "rimraf": "^6.0.1",
     "types-package-json": "^2.0.39",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
     "typescript": "^5"
