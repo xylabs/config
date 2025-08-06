@@ -37,6 +37,7 @@
     "package-compile": "echo Compiled"
   },
   "dependencies": {
+    "@xylabs/tsconfig": "workspace:^",
     "@xylabs/tsconfig-dom": "workspace:^"
   },
   "devDependencies": {
