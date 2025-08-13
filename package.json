@@ -43,23 +43,20 @@
     "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common"
   },
-  "resolutions": {
-    "typescript": "~5.8.3"
-  },
   "devDependencies": {
-    "@eslint/json": "^0.13.1",
-    "@types/json-schema": "^7.0.15",
-    "@types/node": "^24.2.0",
+    "@eslint/json": "~0.13.1",
+    "@types/json-schema": "~7.0.15",
+    "@types/node": "~24.2.1",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "dotenv": "^17.2.1",
-    "eslint": "^9.32.0",
-    "eslint-import-resolver-typescript": "^4.4.4",
-    "knip": "^5.62.0",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "dotenv": "~17.2.1",
+    "eslint": "~9.33.0",
+    "eslint-import-resolver-typescript": "~4.4.4",
+    "knip": "~5.62.0",
+    "rimraf": "~6.0.1",
+    "typescript": "~5.9.2",
+    "vitest": "~3.2.4"
   },
   "packageManager": "yarn@4.9.2",
   "engines": {

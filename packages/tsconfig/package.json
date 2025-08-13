@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "tslib": "^2.8.1"
+    "tslib": "~2.8.1"
   },
   "publishConfig": {
     "access": "public"

@@ -50,16 +50,16 @@
   ],
   "dependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "chalk": "^5.5.0"
+    "chalk": "~5.5.0"
   },
   "devDependencies": {
-    "@types/node": "^24.2.0",
-    "@types/yargs": "^17.0.33",
+    "@types/node": "~24.2.1",
+    "@types/yargs": "~17.0.33",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "publint": "^0.3.12",
+    "publint": "~0.3.12",
     "tsup": "8.5.0",
-    "typescript": "^5.9.2"
+    "typescript": "~5.9.2"
   },
   "engines": {
     "node": ">=14.16"
