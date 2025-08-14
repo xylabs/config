@@ -48,7 +48,7 @@ export const lintAllPackages = ({ fix = false }: LintParams = {}) => {
   const fixOptions = fix ? ['--fix'] : []
 
   const result = runSteps(`${fix ? 'Fix' : 'Lint'}  [All-Packages]`, [
-    ['yarn', ['eslint', ...fixOptions]],
+    ['yarn', ['eslint', '--cache', '--cache-location', '.eslintcache', '--cache-strategy', 'content', ...fixOptions]],
   ])
   console.log(chalk.gray(`${fix ? 'Fixed in' : 'Linted in'} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`))
   return result
