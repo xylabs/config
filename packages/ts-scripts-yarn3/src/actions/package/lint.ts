@@ -73,8 +73,11 @@ export const packageLint = async (fix = false, verbose = false, cache = true) =>
   })
 
   const files = getFiles(cwd(), ignoreFolders)
+  console.log(chalk.green(`Linting ${pkg} [files = ${files.length}]`))
   if (verbose) {
-    console.log(chalk.green(`Linting ${pkg} [files = ${files.length}]`))
+    for (const file of files) {
+      console.log(chalk.gray(`\t${file}`))
+    }
   }
   const lintResults = await engine.lintFiles(files)
 
