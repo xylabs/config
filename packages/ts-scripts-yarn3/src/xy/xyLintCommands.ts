@@ -44,8 +44,12 @@ export const xyLintCommands = (args: Argv) => {
         const start = Date.now()
         process.exitCode
           = argv.fix
-            ? fix({ pkg: argv.package, cache: argv.cache })
-            : lint({ pkg: argv.package, cache: argv.cache })
+            ? fix({
+                pkg: argv.package, cache: argv.cache, verbose: !!argv.verbose,
+              })
+            : lint({
+                pkg: argv.package, cache: argv.cache, verbose: !!argv.verbose,
+              })
         console.log(chalk.blue(`Finished in ${Date.now() - start}ms`))
       },
     )

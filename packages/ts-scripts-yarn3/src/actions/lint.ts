@@ -15,7 +15,9 @@ export interface LintPackageParams {
   verbose?: boolean
 }
 
-export const lintPackage = ({ pkg, fix }: LintParams & Required<Pick<LintParams, 'pkg'>>) => {
+export const lintPackage = ({
+  pkg, fix, verbose,
+}: LintParams & Required<Pick<LintParams, 'pkg'>>) => {
   console.log(chalk.gray(`${fix ? 'Fix' : 'Lint'} [${pkg}]`))
   const start = Date.now()
 
@@ -23,7 +25,7 @@ export const lintPackage = ({ pkg, fix }: LintParams & Required<Pick<LintParams,
     ['yarn', ['workspace',
       pkg,
       'run',
-      fix ? 'package-fix' : 'package-lint',
+      fix ? 'package-fix' : verbose ? 'package-lint-verbose' : 'package-lint',
     ]],
   ])
   console.log(chalk.gray(`${fix ? 'Fixed in' : 'Linted in'} [${chalk.magenta(((Date.now() - start) / 1000).toFixed(2))}] ${chalk.gray('seconds')}`))
@@ -37,7 +39,9 @@ export const lint = ({
     ? lintAllPackages({
         verbose, incremental, fix,
       })
-    : lintPackage({ pkg, fix })
+    : lintPackage({
+        pkg, fix, verbose,
+      })
 }
 
 export const lintAllPackages = ({ fix = false }: LintParams = {}) => {
