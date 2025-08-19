@@ -40,7 +40,7 @@ async function getRootESLintConfig() {
 
 function getFiles(dir: string, ignoreFolders: string[]): string[] {
   const currentDirectory = cwd()
-  const subDirectory = dir.split(currentDirectory)[1]
+  const subDirectory = dir.split(currentDirectory)[1]?.split('/')[1]
   if (ignoreFolders.includes(subDirectory)) return []
   return readdirSync(dir, { withFileTypes: true })
     .flatMap((dirent) => {
