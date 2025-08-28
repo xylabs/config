@@ -75,7 +75,7 @@
     "parse-git-config": "~3.0.0",
     "picomatch": "~4.0.3",
     "publint": "~0.3.12",
-    "rollup": "~4.46.3",
+    "rollup": "~4.49.0",
     "rollup-plugin-dts": "~6.2.3",
     "rollup-plugin-node-externals": "~8.0.1",
     "sort-package-json": "~3.4.0",
