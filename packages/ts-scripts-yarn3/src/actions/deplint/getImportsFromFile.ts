@@ -5,6 +5,23 @@ import ts from 'typescript'
 
 import { getBasePackageName } from './getBasePackageName.ts'
 
+export function isTypeOnlyImportClause(clause?: ts.ImportClause): boolean {
+  if (clause === undefined) {
+    return false
+  }
+  // Newer TS: clause.phaseModifier -> token or number
+  if ('phaseModifier' in clause) {
+    const mod = clause.phaseModifier
+    // handle number enum or token node with .kind
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const kind: number | undefined = typeof mod === 'number' ? mod : (mod as any)?.kind
+    return kind === ts.SyntaxKind.TypeKeyword
+  }
+  // Older TS fallback
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (clause as any).isTypeOnly
+}
+
 export function getImportsFromFile(filePath: string, importPaths: Record<string, string[]>, typeImportPaths: Record<string, string[]>) {
   const sourceCode = fs.readFileSync(filePath, 'utf8')
 
@@ -26,7 +43,7 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
   function visit(node: ts.Node) {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleSpecifier = (node.moduleSpecifier)?.getFullText()
-      const isTypeImport = ts.isImportDeclaration(node) ? (node.importClause?.isTypeOnly ?? false) : false
+      const isTypeImport = ts.isImportDeclaration(node) ? isTypeOnlyImportClause(node.importClause) : false
       if (typeof moduleSpecifier === 'string') {
         const trimmed = moduleSpecifier.replaceAll("'", '').replaceAll('"', '').trim()
         // we are determining if the type import is being imported in an exported d.ts file

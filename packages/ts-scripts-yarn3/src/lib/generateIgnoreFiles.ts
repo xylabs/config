@@ -8,7 +8,7 @@ import {
 
 const localeCompare = (a: string, b: string) => a.localeCompare(b)
 
-const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].sort(localeCompare)
+const mergeEntries = (a: string[], b: string[]): string[] => [...union(a, b)].toSorted(localeCompare)
 
 export const generateIgnoreFiles = (filename: string, pkg?: string) => {
   console.log(chalk.green(`Generate ${filename} Files`))
