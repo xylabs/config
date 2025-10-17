@@ -87,7 +87,7 @@
   "devDependencies": {
     "@types/eslint": "~9.6.1",
     "@types/license-checker": "~25.0.6",
-    "@types/node": "~24.5.2",
+    "@types/node": "~24.8.1",
     "@types/parse-git-config": "~3.0.4",
     "@types/picomatch": "~4.0.2",
     "@types/yargs": "~17.0.33",
