@@ -38,18 +38,18 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@eslint-react/eslint-plugin": "~2.0.2",
-    "@typescript-eslint/parser": "~8.45.0",
+    "@eslint-react/eslint-plugin": "~2.3.1",
+    "@typescript-eslint/parser": "~8.46.3",
     "@xylabs/eslint-config-flat": "workspace:^",
     "eslint-plugin-react": "~7.37.5",
-    "eslint-plugin-react-refresh": "~0.4.22",
-    "globals": "~16.4.0"
+    "eslint-plugin-react-refresh": "~0.4.24",
+    "globals": "~16.5.0"
   },
   "devDependencies": {
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "eslint": "~9.36.0",
-    "typescript": "~5.9.2"
+    "eslint": "~9.39.1",
+    "typescript": "~5.9.3"
   },
   "peerDependencies": {
     "eslint": "~9"

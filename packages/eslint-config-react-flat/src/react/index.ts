@@ -11,7 +11,6 @@ export const reactConfig = {
   plugins: {
     'react': reactPlugin,
     'react-refresh': eslintReactRefreshPlugin,
-    ...eslintReactPlugin.configs.recommended.plugins,
   },
   settings: { react: { version: 'detect' } },
   languageOptions: {

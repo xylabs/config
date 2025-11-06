@@ -44,19 +44,19 @@
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common"
   },
   "devDependencies": {
-    "@eslint/json": "~0.13.2",
+    "@eslint/json": "~0.14.0",
     "@types/json-schema": "~7.0.15",
-    "@types/node": "~24.5.2",
+    "@types/node": "~24.10.0",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "dotenv": "~17.2.2",
-    "eslint": "~9.36.0",
+    "dotenv": "~17.2.3",
+    "eslint": "~9.39.1",
     "eslint-import-resolver-typescript": "~4.4.4",
-    "knip": "~5.64.1",
-    "rimraf": "~6.0.1",
-    "typescript": "~5.9.2",
-    "vitest": "~3.2.4"
+    "knip": "~5.67.1",
+    "rimraf": "~6.1.0",
+    "typescript": "~5.9.3",
+    "vitest": "~4.0.7"
   },
   "packageManager": "yarn@4.9.2",
   "engines": {

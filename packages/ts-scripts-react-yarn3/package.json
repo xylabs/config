@@ -53,13 +53,13 @@
     "chalk": "~5.6.2"
   },
   "devDependencies": {
-    "@types/node": "~24.5.2",
-    "@types/yargs": "~17.0.33",
+    "@types/node": "~24.10.0",
+    "@types/yargs": "~17.0.34",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "publint": "~0.3.13",
+    "publint": "~0.3.15",
     "tsup": "8.5.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.3"
   },
   "engines": {
     "node": ">=14.16"
