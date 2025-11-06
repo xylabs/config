@@ -1545,9 +1545,9 @@ __metadata:
     eslint-plugin-workspaces: "npm:~0.11.0"
     typescript: "npm:~5.9.3"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ~8.32.1
-    "@typescript-eslint/parser": ~8.32.1
-    eslint: ~9
+    "@typescript-eslint/eslint-plugin": ^8
+    "@typescript-eslint/parser": ^8
+    eslint: ^9
   languageName: unknown
   linkType: soft
 
