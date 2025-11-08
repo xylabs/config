@@ -31,8 +31,8 @@ export const reactConfig = {
     globals: { ...globals.browser },
   },
   rules: {
-    ...reactDomPlugin.configs.recommended.rules,
-    ...reactPlugin.configs.recommended.rules,
+    ...reactPlugin.configs['strict-typescript'].rules,
+    ...reactDomPlugin.configs.strict.rules,
     ...reactWebApiPlugin.configs.recommended.rules,
     ...reactHooksExtraPlugin.configs.recommended.rules,
     ...reactNamingConventionPlugin.configs.recommended.rules,
