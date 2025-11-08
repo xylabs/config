@@ -75,7 +75,7 @@
     "parse-git-config": "~3.0.0",
     "picomatch": "~4.0.3",
     "publint": "~0.3.15",
-    "rollup": "~4.52.5",
+    "rollup": "~4.53.1",
     "rollup-plugin-dts": "~6.2.3",
     "rollup-plugin-node-externals": "~8.1.2",
     "sort-package-json": "~3.4.0",
@@ -93,7 +93,7 @@
     "@types/yargs": "~17.0.34",
     "@xylabs/tsconfig": "workspace:^",
     "esbuild": "0.25.12",
-    "knip": "~5.67.1",
+    "knip": "~5.68.0",
     "rimraf": "~6.1.0",
     "types-package-json": "~2.0.39",
     "typescript": "~5.9.3"

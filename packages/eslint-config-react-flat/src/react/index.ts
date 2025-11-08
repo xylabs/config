@@ -17,8 +17,5 @@ export const reactConfig = {
     parserOptions: { ecmaFeatures: { jsx: true } },
     globals: { ...globals.browser },
   },
-  rules: {
-    ...eslintReactPlugin.configs.recommended.rules,
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-  },
+  rules: { 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }] },
 } as unknown as Linter.Config
