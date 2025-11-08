@@ -288,29 +288,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint-react/eslint-plugin@npm:~2.3.1":
-  version: 2.3.1
-  resolution: "@eslint-react/eslint-plugin@npm:2.3.1"
-  dependencies:
-    "@eslint-react/eff": "npm:2.3.1"
-    "@eslint-react/shared": "npm:2.3.1"
-    "@typescript-eslint/scope-manager": "npm:^8.46.2"
-    "@typescript-eslint/type-utils": "npm:^8.46.2"
-    "@typescript-eslint/types": "npm:^8.46.2"
-    "@typescript-eslint/utils": "npm:^8.46.2"
-    eslint-plugin-react-dom: "npm:2.3.1"
-    eslint-plugin-react-hooks-extra: "npm:2.3.1"
-    eslint-plugin-react-naming-convention: "npm:2.3.1"
-    eslint-plugin-react-web-api: "npm:2.3.1"
-    eslint-plugin-react-x: "npm:2.3.1"
-    ts-api-utils: "npm:^2.1.0"
-  peerDependencies:
-    eslint: ^9.38.0
-    typescript: ^5.9.3
-  checksum: 10/1e7dfe6c5f7739ba6f8842df84454a3283357169db8357eab436a9028e27c44b7de032ea21fc2dd3250af9687fcaebd7851db96d1b2e82e8d9efdf8be33294e1
-  languageName: node
-  linkType: hard
-
 "@eslint-react/shared@npm:2.3.1":
   version: 2.3.1
   resolution: "@eslint-react/shared@npm:2.3.1"
@@ -1555,13 +1532,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config-react-flat@workspace:packages/eslint-config-react-flat"
   dependencies:
-    "@eslint-react/eslint-plugin": "npm:~2.3.1"
     "@typescript-eslint/parser": "npm:~8.46.3"
     "@xylabs/eslint-config-flat": "workspace:^"
     "@xylabs/ts-scripts-yarn3": "workspace:^"
     "@xylabs/tsconfig": "workspace:^"
     eslint: "npm:~9.39.1"
-    eslint-plugin-react-refresh: "npm:~0.4.24"
+    eslint-plugin-react-dom: "npm:^2.3.1"
+    eslint-plugin-react-hooks-extra: "npm:^2.3.1"
+    eslint-plugin-react-naming-convention: "npm:^2.3.1"
+    eslint-plugin-react-refresh: "npm:^0.4.24"
+    eslint-plugin-react-web-api: "npm:^2.3.1"
+    eslint-plugin-react-x: "npm:^2.3.1"
     globals: "npm:~16.5.0"
     typescript: "npm:~5.9.3"
   peerDependencies:
@@ -2631,7 +2612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-dom@npm:2.3.1":
+"eslint-plugin-react-dom@npm:^2.3.1":
   version: 2.3.1
   resolution: "eslint-plugin-react-dom@npm:2.3.1"
   dependencies:
@@ -2653,7 +2634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks-extra@npm:2.3.1":
+"eslint-plugin-react-hooks-extra@npm:^2.3.1":
   version: 2.3.1
   resolution: "eslint-plugin-react-hooks-extra@npm:2.3.1"
   dependencies:
@@ -2675,7 +2656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-naming-convention@npm:2.3.1":
+"eslint-plugin-react-naming-convention@npm:^2.3.1":
   version: 2.3.1
   resolution: "eslint-plugin-react-naming-convention@npm:2.3.1"
   dependencies:
@@ -2697,7 +2678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:~0.4.24":
+"eslint-plugin-react-refresh@npm:^0.4.24":
   version: 0.4.24
   resolution: "eslint-plugin-react-refresh@npm:0.4.24"
   peerDependencies:
@@ -2706,7 +2687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-web-api@npm:2.3.1":
+"eslint-plugin-react-web-api@npm:^2.3.1":
   version: 2.3.1
   resolution: "eslint-plugin-react-web-api@npm:2.3.1"
   dependencies:
@@ -2727,7 +2708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-x@npm:2.3.1":
+"eslint-plugin-react-x@npm:^2.3.1":
   version: 2.3.1
   resolution: "eslint-plugin-react-x@npm:2.3.1"
   dependencies:
