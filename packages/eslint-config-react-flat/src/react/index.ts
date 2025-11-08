@@ -10,7 +10,12 @@ import globals from 'globals'
 
 export const reactConfig = {
   files: ['**/*.{ts,tsx}'],
+  ...reactPlugin.configs.recommended,
   ...reactDomPlugin.configs.recommended,
+  ...reactWebApiPlugin.configs.recommended,
+  ...reactHooksExtraPlugin.configs.recommended,
+  ...reactNamingConventionPlugin.configs.recommended,
+  ...eslintReactRefreshPlugin.configs.recommended,
   plugins: {
     'react-x': reactPlugin,
     'react-dom': reactDomPlugin,
@@ -31,6 +36,7 @@ export const reactConfig = {
     ...reactWebApiPlugin.configs.recommended.rules,
     ...reactHooksExtraPlugin.configs.recommended.rules,
     ...reactNamingConventionPlugin.configs.recommended.rules,
+    ...eslintReactRefreshPlugin.configs.recommended.rules,
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 } as unknown as Linter.Config
