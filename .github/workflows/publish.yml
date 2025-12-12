@@ -19,17 +19,17 @@ jobs:
       id-token: write # optional (for npm provenance if you enable it)
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Upgrade npm for Trusted Publishing
-        run: npm i -g npm@^11
-
       - name: Setup Node + npm auth
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Upgrade npm for Trusted Publishing
+        run: npm i -g npm@^11
+
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Version
         run: node -v && npm -v
