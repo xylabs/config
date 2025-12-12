@@ -42,10 +42,6 @@ jobs:
       # IMPORTANT: This is the publish mode that resolves workspace:^/* via npm packing
       - name: Publish each workspace with npm (resolves workspace ranges)
         run: |
-          yarn workspaces foreach \
-            -A \
-            -t \
-            --topological \
-            npm publish
+          yarn deploy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
