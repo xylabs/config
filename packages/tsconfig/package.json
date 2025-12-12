@@ -33,6 +33,7 @@
     "dist",
     "types",
     "README.md",
+    "tsconfig.json",
     "LICENSE"
   ],
   "scripts": {

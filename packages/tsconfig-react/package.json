@@ -31,7 +31,8 @@
   "module": "./tsconfig.json",
   "files": [
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "tsconfig.json"
   ],
   "scripts": {
     "package-compile": "echo Compiled"
