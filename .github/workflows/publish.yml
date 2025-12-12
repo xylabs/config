@@ -47,9 +47,29 @@ jobs:
         env:
           CI: "true"
 
-      # IMPORTANT: This is the publish mode that resolves workspace:^/* via npm packing
-      - name: Publish each workspace with npm (resolves workspace ranges)
+      - name: Publish workspaces (npm publish via yarn foreach)
         run: |
-          yarn publish
+          yarn workspaces foreach \
+            -A \
+            -t \
+            --topological \
+            --no-private \
+            --verbose \
+            sh -lc '
+              NAME=$(node -p "require(\"./package.json\").name")
+              VER=$(node -p "require(\"./package.json\").version")
+
+              # Ensure we publish to npm, not Yarn registry
+              npm config set registry https://registry.npmjs.org/ >/dev/null
+
+              # Skip if that exact version already exists
+              if npm view "${NAME}@${VER}" version >/dev/null 2>&1; then
+                echo "Skipping ${NAME}@${VER} (already published)"
+                exit 0
+              fi
+
+              npm publish
+            '
         env:
+          # npm uses ~/.npmrc, but keeping this helps some setups
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
