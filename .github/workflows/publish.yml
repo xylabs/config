@@ -49,4 +49,4 @@ jobs:
         run: unset NODE_AUTH_TOKEN NPM_TOKEN NPM_CONFIG_USERCONFIG || true
 
       - name: Publish (npm publish per workspace)
-        run: yarn workspaces foreach --all --verbose --no-private npm publish
+        run: yarn publish
