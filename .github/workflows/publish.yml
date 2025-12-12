@@ -22,18 +22,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node + npm auth
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Version before
-        run: node -v && npm -v
-
       - name: Upgrade npm for Trusted Publishing
         run: npm i -g npm@^11
 
-      - name: Version after
+      - name: Setup Node + npm auth
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Version
         run: node -v && npm -v
 
       - name: Enable Corepack (Yarn)
