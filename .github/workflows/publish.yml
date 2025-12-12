@@ -16,7 +16,7 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write # optional (for npm provenance if you enable it)
+      id-token: write
 
     steps:
       - name: Setup Node + npm auth
@@ -46,4 +46,4 @@ jobs:
           CI: "true"
 
       - name: Publish (npm publish per workspace)
-        run: yarn workspaces foreach --verbose --no-private run yarn npm publish
+        run: yarn workspaces foreach --all --verbose --no-private run yarn npm publish
