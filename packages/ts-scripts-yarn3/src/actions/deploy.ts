@@ -23,6 +23,5 @@ export const deploy = () => {
     ['yarn', 'xy clean'],
     ['yarn', 'xy build'],
     ['yarn', 'version apply --all'],
-    ['npm', 'publish --workspaces'],
   ])
 }

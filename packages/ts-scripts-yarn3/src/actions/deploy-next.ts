@@ -22,6 +22,5 @@ export const deployNext = () => {
     ['yarn', 'xy clean'],
     ['yarn', 'xy build'],
     ['yarn', 'version apply --all --prerelease'],
-    ['npm', 'publish --workspaces'],
   ])
 }
