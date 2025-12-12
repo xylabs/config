@@ -28,14 +28,6 @@ jobs:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Configure npm auth + registry (for npm CLI)
-        run: |
-          mkdir -p ~/.npm
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          npm config set registry https://registry.npmjs.org/
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Enable Corepack (Yarn)
         run: corepack enable
 
@@ -49,5 +41,3 @@ jobs:
 
       - name: Publish workspaces (npm publish via yarn foreach)
         run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
