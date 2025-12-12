@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: "https://registry.npmjs.org"
 
       - name: Enable Corepack (Yarn)
         run: corepack enable
@@ -39,14 +38,7 @@ jobs:
         env:
           CI: "true"
 
-      - name: Publish (npm publish per workspace, OIDC auth)
+      - name: Publish (npm publish per workspace)
         run: |
-          # safety: ensure we are NOT using token auth
           unset NODE_AUTH_TOKEN NPM_TOKEN || true
-
-          yarn workspaces foreach \
-            -A \
-            -t \
-            --topological \
-            --no-private \
-            -- sh -lc 'npm publish --access public'
+          yarn workspaces foreach -A -t --topological --no-private exec npm publish --access public
