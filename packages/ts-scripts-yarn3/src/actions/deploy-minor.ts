@@ -22,6 +22,6 @@ export const deployMinor = () => {
     ['yarn', 'xy clean'],
     ['yarn', 'xy build'],
     ['yarn', 'version apply --all'],
-    ['yarn', `workspaces foreach --all ${excludeList.join(' ')} --parallel npm publish`],
+    ['npm', 'publish --workspaces'],
   ])
 }

@@ -36,7 +36,7 @@
     "clean": "echo Cleaning... && yarn rimraf --glob \"dist\" && yarn rimraf --glob \"packages/*/dist\" && yarn rimraf --glob \"build\" && yarn rimraf --glob \"packages/*/build\"",
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -Apt --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
-    "deploy-common": "yarn build && yarn version apply --all && yarn workspaces foreach --all --parallel npm publish",
+    "deploy-common": "yarn build && yarn version apply --all && npm publish --workspaces",
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
     "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
     "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
@@ -46,17 +46,17 @@
   "devDependencies": {
     "@eslint/json": "~0.14.0",
     "@types/json-schema": "~7.0.15",
-    "@types/node": "~24.10.0",
+    "@types/node": "~25.0.0",
     "@xylabs/eslint-config-flat": "workspace:^",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
     "dotenv": "~17.2.3",
     "eslint": "~9.39.1",
     "eslint-import-resolver-typescript": "~4.4.4",
-    "knip": "~5.68.0",
-    "rimraf": "~6.1.0",
+    "knip": "~5.73.3",
+    "rimraf": "~6.1.2",
     "typescript": "~5.9.3",
-    "vitest": "~4.0.8"
+    "vitest": "~4.0.15"
   },
   "packageManager": "yarn@4.9.2",
   "engines": {
