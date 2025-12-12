@@ -39,5 +39,11 @@ jobs:
         env:
           CI: "true"
 
-      - name: Publish workspaces (npm publish via yarn foreach)
-        run: yarn publish
+      - name: Publish (npm publish per workspace, OIDC auth)
+        run: |
+          # safety: ensure we are NOT using token auth
+          unset NODE_AUTH_TOKEN NPM_TOKEN || true
+
+          yarn workspaces foreach -A -t --topological --no-private sh -lc '
+            npm publish --access public
+          '
