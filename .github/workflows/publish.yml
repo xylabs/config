@@ -27,6 +27,15 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Version before
+        run: node -v && npm -v
+
+      - name: Upgrade npm for Trusted Publishing
+        run: npm i -g npm@^11
+
+      - name: Version after
+        run: node -v && npm -v
+
       - name: Enable Corepack (Yarn)
         run: corepack enable
 
