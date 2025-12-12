@@ -46,6 +46,4 @@ jobs:
           CI: "true"
 
       - name: Publish (npm publish per workspace)
-        run: |
-          unset NODE_AUTH_TOKEN NPM_TOKEN || true
-          yarn workspaces foreach -A -t --topological --no-private exec npm publish --access public
+        run: yarn workspaces foreach --verbose --no-private run yarn npm publish
