@@ -34,9 +34,8 @@ jobs:
       - name: Install deps
         run: yarn install --immutable
 
-      # Optional but common: build all workspaces before publishing
-      - name: Build (topological)
-        run: yarn workspaces foreach -A -t --topological-dev run build
+      - name: Build
+        run: yarn build
         env:
           CI: "true"
 
@@ -47,8 +46,6 @@ jobs:
             -A \
             -t \
             --topological \
-            --no-private \
-            npm publish --access public
+            npm publish
         env:
-          # npm CLI reads this when setup-node sets registry-url
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
