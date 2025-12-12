@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "7.2.20",
+  "version": "7.2.21",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -36,6 +36,7 @@
     "clean": "echo Cleaning... && yarn rimraf --glob \"dist\" && yarn rimraf --glob \"packages/*/dist\" && yarn rimraf --glob \"build\" && yarn rimraf --glob \"packages/*/build\"",
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -Apt --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
+    "publish": "yarn workspaces foreach --all --parallel npm publish",
     "npm-logout": "yarn npm logout && yarn rimraf ~/.npmrc && unset NPM_TOKEN && yarn config unset npmAuthToken",
     "deploy-common": "yarn build && yarn version apply --all",
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/tsconfig-react",
-  "version": "7.2.20",
+  "version": "7.2.21",
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "keywords": [
     "xylabs",
