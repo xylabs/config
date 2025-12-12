@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/eslint-config-react-flat",
-  "version": "7.2.30",
+  "version": "7.2.31",
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "keywords": [
     "xylabs",
