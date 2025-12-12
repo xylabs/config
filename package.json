@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "7.2.15",
+  "version": "7.2.19",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -37,11 +37,9 @@
     "compile": "echo Compiling... && yarn workspace @xylabs/ts-scripts-yarn3 package-compile && yarn workspaces foreach -Apt --exclude @xylabs/ts-scripts-yarn3 run package-compile",
     "deploy": "yarn deploy-patch",
     "npm-logout": "yarn npm logout && yarn rimraf ~/.npmrc && unset NPM_TOKEN && yarn config unset npmAuthToken",
-    "deploy-common": "yarn build && yarn version apply --all && yarn npm-logout && yarn npm login --publish && yarn workspaces foreach --all npm publish",
+    "deploy-common": "yarn build && yarn version apply --all",
     "deploy-major": "yarn workspaces foreach --all version major --deferred && yarn deploy-common",
     "deploy-minor": "yarn workspaces foreach --all version minor --deferred && yarn deploy-common",
-    "deploy-next": "yarn workspaces foreach --all version minor --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
-    "deploy-next-major": "yarn workspaces foreach --all version major --deferred && yarn build && yarn version apply --all --prerelease && yarn workspaces foreach --all --parallel npm publish --tag next",
     "deploy-patch": "yarn workspaces foreach --all version patch --deferred && yarn deploy-common"
   },
   "devDependencies": {
@@ -59,7 +57,7 @@
     "typescript": "~5.9.3",
     "vitest": "~4.0.15"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.12.0",
   "engines": {
     "node": ">=20.16"
   },
