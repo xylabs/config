@@ -1,0 +1,54 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*" # publish when you push a semver tag like v1.2.3
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write # optional (for npm provenance if you enable it)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node + npm auth
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Enable Corepack (Yarn)
+        run: corepack enable
+
+      - name: Install deps
+        run: yarn install --immutable
+
+      # Optional but common: build all workspaces before publishing
+      - name: Build (topological)
+        run: yarn workspaces foreach -A -t --topological-dev run build
+        env:
+          CI: "true"
+
+      # IMPORTANT: This is the publish mode that resolves workspace:^/* via npm packing
+      - name: Publish each workspace with npm (resolves workspace ranges)
+        run: |
+          yarn workspaces foreach \
+            -A \
+            -t \
+            --topological \
+            --no-private \
+            npm publish --access public
+        env:
+          # npm CLI reads this when setup-node sets registry-url
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
