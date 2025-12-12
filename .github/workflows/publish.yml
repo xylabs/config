@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node + npm auth
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
       - name: Upgrade npm for Trusted Publishing
