@@ -44,6 +44,9 @@ jobs:
           # safety: ensure we are NOT using token auth
           unset NODE_AUTH_TOKEN NPM_TOKEN || true
 
-          yarn workspaces foreach -A -t --topological --no-private sh -lc '
-            npm publish --access public
-          '
+          yarn workspaces foreach \
+            -A \
+            -t \
+            --topological \
+            --no-private \
+            -- sh -lc 'npm publish --access public'
