@@ -2006,9 +2006,9 @@ __metadata:
     "@eslint/json": "npm:~0.14.0"
     "@types/json-schema": "npm:~7.0.15"
     "@types/node": "npm:~25.0.9"
-    "@xylabs/eslint-config-flat": "workspace:^"
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/eslint-config-flat": "npm:~7.2.32"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
     dotenv: "npm:~17.2.3"
     eslint: "npm:~9.39.2"
     eslint-import-resolver-typescript: "npm:~4.4.4"
@@ -2019,7 +2019,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/eslint-config-flat@workspace:^, @xylabs/eslint-config-flat@workspace:packages/eslint-config-flat":
+"@xylabs/eslint-config-flat@npm:~7.2.32, @xylabs/eslint-config-flat@workspace:packages/eslint-config-flat":
   version: 0.0.0-use.local
   resolution: "@xylabs/eslint-config-flat@workspace:packages/eslint-config-flat"
   dependencies:
@@ -2028,8 +2028,8 @@ __metadata:
     "@types/eslint-plugin-markdown": "npm:~2.0.2"
     "@typescript-eslint/eslint-plugin": "npm:~8.53.1"
     "@typescript-eslint/parser": "npm:~8.53.1"
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
     eslint: "npm:~9.39.2"
     eslint-plugin-import-x: "npm:~4.16.1"
     eslint-plugin-markdown: "npm:~5.1.0"
@@ -2050,9 +2050,9 @@ __metadata:
   resolution: "@xylabs/eslint-config-react-flat@workspace:packages/eslint-config-react-flat"
   dependencies:
     "@typescript-eslint/parser": "npm:~8.53.1"
-    "@xylabs/eslint-config-flat": "workspace:^"
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/eslint-config-flat": "npm:~7.2.32"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
     eslint: "npm:~9.39.2"
     eslint-plugin-react-dom: "npm:^2.7.2"
     eslint-plugin-react-hooks-extra: "npm:^2.7.2"
@@ -2073,8 +2073,8 @@ __metadata:
   dependencies:
     "@types/node": "npm:~25.0.9"
     "@types/yargs": "npm:~17.0.35"
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
     chalk: "npm:~5.6.2"
     publint: "npm:~0.3.17"
     tsup: "npm:8.5.1"
@@ -2091,7 +2091,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/ts-scripts-yarn3@workspace:^, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
+"@xylabs/ts-scripts-yarn3@npm:~7.2.32, @xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3":
   version: 0.0.0-use.local
   resolution: "@xylabs/ts-scripts-yarn3@workspace:packages/ts-scripts-yarn3"
   dependencies:
@@ -2101,7 +2101,7 @@ __metadata:
     "@types/parse-git-config": "npm:~3.0.4"
     "@types/picomatch": "npm:~4.0.2"
     "@types/yargs": "npm:~17.0.35"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/tsconfig": "npm:~7.2.32"
     async-mutex: "npm:~0.5.0"
     chalk: "npm:~5.6.2"
     cosmiconfig: "npm:~9.0.0"
@@ -2152,12 +2152,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig-dom@workspace:^, @xylabs/tsconfig-dom@workspace:packages/tsconfig-dom":
+"@xylabs/tsconfig-dom@npm:~7.2.32, @xylabs/tsconfig-dom@workspace:packages/tsconfig-dom":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-dom@workspace:packages/tsconfig-dom"
   dependencies:
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
   languageName: unknown
   linkType: soft
 
@@ -2165,17 +2165,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig-react@workspace:packages/tsconfig-react"
   dependencies:
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
-    "@xylabs/tsconfig": "workspace:^"
-    "@xylabs/tsconfig-dom": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
+    "@xylabs/tsconfig": "npm:~7.2.32"
+    "@xylabs/tsconfig-dom": "npm:~7.2.32"
   languageName: unknown
   linkType: soft
 
-"@xylabs/tsconfig@workspace:^, @xylabs/tsconfig@workspace:packages/tsconfig":
+"@xylabs/tsconfig@npm:~7.2.32, @xylabs/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@xylabs/tsconfig@workspace:packages/tsconfig"
   dependencies:
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "npm:~7.2.32"
     tslib: "npm:~2.8.1"
   languageName: unknown
   linkType: soft

@@ -38,11 +38,11 @@
     "package-compile": "echo Compiled"
   },
   "dependencies": {
-    "@xylabs/tsconfig": "workspace:^",
-    "@xylabs/tsconfig-dom": "workspace:^"
+    "@xylabs/tsconfig": "~7.2.32",
+    "@xylabs/tsconfig-dom": "~7.2.32"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^"
+    "@xylabs/ts-scripts-yarn3": "~7.2.32"
   },
   "publishConfig": {
     "access": "public"

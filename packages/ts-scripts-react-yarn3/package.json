@@ -49,14 +49,14 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "~7.2.32",
     "chalk": "~5.6.2"
   },
   "devDependencies": {
     "@types/node": "~25.0.9",
     "@types/yargs": "~17.0.35",
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "@xylabs/tsconfig": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "~7.2.32",
+    "@xylabs/tsconfig": "~7.2.32",
     "publint": "~0.3.17",
     "tsup": "8.5.1",
     "typescript": "~5.9.3"

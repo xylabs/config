@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@types/eslint-plugin-markdown": "~2.0.2",
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "@xylabs/tsconfig": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "~7.2.32",
+    "@xylabs/tsconfig": "~7.2.32",
     "eslint": "~9.39.2",
     "typescript": "~5.9.3"
   },

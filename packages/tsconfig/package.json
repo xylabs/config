@@ -40,7 +40,7 @@
     "package-compile": "echo Compiled"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "~7.2.32",
     "tslib": "~2.8.1"
   },
   "publishConfig": {

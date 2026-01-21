@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "@typescript-eslint/parser": "~8.53.1",
-    "@xylabs/eslint-config-flat": "workspace:^",
+    "@xylabs/eslint-config-flat": "~7.2.32",
     "eslint-plugin-react-dom": "^2.7.2",
     "eslint-plugin-react-hooks-extra": "^2.7.2",
     "eslint-plugin-react-naming-convention": "^2.7.2",
@@ -49,8 +49,8 @@
     "globals": "~17.0.0"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "workspace:^",
-    "@xylabs/tsconfig": "workspace:^",
+    "@xylabs/ts-scripts-yarn3": "~7.2.32",
+    "@xylabs/tsconfig": "~7.2.32",
     "eslint": "~9.39.2",
     "typescript": "~5.9.3"
   },
