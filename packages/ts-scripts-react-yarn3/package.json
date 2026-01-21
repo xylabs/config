@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-react-yarn3",
-  "version": "7.2.32",
+  "version": "7.3.0",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -49,14 +49,14 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@xylabs/ts-scripts-yarn3": "~7.2.32",
+    "@xylabs/ts-scripts-yarn3": "~7.3.0",
     "chalk": "~5.6.2"
   },
   "devDependencies": {
     "@types/node": "~25.0.9",
     "@types/yargs": "~17.0.35",
-    "@xylabs/ts-scripts-yarn3": "~7.2.32",
-    "@xylabs/tsconfig": "~7.2.32",
+    "@xylabs/ts-scripts-yarn3": "~7.3.0",
+    "@xylabs/tsconfig": "~7.3.0",
     "publint": "~0.3.17",
     "tsup": "8.5.1",
     "typescript": "~5.9.3"
