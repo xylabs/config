@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/eslint-config-flat",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "ESLint Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "keywords": [
     "xylabs",
@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@types/eslint-plugin-markdown": "~2.0.2",
-    "@xylabs/ts-scripts-yarn3": "~7.3.0",
-    "@xylabs/tsconfig": "~7.3.0",
+    "@xylabs/ts-scripts-yarn3": "~7.3.1",
+    "@xylabs/tsconfig": "~7.3.1",
     "eslint": "~9.39.2",
     "typescript": "~5.9.3"
   },

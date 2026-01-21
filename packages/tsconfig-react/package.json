@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
   "name": "@xylabs/tsconfig-react",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Typescript Base Config used throughout XY Labs TypeScript/JavaScript libraries and react projects",
   "keywords": [
     "xylabs",
@@ -38,11 +38,11 @@
     "package-compile": "echo Compiled"
   },
   "dependencies": {
-    "@xylabs/tsconfig": "~7.3.0",
-    "@xylabs/tsconfig-dom": "~7.3.0"
+    "@xylabs/tsconfig": "~7.3.1",
+    "@xylabs/tsconfig-dom": "~7.3.1"
   },
   "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "~7.3.0"
+    "@xylabs/ts-scripts-yarn3": "~7.3.1"
   },
   "publishConfig": {
     "access": "public"
