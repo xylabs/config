@@ -42,21 +42,21 @@
   },
   "dependencies": {
     "@eslint/json": "~0.14.0",
-    "@stylistic/eslint-plugin": "~5.6.1",
-    "@typescript-eslint/eslint-plugin": "~8.49.0",
-    "@typescript-eslint/parser": "~8.49.0",
+    "@stylistic/eslint-plugin": "~5.7.0",
+    "@typescript-eslint/eslint-plugin": "~8.53.1",
+    "@typescript-eslint/parser": "~8.53.1",
     "eslint-plugin-import-x": "~4.16.1",
     "eslint-plugin-markdown": "~5.1.0",
     "eslint-plugin-simple-import-sort": "~12.1.1",
     "eslint-plugin-sonarjs": "~3.0.5",
     "eslint-plugin-unicorn": "~62.0.0",
-    "eslint-plugin-workspaces": "~0.11.0"
+    "eslint-plugin-workspaces": "~0.11.1"
   },
   "devDependencies": {
     "@types/eslint-plugin-markdown": "~2.0.2",
     "@xylabs/ts-scripts-yarn3": "workspace:^",
     "@xylabs/tsconfig": "workspace:^",
-    "eslint": "~9.39.1",
+    "eslint": "~9.39.2",
     "typescript": "~5.9.3"
   },
   "peerDependencies": {

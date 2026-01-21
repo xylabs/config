@@ -2,6 +2,7 @@ import type { Argv } from 'yargs'
 
 import {
   deploy, deployMajor, deployMinor, deployNext,
+  publish,
 } from '../actions/index.ts'
 
 export const xyDeployCommands = (args: Argv) => {
@@ -48,6 +49,17 @@ export const xyDeployCommands = (args: Argv) => {
       (argv) => {
         if (argv.verbose) console.log('Deploy next')
         process.exitCode = deployNext()
+      },
+    )
+    .command(
+      'publish',
+      'Publish - Publish packages to npmjs',
+      (yargs) => {
+        return yargs
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Publish packages to npmjs')
+        process.exitCode = publish()
       },
     )
 }
