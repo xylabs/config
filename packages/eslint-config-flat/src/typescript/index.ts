@@ -33,6 +33,7 @@ export const typescriptConfig: Linter.Config = {
   rules: {
     ...tsPlugin.configs.recommended.rules,
     ...esStylistic.configs['recommended'].rules,
+    '@typescript-eslint/no-deprecated': 'warn',
     '@typescript-eslint/no-empty-object-type': ['off'],
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',

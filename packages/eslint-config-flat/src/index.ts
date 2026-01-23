@@ -3,7 +3,6 @@ import type { Linter } from 'eslint'
 import { importConfig } from './import/index.ts'
 import { markdownConfig } from './markdown/index.ts'
 import { rulesConfig } from './rules/index.ts'
-import { sonarConfig } from './sonar/index.ts'
 import { typescriptConfig } from './typescript/index.ts'
 import { unicornConfig } from './unicorn/index.ts'
 import { workspacesConfig } from './workspaces/index.ts'
@@ -15,7 +14,6 @@ export const config: Linter.Config[] = [
   workspacesConfig,
   rulesConfig,
   importConfig,
-  sonarConfig,
 ]
 
 export * from './ignores.ts'
