@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/config",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -48,9 +48,9 @@
     "@eslint/json": "~0.14.0",
     "@types/json-schema": "~7.0.15",
     "@types/node": "~25.0.10",
-    "@xylabs/eslint-config-flat": "~7.3.1",
-    "@xylabs/ts-scripts-yarn3": "~7.3.1",
-    "@xylabs/tsconfig": "~7.3.1",
+    "@xylabs/eslint-config-flat": "~7.3.2",
+    "@xylabs/ts-scripts-yarn3": "~7.3.2",
+    "@xylabs/tsconfig": "~7.3.2",
     "dotenv": "~17.2.3",
     "eslint": "~9.39.2",
     "eslint-import-resolver-typescript": "~4.4.4",
