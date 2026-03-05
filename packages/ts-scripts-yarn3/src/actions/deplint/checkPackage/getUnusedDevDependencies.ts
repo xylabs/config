@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import type { Workspace } from '../../../lib/index.ts'
 import { getRequiredPeerDependencies } from '../getRequiredPeerDependencies.ts'
 import { getScriptReferencedPackages } from '../getScriptReferencedPackages.ts'
-import type { ImplicitDepContext } from '../implicitDevDependencies.ts'
+import type { FileContext } from '../implicitDevDependencies.ts'
 import { getImplicitDevDependencies } from '../implicitDevDependencies.ts'
 import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.ts'
 
@@ -47,11 +47,13 @@ export function getUnusedDevDependencies(
     devDependencies, dependencies, peerDependencies,
   }: CheckPackageParams,
   sourceParams: CheckSourceParams,
-  fileContext: ImplicitDepContext,
+  fileContext: FileContext,
 ) {
   const allImports = allExternalImports(sourceParams)
-  const implicitDeps = getImplicitDevDependencies(fileContext)
   const allDeps = [...dependencies, ...devDependencies, ...peerDependencies]
+  const implicitDeps = getImplicitDevDependencies({
+    ...fileContext, allDependencies: allDeps, location,
+  })
   const requiredPeers = getRequiredPeerDependencies(location, allDeps)
   const scriptRefs = getScriptReferencedPackages(location, allDeps)
   let unusedDevDependencies = 0
