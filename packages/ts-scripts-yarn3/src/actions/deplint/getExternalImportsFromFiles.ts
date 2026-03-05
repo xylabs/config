@@ -8,16 +8,19 @@ const removeInternalImports = (imports: string[]) => {
 }
 
 export function getExternalImportsFromFiles({
-  srcFiles, distFiles, tsconfigExtends = [],
+  srcFiles, distFiles, configFiles = [], tsconfigExtends = [],
 }: {
-  distFiles: string []
+  configFiles?: string[]
+  distFiles: string[]
   srcFiles: string[]
   tsconfigExtends?: string[]
 }): CheckSourceParams {
   const srcImportPaths: Record<string, string[]> = {}
   const distImportPaths: Record<string, string[]> = {}
   const distTypeImportPaths: Record<string, string[]> = {}
+  const configImportPaths: Record<string, string[]> = {}
   for (const path of srcFiles) getImportsFromFile(path, srcImportPaths, srcImportPaths).flat()
+  for (const path of configFiles) getImportsFromFile(path, configImportPaths, configImportPaths).flat()
   const distTypeFiles = distFiles.filter(file => file.endsWith('.d.ts') || file.endsWith('.d.cts') || file.endsWith('.d.mts'))
   const distCodeFiles = distFiles.filter(file => !(file.endsWith('.d.ts') || file.endsWith('.d.cts') || file.endsWith('.d.mts')))
   for (const path of distCodeFiles) getImportsFromFile(path, distImportPaths, distImportPaths).flat()
@@ -29,16 +32,19 @@ export function getExternalImportsFromFiles({
   const externalSrcImports = removeInternalImports(srcImports)
   const externalDistImports = removeInternalImports(distImports)
   const externalDistTypeImports = removeInternalImports(distTypeImports)
+  const externalConfigImports = removeInternalImports(Object.keys(configImportPaths))
 
-  // Tsconfig extends references count as used dependencies
+  // Tsconfig extends references count as used devDependencies
   for (const ext of tsconfigExtends) {
     if (!externalSrcImports.includes(ext)) externalSrcImports.push(ext)
-    if (!externalDistImports.includes(ext)) externalDistImports.push(ext)
+    if (!externalConfigImports.includes(ext)) externalConfigImports.push(ext)
   }
 
   return {
+    configImportPaths,
     srcImports,
     srcImportPaths,
+    externalConfigImports,
     externalSrcImports,
     distImports,
     distImportPaths,

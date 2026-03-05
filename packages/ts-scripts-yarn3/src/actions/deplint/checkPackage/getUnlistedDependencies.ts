@@ -5,6 +5,28 @@ import chalk from 'chalk'
 import type { Workspace } from '../../../lib/index.ts'
 import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.ts'
 
+function isListedOrBuiltin(
+  imp: string,
+  name: string,
+  dependencies: string[],
+  peerDependencies: string[],
+) {
+  return dependencies.includes(imp)
+    || imp === name
+    || dependencies.includes(`@types/${imp}`)
+    || peerDependencies.includes(imp)
+    || peerDependencies.includes(`@types/${imp}`)
+    || builtinModules.includes(imp)
+    || builtinModules.includes(`@types/${imp}`)
+}
+
+function logMissing(name: string, imp: string, importPaths: Record<string, string[]>) {
+  console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
+  if (importPaths[imp]) {
+    console.log(`  ${importPaths[imp].join('\n ')}`)
+  }
+}
+
 export function getUnlistedDependencies(
   { name, location }: Workspace,
   { dependencies, peerDependencies }: CheckPackageParams,
@@ -15,30 +37,16 @@ export function getUnlistedDependencies(
   let unlistedDependencies = 0
 
   for (const imp of externalDistImports) {
-    if (!dependencies.includes(imp)
-      && imp !== name
-      && !dependencies.includes(`@types/${imp}`)
-      && !peerDependencies.includes(imp)
-      && !peerDependencies.includes(`@types/${imp}`)
-      && !builtinModules.includes(imp)
-      && !builtinModules.includes(`@types/${imp}`)) {
+    if (!isListedOrBuiltin(imp, name, dependencies, peerDependencies)) {
       unlistedDependencies++
-      console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
-      console.log(`  ${distImportPaths[imp].join('\n ')}`)
+      logMissing(name, imp, distImportPaths)
     }
   }
 
   for (const imp of externalDistTypeImports) {
-    if (!dependencies.includes(imp)
-      && imp !== name
-      && dependencies.includes(`@types/${imp}`)
-      && !peerDependencies.includes(imp)
-      && peerDependencies.includes(`@types/${imp}`)
-      && !builtinModules.includes(imp)
-      && builtinModules.includes(`@types/${imp}`)) {
+    if (!isListedOrBuiltin(imp, name, dependencies, peerDependencies)) {
       unlistedDependencies++
-      console.log(`[${chalk.blue(name)}] Missing dependency in package.json: ${chalk.red(imp)}`)
-      console.log(`  ${distImportPaths[imp].join('\n ')}`)
+      logMissing(name, imp, distImportPaths)
     }
   }
 

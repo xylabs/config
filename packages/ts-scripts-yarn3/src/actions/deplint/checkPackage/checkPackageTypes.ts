@@ -5,8 +5,10 @@ export interface CheckPackageParams {
 }
 
 export interface CheckSourceParams {
+  configImportPaths: Record<string, string[]>
   distImportPaths: Record<string, string[]>
   distImports: string[]
+  externalConfigImports: string[]
   externalDistImports: string[]
   externalDistTypeImports: string[]
   externalSrcImports: string[]

@@ -28,7 +28,9 @@ export function getUnlistedDevDependencies(
     ) {
       unlistedDevDependencies++
       console.log(`[${chalk.blue(name)}] Missing devDependency in package.json: ${chalk.red(imp)}`)
-      console.log(`  ${srcImportPaths[imp].join('\n ')}`)
+      if (srcImportPaths[imp]) {
+        console.log(`  ${srcImportPaths[imp].join('\n ')}`)
+      }
     }
   }
   if (unlistedDevDependencies > 0) {
