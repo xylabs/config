@@ -26,9 +26,9 @@ const tsExtensions = ['.ts', '.tsx', '.mts', '.cts']
 const hasTypescriptFiles = ({ srcFiles, configFiles }: ImplicitDepContext) =>
   hasFileWithExtension([...srcFiles, ...configFiles], tsExtensions)
 
-// Matches decorator usage: @Something at the start of a line or after whitespace,
-// but not inside strings/comments (good-enough heuristic for detection)
-const decoratorPattern = /^\s*@[A-Z]\w*/m
+// Matches decorator usage: @something at the start of a line (after optional whitespace).
+// Safe from JSDoc false positives since those appear after * in comment blocks.
+const decoratorPattern = /^\s*@[a-zA-Z]\w*/m
 
 const hasDecorators = ({ srcFiles }: ImplicitDepContext) =>
   srcFiles
