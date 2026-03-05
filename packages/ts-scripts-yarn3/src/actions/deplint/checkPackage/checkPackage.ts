@@ -1,6 +1,7 @@
 import type { Workspace } from '../../../lib/index.ts'
 import { findFiles } from '../findFiles.ts'
 import { getDependenciesFromPackageJson } from '../getDependenciesFromPackageJson.ts'
+import { getExtendsFromTsconfigs } from '../getExtendsFromTsconfigs.ts'
 import { getExternalImportsFromFiles } from '../getExternalImportsFromFiles.ts'
 import { getUnlistedDependencies } from './getUnlistedDependencies.ts'
 import { getUnlistedDevDependencies } from './getUnlistedDevDependencies.ts'
@@ -14,24 +15,34 @@ export interface CheckPackageOptions {
   verbose?: boolean
 }
 
+function logVerbose(name: string, location: string, srcFiles: string[], distFiles: string[], tsconfigExtends: string[]) {
+  console.info(`Checking package: ${name} at ${location}`)
+  console.info(`Source files: ${srcFiles.length}, Distribution files: ${distFiles.length}`)
+  for (const file of srcFiles) {
+    console.info(`Source file: ${file}`)
+  }
+  for (const file of distFiles) {
+    console.info(`Distribution file: ${file}`)
+  }
+  for (const ext of tsconfigExtends) {
+    console.info(`Tsconfig extends: ${ext}`)
+  }
+}
+
 export function checkPackage({
   name, location, deps = false, devDeps = false, peerDeps = false, verbose = false,
 }: CheckPackageOptions & Workspace) {
   const { srcFiles, distFiles } = findFiles(location)
+  const tsconfigExtends = getExtendsFromTsconfigs(location)
   if (verbose) {
-    console.info(`Checking package: ${name} at ${location}`)
-    console.info(`Source files: ${srcFiles.length}, Distribution files: ${distFiles.length}`)
-    for (const file of srcFiles) {
-      console.info(`Source file: ${file}`)
-    }
-    for (const file of distFiles) {
-      console.info(`Distribution file: ${file}`)
-    }
+    logVerbose(name, location, srcFiles, distFiles, tsconfigExtends)
   }
   const checkDeps = deps || !(deps || devDeps || peerDeps)
   const checkDevDeps = devDeps || !(deps || devDeps || peerDeps)
   const checkPeerDeps = peerDeps // || !(deps || devDeps || peerDeps)
-  const sourceParams = getExternalImportsFromFiles({ srcFiles, distFiles })
+  const sourceParams = getExternalImportsFromFiles({
+    srcFiles, distFiles, tsconfigExtends,
+  })
 
   const packageParams = getDependenciesFromPackageJson(`${location}/package.json`)
 

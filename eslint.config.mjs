@@ -3,7 +3,7 @@
 import { config as xylabsConfig } from '@xylabs/eslint-config-flat'
 
 export default [
-  { ignores: ['.yarn/**', 'build', '**/build/**', '**/dist/**', 'dist', 'node_modules/**', '**/node_modules/**', 'eslint.config.mjs'] },
+  { ignores: ['.yarn/**', 'build', '**/build/**', '**/dist/**', 'dist', 'node_modules/**', '**/node_modules/**', 'eslint.config.mjs', '**/*.md/**'] },
   ...xylabsConfig,
   {
     rules:

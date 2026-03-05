@@ -6,7 +6,7 @@ import type { ESLint, Linter } from 'eslint'
 import { ignores } from '../ignores.ts'
 
 export const typescriptConfig: Linter.Config = {
-  ignores,
+  ignores: [...ignores, '**/*.md/**'],
   files: ['**/*.ts',
     '**/*.d.ts',
     '**/*.tsx',
@@ -71,7 +71,7 @@ export const typescriptConfig: Linter.Config = {
         multiline: true, minProperties: 3, consistent: false,
       },
     }],
-    '@stylistic/max-len': ['warn', { code: 160 }],
+    '@stylistic/max-len': ['warn', { code: 200 }],
     'no-restricted-syntax': [
       'warn',
       {

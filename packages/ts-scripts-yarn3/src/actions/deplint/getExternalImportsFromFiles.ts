@@ -7,7 +7,13 @@ const removeInternalImports = (imports: string[]) => {
   return imports.filter(imp => !internalImportPrefixes.some(prefix => imp.startsWith(prefix)))
 }
 
-export function getExternalImportsFromFiles({ srcFiles, distFiles }: { distFiles: string []; srcFiles: string[] }): CheckSourceParams {
+export function getExternalImportsFromFiles({
+  srcFiles, distFiles, tsconfigExtends = [],
+}: {
+  distFiles: string []
+  srcFiles: string[]
+  tsconfigExtends?: string[]
+}): CheckSourceParams {
   const srcImportPaths: Record<string, string[]> = {}
   const distImportPaths: Record<string, string[]> = {}
   const distTypeImportPaths: Record<string, string[]> = {}
@@ -23,6 +29,12 @@ export function getExternalImportsFromFiles({ srcFiles, distFiles }: { distFiles
   const externalSrcImports = removeInternalImports(srcImports)
   const externalDistImports = removeInternalImports(distImports)
   const externalDistTypeImports = removeInternalImports(distTypeImports)
+
+  // Tsconfig extends references count as used dependencies
+  for (const ext of tsconfigExtends) {
+    if (!externalSrcImports.includes(ext)) externalSrcImports.push(ext)
+    if (!externalDistImports.includes(ext)) externalDistImports.push(ext)
+  }
 
   return {
     srcImports,

@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "allowJs": true
-  },
-  "exclude": [".yarn", "./node_modules", "./**/node_modules", "./dist", "./**/dist", "./**/docs"],
-  "include": ["**/*.ts", "**/*.mjs"],
-  "extends": "./tsconfig.json"
-}

@@ -51,7 +51,7 @@ export const cycleAll = async ({ verbose = false }: { verbose?: boolean }) => {
     outputType: verbose ? 'text' : 'err',
   }
 
-  const target = '**/src'
+  const target = '**/packages/*/src'
 
   console.log(`Checking for circular dependencies in ${target}...`)
 
