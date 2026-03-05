@@ -18,6 +18,11 @@ const rules: ImplicitDevDependencyRule[] = [
     isNeeded: ({ srcFiles, configFiles }) =>
       hasFileWithExtension([...srcFiles, ...configFiles], ['.ts', '.tsx', '.mts', '.cts']),
   },
+  {
+    package: 'eslint-import-resolver-typescript',
+    isNeeded: ({ srcFiles, configFiles }) =>
+      hasFileWithExtension([...srcFiles, ...configFiles], ['.ts', '.tsx', '.mts', '.cts']),
+  },
 ]
 
 export function getImplicitDevDependencies(context: ImplicitDepContext): Set<string> {

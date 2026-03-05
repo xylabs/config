@@ -37,11 +37,12 @@
   "scripts": {
     "package-compile": "echo Compiled"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@xylabs/ts-scripts-yarn3": "~7.3.2",
     "@xylabs/tsconfig": "~7.3.2"
   },
-  "devDependencies": {
-    "@xylabs/ts-scripts-yarn3": "~7.3.2"
+  "peerDependencies": {
+    "@xylabs/tsconfig": "~7.3.2"
   },
   "publishConfig": {
     "access": "public"
