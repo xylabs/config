@@ -67,8 +67,13 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
 
   const importsStartsWithExcludes = ['.', '#', 'node:']
 
-  const cleanedImports = imports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
-  const cleanedTypeImports = typeImports.filter(imp => !importsStartsWithExcludes.some(exc => imp.startsWith(exc))).map(getBasePackageName)
+  const isValidImport = (imp: string) =>
+    !importsStartsWithExcludes.some(exc => imp.startsWith(exc))
+    && !imp.includes('*')
+    && !imp.includes('!')
+
+  const cleanedImports = imports.filter(isValidImport).map(getBasePackageName)
+  const cleanedTypeImports = typeImports.filter(isValidImport).map(getBasePackageName)
 
   for (const imp of cleanedImports) {
     importPaths[imp] = importPaths[imp] ?? []
