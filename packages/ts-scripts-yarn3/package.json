@@ -1,6 +1,6 @@
 {
   "name": "@xylabs/ts-scripts-yarn3",
-  "version": "7.4.7",
+  "version": "7.4.8",
   "description": "TypeScript project scripts",
   "keywords": [
     "xylabs",
@@ -93,7 +93,7 @@
     "@types/parse-git-config": "~3.0.4",
     "@types/picomatch": "~4.0.2",
     "@types/yargs": "~17.0.35",
-    "@xylabs/tsconfig": "~7.4.7",
+    "@xylabs/tsconfig": "~7.4.8",
     "esbuild": "0.27.3",
     "types-package-json": "~2.0.39",
     "typescript": "~5.9.3",
