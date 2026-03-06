@@ -56,9 +56,16 @@ export function getImportsFromFile(filePath: string, importPaths: Record<string,
     } else if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword) {
       const [arg] = node.arguments
       if (ts.isStringLiteral(arg)) {
-        const trimmed = arg.text
-        imports.push(trimmed)
+        imports.push(arg.text)
       }
+    } else if (
+      ts.isCallExpression(node)
+      && ts.isIdentifier(node.expression)
+      && node.expression.text === 'require'
+      && node.arguments.length > 0
+      && ts.isStringLiteral(node.arguments[0])
+    ) {
+      imports.push(node.arguments[0].text)
     }
     ts.forEachChild(node, visit)
   }
