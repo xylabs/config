@@ -19,21 +19,17 @@ export interface CheckPackageOptions {
 function logVerbose(
   name: string,
   location: string,
-  srcFiles: string[],
+  allFiles: string[],
   distFiles: string[],
-  configFiles: string[],
   tsconfigExtends: string[],
 ) {
   console.info(`Checking package: ${name} at ${location}`)
-  console.info(`Source files: ${srcFiles.length}, Distribution files: ${distFiles.length}, Config files: ${configFiles.length}`)
-  for (const file of srcFiles) {
-    console.info(`Source file: ${file}`)
+  console.info(`All files: ${allFiles.length}, Distribution files: ${distFiles.length}`)
+  for (const file of allFiles) {
+    console.info(`File: ${file}`)
   }
   for (const file of distFiles) {
     console.info(`Distribution file: ${file}`)
-  }
-  for (const file of configFiles) {
-    console.info(`Config file: ${file}`)
   }
   for (const ext of tsconfigExtends) {
     console.info(`Tsconfig extends: ${ext}`)
@@ -43,18 +39,16 @@ function logVerbose(
 export function checkPackage({
   name, location, deps = false, devDeps = false, peerDeps = false, verbose = false,
 }: CheckPackageOptions & Workspace) {
-  const {
-    srcFiles, distFiles, configFiles,
-  } = findFiles(location)
+  const { allFiles, distFiles } = findFiles(location)
   const tsconfigExtends = getExtendsFromTsconfigs(location)
   if (verbose) {
-    logVerbose(name, location, srcFiles, distFiles, configFiles, tsconfigExtends)
+    logVerbose(name, location, allFiles, distFiles, tsconfigExtends)
   }
   const checkDeps = deps || !(deps || devDeps || peerDeps)
   const checkDevDeps = devDeps || !(deps || devDeps || peerDeps)
   const checkPeerDeps = peerDeps // || !(deps || devDeps || peerDeps)
   const sourceParams = getExternalImportsFromFiles({
-    srcFiles, distFiles, configFiles, tsconfigExtends,
+    allFiles, distFiles, tsconfigExtends,
   })
 
   const packageParams = getDependenciesFromPackageJson(`${location}/package.json`)
@@ -62,9 +56,7 @@ export function checkPackage({
   const unlistedDependencies = checkDeps ? getUnlistedDependencies({ name, location }, packageParams, sourceParams) : 0
   const unusedDependencies = checkDeps ? getUnusedDependencies({ name, location }, packageParams, sourceParams) : 0
   const unlistedDevDependencies = checkDevDeps ? getUnlistedDevDependencies({ name, location }, packageParams, sourceParams) : 0
-  const fileContext = {
-    configFiles, distFiles, srcFiles,
-  }
+  const fileContext = { allFiles, distFiles }
   const unusedDevDependencies = checkDevDeps
     ? getUnusedDevDependencies({ name, location }, packageParams, sourceParams, fileContext)
     : 0

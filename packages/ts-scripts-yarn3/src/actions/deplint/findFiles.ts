@@ -1,14 +1,27 @@
+import fs from 'node:fs'
+
 import { findFilesByGlob } from './findFilesByGlob.ts'
 
-export function findFiles(path: string) {
-  const allSourceInclude = ['./src/**/*.{ts,tsx,mts,cts,js,mjs,cjs}']
-  const allDistInclude = ['./dist/**/*.d.ts', './dist/**/*.{mjs,js,cjs}']
-  const allConfigInclude = ['./*.config.{ts,mts,mjs,js}']
-  const srcFiles = allSourceInclude.flatMap(pattern => findFilesByGlob(path, pattern))
-  const distFiles = allDistInclude.flatMap(pattern => findFilesByGlob(path, pattern))
-  const configFiles = allConfigInclude.flatMap(pattern => findFilesByGlob(path, pattern))
+const codeExtensions = '*.{ts,tsx,mts,cts,js,mjs,cjs}'
 
-  return {
-    srcFiles, distFiles, configFiles,
+function getWorkspaceIgnores(location: string): string[] {
+  try {
+    const raw = fs.readFileSync(`${location}/package.json`, 'utf8')
+    const pkg = JSON.parse(raw)
+    return pkg.workspaces ?? []
+  } catch {
+    return []
   }
+}
+
+export function findFiles(location: string) {
+  const workspaceIgnores = getWorkspaceIgnores(location).map(w => `${w}/**`)
+  const ignore = ['**/node_modules/**', 'dist/**', ...workspaceIgnores]
+  const allFiles = findFilesByGlob(location, `./**/${codeExtensions}`, ignore)
+  const distFiles = [
+    ...findFilesByGlob(location, './dist/**/*.d.ts'),
+    ...findFilesByGlob(location, `./dist/**/${codeExtensions}`),
+  ]
+
+  return { allFiles, distFiles }
 }

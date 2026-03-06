@@ -9,7 +9,7 @@ export function getUnusedDependencies(
   {
     externalDistImports,
     externalDistTypeImports,
-    externalSrcImports,
+    externalAllImports,
   }: CheckSourceParams,
 ) {
   let unusedDependencies = 0
@@ -19,7 +19,7 @@ export function getUnusedDependencies(
       && !externalDistTypeImports.includes(dep)
       && !externalDistTypeImports.includes(dep.replace(/^@types\//, ''))) {
       unusedDependencies++
-      if (externalSrcImports.includes(dep)) {
+      if (externalAllImports.includes(dep)) {
         console.log(`[${chalk.blue(name)}] dependency should be devDependency in package.json: ${chalk.red(dep)}`)
       } else {
         console.log(`[${chalk.blue(name)}] Unused dependency in package.json: ${chalk.red(dep)}`)

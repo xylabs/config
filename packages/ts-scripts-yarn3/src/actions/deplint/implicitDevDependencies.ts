@@ -8,9 +8,8 @@ export interface ImplicitDevDependencyRule {
 }
 
 export interface FileContext {
-  configFiles: string[]
+  allFiles: string[]
   distFiles: string[]
-  srcFiles: string[]
 }
 
 export interface ImplicitDepContext extends FileContext {
@@ -23,15 +22,15 @@ const hasFileWithExtension = (files: string[], extensions: string[]) =>
 
 const tsExtensions = ['.ts', '.tsx', '.mts', '.cts']
 
-const hasTypescriptFiles = ({ srcFiles, configFiles }: ImplicitDepContext) =>
-  hasFileWithExtension([...srcFiles, ...configFiles], tsExtensions)
+const hasTypescriptFiles = ({ allFiles }: ImplicitDepContext) =>
+  hasFileWithExtension(allFiles, tsExtensions)
 
 // Matches decorator usage: @something at the start of a line (after optional whitespace).
 // Safe from JSDoc false positives since those appear after * in comment blocks.
 const decoratorPattern = /^\s*@[a-zA-Z]\w*/m
 
-const hasDecorators = ({ srcFiles }: ImplicitDepContext) =>
-  srcFiles
+const hasDecorators = ({ allFiles }: ImplicitDepContext) =>
+  allFiles
     .filter(f => tsExtensions.some(ext => f.endsWith(ext)))
     .some((file) => {
       try {

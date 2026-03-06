@@ -11,11 +11,11 @@ export function getUnlistedDevDependencies(
     devDependencies, dependencies, peerDependencies,
   }: CheckPackageParams,
   {
-    srcImportPaths, externalSrcImports, distImports,
+    allImportPaths, externalAllImports, distImports,
   }: CheckSourceParams,
 ) {
   let unlistedDevDependencies = 0
-  for (const imp of externalSrcImports) {
+  for (const imp of externalAllImports) {
     if (!distImports.includes(imp)
       && imp !== name
       && !dependencies.includes(imp)
@@ -28,8 +28,8 @@ export function getUnlistedDevDependencies(
     ) {
       unlistedDevDependencies++
       console.log(`[${chalk.blue(name)}] Missing devDependency in package.json: ${chalk.red(imp)}`)
-      if (srcImportPaths[imp]) {
-        console.log(`  ${srcImportPaths[imp].join('\n ')}`)
+      if (allImportPaths[imp]) {
+        console.log(`  ${allImportPaths[imp].join('\n ')}`)
       }
     }
   }

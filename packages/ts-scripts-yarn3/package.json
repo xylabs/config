@@ -95,7 +95,8 @@
     "@xylabs/tsconfig": "~7.4.2",
     "esbuild": "0.27.3",
     "types-package-json": "~2.0.39",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "typescript": "~5"

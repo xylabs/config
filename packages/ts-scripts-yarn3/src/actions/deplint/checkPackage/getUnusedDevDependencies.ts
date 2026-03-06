@@ -8,18 +8,15 @@ import { getImplicitDevDependencies } from '../implicitDevDependencies.ts'
 import type { CheckPackageParams, CheckSourceParams } from './checkPackageTypes.ts'
 
 const allExternalImports = ({
-  externalSrcImports,
+  externalAllImports,
   externalDistImports,
   externalDistTypeImports,
-  externalConfigImports,
 }: CheckSourceParams) => {
-  const all = new Set<string>([
-    ...externalSrcImports,
+  return new Set<string>([
+    ...externalAllImports,
     ...externalDistImports,
     ...externalDistTypeImports,
-    ...externalConfigImports,
   ])
-  return all
 }
 
 function isDevDepUsed(

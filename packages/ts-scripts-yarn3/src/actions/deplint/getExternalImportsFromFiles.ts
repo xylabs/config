@@ -7,47 +7,45 @@ const removeInternalImports = (imports: string[]) => {
   return imports.filter(imp => !internalImportPrefixes.some(prefix => imp.startsWith(prefix)))
 }
 
+const isDeclarationFile = (file: string) =>
+  file.endsWith('.d.ts') || file.endsWith('.d.cts') || file.endsWith('.d.mts')
+
 export function getExternalImportsFromFiles({
-  srcFiles, distFiles, configFiles = [], tsconfigExtends = [],
+  allFiles, distFiles, tsconfigExtends = [],
 }: {
-  configFiles?: string[]
+  allFiles: string[]
   distFiles: string[]
-  srcFiles: string[]
   tsconfigExtends?: string[]
 }): CheckSourceParams {
-  const srcImportPaths: Record<string, string[]> = {}
+  const allImportPaths: Record<string, string[]> = {}
   const distImportPaths: Record<string, string[]> = {}
   const distTypeImportPaths: Record<string, string[]> = {}
-  const configImportPaths: Record<string, string[]> = {}
-  for (const path of srcFiles) getImportsFromFile(path, srcImportPaths, srcImportPaths).flat()
-  for (const path of configFiles) getImportsFromFile(path, configImportPaths, configImportPaths).flat()
-  const distTypeFiles = distFiles.filter(file => file.endsWith('.d.ts') || file.endsWith('.d.cts') || file.endsWith('.d.mts'))
-  const distCodeFiles = distFiles.filter(file => !(file.endsWith('.d.ts') || file.endsWith('.d.cts') || file.endsWith('.d.mts')))
+
+  for (const path of allFiles) getImportsFromFile(path, allImportPaths, allImportPaths).flat()
+
+  const distTypeFiles = distFiles.filter(isDeclarationFile)
+  const distCodeFiles = distFiles.filter(file => !isDeclarationFile(file))
   for (const path of distCodeFiles) getImportsFromFile(path, distImportPaths, distImportPaths).flat()
   for (const path of distTypeFiles) getImportsFromFile(path, distTypeImportPaths, distTypeImportPaths).flat()
-  const srcImports = Object.keys(srcImportPaths)
+
+  const allImports = Object.keys(allImportPaths)
   const distImports = Object.keys(distImportPaths)
-  const distTypeImports = Object.keys(distTypeImportPaths)
 
-  const externalSrcImports = removeInternalImports(srcImports)
+  const externalAllImports = removeInternalImports(allImports)
   const externalDistImports = removeInternalImports(distImports)
-  const externalDistTypeImports = removeInternalImports(distTypeImports)
-  const externalConfigImports = removeInternalImports(Object.keys(configImportPaths))
+  const externalDistTypeImports = removeInternalImports(Object.keys(distTypeImportPaths))
 
-  // Tsconfig extends references count as used devDependencies
+  // Tsconfig extends references count as used imports
   for (const ext of tsconfigExtends) {
-    if (!externalSrcImports.includes(ext)) externalSrcImports.push(ext)
-    if (!externalConfigImports.includes(ext)) externalConfigImports.push(ext)
+    if (!externalAllImports.includes(ext)) externalAllImports.push(ext)
   }
 
   return {
-    configImportPaths,
-    srcImports,
-    srcImportPaths,
-    externalConfigImports,
-    externalSrcImports,
-    distImports,
+    allImportPaths,
+    allImports,
     distImportPaths,
+    distImports,
+    externalAllImports,
     externalDistImports,
     externalDistTypeImports,
   }
