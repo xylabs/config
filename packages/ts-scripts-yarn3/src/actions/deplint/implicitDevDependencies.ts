@@ -69,6 +69,9 @@ function hasImportPlugin({ location, allDependencies }: ImplicitDepContext): boo
   return false
 }
 
+const hasVitest = ({ allDependencies }: ImplicitDepContext) =>
+  allDependencies.includes('vitest')
+
 const rules: ImplicitDevDependencyRule[] = [
   {
     package: 'typescript',
@@ -84,6 +87,10 @@ const rules: ImplicitDevDependencyRule[] = [
   {
     package: 'tslib',
     isNeeded: hasDecorators,
+  },
+  {
+    package: '@vitest/coverage-v8',
+    isNeeded: hasVitest,
   },
 ]
 
