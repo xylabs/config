@@ -1,4 +1,5 @@
 export * from './build.ts'
+export * from './claude-rules.ts'
 export * from './clean.ts'
 export * from './clean-docs.ts'
 export * from './compile.ts'

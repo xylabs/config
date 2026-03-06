@@ -1,6 +1,7 @@
 import type { Argv } from 'yargs'
 
 import {
+  claudeRules,
   cleanDocs,
   dead,
   genDocs,
@@ -20,6 +21,23 @@ import { packagePositionalParam } from './param.ts'
 export const xyCommonCommands = (args: Argv) => {
   return args
 
+    .command(
+      'claude-rules',
+      'Claude Rules - Sync XY Labs standard Claude rules to .claude/rules/',
+      (yargs) => {
+        return yargs
+          .option('force', {
+            alias: 'f',
+            default: false,
+            description: 'Overwrite existing CLAUDE.md',
+            type: 'boolean',
+          })
+      },
+      (argv) => {
+        if (argv.verbose) console.log('Claude Rules')
+        process.exitCode = claudeRules({ force: argv.force })
+      },
+    )
     .command(
       'license [package]',
       'License - Check licenses of dependencies',

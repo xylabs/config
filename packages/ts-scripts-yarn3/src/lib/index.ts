@@ -1,4 +1,5 @@
 export * from './checkResult.ts'
+export * from './claudeMdTemplate.ts'
 export * from './createBuildConfig.ts'
 export * from './defaultBuildConfig.ts'
 export * from './deleteGlob.ts'

@@ -1,0 +1,10 @@
+# XY Labs - TypeScript Specifics
+
+> Auto-managed by `yarn xy claude-rules`. Do not edit manually.
+
+- Enable `strict: true` in all tsconfig files
+- Avoid `any` - use `unknown` when the type is truly unknown
+- Avoid type assertions (`as`) - prefer type guards and narrowing
+- Use `satisfies` for type checking without widening
+- Prefer `Record<string, T>` over index signatures
+- Use discriminated unions for state machines and variant types

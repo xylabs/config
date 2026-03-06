@@ -52,7 +52,8 @@
     "xy": "dist/bin/xy.mjs"
   },
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
     "package-clean": "echo Not cleaning...",
